@@ -16,30 +16,30 @@ import sys
 import tempfile
 from pathlib import Path
 
-# (name, file, original text, mutated text, suites to run, note shown if it survives)
+# (name, file, original text, mutated text, suites to run, note shown if it survives, rule type the project must define for the mutant to be observable)
 MUTANTS = [
-    ("skip ownership check", "backend_app/rules.py", '        if row.get(rule["field"]) != user_id:', "        if False:", "tests/security tests/api", ""),
-    ("skip role check", "backend_app/auth.py", 'if view.operations[op_id]["access"] == "restricted" and principal.role_id not in view.allowed_role_ids(op_id):', "if False:", "tests/api tests/security", ""),
-    ("allow undeclared transitions", "backend_app/rules.py", "    if match is None:", "    if False:", "tests/security tests/unit", ""),
-    ("ignore transition guard", "backend_app/rules.py", "        if missing:", "        if False:", "tests/security tests/unit", ""),
+    ("skip ownership check", "backend_app/rules.py", '        if row.get(rule["field"]) != user_id:', "        if False:", "tests/security tests/api", "", 'ownership'),
+    ("skip role check", "backend_app/auth.py", 'if view.operations[op_id]["access"] == "restricted" and principal.role_id not in view.allowed_role_ids(op_id):', "if False:", "tests/api tests/security", "", None),
+    ("allow undeclared transitions", "backend_app/rules.py", "    if match is None:", "    if False:", "tests/security tests/unit", "", 'transition'),
+    ("ignore transition guard", "backend_app/rules.py", "        if missing:", "        if False:", "tests/security tests/unit", "", 'transition_guard'),
     ("accept unknown request fields", "backend_app/api/schemas/{first_schema}.py", 'model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)',
-     'model_config = ConfigDict(extra="ignore", str_strip_whitespace=True)', "tests/security tests/contract tests/api", ""),
+     'model_config = ConfigDict(extra="ignore", str_strip_whitespace=True)', "tests/security tests/contract tests/api", "", None),
     ("login leaks password hash", "backend_app/auth_service.py", 'public = {k: v for k, v in row.items() if k != "password_hash"}', "public = dict(row)", "tests/api tests/security",
-     "equivalent: the response model still strips password_hash (defence in depth)"),
-    ("trust role claim in token", "backend_app/auth.py", 'role_id = self.view.role_by_key.get(row["role"])', 'role_id = self.view.role_by_key.get(claims.role or row["role"])', "tests/security", ""),
-    ("no token revocation", "backend_app/security.py", "            return token_id in self._items and self._items[token_id] > int(time.time())", "            return False", "tests/api", ""),
-    ("sort allow-list removed", "backend_app/repository.py", '        if sort_attr not in self.sortable and sort_attr != self.default_sort:', "        if False:", "tests/security tests/repository", ""),
-    ("500 leaks exception text", "backend_app/errors.py", '        return _respond(request, 500, "INTERNAL_ERROR", "An unexpected error occurred.")', '        return _respond(request, 500, "INTERNAL_ERROR", repr(exc))', "tests/security", ""),
-    ("wildcard CORS", "backend_app/app_factory.py", "allow_origins=list(settings.cors_origins)", 'allow_origins=["*"]', "tests/security", ""),
+     "equivalent: the response model still strips password_hash (defence in depth)", None),
+    ("trust role claim in token", "backend_app/auth.py", 'role_id = self.view.role_by_key.get(row["role"])', 'role_id = self.view.role_by_key.get(claims.role or row["role"])', "tests/security", "", None),
+    ("no token revocation", "backend_app/security.py", "            return token_id in self._items and self._items[token_id] > int(time.time())", "            return False", "tests/api", "", None),
+    ("sort allow-list removed", "backend_app/repository.py", '        if sort_attr not in self.sortable and sort_attr != self.default_sort:', "        if False:", "tests/security tests/repository", "", None),
+    ("500 leaks exception text", "backend_app/errors.py", '        return _respond(request, 500, "INTERNAL_ERROR", "An unexpected error occurred.")', '        return _respond(request, 500, "INTERNAL_ERROR", repr(exc))', "tests/security", "", None),
+    ("wildcard CORS", "backend_app/app_factory.py", "allow_origins=list(settings.cors_origins)", 'allow_origins=["*"]', "tests/security", "", None),
     ("no declared-size body limit", "backend_app/middleware.py", "if declared and declared.isdigit() and int(declared) > self.max_body:", "if False:", "tests/security",
-     "equivalent: the streaming byte counter still enforces the limit (defence in depth)"),
+     "equivalent: the streaming byte counter still enforces the limit (defence in depth)", None),
     ("no scope on read", "backend_app/engine.py", "        if row is None or not self._in_scope(op, principal, conn, row):", "        if row is None:", "tests/security",
-     "only observable in projects whose graph/heuristics define row scopes (carts, tickets)"),
+     "", 'row_scope'),
     ("no list scope", "backend_app/engine.py", "                conds.append(R.scope_sql(self.view, op[\"entity\"], node, principal.user_id))", "                pass", "tests/security",
-     "only observable in projects with row scopes"),
+     "", 'row_scope'),
     ("no parent check on create", "backend_app/engine.py", 'if parent is None or not R.row_in_scope(self.view, self.repos, conn, node["parent_entity"], parent, node["parent_scope"], principal.user_id):', "if parent is None:", "tests/security",
-     "only observable in projects with parent-chain scopes (ticket comments)"),
-    ("frozen state ignored", "backend_app/rules.py", '        if row.get(rule["field"]) in rule["states"]:', "        if False:", "tests/security tests/unit", "only observable in projects with a frozen_state rule"),
+     "", 'row_scope_parent'),
+    ("frozen state ignored", "backend_app/rules.py", '        if row.get(rule["field"]) in rule["states"]:', "        if False:", "tests/security tests/unit", "", 'frozen_state'),
 ]
 
 
@@ -50,8 +50,17 @@ def main(argv: list[str]) -> int:
     src = Path(argv[0]).resolve()
     schemas = sorted((src / "backend_app" / "api" / "schemas").glob("*.py"))
     first_schema = next((p.stem for p in schemas if p.stem != "__init__" and 'extra="forbid"' in p.read_text()), None)
+    import json
+
+    spec = json.loads((src / "backend_app" / "generated" / "spec.json").read_text())
+    rule_types = {r["type"] for r in spec["rules"]} | ({"row_scope_parent"} if any(r["type"] == "row_scope" and "fk" in r["scope"] for r in spec["rules"]) else set()) \
+        | ({"transition"} if spec["state_machines"] else set())
     killed = survived = skipped = 0
-    for name, rel, old, new, suites, note in MUTANTS:
+    for name, rel, old, new, suites, note, requires in MUTANTS:
+        if requires and requires not in rule_types:
+            print(f"  n/a      {name}   (this project defines no {requires} rule)")
+            skipped += 1
+            continue
         rel = rel.replace("{first_schema}", first_schema or "x")
         with tempfile.TemporaryDirectory() as td:
             work = Path(td) / "b"

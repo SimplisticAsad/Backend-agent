@@ -289,6 +289,7 @@ Not implemented — the MVP regenerates everything (deterministically). The desi
 - **In-process state:** logout revocation list and rate limiter are per process (multi-instance deployments need a shared store — the graph defines none). Password-reset tokens are stateless. The login limiter keys on the TCP peer address (`X-Forwarded-For` is deliberately not trusted), so behind a reverse proxy configure `RATE_LIMIT_PER_MINUTE` accordingly.
 - **External integrations:** `project.json`'s `integration_requirements` are surfaced in `backend_analysis.json`, but the only adapter generated is the `EmailService` protocol (password reset); payments/storage/third-party APIs need an adapter written against a protocol like it. `payment_method` in checkout is validated but not processed.
 - Filters on numeric/date fields are **equality** (the graph's `price` filter is ambiguous: reported, not guessed). Decimals are JSON numbers (the Frontend types them as `number`).
+- The throw-away PostgreSQL cluster is removed on normal exit and on Ctrl-C; after `SIGTERM`/`SIGKILL` of a test run a leftover `/tmp/bagent-pg-*` directory/process may remain (stop it with `pg_ctl -D <dir>/data stop` and delete the directory).
 - Corrections edit generated files; they are not replayed by `generate`.
 - Python 3.11 compatible (target 3.12+); `requires-python >=3.11`.
 
