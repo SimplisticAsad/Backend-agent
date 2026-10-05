@@ -1,0 +1,325 @@
+{
+  "schema_version": "1.0",
+  "graph": "api",
+  "nodes": [
+    {
+      "id": "api.auth.login",
+      "method": "POST",
+      "path": "/auth/login",
+      "operation": "login",
+      "auth": false,
+      "request": {
+        "entity": "entity.credentials",
+        "fields": [
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "source": "form"
+          },
+          {
+            "name": "password",
+            "type": "password",
+            "required": true,
+            "source": "form"
+          }
+        ]
+      },
+      "response": {
+        "shape": "session"
+      },
+      "errors": [
+        400,
+        401,
+        422,
+        429,
+        500
+      ]
+    },
+    {
+      "id": "api.user.list",
+      "method": "GET",
+      "path": "/users",
+      "operation": "list",
+      "auth": true,
+      "permission": "permission.task.view",
+      "response": {
+        "entity": "entity.user",
+        "shape": "list"
+      },
+      "errors": [
+        401,
+        403,
+        500
+      ]
+    },
+    {
+      "id": "api.project.list",
+      "method": "GET",
+      "path": "/projects",
+      "operation": "list",
+      "auth": true,
+      "permission": "permission.project.view",
+      "response": {
+        "entity": "entity.project",
+        "shape": "list"
+      },
+      "errors": [
+        401,
+        403,
+        500
+      ]
+    },
+    {
+      "id": "api.project.get",
+      "method": "GET",
+      "path": "/projects/{id}",
+      "operation": "get",
+      "auth": true,
+      "permission": "permission.project.view",
+      "request": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "source": "path"
+          }
+        ]
+      },
+      "response": {
+        "entity": "entity.project",
+        "shape": "single"
+      },
+      "errors": [
+        401,
+        403,
+        404,
+        500
+      ]
+    },
+    {
+      "id": "api.project.create",
+      "method": "POST",
+      "path": "/projects",
+      "operation": "create",
+      "auth": true,
+      "permission": "permission.project.create",
+      "request": {
+        "entity": "entity.project",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "source": "form"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "required": false,
+            "source": "form"
+          },
+          {
+            "name": "owner_id",
+            "type": "ref",
+            "required": true,
+            "source": "session.user_id"
+          }
+        ]
+      },
+      "response": {
+        "entity": "entity.project",
+        "shape": "single"
+      },
+      "errors": [
+        400,
+        401,
+        403,
+        409,
+        422,
+        500
+      ]
+    },
+    {
+      "id": "api.project.delete",
+      "method": "DELETE",
+      "path": "/projects/{id}",
+      "operation": "delete",
+      "auth": true,
+      "permission": "permission.project.delete",
+      "request": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "source": "path"
+          }
+        ]
+      },
+      "response": {
+        "shape": "none"
+      },
+      "errors": [
+        401,
+        403,
+        404,
+        409,
+        500
+      ]
+    },
+    {
+      "id": "api.task.list",
+      "method": "GET",
+      "path": "/tasks",
+      "operation": "list",
+      "auth": true,
+      "permission": "permission.task.view",
+      "request": {
+        "fields": [
+          {
+            "name": "project_id",
+            "type": "string",
+            "required": false,
+            "source": "query"
+          }
+        ]
+      },
+      "response": {
+        "entity": "entity.task",
+        "shape": "list"
+      },
+      "errors": [
+        401,
+        403,
+        500
+      ]
+    },
+    {
+      "id": "api.task.get",
+      "method": "GET",
+      "path": "/tasks/{id}",
+      "operation": "get",
+      "auth": true,
+      "permission": "permission.task.view",
+      "request": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "source": "path"
+          }
+        ]
+      },
+      "response": {
+        "entity": "entity.task",
+        "shape": "single"
+      },
+      "errors": [
+        401,
+        403,
+        404,
+        500
+      ]
+    },
+    {
+      "id": "api.task.create",
+      "method": "POST",
+      "path": "/tasks",
+      "operation": "create",
+      "auth": true,
+      "permission": "permission.task.create",
+      "request": {
+        "entity": "entity.task",
+        "fields": [
+          {
+            "name": "title",
+            "type": "string",
+            "required": true,
+            "source": "form"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "required": false,
+            "source": "form"
+          },
+          {
+            "name": "project_id",
+            "type": "ref",
+            "required": true,
+            "source": "form"
+          },
+          {
+            "name": "assignee_id",
+            "type": "ref",
+            "required": false,
+            "source": "form"
+          },
+          {
+            "name": "due_date",
+            "type": "date",
+            "required": false,
+            "source": "form"
+          }
+        ]
+      },
+      "response": {
+        "entity": "entity.task",
+        "shape": "single"
+      },
+      "errors": [
+        400,
+        401,
+        403,
+        404,
+        422,
+        500
+      ]
+    },
+    {
+      "id": "api.task.update_status",
+      "method": "PATCH",
+      "path": "/tasks/{id}/status",
+      "operation": "transition",
+      "auth": true,
+      "permission": "permission.task.update_status",
+      "request": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "source": "path"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "required": true,
+            "source": "input",
+            "values": [
+              "TODO",
+              "IN_PROGRESS",
+              "COMPLETED"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "entity": "entity.task",
+        "shape": "single"
+      },
+      "errors": [
+        400,
+        401,
+        403,
+        404,
+        409,
+        422,
+        500
+      ]
+    }
+  ]
+}

@@ -1,0 +1,399 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "entities": [
+    {
+      "id": "entity.cart_item",
+      "name": "Cart Item",
+      "description": "A product placed in a customer's cart.",
+      "attributes": [
+        {
+          "id": "entity.cart_item.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.cart_item.user_id",
+          "name": "user_id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.user"
+        },
+        {
+          "id": "entity.cart_item.product_id",
+          "name": "product_id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.product"
+        },
+        {
+          "id": "entity.cart_item.quantity",
+          "name": "quantity",
+          "type": "integer",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Users can add products to cart."
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "entity.category",
+      "name": "Category",
+      "description": "A grouping of products.",
+      "attributes": [
+        {
+          "id": "entity.category.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.category.name",
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Category data is needed by the selected capabilities"
+        },
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "entity.order",
+      "name": "Order",
+      "description": "A purchase made by a customer.",
+      "attributes": [
+        {
+          "id": "entity.order.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.order.user_id",
+          "name": "user_id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.user"
+        },
+        {
+          "id": "entity.order.status",
+          "name": "status",
+          "type": "enum",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [
+            "pending",
+            "paid",
+            "shipped",
+            "delivered",
+            "cancelled"
+          ],
+          "reference_to": null
+        },
+        {
+          "id": "entity.order.total",
+          "name": "total",
+          "type": "decimal",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.order.shipping_address",
+          "name": "shipping_address",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.order.placed_at",
+          "name": "placed_at",
+          "type": "datetime",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Order data is needed by the selected capabilities"
+        },
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "entity.order_item",
+      "name": "Order Item",
+      "description": "A product line inside an order.",
+      "attributes": [
+        {
+          "id": "entity.order_item.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.order_item.order_id",
+          "name": "order_id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.order"
+        },
+        {
+          "id": "entity.order_item.product_id",
+          "name": "product_id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.product"
+        },
+        {
+          "id": "entity.order_item.quantity",
+          "name": "quantity",
+          "type": "integer",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.order_item.unit_price",
+          "name": "unit_price",
+          "type": "decimal",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Order Item data is needed by the selected capabilities"
+        },
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "entity.product",
+      "name": "Product",
+      "description": "An item for sale.",
+      "attributes": [
+        {
+          "id": "entity.product.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.product.name",
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.product.description",
+          "name": "description",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.product.price",
+          "name": "price",
+          "type": "decimal",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.product.stock",
+          "name": "stock",
+          "type": "integer",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.product.category_id",
+          "name": "category_id",
+          "type": "uuid",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.category"
+        },
+        {
+          "id": "entity.product.image_url",
+          "name": "image_url",
+          "type": "url",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Users can search products."
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "entity.user",
+      "name": "User",
+      "description": "An account that can sign in to the product.",
+      "attributes": [
+        {
+          "id": "entity.user.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.email",
+          "name": "email",
+          "type": "email",
+          "required": true,
+          "unique": true,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.password_hash",
+          "name": "password_hash",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.full_name",
+          "name": "full_name",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.role",
+          "name": "role",
+          "type": "enum",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [
+            "customer"
+          ],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.created_at",
+          "name": "created_at",
+          "type": "datetime",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Users can search products."
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

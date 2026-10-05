@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "capabilities": [
+    {
+      "id": "capability.authentication",
+      "name": "Authentication",
+      "description": "Email/password login, logout and password reset.",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.user"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "capability.checkout",
+      "name": "Checkout and orders",
+      "description": "Create, view, change and remove orders.",
+      "requirement_refs": [
+        "requirement.checkout"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.cart_item",
+        "entity.order",
+        "entity.order_item",
+        "entity.product"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.product_catalog",
+      "name": "Product catalog",
+      "description": "Create, view, change and remove products.",
+      "requirement_refs": [
+        "requirement.product_catalog"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.category",
+        "entity.product"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.product_catalog, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "capability.product_filter",
+      "name": "Product filtering",
+      "description": "Narrow the catalog by category and price.",
+      "requirement_refs": [
+        "requirement.product_filter"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.category",
+        "entity.product"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_filter, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.product_search",
+      "name": "Product search",
+      "description": "Find products by keyword.",
+      "requirement_refs": [
+        "requirement.product_search"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.product"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_search, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.shopping_cart",
+      "name": "Shopping cart",
+      "description": "Create, view, change and remove cart items.",
+      "requirement_refs": [
+        "requirement.shopping_cart"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.cart_item",
+        "entity.product"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

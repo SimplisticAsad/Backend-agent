@@ -1,0 +1,651 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "workflows": [
+    {
+      "id": "workflow.auth.login",
+      "name": "Log in",
+      "description": "Log in workflow of Authentication.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Login",
+          "target": "screen.auth.login",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_in",
+          "type": "input",
+          "description": "Enter email and password",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_act",
+          "type": "action",
+          "description": "Log in",
+          "target": null,
+          "operation_ref": "operation.user.login",
+          "next": []
+        },
+        {
+          "id": "step.04_sys",
+          "type": "system",
+          "description": "Redirect the user to their home screen",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The user is authenticated and sees their home screen",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "workflow.auth.logout",
+      "name": "Log out",
+      "description": "Log out workflow of Authentication.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "steps": [
+        {
+          "id": "step.01_in",
+          "type": "input",
+          "description": "Choose log out",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "Log out",
+          "target": null,
+          "operation_ref": "operation.user.logout",
+          "next": []
+        },
+        {
+          "id": "step.03_nav",
+          "type": "navigation",
+          "description": "Open Login",
+          "target": "screen.auth.login",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The session ends and the login screen is shown",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "workflow.auth.password_reset",
+      "name": "Reset password",
+      "description": "Reset password workflow of Authentication.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Forgot Password",
+          "target": "screen.auth.forgot_password",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_in",
+          "type": "input",
+          "description": "Enter the account email",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_act",
+          "type": "action",
+          "description": "Request password reset",
+          "target": null,
+          "operation_ref": "operation.user.request_password_reset",
+          "next": []
+        },
+        {
+          "id": "step.04_nav",
+          "type": "navigation",
+          "description": "Open Reset Password",
+          "target": "screen.auth.reset_password",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.05_in",
+          "type": "input",
+          "description": "Enter the new password",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.06_act",
+          "type": "action",
+          "description": "Reset password",
+          "target": null,
+          "operation_ref": "operation.user.reset_password",
+          "next": []
+        },
+        {
+          "id": "step.07_nav",
+          "type": "navigation",
+          "description": "Open Login",
+          "target": "screen.auth.login",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The password is changed and the user can log in again",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "workflow.cart_item.browse",
+      "name": "Browse Cart Items",
+      "description": "Browse Cart Items workflow of Shopping cart.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.shopping_cart"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Cart Item List",
+          "target": "screen.cart_item.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "List Cart Items",
+          "target": null,
+          "operation_ref": "operation.cart_item.list",
+          "next": []
+        }
+      ],
+      "outcome": "The Cart Item information is displayed",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.cart_item.create",
+      "name": "Create Cart Item",
+      "description": "Create Cart Item workflow of Shopping cart.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.shopping_cart"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Cart Item List",
+          "target": "screen.cart_item.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Create Cart Item",
+          "target": "screen.cart_item.create",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Fill in the Cart Item form",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Create Cart Item",
+          "target": null,
+          "operation_ref": "operation.cart_item.create",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Cart Item List",
+          "target": "screen.cart_item.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The Cart Item is created and appears in the Cart Item list",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.cart_item.delete",
+      "name": "Delete Cart Item",
+      "description": "Delete Cart Item workflow of Shopping cart.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.shopping_cart"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Cart Item List",
+          "target": "screen.cart_item.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_decide",
+          "type": "decision",
+          "description": "Confirm deleting the Cart Item",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_act",
+          "type": "action",
+          "description": "Delete Cart Item",
+          "target": null,
+          "operation_ref": "operation.cart_item.delete",
+          "next": []
+        },
+        {
+          "id": "step.04_nav",
+          "type": "navigation",
+          "description": "Open Cart Item List",
+          "target": "screen.cart_item.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The Cart Item is removed from the Cart Item list",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.cart_item.update",
+      "name": "Update Cart Item",
+      "description": "Update Cart Item workflow of Shopping cart.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.shopping_cart"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Cart Item List",
+          "target": "screen.cart_item.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Edit Cart Item",
+          "target": "screen.cart_item.edit",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Change the Cart Item details",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Update Cart Item",
+          "target": null,
+          "operation_ref": "operation.cart_item.update",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Cart Item List",
+          "target": "screen.cart_item.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The changes to the Cart Item are saved",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.order.browse",
+      "name": "Browse Orders",
+      "description": "Browse Orders workflow of Checkout and orders.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.checkout"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Order List",
+          "target": "screen.order.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "List Orders",
+          "target": null,
+          "operation_ref": "operation.order.list",
+          "next": []
+        },
+        {
+          "id": "step.03_nav",
+          "type": "navigation",
+          "description": "Open Order Details",
+          "target": "screen.order.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "View Order",
+          "target": null,
+          "operation_ref": "operation.order.read",
+          "next": []
+        }
+      ],
+      "outcome": "The Order information is displayed",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.order.checkout",
+      "name": "Check out",
+      "description": "Check out workflow of Checkout and orders.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.checkout"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Cart Item List",
+          "target": "screen.cart_item.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Checkout",
+          "target": "screen.order.checkout",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Enter shipping address and payment method",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Place order",
+          "target": null,
+          "operation_ref": "operation.order.place",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Order Details",
+          "target": "screen.order.detail",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The order is placed and its details are shown",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.product.browse",
+      "name": "Browse Products",
+      "description": "Browse Products workflow of Product catalog.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.product_catalog"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Product List",
+          "target": "screen.product.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "List Products",
+          "target": null,
+          "operation_ref": "operation.product.list",
+          "next": []
+        },
+        {
+          "id": "step.03_nav",
+          "type": "navigation",
+          "description": "Open Product Details",
+          "target": "screen.product.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "View Product",
+          "target": null,
+          "operation_ref": "operation.product.read",
+          "next": []
+        }
+      ],
+      "outcome": "The Product information is displayed",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.product_catalog, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "workflow.product.filter",
+      "name": "Filter products",
+      "description": "Filter products workflow of Product filtering.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.product_filter"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Filter Products",
+          "target": "screen.product.filter",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_in",
+          "type": "input",
+          "description": "Choose category and price range",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_act",
+          "type": "action",
+          "description": "Filter products",
+          "target": null,
+          "operation_ref": "operation.product.filter",
+          "next": []
+        }
+      ],
+      "outcome": "Only matching products are listed",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_filter, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.product.search",
+      "name": "Search products",
+      "description": "Search products workflow of Product search.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.product_search"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Product Search",
+          "target": "screen.product.search",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_in",
+          "type": "input",
+          "description": "Enter search words",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_act",
+          "type": "action",
+          "description": "Search products",
+          "target": null,
+          "operation_ref": "operation.product.search",
+          "next": []
+        }
+      ],
+      "outcome": "Matching products are listed",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_search, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

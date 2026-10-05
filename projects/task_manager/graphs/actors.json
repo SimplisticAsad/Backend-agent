@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "actors": [
+    {
+      "id": "actor.employee",
+      "name": "Employee",
+      "description": "Works on assigned tasks.",
+      "role_refs": [
+        "role.employee"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Build a SaaS application for managing a small company's employees, projects and tasks."
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "actor.manager",
+      "name": "Manager",
+      "description": "Plans projects, assigns work and follows progress.",
+      "role_refs": [
+        "role.manager"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Managers can create projects and assign employees to projects."
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

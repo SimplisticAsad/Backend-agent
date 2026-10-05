@@ -1,0 +1,587 @@
+{
+  "schema": "task_manager",
+  "tables": {
+    "departments": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "name",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "description",
+          "data_type": "text",
+          "nullable": true,
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "pk_departments",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    },
+    "employees": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "user_id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "department_id",
+          "data_type": "uuid",
+          "nullable": true,
+          "column_default": null
+        },
+        {
+          "column_name": "job_title",
+          "data_type": "text",
+          "nullable": true,
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "fk_employees_department_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (department_id) REFERENCES fixture_acdc0c83c4.departments(id) ON DELETE RESTRICT",
+          "columns": [
+            "department_id"
+          ],
+          "ref_table": "departments",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "fk_employees_user_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (user_id) REFERENCES fixture_acdc0c83c4.users(id) ON DELETE RESTRICT",
+          "columns": [
+            "user_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "pk_employees",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    },
+    "project_members": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "project_id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "user_id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "fk_project_members_project_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (project_id) REFERENCES fixture_acdc0c83c4.projects(id) ON DELETE CASCADE",
+          "columns": [
+            "project_id"
+          ],
+          "ref_table": "projects",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "fk_project_members_user_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (user_id) REFERENCES fixture_acdc0c83c4.users(id) ON DELETE RESTRICT",
+          "columns": [
+            "user_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "pk_project_members",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    },
+    "projects": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "name",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "description",
+          "data_type": "text",
+          "nullable": true,
+          "column_default": null
+        },
+        {
+          "column_name": "status",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "owner_id",
+          "data_type": "uuid",
+          "nullable": true,
+          "column_default": null
+        },
+        {
+          "column_name": "due_date",
+          "data_type": "date",
+          "nullable": true,
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "ck_projects_status",
+          "type": "CHECK",
+          "definition": "CHECK ((status = ANY (ARRAY['planned'::text, 'active'::text, 'completed'::text])))",
+          "columns": [
+            "status"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "fk_projects_owner_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (owner_id) REFERENCES fixture_acdc0c83c4.users(id) ON DELETE RESTRICT",
+          "columns": [
+            "owner_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "pk_projects",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    },
+    "tasks": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "title",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "description",
+          "data_type": "text",
+          "nullable": true,
+          "column_default": null
+        },
+        {
+          "column_name": "status",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "due_date",
+          "data_type": "date",
+          "nullable": true,
+          "column_default": null
+        },
+        {
+          "column_name": "project_id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "assignee_id",
+          "data_type": "uuid",
+          "nullable": true,
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "ck_tasks_status",
+          "type": "CHECK",
+          "definition": "CHECK ((status = ANY (ARRAY['todo'::text, 'in_progress'::text, 'completed'::text])))",
+          "columns": [
+            "status"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "fk_tasks_assignee_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (assignee_id) REFERENCES fixture_acdc0c83c4.users(id) ON DELETE RESTRICT",
+          "columns": [
+            "assignee_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "fk_tasks_project_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (project_id) REFERENCES fixture_acdc0c83c4.projects(id) ON DELETE RESTRICT",
+          "columns": [
+            "project_id"
+          ],
+          "ref_table": "projects",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "pk_tasks",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    },
+    "users": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "email",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "password_hash",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "full_name",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "role",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "nullable": false,
+          "column_default": "now()"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "ck_users_role",
+          "type": "CHECK",
+          "definition": "CHECK ((role = ANY (ARRAY['manager'::text, 'employee'::text])))",
+          "columns": [
+            "role"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "pk_users",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "uq_users_email",
+          "type": "UNIQUE",
+          "definition": "UNIQUE (email)",
+          "columns": [
+            "email"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    }
+  },
+  "functions": [
+    {
+      "name": "create_department",
+      "arguments": "p_name text, p_description text",
+      "returns": "fixture_acdc0c83c4.departments",
+      "kind": "function"
+    },
+    {
+      "name": "create_employee",
+      "arguments": "p_user_id uuid, p_department_id uuid, p_job_title text",
+      "returns": "fixture_acdc0c83c4.employees",
+      "kind": "function"
+    },
+    {
+      "name": "create_project",
+      "arguments": "p_name text, p_description text, p_status text, p_owner_id uuid, p_due_date date",
+      "returns": "fixture_acdc0c83c4.projects",
+      "kind": "function"
+    },
+    {
+      "name": "create_project_member",
+      "arguments": "p_project_id uuid, p_user_id uuid",
+      "returns": "fixture_acdc0c83c4.project_members",
+      "kind": "function"
+    },
+    {
+      "name": "create_task",
+      "arguments": "p_title text, p_description text, p_status text, p_due_date date, p_project_id uuid, p_assignee_id uuid",
+      "returns": "fixture_acdc0c83c4.tasks",
+      "kind": "function"
+    },
+    {
+      "name": "create_user",
+      "arguments": "p_email text, p_password_hash text, p_full_name text, p_role text, p_created_at timestamp with time zone",
+      "returns": "fixture_acdc0c83c4.users",
+      "kind": "function"
+    },
+    {
+      "name": "delete_department",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "delete_employee",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "delete_project",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "delete_project_member",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "delete_task",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "delete_user",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "get_department",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_acdc0c83c4.departments",
+      "kind": "function"
+    },
+    {
+      "name": "get_employee",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_acdc0c83c4.employees",
+      "kind": "function"
+    },
+    {
+      "name": "get_project",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_acdc0c83c4.projects",
+      "kind": "function"
+    },
+    {
+      "name": "get_project_member",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_acdc0c83c4.project_members",
+      "kind": "function"
+    },
+    {
+      "name": "get_task",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_acdc0c83c4.tasks",
+      "kind": "function"
+    },
+    {
+      "name": "get_user",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_acdc0c83c4.users",
+      "kind": "function"
+    },
+    {
+      "name": "list_departments",
+      "arguments": "",
+      "returns": "SETOF fixture_acdc0c83c4.departments",
+      "kind": "function"
+    },
+    {
+      "name": "list_employees",
+      "arguments": "",
+      "returns": "SETOF fixture_acdc0c83c4.employees",
+      "kind": "function"
+    },
+    {
+      "name": "list_project_members",
+      "arguments": "",
+      "returns": "SETOF fixture_acdc0c83c4.project_members",
+      "kind": "function"
+    },
+    {
+      "name": "list_projects",
+      "arguments": "",
+      "returns": "SETOF fixture_acdc0c83c4.projects",
+      "kind": "function"
+    },
+    {
+      "name": "list_tasks",
+      "arguments": "",
+      "returns": "SETOF fixture_acdc0c83c4.tasks",
+      "kind": "function"
+    },
+    {
+      "name": "list_users",
+      "arguments": "",
+      "returns": "SETOF fixture_acdc0c83c4.users",
+      "kind": "function"
+    },
+    {
+      "name": "update_department",
+      "arguments": "p_id uuid, p_name text, p_description text",
+      "returns": "fixture_acdc0c83c4.departments",
+      "kind": "function"
+    },
+    {
+      "name": "update_employee",
+      "arguments": "p_id uuid, p_user_id uuid, p_department_id uuid, p_job_title text",
+      "returns": "fixture_acdc0c83c4.employees",
+      "kind": "function"
+    },
+    {
+      "name": "update_project",
+      "arguments": "p_id uuid, p_name text, p_description text, p_status text, p_owner_id uuid, p_due_date date",
+      "returns": "fixture_acdc0c83c4.projects",
+      "kind": "function"
+    },
+    {
+      "name": "update_project_member",
+      "arguments": "p_id uuid, p_project_id uuid, p_user_id uuid",
+      "returns": "fixture_acdc0c83c4.project_members",
+      "kind": "function"
+    },
+    {
+      "name": "update_task",
+      "arguments": "p_id uuid, p_title text, p_description text, p_status text, p_due_date date, p_project_id uuid, p_assignee_id uuid",
+      "returns": "fixture_acdc0c83c4.tasks",
+      "kind": "function"
+    },
+    {
+      "name": "update_user",
+      "arguments": "p_id uuid, p_email text, p_password_hash text, p_full_name text, p_role text, p_created_at timestamp with time zone",
+      "returns": "fixture_acdc0c83c4.users",
+      "kind": "function"
+    }
+  ]
+}

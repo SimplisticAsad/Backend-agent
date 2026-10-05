@@ -1,0 +1,268 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "validations": [
+    {
+      "id": "validation.department.required_fields",
+      "name": "Department required fields",
+      "kind": "required",
+      "target": {
+        "entity_ref": "entity.department",
+        "field": null
+      },
+      "condition": "name, description must be provided",
+      "failure": {
+        "action": "reject",
+        "message": "name, description are required",
+        "error_code": "DEPARTMENT_FIELDS_REQUIRED"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.department.create"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "validation.employee.required_fields",
+      "name": "Employee required fields",
+      "kind": "required",
+      "target": {
+        "entity_ref": "entity.employee",
+        "field": null
+      },
+      "condition": "user_id, department_id, job_title must be provided",
+      "failure": {
+        "action": "reject",
+        "message": "user_id, department_id, job_title are required",
+        "error_code": "EMPLOYEE_FIELDS_REQUIRED"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.employee.create"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "validation.project.only_managers_delete",
+      "name": "Only managers delete projects",
+      "kind": "authorization",
+      "target": {
+        "entity_ref": "entity.project",
+        "field": null
+      },
+      "condition": "caller has role manager",
+      "failure": {
+        "action": "reject",
+        "message": "Only managers can delete projects",
+        "error_code": "PROJECT_DELETE_FORBIDDEN"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.project.delete"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "validation.project.required_fields",
+      "name": "Project required fields",
+      "kind": "required",
+      "target": {
+        "entity_ref": "entity.project",
+        "field": null
+      },
+      "condition": "name, description must be provided",
+      "failure": {
+        "action": "reject",
+        "message": "name, description are required",
+        "error_code": "PROJECT_FIELDS_REQUIRED"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.project.create"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "validation.project_member.required_fields",
+      "name": "Project Member required fields",
+      "kind": "required",
+      "target": {
+        "entity_ref": "entity.project_member",
+        "field": null
+      },
+      "condition": "project_id, user_id must be provided",
+      "failure": {
+        "action": "reject",
+        "message": "project_id, user_id are required",
+        "error_code": "PROJECT_MEMBER_FIELDS_REQUIRED"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.project_member.create"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "validation.task.completed_needs_assignee",
+      "name": "Completed tasks need an assignee",
+      "kind": "state",
+      "target": {
+        "entity_ref": "entity.task",
+        "field": "assignee_id"
+      },
+      "condition": "a task may only move to completed when assignee_id is set",
+      "failure": {
+        "action": "block_transition",
+        "message": "A task cannot be completed without an assignee",
+        "error_code": "TASK_NO_ASSIGNEE"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.task.update_status"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "validation.task.employee_updates_own",
+      "name": "Employees update only their own tasks",
+      "kind": "ownership",
+      "target": {
+        "entity_ref": "entity.task",
+        "field": null
+      },
+      "condition": "caller is the assignee or has role manager",
+      "failure": {
+        "action": "reject",
+        "message": "Employees can only update tasks assigned to them",
+        "error_code": "TASK_NOT_ASSIGNED_TO_CALLER"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.task.update_status"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "validation.task.required_fields",
+      "name": "Task required fields",
+      "kind": "required",
+      "target": {
+        "entity_ref": "entity.task",
+        "field": null
+      },
+      "condition": "title, project_id must be provided",
+      "failure": {
+        "action": "reject",
+        "message": "title, project_id are required",
+        "error_code": "TASK_FIELDS_REQUIRED"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.task.create"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "validation.user.email_format",
+      "name": "Email must be well formed",
+      "kind": "format",
+      "target": {
+        "entity_ref": "entity.user",
+        "field": "email"
+      },
+      "condition": "email matches a valid email address pattern",
+      "failure": {
+        "action": "reject",
+        "message": "Enter a valid email address",
+        "error_code": "INVALID_EMAIL"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.user.login",
+        "operation.user.request_password_reset"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "validation.user.invalid_login",
+      "name": "Wrong credentials are rejected",
+      "kind": "authorization",
+      "target": {
+        "entity_ref": "entity.user",
+        "field": null
+      },
+      "condition": "email and password match an existing account",
+      "failure": {
+        "action": "reject",
+        "message": "Email or password is wrong",
+        "error_code": "INVALID_CREDENTIALS"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.user.login"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

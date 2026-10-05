@@ -1,0 +1,3220 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "edges": [
+    {
+      "id": "dependency.c6ea1d3516",
+      "source": "ac.auth.login",
+      "target": "operation.user.login",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.c058313d7e",
+      "source": "ac.auth.login",
+      "target": "requirement.authentication",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.120eb27a6c",
+      "source": "ac.auth.login",
+      "target": "workflow.auth.login",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.21620ab98c",
+      "source": "ac.auth.logout",
+      "target": "operation.user.logout",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.046aa624d5",
+      "source": "ac.auth.logout",
+      "target": "requirement.authentication",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.532306cc33",
+      "source": "ac.auth.logout",
+      "target": "workflow.auth.logout",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.f583fa25db",
+      "source": "ac.auth.password_reset",
+      "target": "operation.user.request_password_reset",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.a463deb396",
+      "source": "ac.auth.password_reset",
+      "target": "operation.user.reset_password",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.6595bc79da",
+      "source": "ac.auth.password_reset",
+      "target": "requirement.authentication",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.88702de63c",
+      "source": "ac.auth.password_reset",
+      "target": "workflow.auth.password_reset",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.efc0f976ed",
+      "source": "ac.cart_item.browse",
+      "target": "operation.cart_item.list",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.cc2f4fb651",
+      "source": "ac.cart_item.browse",
+      "target": "requirement.shopping_cart",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.410f154558",
+      "source": "ac.cart_item.browse",
+      "target": "workflow.cart_item.browse",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.5579408e60",
+      "source": "ac.cart_item.create",
+      "target": "operation.cart_item.create",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.8e45fa6265",
+      "source": "ac.cart_item.create",
+      "target": "requirement.shopping_cart",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.c9fb7936c3",
+      "source": "ac.cart_item.create",
+      "target": "workflow.cart_item.create",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.ea58efc8b7",
+      "source": "ac.cart_item.delete",
+      "target": "operation.cart_item.delete",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.f9d395640f",
+      "source": "ac.cart_item.delete",
+      "target": "requirement.shopping_cart",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.f5c8acda27",
+      "source": "ac.cart_item.delete",
+      "target": "workflow.cart_item.delete",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.2fe1ebfb7a",
+      "source": "ac.cart_item.update",
+      "target": "operation.cart_item.update",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.a7a01cf6f1",
+      "source": "ac.cart_item.update",
+      "target": "requirement.shopping_cart",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.7a766ad6d0",
+      "source": "ac.cart_item.update",
+      "target": "workflow.cart_item.update",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.8deaf218c8",
+      "source": "ac.order.browse",
+      "target": "operation.order.list",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.371a01c665",
+      "source": "ac.order.browse",
+      "target": "operation.order.read",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.ecc42116fb",
+      "source": "ac.order.browse",
+      "target": "requirement.checkout",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.b47d12b1a0",
+      "source": "ac.order.browse",
+      "target": "workflow.order.browse",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.ec2cc25704",
+      "source": "ac.order.cart_not_empty",
+      "target": "operation.order.place",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.8bf2832034",
+      "source": "ac.order.cart_not_empty",
+      "target": "requirement.checkout",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.1879879dae",
+      "source": "ac.order.checkout",
+      "target": "operation.order.place",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.318a427874",
+      "source": "ac.order.checkout",
+      "target": "requirement.checkout",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.7dcc4ca0c4",
+      "source": "ac.order.checkout",
+      "target": "workflow.order.checkout",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.970d52ef3d",
+      "source": "ac.product.browse",
+      "target": "operation.product.list",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.77838c156e",
+      "source": "ac.product.browse",
+      "target": "operation.product.read",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.c618b78258",
+      "source": "ac.product.browse",
+      "target": "requirement.product_catalog",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.e76316df3f",
+      "source": "ac.product.browse",
+      "target": "workflow.product.browse",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.4b33461291",
+      "source": "ac.product.filter",
+      "target": "operation.product.filter",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.f5440c3e70",
+      "source": "ac.product.filter",
+      "target": "requirement.product_filter",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.0d5b98706c",
+      "source": "ac.product.filter",
+      "target": "workflow.product.filter",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.ef9ee4d32a",
+      "source": "ac.product.search",
+      "target": "operation.product.search",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.fcddd73a5b",
+      "source": "ac.product.search",
+      "target": "requirement.product_search",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.b1faec4b78",
+      "source": "ac.product.search",
+      "target": "workflow.product.search",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.3a5ea630c4",
+      "source": "ac.product.stock_available",
+      "target": "operation.order.place",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.25a0942276",
+      "source": "ac.product.stock_available",
+      "target": "requirement.checkout",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.3ea341ec7f",
+      "source": "ac.user.invalid_login",
+      "target": "operation.user.login",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.c43b8510f1",
+      "source": "ac.user.invalid_login",
+      "target": "requirement.authentication",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.d23fb46a8a",
+      "source": "actor.customer",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "actors:role_refs"
+    },
+    {
+      "id": "dependency.5e62952bb3",
+      "source": "api.cart_item.create",
+      "target": "operation.cart_item.create",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.1e22e4e325",
+      "source": "api.cart_item.create",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.0f319b7377",
+      "source": "api.cart_item.create",
+      "target": "schema.cart_item",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.1b34db6265",
+      "source": "api.cart_item.create",
+      "target": "schema.cart_item.create",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.7281ddbfcd",
+      "source": "api.cart_item.delete",
+      "target": "operation.cart_item.delete",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.7465a9bd4e",
+      "source": "api.cart_item.delete",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.8a69a74829",
+      "source": "api.cart_item.list",
+      "target": "operation.cart_item.list",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.da2c27b7d0",
+      "source": "api.cart_item.list",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.58836b8f9d",
+      "source": "api.cart_item.list",
+      "target": "schema.cart_item",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.4a93a5ddb1",
+      "source": "api.cart_item.update",
+      "target": "operation.cart_item.update",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.282c03a6ac",
+      "source": "api.cart_item.update",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.d9aeb45038",
+      "source": "api.cart_item.update",
+      "target": "schema.cart_item",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.4dc92be7c8",
+      "source": "api.cart_item.update",
+      "target": "schema.cart_item.update",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.465374a5e1",
+      "source": "api.order.list",
+      "target": "operation.order.list",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.d7eb63c4d6",
+      "source": "api.order.list",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.0ab69456f9",
+      "source": "api.order.list",
+      "target": "schema.order",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.9c6c554825",
+      "source": "api.order.place",
+      "target": "operation.order.place",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.d81669f247",
+      "source": "api.order.place",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.c32b25e88b",
+      "source": "api.order.place",
+      "target": "schema.order",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.e966d0cc84",
+      "source": "api.order.place",
+      "target": "schema.order.place",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.ffd1c16027",
+      "source": "api.order.read",
+      "target": "operation.order.read",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.bba1d5d4bd",
+      "source": "api.order.read",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.8b4bd62a67",
+      "source": "api.order.read",
+      "target": "schema.order",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.2c10fae17f",
+      "source": "api.product.filter",
+      "target": "operation.product.filter",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.44e2f431a6",
+      "source": "api.product.filter",
+      "target": "schema.product",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.81ca0b34d4",
+      "source": "api.product.list",
+      "target": "operation.product.list",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.fe71ab6eac",
+      "source": "api.product.list",
+      "target": "schema.product",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.4865447bb1",
+      "source": "api.product.read",
+      "target": "operation.product.read",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.fefd797746",
+      "source": "api.product.read",
+      "target": "schema.product",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.baea0d9847",
+      "source": "api.product.search",
+      "target": "operation.product.search",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.c03d992292",
+      "source": "api.product.search",
+      "target": "schema.product",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.50b7530ae2",
+      "source": "api.user.login",
+      "target": "operation.user.login",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.429ddc8ff6",
+      "source": "api.user.login",
+      "target": "schema.user",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.9c8ee30704",
+      "source": "api.user.login",
+      "target": "schema.user.login",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.b9f425102a",
+      "source": "api.user.logout",
+      "target": "operation.user.logout",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.286e68302d",
+      "source": "api.user.request_password_reset",
+      "target": "operation.user.request_password_reset",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.0aa14becd2",
+      "source": "api.user.request_password_reset",
+      "target": "schema.user.request_password_reset",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.38bff31936",
+      "source": "api.user.reset_password",
+      "target": "operation.user.reset_password",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.1342fd4faf",
+      "source": "api.user.reset_password",
+      "target": "schema.user.reset_password",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.a76a5ba097",
+      "source": "capability.authentication",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.0aebeab0d5",
+      "source": "capability.authentication",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.f58a176484",
+      "source": "capability.authentication",
+      "target": "requirement.authentication",
+      "type": "depends_on",
+      "reason": "capabilities:requirement_refs"
+    },
+    {
+      "id": "dependency.dd53815a24",
+      "source": "capability.checkout",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.ca9127d7f6",
+      "source": "capability.checkout",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.7cb29b6e81",
+      "source": "capability.checkout",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.bc76377510",
+      "source": "capability.checkout",
+      "target": "entity.order_item",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.8af5dffce7",
+      "source": "capability.checkout",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.a92e8b813e",
+      "source": "capability.checkout",
+      "target": "requirement.checkout",
+      "type": "depends_on",
+      "reason": "capabilities:requirement_refs"
+    },
+    {
+      "id": "dependency.424c616a19",
+      "source": "capability.product_catalog",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.cccfed8ec3",
+      "source": "capability.product_catalog",
+      "target": "entity.category",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.54f9d52a07",
+      "source": "capability.product_catalog",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.ecc7a517ba",
+      "source": "capability.product_catalog",
+      "target": "requirement.product_catalog",
+      "type": "depends_on",
+      "reason": "capabilities:requirement_refs"
+    },
+    {
+      "id": "dependency.93e2189d82",
+      "source": "capability.product_filter",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.ff50161a03",
+      "source": "capability.product_filter",
+      "target": "entity.category",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.cb0cdc3be3",
+      "source": "capability.product_filter",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.e8952089af",
+      "source": "capability.product_filter",
+      "target": "requirement.product_filter",
+      "type": "depends_on",
+      "reason": "capabilities:requirement_refs"
+    },
+    {
+      "id": "dependency.4223a10585",
+      "source": "capability.product_search",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.531eb8c0f1",
+      "source": "capability.product_search",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.98175ef44d",
+      "source": "capability.product_search",
+      "target": "requirement.product_search",
+      "type": "depends_on",
+      "reason": "capabilities:requirement_refs"
+    },
+    {
+      "id": "dependency.6a7b64179b",
+      "source": "capability.shopping_cart",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.0f47445c06",
+      "source": "capability.shopping_cart",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.1ce22638ed",
+      "source": "capability.shopping_cart",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.4d212f4272",
+      "source": "capability.shopping_cart",
+      "target": "requirement.shopping_cart",
+      "type": "depends_on",
+      "reason": "capabilities:requirement_refs"
+    },
+    {
+      "id": "dependency.b5415789b0",
+      "source": "component.app.navigation",
+      "target": "screen.cart_item.list",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.1f3cbb7c8d",
+      "source": "component.app.navigation",
+      "target": "screen.order.list",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.68445d547e",
+      "source": "component.app.navigation",
+      "target": "screen.product.list",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.7660cd8c69",
+      "source": "component.auth.forgot_form",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.e994446d16",
+      "source": "component.auth.forgot_form",
+      "target": "screen.auth.forgot_password",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.6ce9f67c60",
+      "source": "component.auth.forgot_form",
+      "target": "workflow.auth.password_reset",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.5d9ffecc15",
+      "source": "component.auth.login_form",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.9512ed117c",
+      "source": "component.auth.login_form",
+      "target": "screen.auth.login",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.0fca1aa5ad",
+      "source": "component.auth.login_form",
+      "target": "workflow.auth.login",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.4a8511dcaa",
+      "source": "component.auth.reset_form",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.6ab356452c",
+      "source": "component.auth.reset_form",
+      "target": "screen.auth.reset_password",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.0b2892ca3c",
+      "source": "component.auth.reset_form",
+      "target": "workflow.auth.password_reset",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.922fbcb2c4",
+      "source": "component.cart_item.create_form",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.f29b82ad84",
+      "source": "component.cart_item.create_form",
+      "target": "screen.cart_item.create",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.1e7007ee96",
+      "source": "component.cart_item.create_form",
+      "target": "workflow.cart_item.create",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.b09894dd40",
+      "source": "component.cart_item.delete_confirm",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.b1584b85f3",
+      "source": "component.cart_item.delete_confirm",
+      "target": "screen.cart_item.list",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.ceac1743e3",
+      "source": "component.cart_item.delete_confirm",
+      "target": "workflow.cart_item.delete",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.4c8028aeea",
+      "source": "component.cart_item.edit_form",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.ee2cd78115",
+      "source": "component.cart_item.edit_form",
+      "target": "screen.cart_item.edit",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.52df599f4b",
+      "source": "component.cart_item.edit_form",
+      "target": "workflow.cart_item.update",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.eda44e1070",
+      "source": "component.cart_item.table",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.addabd14aa",
+      "source": "component.cart_item.table",
+      "target": "screen.cart_item.list",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.81cefcabbb",
+      "source": "component.cart_item.table",
+      "target": "workflow.cart_item.create",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.19a7f74395",
+      "source": "component.cart_item.table",
+      "target": "workflow.cart_item.delete",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.1d77a8632b",
+      "source": "component.cart_item.table",
+      "target": "workflow.cart_item.update",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.36c7f64474",
+      "source": "component.order.card",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.d4880469c8",
+      "source": "component.order.card",
+      "target": "screen.order.detail",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.2eb968de86",
+      "source": "component.order.checkout_form",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.f3af6aac05",
+      "source": "component.order.checkout_form",
+      "target": "screen.order.checkout",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.29eb673bcc",
+      "source": "component.order.checkout_form",
+      "target": "workflow.order.checkout",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.0923f34857",
+      "source": "component.order.table",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.0f1a202132",
+      "source": "component.order.table",
+      "target": "screen.order.list",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.c272d14ac5",
+      "source": "component.product.card",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.9c52e83af8",
+      "source": "component.product.card",
+      "target": "screen.product.detail",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.cf953426b9",
+      "source": "component.product.filter_panel",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.680d20d159",
+      "source": "component.product.filter_panel",
+      "target": "screen.product.filter",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.134ac6d9ee",
+      "source": "component.product.filter_panel",
+      "target": "workflow.product.filter",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.57a1c91b68",
+      "source": "component.product.filter_results",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.280cdb57c1",
+      "source": "component.product.filter_results",
+      "target": "screen.product.filter",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.51b9024a52",
+      "source": "component.product.search_box",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.5244cee08a",
+      "source": "component.product.search_box",
+      "target": "screen.product.search",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.3ac7b8a9a2",
+      "source": "component.product.search_box",
+      "target": "workflow.product.search",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.b5fcc52da7",
+      "source": "component.product.search_results",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.ef2413f08e",
+      "source": "component.product.search_results",
+      "target": "screen.product.search",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.64be8f1619",
+      "source": "component.product.table",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.c86c5ed57d",
+      "source": "component.product.table",
+      "target": "screen.product.list",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.5a3c9b66d0",
+      "source": "entity.cart_item",
+      "target": "entity.product",
+      "type": "references",
+      "reason": "entities:attributes.product_id.reference_to"
+    },
+    {
+      "id": "dependency.0bd33b9c34",
+      "source": "entity.cart_item",
+      "target": "entity.user",
+      "type": "references",
+      "reason": "entities:attributes.user_id.reference_to"
+    },
+    {
+      "id": "dependency.40b7c888a9",
+      "source": "entity.order",
+      "target": "entity.user",
+      "type": "references",
+      "reason": "entities:attributes.user_id.reference_to"
+    },
+    {
+      "id": "dependency.4fa575c338",
+      "source": "entity.order_item",
+      "target": "entity.order",
+      "type": "references",
+      "reason": "entities:attributes.order_id.reference_to"
+    },
+    {
+      "id": "dependency.2bd6dc9622",
+      "source": "entity.order_item",
+      "target": "entity.product",
+      "type": "references",
+      "reason": "entities:attributes.product_id.reference_to"
+    },
+    {
+      "id": "dependency.af4f3ba748",
+      "source": "entity.product",
+      "target": "entity.category",
+      "type": "references",
+      "reason": "entities:attributes.category_id.reference_to"
+    },
+    {
+      "id": "dependency.b8031366d0",
+      "source": "operation.cart_item.create",
+      "target": "capability.shopping_cart",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.f36f654e81",
+      "source": "operation.cart_item.create",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.2b30facc5e",
+      "source": "operation.cart_item.create",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.660eca22bb",
+      "source": "operation.cart_item.create",
+      "target": "service.cart_item",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.87ca18be8b",
+      "source": "operation.cart_item.delete",
+      "target": "capability.shopping_cart",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.8ab3926fe2",
+      "source": "operation.cart_item.delete",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.510154fde8",
+      "source": "operation.cart_item.delete",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.a775a55f23",
+      "source": "operation.cart_item.delete",
+      "target": "service.cart_item",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.153cd20e51",
+      "source": "operation.cart_item.list",
+      "target": "capability.shopping_cart",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.7f161f9517",
+      "source": "operation.cart_item.list",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.80e9e34fa6",
+      "source": "operation.cart_item.list",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.f2bfd30854",
+      "source": "operation.cart_item.list",
+      "target": "service.cart_item",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.b111c73ad0",
+      "source": "operation.cart_item.update",
+      "target": "capability.shopping_cart",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.3af8a033c3",
+      "source": "operation.cart_item.update",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.05f3e537fc",
+      "source": "operation.cart_item.update",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.fa5625e59e",
+      "source": "operation.cart_item.update",
+      "target": "service.cart_item",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.e4a8cabcdc",
+      "source": "operation.order.list",
+      "target": "capability.checkout",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.6dd0e99657",
+      "source": "operation.order.list",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.480b41a201",
+      "source": "operation.order.list",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.43d1368b8e",
+      "source": "operation.order.list",
+      "target": "service.order",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.dae77582fa",
+      "source": "operation.order.place",
+      "target": "capability.checkout",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.e7b886695d",
+      "source": "operation.order.place",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.1ff35f9c0b",
+      "source": "operation.order.place",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.fac27bae3d",
+      "source": "operation.order.place",
+      "target": "service.order",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.5c4783bf6d",
+      "source": "operation.order.read",
+      "target": "capability.checkout",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.5313a3caf4",
+      "source": "operation.order.read",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.0a5d831829",
+      "source": "operation.order.read",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.c62369c7bf",
+      "source": "operation.order.read",
+      "target": "service.order",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.5b1c0d98a8",
+      "source": "operation.product.filter",
+      "target": "capability.product_filter",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.9515020c32",
+      "source": "operation.product.filter",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.c2f5298ec8",
+      "source": "operation.product.filter",
+      "target": "service.product",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.6009a908d1",
+      "source": "operation.product.list",
+      "target": "capability.product_catalog",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.05933d6324",
+      "source": "operation.product.list",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.20271e5e4b",
+      "source": "operation.product.list",
+      "target": "service.product",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.6dfb074aac",
+      "source": "operation.product.read",
+      "target": "capability.product_catalog",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.5a73f134c6",
+      "source": "operation.product.read",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.225b2daba6",
+      "source": "operation.product.read",
+      "target": "service.product",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.a13a094831",
+      "source": "operation.product.search",
+      "target": "capability.product_search",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.cd96641be3",
+      "source": "operation.product.search",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.e41d0e15f9",
+      "source": "operation.product.search",
+      "target": "service.product",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.9b2370804f",
+      "source": "operation.user.login",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.90621eade5",
+      "source": "operation.user.login",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.34327d488e",
+      "source": "operation.user.login",
+      "target": "service.user",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.79d5e85f3f",
+      "source": "operation.user.logout",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.195aa029f8",
+      "source": "operation.user.logout",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.b351241742",
+      "source": "operation.user.logout",
+      "target": "service.user",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.b3ed805754",
+      "source": "operation.user.request_password_reset",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.051cc65e56",
+      "source": "operation.user.request_password_reset",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.81777b29d8",
+      "source": "operation.user.request_password_reset",
+      "target": "service.user",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.dca5f66fae",
+      "source": "operation.user.reset_password",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.3ae41ffe83",
+      "source": "operation.user.reset_password",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.13cd0d3494",
+      "source": "operation.user.reset_password",
+      "target": "service.user",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.b03dda243b",
+      "source": "permission.cart_item.create",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.5cb74f8634",
+      "source": "permission.cart_item.create",
+      "target": "operation.cart_item.create",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.665442b421",
+      "source": "permission.cart_item.create",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.4e97fac17d",
+      "source": "permission.cart_item.delete",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.086c7e2588",
+      "source": "permission.cart_item.delete",
+      "target": "operation.cart_item.delete",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.d5c0e3dba2",
+      "source": "permission.cart_item.delete",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.14d831aa41",
+      "source": "permission.cart_item.list",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.ee1db7159a",
+      "source": "permission.cart_item.list",
+      "target": "operation.cart_item.list",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.ac57f6a0cb",
+      "source": "permission.cart_item.list",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.db2ae2184f",
+      "source": "permission.cart_item.update",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.31a43d11f6",
+      "source": "permission.cart_item.update",
+      "target": "operation.cart_item.update",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.557c4034d2",
+      "source": "permission.cart_item.update",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.1f3a3c10b2",
+      "source": "permission.order.list",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.faf7094f00",
+      "source": "permission.order.list",
+      "target": "operation.order.list",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.887ca86e3a",
+      "source": "permission.order.list",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.7237dfb79f",
+      "source": "permission.order.place",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.e1b196bbcd",
+      "source": "permission.order.place",
+      "target": "operation.order.place",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.30b7525195",
+      "source": "permission.order.place",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.8342c49983",
+      "source": "permission.order.read",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.fc66733f65",
+      "source": "permission.order.read",
+      "target": "operation.order.read",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.42595fc435",
+      "source": "permission.order.read",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.2803ec77d3",
+      "source": "permission.user.logout",
+      "target": "assumption.inferred.authentication",
+      "type": "depends_on",
+      "reason": "permissions:assumption_refs"
+    },
+    {
+      "id": "dependency.cfc4b2465b",
+      "source": "permission.user.logout",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.2ece22e3ea",
+      "source": "permission.user.logout",
+      "target": "operation.user.logout",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.096aae4b78",
+      "source": "permission.user.logout",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.a62cd1ef0e",
+      "source": "relationship.cart_item.product",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "relationships:source"
+    },
+    {
+      "id": "dependency.79a549bd77",
+      "source": "relationship.cart_item.product",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "relationships:target"
+    },
+    {
+      "id": "dependency.add5b032a9",
+      "source": "relationship.cart_item.user",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "relationships:source"
+    },
+    {
+      "id": "dependency.9361bbd143",
+      "source": "relationship.cart_item.user",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "relationships:target"
+    },
+    {
+      "id": "dependency.9dbfa74f04",
+      "source": "relationship.order.user",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "relationships:source"
+    },
+    {
+      "id": "dependency.7cd4a55dc2",
+      "source": "relationship.order.user",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "relationships:target"
+    },
+    {
+      "id": "dependency.fe5615f303",
+      "source": "relationship.order_item.order",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "relationships:target"
+    },
+    {
+      "id": "dependency.7138f72f49",
+      "source": "relationship.order_item.order",
+      "target": "entity.order_item",
+      "type": "depends_on",
+      "reason": "relationships:source"
+    },
+    {
+      "id": "dependency.6b6664e089",
+      "source": "relationship.order_item.product",
+      "target": "entity.order_item",
+      "type": "depends_on",
+      "reason": "relationships:source"
+    },
+    {
+      "id": "dependency.dc9732dc8b",
+      "source": "relationship.order_item.product",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "relationships:target"
+    },
+    {
+      "id": "dependency.8bf2dafac6",
+      "source": "relationship.product.category",
+      "target": "entity.category",
+      "type": "depends_on",
+      "reason": "relationships:target"
+    },
+    {
+      "id": "dependency.09ae396fe7",
+      "source": "relationship.product.category",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "relationships:source"
+    },
+    {
+      "id": "dependency.ee9e027cb7",
+      "source": "schema.cart_item",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.2498264f9c",
+      "source": "schema.cart_item.create",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.993baae39a",
+      "source": "schema.cart_item.update",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.9fb8612998",
+      "source": "schema.order",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.2b58bbf1f2",
+      "source": "schema.order.place",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.d09919c616",
+      "source": "schema.product",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.4be1b88689",
+      "source": "schema.user",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.dac13e2390",
+      "source": "schema.user.login",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.4d61a3fcd8",
+      "source": "schema.user.request_password_reset",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.b7cc79e57a",
+      "source": "schema.user.reset_password",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.cdb50153e9",
+      "source": "screen.auth.forgot_password",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.b876ea8af5",
+      "source": "screen.auth.forgot_password",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.eef4bf50c7",
+      "source": "screen.auth.forgot_password",
+      "target": "component.auth.forgot_form",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.737380c61e",
+      "source": "screen.auth.forgot_password",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.57ded40de6",
+      "source": "screen.auth.forgot_password",
+      "target": "screen.auth.reset_password",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.a3d7ee1b34",
+      "source": "screen.auth.forgot_password",
+      "target": "workflow.auth.password_reset",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.5dc07a3c3a",
+      "source": "screen.auth.login",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.f8f7793a17",
+      "source": "screen.auth.login",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.014ec489bb",
+      "source": "screen.auth.login",
+      "target": "component.auth.login_form",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.9dacccb36c",
+      "source": "screen.auth.login",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.5aa9bbdf47",
+      "source": "screen.auth.login",
+      "target": "workflow.auth.login",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.b263727865",
+      "source": "screen.auth.login",
+      "target": "workflow.auth.logout",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.3309ed8595",
+      "source": "screen.auth.login",
+      "target": "workflow.auth.password_reset",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.9b8ca1a05b",
+      "source": "screen.auth.reset_password",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.6e700221e9",
+      "source": "screen.auth.reset_password",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.5bff8d633d",
+      "source": "screen.auth.reset_password",
+      "target": "component.auth.reset_form",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.cb828d719e",
+      "source": "screen.auth.reset_password",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.56b6b87424",
+      "source": "screen.auth.reset_password",
+      "target": "screen.auth.login",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.1d035178ee",
+      "source": "screen.auth.reset_password",
+      "target": "workflow.auth.password_reset",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.1819c30ef4",
+      "source": "screen.cart_item.create",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.27e4e6bbcc",
+      "source": "screen.cart_item.create",
+      "target": "capability.shopping_cart",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.9de795ebdd",
+      "source": "screen.cart_item.create",
+      "target": "component.cart_item.create_form",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.68c5cc24fd",
+      "source": "screen.cart_item.create",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.673bec981e",
+      "source": "screen.cart_item.create",
+      "target": "screen.cart_item.list",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.a8ca4078e9",
+      "source": "screen.cart_item.create",
+      "target": "workflow.cart_item.create",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.6130bcf1a8",
+      "source": "screen.cart_item.edit",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.1fb2e1701c",
+      "source": "screen.cart_item.edit",
+      "target": "capability.shopping_cart",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.9a35d639e8",
+      "source": "screen.cart_item.edit",
+      "target": "component.cart_item.edit_form",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.9e2d47ee03",
+      "source": "screen.cart_item.edit",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.ef6dfcccb8",
+      "source": "screen.cart_item.edit",
+      "target": "screen.cart_item.list",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.c8fd4b64e7",
+      "source": "screen.cart_item.edit",
+      "target": "workflow.cart_item.update",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.beb9e173e9",
+      "source": "screen.cart_item.list",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.862f55e952",
+      "source": "screen.cart_item.list",
+      "target": "capability.checkout",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.99852b5963",
+      "source": "screen.cart_item.list",
+      "target": "capability.shopping_cart",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.a05f717ced",
+      "source": "screen.cart_item.list",
+      "target": "component.app.navigation",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.1ddc8a140d",
+      "source": "screen.cart_item.list",
+      "target": "component.cart_item.delete_confirm",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.a2415e73d1",
+      "source": "screen.cart_item.list",
+      "target": "component.cart_item.table",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.6b9b835963",
+      "source": "screen.cart_item.list",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.674c3da7f5",
+      "source": "screen.cart_item.list",
+      "target": "operation.cart_item.list",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.b78f674f2c",
+      "source": "screen.cart_item.list",
+      "target": "screen.cart_item.create",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.2c611ce111",
+      "source": "screen.cart_item.list",
+      "target": "screen.cart_item.edit",
+      "type": "references",
+      "reason": "screens:navigation[1].target"
+    },
+    {
+      "id": "dependency.dbe4a7b24a",
+      "source": "screen.cart_item.list",
+      "target": "screen.order.checkout",
+      "type": "references",
+      "reason": "screens:navigation[2].target"
+    },
+    {
+      "id": "dependency.b7a381635e",
+      "source": "screen.cart_item.list",
+      "target": "workflow.cart_item.browse",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.ddf8902384",
+      "source": "screen.cart_item.list",
+      "target": "workflow.cart_item.create",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.7d698e6c41",
+      "source": "screen.cart_item.list",
+      "target": "workflow.cart_item.delete",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.58dfe4ab7a",
+      "source": "screen.cart_item.list",
+      "target": "workflow.cart_item.update",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.c35a0d4100",
+      "source": "screen.cart_item.list",
+      "target": "workflow.order.checkout",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.38214a52f2",
+      "source": "screen.order.checkout",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.30f9af2177",
+      "source": "screen.order.checkout",
+      "target": "capability.checkout",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.bfd2e38d96",
+      "source": "screen.order.checkout",
+      "target": "component.order.checkout_form",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.83233484f7",
+      "source": "screen.order.checkout",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.0f6a11b391",
+      "source": "screen.order.checkout",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.978314155d",
+      "source": "screen.order.checkout",
+      "target": "operation.cart_item.list",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.f3e2c93672",
+      "source": "screen.order.checkout",
+      "target": "screen.order.detail",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.e5dbe8cfdc",
+      "source": "screen.order.checkout",
+      "target": "workflow.order.checkout",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.deb8da999a",
+      "source": "screen.order.detail",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.56b3e640a6",
+      "source": "screen.order.detail",
+      "target": "capability.checkout",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.e8800b1957",
+      "source": "screen.order.detail",
+      "target": "component.order.card",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.b791159177",
+      "source": "screen.order.detail",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.6634e86ceb",
+      "source": "screen.order.detail",
+      "target": "operation.order.read",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.e94bb15c4b",
+      "source": "screen.order.detail",
+      "target": "workflow.order.browse",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.5dcd8dbd0c",
+      "source": "screen.order.detail",
+      "target": "workflow.order.checkout",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.db618094c3",
+      "source": "screen.order.list",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.f281c069f3",
+      "source": "screen.order.list",
+      "target": "capability.checkout",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.3b6204ded9",
+      "source": "screen.order.list",
+      "target": "component.app.navigation",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.d1bc8d9912",
+      "source": "screen.order.list",
+      "target": "component.order.table",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.955f01d251",
+      "source": "screen.order.list",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.1a6377dbb6",
+      "source": "screen.order.list",
+      "target": "operation.order.list",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.53cdce4cb8",
+      "source": "screen.order.list",
+      "target": "screen.order.detail",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.07b1b29c20",
+      "source": "screen.order.list",
+      "target": "workflow.order.browse",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.fcf76364a0",
+      "source": "screen.product.detail",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.8cc58c5338",
+      "source": "screen.product.detail",
+      "target": "capability.product_catalog",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.19a8836e07",
+      "source": "screen.product.detail",
+      "target": "component.product.card",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.e0e715cbdd",
+      "source": "screen.product.detail",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.f22d17e963",
+      "source": "screen.product.detail",
+      "target": "operation.product.read",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.521689f1d1",
+      "source": "screen.product.detail",
+      "target": "workflow.product.browse",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.d2978f08a5",
+      "source": "screen.product.filter",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.f6e892ffaf",
+      "source": "screen.product.filter",
+      "target": "capability.product_filter",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.609dbf3fc9",
+      "source": "screen.product.filter",
+      "target": "component.product.filter_panel",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.f6dd90c569",
+      "source": "screen.product.filter",
+      "target": "component.product.filter_results",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.9300ff59ba",
+      "source": "screen.product.filter",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.f1207330de",
+      "source": "screen.product.filter",
+      "target": "operation.product.filter",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.eedebc2ed5",
+      "source": "screen.product.filter",
+      "target": "workflow.product.filter",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.e899925962",
+      "source": "screen.product.list",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.2653391666",
+      "source": "screen.product.list",
+      "target": "capability.product_catalog",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.e329b902a2",
+      "source": "screen.product.list",
+      "target": "component.app.navigation",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.7e5827d423",
+      "source": "screen.product.list",
+      "target": "component.product.table",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.89cf56acb5",
+      "source": "screen.product.list",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.915ad591b0",
+      "source": "screen.product.list",
+      "target": "operation.product.list",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.5537b99b9e",
+      "source": "screen.product.list",
+      "target": "screen.product.detail",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.dd4c7e4668",
+      "source": "screen.product.list",
+      "target": "workflow.product.browse",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.1bd7882a12",
+      "source": "screen.product.search",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.8b64320ddc",
+      "source": "screen.product.search",
+      "target": "capability.product_search",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.28429c2b7a",
+      "source": "screen.product.search",
+      "target": "component.product.search_box",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.d6ec8ea452",
+      "source": "screen.product.search",
+      "target": "component.product.search_results",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.920cf8e99c",
+      "source": "screen.product.search",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.fc6565d490",
+      "source": "screen.product.search",
+      "target": "operation.product.search",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.eb2c9b4ef7",
+      "source": "screen.product.search",
+      "target": "workflow.product.search",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.cbfea66d3c",
+      "source": "service.cart_item",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "backend:entity_refs"
+    },
+    {
+      "id": "dependency.eede64ead4",
+      "source": "service.order",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "backend:entity_refs"
+    },
+    {
+      "id": "dependency.1017bc934d",
+      "source": "service.product",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "backend:entity_refs"
+    },
+    {
+      "id": "dependency.f7b334d6d7",
+      "source": "service.user",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "backend:entity_refs"
+    },
+    {
+      "id": "dependency.0e6c74e2db",
+      "source": "state_machine.order",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "state_machines:entity_ref"
+    },
+    {
+      "id": "dependency.b0c12645f9",
+      "source": "state_machine.order",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "state_machines:transitions[0].role_refs"
+    },
+    {
+      "id": "dependency.fdf650de92",
+      "source": "validation.cart_item.required_fields",
+      "target": "entity.cart_item",
+      "type": "depends_on",
+      "reason": "validations:target.entity_ref"
+    },
+    {
+      "id": "dependency.cfa3e841d0",
+      "source": "validation.cart_item.required_fields",
+      "target": "operation.cart_item.create",
+      "type": "depends_on",
+      "reason": "validations:operation_refs"
+    },
+    {
+      "id": "dependency.469feb8753",
+      "source": "validation.order.cart_not_empty",
+      "target": "entity.order",
+      "type": "depends_on",
+      "reason": "validations:target.entity_ref"
+    },
+    {
+      "id": "dependency.66cf4c51d4",
+      "source": "validation.order.cart_not_empty",
+      "target": "operation.order.place",
+      "type": "depends_on",
+      "reason": "validations:operation_refs"
+    },
+    {
+      "id": "dependency.a9c97cc7b5",
+      "source": "validation.product.stock_available",
+      "target": "entity.product",
+      "type": "depends_on",
+      "reason": "validations:target.entity_ref"
+    },
+    {
+      "id": "dependency.0cbb6bd12d",
+      "source": "validation.product.stock_available",
+      "target": "operation.order.place",
+      "type": "depends_on",
+      "reason": "validations:operation_refs"
+    },
+    {
+      "id": "dependency.d1829fe008",
+      "source": "validation.user.email_format",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "validations:target.entity_ref"
+    },
+    {
+      "id": "dependency.64fcbe6842",
+      "source": "validation.user.email_format",
+      "target": "operation.user.login",
+      "type": "depends_on",
+      "reason": "validations:operation_refs"
+    },
+    {
+      "id": "dependency.8bca79a359",
+      "source": "validation.user.email_format",
+      "target": "operation.user.request_password_reset",
+      "type": "depends_on",
+      "reason": "validations:operation_refs"
+    },
+    {
+      "id": "dependency.44f9225d49",
+      "source": "validation.user.invalid_login",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "validations:target.entity_ref"
+    },
+    {
+      "id": "dependency.e6bb4f3fa6",
+      "source": "validation.user.invalid_login",
+      "target": "operation.user.login",
+      "type": "depends_on",
+      "reason": "validations:operation_refs"
+    },
+    {
+      "id": "dependency.08848baa61",
+      "source": "workflow.auth.login",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.4fe1156413",
+      "source": "workflow.auth.login",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.ac1733e765",
+      "source": "workflow.auth.login",
+      "target": "operation.user.login",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.03_act.operation_ref"
+    },
+    {
+      "id": "dependency.6dec4fc0f3",
+      "source": "workflow.auth.login",
+      "target": "screen.auth.login",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.2e003f1caa",
+      "source": "workflow.auth.logout",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.03ea602d6d",
+      "source": "workflow.auth.logout",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.66cc783fd2",
+      "source": "workflow.auth.logout",
+      "target": "operation.user.logout",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_act.operation_ref"
+    },
+    {
+      "id": "dependency.3328760d91",
+      "source": "workflow.auth.logout",
+      "target": "screen.auth.login",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.03_nav.target"
+    },
+    {
+      "id": "dependency.22f39426d2",
+      "source": "workflow.auth.password_reset",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.52e4a912a4",
+      "source": "workflow.auth.password_reset",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.0c39cbc411",
+      "source": "workflow.auth.password_reset",
+      "target": "operation.user.request_password_reset",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.03_act.operation_ref"
+    },
+    {
+      "id": "dependency.ea1d4b2f38",
+      "source": "workflow.auth.password_reset",
+      "target": "operation.user.reset_password",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.06_act.operation_ref"
+    },
+    {
+      "id": "dependency.2a8ff6fe88",
+      "source": "workflow.auth.password_reset",
+      "target": "screen.auth.forgot_password",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.be8a6991d7",
+      "source": "workflow.auth.password_reset",
+      "target": "screen.auth.login",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.07_nav.target"
+    },
+    {
+      "id": "dependency.8696be35e8",
+      "source": "workflow.auth.password_reset",
+      "target": "screen.auth.reset_password",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_nav.target"
+    },
+    {
+      "id": "dependency.2d1f7aff89",
+      "source": "workflow.cart_item.browse",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.5fbb023c2d",
+      "source": "workflow.cart_item.browse",
+      "target": "capability.shopping_cart",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.3ba6b1f504",
+      "source": "workflow.cart_item.browse",
+      "target": "operation.cart_item.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_act.operation_ref"
+    },
+    {
+      "id": "dependency.6087e2a6f7",
+      "source": "workflow.cart_item.browse",
+      "target": "screen.cart_item.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.9bf59d67e3",
+      "source": "workflow.cart_item.create",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.165b1f7f08",
+      "source": "workflow.cart_item.create",
+      "target": "capability.shopping_cart",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.868d19226a",
+      "source": "workflow.cart_item.create",
+      "target": "operation.cart_item.create",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_act.operation_ref"
+    },
+    {
+      "id": "dependency.b1b246ed7e",
+      "source": "workflow.cart_item.create",
+      "target": "screen.cart_item.create",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_nav.target"
+    },
+    {
+      "id": "dependency.905d3efc18",
+      "source": "workflow.cart_item.create",
+      "target": "screen.cart_item.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.d6653bc365",
+      "source": "workflow.cart_item.delete",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.5c3a98a0b5",
+      "source": "workflow.cart_item.delete",
+      "target": "capability.shopping_cart",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.044e65eff9",
+      "source": "workflow.cart_item.delete",
+      "target": "operation.cart_item.delete",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.03_act.operation_ref"
+    },
+    {
+      "id": "dependency.238a906864",
+      "source": "workflow.cart_item.delete",
+      "target": "screen.cart_item.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.04e25e7f4f",
+      "source": "workflow.cart_item.update",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.0326d6f55e",
+      "source": "workflow.cart_item.update",
+      "target": "capability.shopping_cart",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.15c40d455f",
+      "source": "workflow.cart_item.update",
+      "target": "operation.cart_item.update",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_act.operation_ref"
+    },
+    {
+      "id": "dependency.e642ca3277",
+      "source": "workflow.cart_item.update",
+      "target": "screen.cart_item.edit",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_nav.target"
+    },
+    {
+      "id": "dependency.b6c81b4483",
+      "source": "workflow.cart_item.update",
+      "target": "screen.cart_item.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.613333a53e",
+      "source": "workflow.order.browse",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.3b3ea0b391",
+      "source": "workflow.order.browse",
+      "target": "capability.checkout",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.5481f17fe0",
+      "source": "workflow.order.browse",
+      "target": "operation.order.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_act.operation_ref"
+    },
+    {
+      "id": "dependency.2e15cd1b12",
+      "source": "workflow.order.browse",
+      "target": "operation.order.read",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_act.operation_ref"
+    },
+    {
+      "id": "dependency.1ae7b9dea9",
+      "source": "workflow.order.browse",
+      "target": "screen.order.detail",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.03_nav.target"
+    },
+    {
+      "id": "dependency.04b1b598f0",
+      "source": "workflow.order.browse",
+      "target": "screen.order.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.fa7d96fc86",
+      "source": "workflow.order.checkout",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.64889d8748",
+      "source": "workflow.order.checkout",
+      "target": "capability.checkout",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.bbf4365c2f",
+      "source": "workflow.order.checkout",
+      "target": "operation.order.place",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_act.operation_ref"
+    },
+    {
+      "id": "dependency.ee044595ad",
+      "source": "workflow.order.checkout",
+      "target": "screen.cart_item.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.79d24b1609",
+      "source": "workflow.order.checkout",
+      "target": "screen.order.checkout",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_nav.target"
+    },
+    {
+      "id": "dependency.ebdd484592",
+      "source": "workflow.order.checkout",
+      "target": "screen.order.detail",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.05_nav.target"
+    },
+    {
+      "id": "dependency.1a58dd928c",
+      "source": "workflow.product.browse",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.3dc5cee2fd",
+      "source": "workflow.product.browse",
+      "target": "capability.product_catalog",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.e919de05e4",
+      "source": "workflow.product.browse",
+      "target": "operation.product.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_act.operation_ref"
+    },
+    {
+      "id": "dependency.60deced815",
+      "source": "workflow.product.browse",
+      "target": "operation.product.read",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_act.operation_ref"
+    },
+    {
+      "id": "dependency.72434bc3f4",
+      "source": "workflow.product.browse",
+      "target": "screen.product.detail",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.03_nav.target"
+    },
+    {
+      "id": "dependency.a694b3310f",
+      "source": "workflow.product.browse",
+      "target": "screen.product.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.4d6f3e000e",
+      "source": "workflow.product.filter",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.a78f917302",
+      "source": "workflow.product.filter",
+      "target": "capability.product_filter",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.6ac7479af7",
+      "source": "workflow.product.filter",
+      "target": "operation.product.filter",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.03_act.operation_ref"
+    },
+    {
+      "id": "dependency.fc304c8d34",
+      "source": "workflow.product.filter",
+      "target": "screen.product.filter",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.5cb56e28bc",
+      "source": "workflow.product.search",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.d8d173ad44",
+      "source": "workflow.product.search",
+      "target": "capability.product_search",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.32ce70dfe7",
+      "source": "workflow.product.search",
+      "target": "operation.product.search",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.03_act.operation_ref"
+    },
+    {
+      "id": "dependency.41105a0770",
+      "source": "workflow.product.search",
+      "target": "screen.product.search",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    }
+  ],
+  "implementation_order": [
+    [
+      "assumption.authentication",
+      "assumption.checkout_requires_login",
+      "assumption.guest_browse",
+      "assumption.inferred.authentication",
+      "assumption.inferred.product_catalog",
+      "assumption.single_currency",
+      "component.app.navigation",
+      "entity.cart_item",
+      "entity.category",
+      "entity.order",
+      "entity.order_item",
+      "entity.product",
+      "entity.user",
+      "question.guest_checkout",
+      "question.payment_provider",
+      "question.stock_reservation",
+      "requirement.authentication",
+      "requirement.checkout",
+      "requirement.nfr.accessibility",
+      "requirement.nfr.performance",
+      "requirement.nfr.responsive",
+      "requirement.nfr.security",
+      "requirement.product_catalog",
+      "requirement.product_filter",
+      "requirement.product_search",
+      "requirement.shopping_cart",
+      "role.customer"
+    ],
+    [
+      "actor.customer",
+      "component.auth.forgot_form",
+      "component.auth.login_form",
+      "component.auth.reset_form",
+      "component.cart_item.create_form",
+      "component.cart_item.delete_confirm",
+      "component.cart_item.edit_form",
+      "component.cart_item.table",
+      "component.order.card",
+      "component.order.checkout_form",
+      "component.order.table",
+      "component.product.card",
+      "component.product.filter_panel",
+      "component.product.filter_results",
+      "component.product.search_box",
+      "component.product.search_results",
+      "component.product.table",
+      "relationship.cart_item.product",
+      "relationship.cart_item.user",
+      "relationship.order.user",
+      "relationship.order_item.order",
+      "relationship.order_item.product",
+      "relationship.product.category",
+      "schema.cart_item",
+      "schema.cart_item.create",
+      "schema.cart_item.update",
+      "schema.order",
+      "schema.order.place",
+      "schema.product",
+      "schema.user",
+      "schema.user.login",
+      "schema.user.request_password_reset",
+      "schema.user.reset_password",
+      "service.cart_item",
+      "service.order",
+      "service.product",
+      "service.user",
+      "state_machine.order"
+    ],
+    [
+      "capability.authentication",
+      "capability.checkout",
+      "capability.product_catalog",
+      "capability.product_filter",
+      "capability.product_search",
+      "capability.shopping_cart"
+    ],
+    [
+      "operation.cart_item.create",
+      "operation.cart_item.delete",
+      "operation.cart_item.list",
+      "operation.cart_item.update",
+      "operation.order.list",
+      "operation.order.place",
+      "operation.order.read",
+      "operation.product.filter",
+      "operation.product.list",
+      "operation.product.read",
+      "operation.product.search",
+      "operation.user.login",
+      "operation.user.logout",
+      "operation.user.request_password_reset",
+      "operation.user.reset_password",
+      "screen.auth.forgot_password",
+      "screen.auth.login",
+      "screen.auth.reset_password",
+      "screen.cart_item.create",
+      "screen.cart_item.edit"
+    ],
+    [
+      "ac.auth.login",
+      "ac.auth.logout",
+      "ac.auth.password_reset",
+      "ac.cart_item.browse",
+      "ac.cart_item.create",
+      "ac.cart_item.delete",
+      "ac.cart_item.update",
+      "ac.order.browse",
+      "ac.order.cart_not_empty",
+      "ac.order.checkout",
+      "ac.product.browse",
+      "ac.product.filter",
+      "ac.product.search",
+      "ac.product.stock_available",
+      "ac.user.invalid_login",
+      "api.cart_item.create",
+      "api.cart_item.delete",
+      "api.cart_item.list",
+      "api.cart_item.update",
+      "api.order.list",
+      "api.order.place",
+      "api.order.read",
+      "api.product.filter",
+      "api.product.list",
+      "api.product.read",
+      "api.product.search",
+      "api.user.login",
+      "api.user.logout",
+      "api.user.request_password_reset",
+      "api.user.reset_password",
+      "permission.cart_item.create",
+      "permission.cart_item.delete",
+      "permission.cart_item.list",
+      "permission.cart_item.update",
+      "permission.order.list",
+      "permission.order.place",
+      "permission.order.read",
+      "permission.user.logout",
+      "screen.cart_item.list",
+      "screen.order.checkout",
+      "screen.order.detail",
+      "screen.order.list",
+      "screen.product.detail",
+      "screen.product.filter",
+      "screen.product.list",
+      "screen.product.search",
+      "validation.cart_item.required_fields",
+      "validation.order.cart_not_empty",
+      "validation.product.stock_available",
+      "validation.user.email_format",
+      "validation.user.invalid_login",
+      "workflow.auth.login",
+      "workflow.auth.logout",
+      "workflow.auth.password_reset"
+    ],
+    [
+      "workflow.cart_item.browse",
+      "workflow.cart_item.create",
+      "workflow.cart_item.delete",
+      "workflow.cart_item.update",
+      "workflow.order.browse",
+      "workflow.order.checkout",
+      "workflow.product.browse",
+      "workflow.product.filter",
+      "workflow.product.search"
+    ]
+  ]
+}

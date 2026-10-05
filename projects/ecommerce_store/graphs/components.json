@@ -1,0 +1,375 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "components": [
+    {
+      "id": "component.app.navigation",
+      "type": "navigation",
+      "name": "Main navigation",
+      "used_by": [
+        "screen.product.list",
+        "screen.cart_item.list",
+        "screen.order.list"
+      ],
+      "data_source": null,
+      "fields": [],
+      "actions": [],
+      "description": "Primary navigation shown on every top-level screen",
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard application shell"
+        },
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "component.auth.forgot_form",
+      "type": "authentication",
+      "name": "Forgot password form",
+      "used_by": [
+        "screen.auth.forgot_password"
+      ],
+      "data_source": "entity.user",
+      "fields": [
+        "email"
+      ],
+      "actions": [
+        "workflow.auth.password_reset"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "component.auth.login_form",
+      "type": "authentication",
+      "name": "Login form",
+      "used_by": [
+        "screen.auth.login"
+      ],
+      "data_source": "entity.user",
+      "fields": [
+        "email",
+        "password"
+      ],
+      "actions": [
+        "workflow.auth.login"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "component.auth.reset_form",
+      "type": "authentication",
+      "name": "Reset password form",
+      "used_by": [
+        "screen.auth.reset_password"
+      ],
+      "data_source": "entity.user",
+      "fields": [
+        "reset_token",
+        "new_password"
+      ],
+      "actions": [
+        "workflow.auth.password_reset"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "component.cart_item.create_form",
+      "type": "form",
+      "name": "Create Cart Item form",
+      "used_by": [
+        "screen.cart_item.create"
+      ],
+      "data_source": "entity.cart_item",
+      "fields": [
+        "product_id",
+        "quantity"
+      ],
+      "actions": [
+        "workflow.cart_item.create"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.cart_item.delete_confirm",
+      "type": "confirmation",
+      "name": "Confirm Cart Item deletion",
+      "used_by": [
+        "screen.cart_item.list"
+      ],
+      "data_source": "entity.cart_item",
+      "fields": [],
+      "actions": [
+        "workflow.cart_item.delete"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.cart_item.edit_form",
+      "type": "form",
+      "name": "Edit Cart Item form",
+      "used_by": [
+        "screen.cart_item.edit"
+      ],
+      "data_source": "entity.cart_item",
+      "fields": [
+        "quantity"
+      ],
+      "actions": [
+        "workflow.cart_item.update"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.cart_item.table",
+      "type": "data_table",
+      "name": "Cart Items table",
+      "used_by": [
+        "screen.cart_item.list"
+      ],
+      "data_source": "entity.cart_item",
+      "fields": [],
+      "actions": [
+        "workflow.cart_item.create",
+        "workflow.cart_item.update",
+        "workflow.cart_item.delete"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.order.card",
+      "type": "card",
+      "name": "Order card",
+      "used_by": [
+        "screen.order.detail"
+      ],
+      "data_source": "entity.order",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.order.checkout_form",
+      "type": "form",
+      "name": "Checkout form",
+      "used_by": [
+        "screen.order.checkout"
+      ],
+      "data_source": "entity.order",
+      "fields": [
+        "shipping_address",
+        "payment_method"
+      ],
+      "actions": [
+        "workflow.order.checkout"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.order.table",
+      "type": "data_table",
+      "name": "Orders table",
+      "used_by": [
+        "screen.order.list"
+      ],
+      "data_source": "entity.order",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.product.card",
+      "type": "card",
+      "name": "Product card",
+      "used_by": [
+        "screen.product.detail"
+      ],
+      "data_source": "entity.product",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.product_catalog, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "component.product.filter_panel",
+      "type": "filter",
+      "name": "Filter panel",
+      "used_by": [
+        "screen.product.filter"
+      ],
+      "data_source": "entity.product",
+      "fields": [
+        "category_id",
+        "price"
+      ],
+      "actions": [
+        "workflow.product.filter"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_filter, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.product.filter_results",
+      "type": "data_table",
+      "name": "Filtered products",
+      "used_by": [
+        "screen.product.filter"
+      ],
+      "data_source": "entity.product",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_filter, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.product.search_box",
+      "type": "search",
+      "name": "Search box",
+      "used_by": [
+        "screen.product.search"
+      ],
+      "data_source": "entity.product",
+      "fields": [
+        "query"
+      ],
+      "actions": [
+        "workflow.product.search"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_search, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.product.search_results",
+      "type": "data_table",
+      "name": "Search results",
+      "used_by": [
+        "screen.product.search"
+      ],
+      "data_source": "entity.product",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_search, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.product.table",
+      "type": "data_table",
+      "name": "Products table",
+      "used_by": [
+        "screen.product.list"
+      ],
+      "data_source": "entity.product",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.product_catalog, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    }
+  ]
+}

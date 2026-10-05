@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "validations": [
+    {
+      "id": "validation.cart_item.required_fields",
+      "name": "Cart Item required fields",
+      "kind": "required",
+      "target": {
+        "entity_ref": "entity.cart_item",
+        "field": null
+      },
+      "condition": "product_id, quantity must be provided",
+      "failure": {
+        "action": "reject",
+        "message": "product_id, quantity are required",
+        "error_code": "CART_ITEM_FIELDS_REQUIRED"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.cart_item.create"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "validation.order.cart_not_empty",
+      "name": "Cart must not be empty",
+      "kind": "state",
+      "target": {
+        "entity_ref": "entity.order",
+        "field": null
+      },
+      "condition": "the customer's cart has at least one item",
+      "failure": {
+        "action": "reject",
+        "message": "The cart is empty",
+        "error_code": "CART_EMPTY"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.order.place"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "validation.product.stock_available",
+      "name": "Stock must cover the quantity",
+      "kind": "range",
+      "target": {
+        "entity_ref": "entity.product",
+        "field": "stock"
+      },
+      "condition": "requested quantity is less than or equal to product stock",
+      "failure": {
+        "action": "reject",
+        "message": "One or more products are out of stock",
+        "error_code": "OUT_OF_STOCK"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.order.place"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "validation.user.email_format",
+      "name": "Email must be well formed",
+      "kind": "format",
+      "target": {
+        "entity_ref": "entity.user",
+        "field": "email"
+      },
+      "condition": "email matches a valid email address pattern",
+      "failure": {
+        "action": "reject",
+        "message": "Enter a valid email address",
+        "error_code": "INVALID_EMAIL"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.user.login",
+        "operation.user.request_password_reset"
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "validation.user.invalid_login",
+      "name": "Wrong credentials are rejected",
+      "kind": "authorization",
+      "target": {
+        "entity_ref": "entity.user",
+        "field": null
+      },
+      "condition": "email and password match an existing account",
+      "failure": {
+        "action": "reject",
+        "message": "Email or password is wrong",
+        "error_code": "INVALID_CREDENTIALS"
+      },
+      "severity": "error",
+      "operation_refs": [
+        "operation.user.login"
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    }
+  ]
+}

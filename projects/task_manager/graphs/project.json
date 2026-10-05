@@ -1,0 +1,55 @@
+{
+  "name": "Task Manager",
+  "description": "A SaaS application where managers organise projects and tasks and employees work on assigned tasks.",
+  "product_type": "saas",
+  "primary_objective": "Let a small company plan projects, assign tasks to employees and follow progress.",
+  "target_users": [
+    "Manager",
+    "Employee"
+  ],
+  "technology_constraints": [],
+  "security_requirements": [
+    "Passwords are stored hashed; protected endpoints require authentication."
+  ],
+  "integration_requirements": [],
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "graph_version": "1.0.0",
+  "actors": [
+    "actor.employee",
+    "actor.manager"
+  ],
+  "roles": [
+    "role.employee",
+    "role.manager"
+  ],
+  "capabilities": [
+    "capability.authentication",
+    "capability.department_management",
+    "capability.employee_dashboard",
+    "capability.employee_directory",
+    "capability.project_assignment",
+    "capability.project_management",
+    "capability.project_progress",
+    "capability.task_management",
+    "capability.task_status"
+  ],
+  "functional_requirements": [
+    "requirement.authentication",
+    "requirement.department_management",
+    "requirement.employee_dashboard",
+    "requirement.employee_directory",
+    "requirement.project_assignment",
+    "requirement.project_management",
+    "requirement.project_progress",
+    "requirement.task_management",
+    "requirement.task_status"
+  ],
+  "non_functional_requirements": [
+    "requirement.nfr.accessibility",
+    "requirement.nfr.performance",
+    "requirement.nfr.responsive",
+    "requirement.nfr.security"
+  ]
+}

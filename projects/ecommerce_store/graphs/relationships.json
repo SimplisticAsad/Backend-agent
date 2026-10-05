@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "relationships": [
+    {
+      "id": "relationship.cart_item.product",
+      "source": "entity.cart_item",
+      "target": "entity.product",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Cart Item belongs to one Product through product_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "product_id links cart_item to product"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.cart_item.user",
+      "source": "entity.cart_item",
+      "target": "entity.user",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Cart Item belongs to one User through user_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "user_id links cart_item to user"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.order.user",
+      "source": "entity.order",
+      "target": "entity.user",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Order belongs to one User through user_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "user_id links order to user"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.order_item.order",
+      "source": "entity.order_item",
+      "target": "entity.order",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Order Item belongs to one Order through order_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "order_id links order_item to order"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.order_item.product",
+      "source": "entity.order_item",
+      "target": "entity.product",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Order Item belongs to one Product through product_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "product_id links order_item to product"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.product.category",
+      "source": "entity.product",
+      "target": "entity.category",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Product belongs to one Category through category_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "category_id links product to category"
+        },
+        "confidence": 0.8
+      }
+    }
+  ]
+}

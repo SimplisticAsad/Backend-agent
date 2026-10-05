@@ -1,0 +1,822 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "acceptance_criteria": [
+    {
+      "id": "ac.auth.login",
+      "name": "Log in succeeds",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "workflow_refs": [
+        "workflow.auth.login"
+      ],
+      "operation_refs": [
+        "operation.user.login"
+      ],
+      "given": [
+        "the user is not signed in"
+      ],
+      "when": [
+        "Enter email and password",
+        "Log in"
+      ],
+      "then": [
+        "The user is authenticated and sees their home screen"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.auth.logout",
+      "name": "Log out succeeds",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "workflow_refs": [
+        "workflow.auth.logout"
+      ],
+      "operation_refs": [
+        "operation.user.logout"
+      ],
+      "given": [
+        "the user is signed in as Manager or Employee"
+      ],
+      "when": [
+        "Choose log out",
+        "Log out"
+      ],
+      "then": [
+        "The session ends and the login screen is shown"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.auth.password_reset",
+      "name": "Reset password succeeds",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "workflow_refs": [
+        "workflow.auth.password_reset"
+      ],
+      "operation_refs": [
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ],
+      "given": [
+        "the user is not signed in"
+      ],
+      "when": [
+        "Enter the account email",
+        "Request password reset",
+        "Enter the new password",
+        "Reset password"
+      ],
+      "then": [
+        "The password is changed and the user can log in again"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.dashboard.employee_view",
+      "name": "View my dashboard succeeds",
+      "requirement_refs": [
+        "requirement.employee_dashboard"
+      ],
+      "workflow_refs": [
+        "workflow.dashboard.employee_view"
+      ],
+      "operation_refs": [
+        "operation.task.list_assigned"
+      ],
+      "given": [
+        "the user is signed in as Employee"
+      ],
+      "when": [
+        "List my assigned tasks"
+      ],
+      "then": [
+        "The employee sees their assigned tasks"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.dashboard.manager_progress",
+      "name": "View project progress succeeds",
+      "requirement_refs": [
+        "requirement.project_progress"
+      ],
+      "workflow_refs": [
+        "workflow.dashboard.manager_progress"
+      ],
+      "operation_refs": [
+        "operation.project.progress"
+      ],
+      "given": [
+        "the user is signed in as Manager"
+      ],
+      "when": [
+        "Get project progress"
+      ],
+      "then": [
+        "The manager sees progress per project"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_progress, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.department.browse",
+      "name": "Browse Departments succeeds",
+      "requirement_refs": [
+        "requirement.department_management"
+      ],
+      "workflow_refs": [
+        "workflow.department.browse"
+      ],
+      "operation_refs": [
+        "operation.department.list"
+      ],
+      "given": [
+        "the user is signed in as Manager or Employee"
+      ],
+      "when": [
+        "List Departments"
+      ],
+      "then": [
+        "The Department information is displayed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.department.create",
+      "name": "Create Department succeeds",
+      "requirement_refs": [
+        "requirement.department_management"
+      ],
+      "workflow_refs": [
+        "workflow.department.create"
+      ],
+      "operation_refs": [
+        "operation.department.create"
+      ],
+      "given": [
+        "the user is signed in as Manager"
+      ],
+      "when": [
+        "Fill in the Department form",
+        "Create Department"
+      ],
+      "then": [
+        "The Department is created and appears in the Department list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.department.update",
+      "name": "Update Department succeeds",
+      "requirement_refs": [
+        "requirement.department_management"
+      ],
+      "workflow_refs": [
+        "workflow.department.update"
+      ],
+      "operation_refs": [
+        "operation.department.update"
+      ],
+      "given": [
+        "the user is signed in as Manager",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "Change the Department details",
+        "Update Department"
+      ],
+      "then": [
+        "The changes to the Department are saved"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.employee.browse",
+      "name": "Browse Employees succeeds",
+      "requirement_refs": [
+        "requirement.employee_directory"
+      ],
+      "workflow_refs": [
+        "workflow.employee.browse"
+      ],
+      "operation_refs": [
+        "operation.employee.list",
+        "operation.employee.read"
+      ],
+      "given": [
+        "the user is signed in as Manager",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "List Employees",
+        "View Employee"
+      ],
+      "then": [
+        "The Employee information is displayed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.employee.create",
+      "name": "Create Employee succeeds",
+      "requirement_refs": [
+        "requirement.employee_directory"
+      ],
+      "workflow_refs": [
+        "workflow.employee.create"
+      ],
+      "operation_refs": [
+        "operation.employee.create"
+      ],
+      "given": [
+        "the user is signed in as Manager"
+      ],
+      "when": [
+        "Fill in the Employee form",
+        "Create Employee"
+      ],
+      "then": [
+        "The Employee is created and appears in the Employee list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.employee.update",
+      "name": "Update Employee succeeds",
+      "requirement_refs": [
+        "requirement.employee_directory"
+      ],
+      "workflow_refs": [
+        "workflow.employee.update"
+      ],
+      "operation_refs": [
+        "operation.employee.update"
+      ],
+      "given": [
+        "the user is signed in as Manager",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "Change the Employee details",
+        "Update Employee"
+      ],
+      "then": [
+        "The changes to the Employee are saved"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.project.browse",
+      "name": "Browse Projects succeeds",
+      "requirement_refs": [
+        "requirement.project_management"
+      ],
+      "workflow_refs": [
+        "workflow.project.browse"
+      ],
+      "operation_refs": [
+        "operation.project.list",
+        "operation.project.read"
+      ],
+      "given": [
+        "the user is signed in as Manager or Employee",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "List Projects",
+        "View Project"
+      ],
+      "then": [
+        "The Project information is displayed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.project.create",
+      "name": "Create Project succeeds",
+      "requirement_refs": [
+        "requirement.project_management"
+      ],
+      "workflow_refs": [
+        "workflow.project.create"
+      ],
+      "operation_refs": [
+        "operation.project.create"
+      ],
+      "given": [
+        "the user is signed in as Manager"
+      ],
+      "when": [
+        "Fill in the Project form",
+        "Create Project"
+      ],
+      "then": [
+        "The Project is created and appears in the Project list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.project.delete",
+      "name": "Delete Project succeeds",
+      "requirement_refs": [
+        "requirement.project_management"
+      ],
+      "workflow_refs": [
+        "workflow.project.delete"
+      ],
+      "operation_refs": [
+        "operation.project.delete"
+      ],
+      "given": [
+        "the user is signed in as Manager",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "Confirm deleting the Project",
+        "Delete Project"
+      ],
+      "then": [
+        "The Project is removed from the Project list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.project.only_managers_delete",
+      "name": "Only managers delete projects (negative case)",
+      "requirement_refs": [
+        "requirement.project_management"
+      ],
+      "workflow_refs": [],
+      "operation_refs": [
+        "operation.project.delete"
+      ],
+      "given": [
+        "the user is signed in"
+      ],
+      "when": [
+        "an employee tries to delete a project"
+      ],
+      "then": [
+        "Only managers can delete projects (error PROJECT_DELETE_FORBIDDEN)",
+        "no data is changed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.project.update",
+      "name": "Update Project succeeds",
+      "requirement_refs": [
+        "requirement.project_management"
+      ],
+      "workflow_refs": [
+        "workflow.project.update"
+      ],
+      "operation_refs": [
+        "operation.project.update"
+      ],
+      "given": [
+        "the user is signed in as Manager",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "Change the Project details",
+        "Update Project"
+      ],
+      "then": [
+        "The changes to the Project are saved"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.project_member.browse",
+      "name": "Browse Project Members succeeds",
+      "requirement_refs": [
+        "requirement.project_assignment"
+      ],
+      "workflow_refs": [
+        "workflow.project_member.browse"
+      ],
+      "operation_refs": [
+        "operation.project_member.list"
+      ],
+      "given": [
+        "the user is signed in as Manager"
+      ],
+      "when": [
+        "List Project Members"
+      ],
+      "then": [
+        "The Project Member information is displayed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.project_member.create",
+      "name": "Create Project Member succeeds",
+      "requirement_refs": [
+        "requirement.project_assignment"
+      ],
+      "workflow_refs": [
+        "workflow.project_member.create"
+      ],
+      "operation_refs": [
+        "operation.project_member.create"
+      ],
+      "given": [
+        "the user is signed in as Manager"
+      ],
+      "when": [
+        "Fill in the Project Member form",
+        "Create Project Member"
+      ],
+      "then": [
+        "The Project Member is created and appears in the Project Member list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.project_member.delete",
+      "name": "Delete Project Member succeeds",
+      "requirement_refs": [
+        "requirement.project_assignment"
+      ],
+      "workflow_refs": [
+        "workflow.project_member.delete"
+      ],
+      "operation_refs": [
+        "operation.project_member.delete"
+      ],
+      "given": [
+        "the user is signed in as Manager",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "Confirm deleting the Project Member",
+        "Delete Project Member"
+      ],
+      "then": [
+        "The Project Member is removed from the Project Member list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.task.browse",
+      "name": "Browse Tasks succeeds",
+      "requirement_refs": [
+        "requirement.task_management"
+      ],
+      "workflow_refs": [
+        "workflow.task.browse"
+      ],
+      "operation_refs": [
+        "operation.task.list",
+        "operation.task.read"
+      ],
+      "given": [
+        "the user is signed in as Manager or Employee",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "List Tasks",
+        "View Task"
+      ],
+      "then": [
+        "The Task information is displayed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.task.completed_needs_assignee",
+      "name": "Completed tasks need an assignee (negative case)",
+      "requirement_refs": [
+        "requirement.task_status"
+      ],
+      "workflow_refs": [],
+      "operation_refs": [
+        "operation.task.update_status"
+      ],
+      "given": [
+        "the user is signed in"
+      ],
+      "when": [
+        "the user marks an unassigned task as completed"
+      ],
+      "then": [
+        "A task cannot be completed without an assignee (error TASK_NO_ASSIGNEE)",
+        "no data is changed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.task.create",
+      "name": "Create Task succeeds",
+      "requirement_refs": [
+        "requirement.task_management"
+      ],
+      "workflow_refs": [
+        "workflow.task.create"
+      ],
+      "operation_refs": [
+        "operation.task.create"
+      ],
+      "given": [
+        "the user is signed in as Manager"
+      ],
+      "when": [
+        "Fill in the Task form",
+        "Create Task"
+      ],
+      "then": [
+        "The Task is created and appears in the Task list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.task.delete",
+      "name": "Delete Task succeeds",
+      "requirement_refs": [
+        "requirement.task_management"
+      ],
+      "workflow_refs": [
+        "workflow.task.delete"
+      ],
+      "operation_refs": [
+        "operation.task.delete"
+      ],
+      "given": [
+        "the user is signed in as Manager",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "Confirm deleting the Task",
+        "Delete Task"
+      ],
+      "then": [
+        "The Task is removed from the Task list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.task.employee_updates_own",
+      "name": "Employees update only their own tasks (negative case)",
+      "requirement_refs": [
+        "requirement.task_status"
+      ],
+      "workflow_refs": [],
+      "operation_refs": [
+        "operation.task.update_status"
+      ],
+      "given": [
+        "the user is signed in"
+      ],
+      "when": [
+        "an employee updates a task assigned to someone else"
+      ],
+      "then": [
+        "Employees can only update tasks assigned to them (error TASK_NOT_ASSIGNED_TO_CALLER)",
+        "no data is changed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.task.update",
+      "name": "Update Task succeeds",
+      "requirement_refs": [
+        "requirement.task_management"
+      ],
+      "workflow_refs": [
+        "workflow.task.update"
+      ],
+      "operation_refs": [
+        "operation.task.update"
+      ],
+      "given": [
+        "the user is signed in as Manager",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "Change the Task details",
+        "Update Task"
+      ],
+      "then": [
+        "The changes to the Task are saved"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.task.update_status",
+      "name": "Update task status succeeds",
+      "requirement_refs": [
+        "requirement.task_status"
+      ],
+      "workflow_refs": [
+        "workflow.task.update_status"
+      ],
+      "operation_refs": [
+        "operation.task.update_status"
+      ],
+      "given": [
+        "the user is signed in as Manager or Employee",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "Choose the new status",
+        "Update task status"
+      ],
+      "then": [
+        "The task shows its new status"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.user.invalid_login",
+      "name": "Wrong credentials are rejected (negative case)",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "workflow_refs": [],
+      "operation_refs": [
+        "operation.user.login"
+      ],
+      "given": [
+        "the user is not signed in"
+      ],
+      "when": [
+        "the user submits a wrong password"
+      ],
+      "then": [
+        "Email or password is wrong (error INVALID_CREDENTIALS)",
+        "no data is changed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

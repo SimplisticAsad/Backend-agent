@@ -1,0 +1,238 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "permissions": [
+    {
+      "id": "permission.ticket.assign",
+      "resource": "entity.ticket",
+      "action": "update",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.ticket.assign"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Assign ticket"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.ticket.change_status",
+      "resource": "entity.ticket",
+      "action": "update",
+      "roles": [
+        "role.agent",
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.ticket.change_status"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Change ticket status"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.ticket.create",
+      "resource": "entity.ticket",
+      "action": "create",
+      "roles": [
+        "role.customer"
+      ],
+      "operation_refs": [
+        "operation.ticket.create"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Create Ticket"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.ticket.list",
+      "resource": "entity.ticket",
+      "action": "list",
+      "roles": [
+        "role.customer",
+        "role.agent",
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.ticket.list"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: List Tickets"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.ticket.read",
+      "resource": "entity.ticket",
+      "action": "read",
+      "roles": [
+        "role.customer",
+        "role.agent",
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.ticket.read"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: View Ticket"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.ticket.stats",
+      "resource": "entity.ticket",
+      "action": "list",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.ticket.stats"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Get ticket statistics"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.ticket.update",
+      "resource": "entity.ticket",
+      "action": "update",
+      "roles": [
+        "role.agent",
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.ticket.update"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Update Ticket"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.ticket_comment.create",
+      "resource": "entity.ticket_comment",
+      "action": "create",
+      "roles": [
+        "role.customer",
+        "role.agent"
+      ],
+      "operation_refs": [
+        "operation.ticket_comment.create"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Create Comment"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.ticket_comment.list",
+      "resource": "entity.ticket_comment",
+      "action": "list",
+      "roles": [
+        "role.customer",
+        "role.agent",
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.ticket_comment.list"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: List Comments"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.user.list_agents",
+      "resource": "entity.user",
+      "action": "list",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.user.list_agents"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: List agents"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.user.logout",
+      "resource": "entity.user",
+      "action": "execute",
+      "roles": [
+        "role.customer",
+        "role.agent",
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.user.logout"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Log out"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

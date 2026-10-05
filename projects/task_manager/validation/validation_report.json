@@ -1,0 +1,133 @@
+{
+  "status": "valid",
+  "safe_for_downstream": true,
+  "errors": [],
+  "warnings": [
+    {
+      "id": "warning.001",
+      "severity": "warning",
+      "code": "QUESTION_OPEN",
+      "message": "unresolved question: Can an employee belong to more than one department?",
+      "graph": "questions",
+      "object_id": "question.multiple_departments",
+      "ref": null
+    },
+    {
+      "id": "warning.002",
+      "severity": "warning",
+      "code": "QUESTION_OPEN",
+      "message": "unresolved question: Should employees be able to see projects they are not assigned to?",
+      "graph": "questions",
+      "object_id": "question.project_visibility",
+      "ref": null
+    },
+    {
+      "id": "warning.003",
+      "severity": "warning",
+      "code": "QUESTION_OPEN",
+      "message": "unresolved question: Who assigns tasks to employees? The idea refers to assigned tasks but does not say how tasks get an assignee.",
+      "graph": "questions",
+      "object_id": "question.who_assigns_tasks",
+      "ref": null
+    }
+  ],
+  "coverage": {
+    "requirements": 1.0,
+    "screens": 1.0,
+    "api": 1.0,
+    "permissions": 1.0,
+    "acceptance_criteria": 1.0
+  },
+  "checks": [
+    {
+      "name": "Schema validation",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Reference validation",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Dependency validation",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Requirement coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Screen coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "API coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Permission coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Acceptance coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Cross-graph consistency",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Ambiguity",
+      "passed": true,
+      "errors": 0,
+      "warnings": 3
+    }
+  ],
+  "summary": {
+    "project_id": "project.task_manager",
+    "object_counts": {
+      "actors": 2,
+      "roles": 2,
+      "entities": 6,
+      "relationships": 7,
+      "capabilities": 9,
+      "requirements": 13,
+      "screens": 22,
+      "components": 26,
+      "workflows": 23,
+      "operations": 27,
+      "endpoints": 27,
+      "permissions": 24,
+      "validations": 10,
+      "state_machines": 1,
+      "acceptance_criteria": 27
+    },
+    "assumptions": 1,
+    "open_questions": 3,
+    "provenance": {
+      "assumption": 1,
+      "derived": 195,
+      "inferred": 8,
+      "system_default": 5,
+      "user_requirement": 18
+    },
+    "review_findings": 0
+  }
+}

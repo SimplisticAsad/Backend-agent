@@ -1,0 +1,291 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "requirements": [
+    {
+      "id": "requirement.authentication",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Users must be able to log in with email and password and reset a forgotten password.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria",
+        "validations"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Users must log in."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.department_management",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "The company is organised into departments.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Employees can belong to departments."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.employee_dashboard",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Employees have a dashboard showing their assigned tasks.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Employees should have dashboards showing their assigned tasks."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.employee_directory",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Employees can belong to departments.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Employees can belong to departments."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.nfr.accessibility",
+      "type": "non_functional",
+      "category": "accessibility",
+      "priority": "should",
+      "description": "Screens meet WCAG 2.1 AA basics: keyboard navigation, labels and contrast.",
+      "affected_graphs": [
+        "screens",
+        "components"
+      ],
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard practice; the user did not specify it"
+        },
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "requirement.nfr.performance",
+      "type": "non_functional",
+      "category": "performance",
+      "priority": "should",
+      "description": "List endpoints are paginated and typical requests complete within 500 ms.",
+      "affected_graphs": [
+        "api",
+        "backend"
+      ],
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard practice; the user did not specify it"
+        },
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "requirement.nfr.responsive",
+      "type": "non_functional",
+      "category": "responsiveness",
+      "priority": "should",
+      "description": "Every screen is usable on mobile, tablet and desktop widths.",
+      "affected_graphs": [
+        "screens",
+        "ui"
+      ],
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard practice; the user did not specify it"
+        },
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "requirement.nfr.security",
+      "type": "non_functional",
+      "category": "security",
+      "priority": "must",
+      "description": "Passwords are hashed, sessions expire, and every non-public endpoint requires authentication.",
+      "affected_graphs": [
+        "api",
+        "permissions",
+        "backend"
+      ],
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard practice; the user did not specify it"
+        },
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "requirement.project_assignment",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Managers can assign employees to projects.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Managers can create projects and assign employees to projects."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.project_management",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Managers can create, edit and delete projects, and employees can view them.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria",
+        "validations"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Managers can create projects and assign employees to projects."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.project_progress",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Managers can view project progress on a dashboard.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Managers should have dashboards showing project progress."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.task_management",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Projects contain tasks, and managers can create, edit and delete them.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Projects contain tasks."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.task_status",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Employees can update the status of their assigned tasks (todo, in progress, completed).",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria",
+        "validations",
+        "state_machines"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Tasks have statuses such as todo, in progress and completed."
+        },
+        "confidence": 0.95
+      }
+    }
+  ]
+}

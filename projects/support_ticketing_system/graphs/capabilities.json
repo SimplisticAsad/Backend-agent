@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "capabilities": [
+    {
+      "id": "capability.authentication",
+      "name": "Authentication",
+      "description": "Email/password login, logout and password reset.",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.user"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.support_dashboard",
+      "name": "Support dashboard",
+      "description": "Managers see ticket volumes and backlog.",
+      "requirement_refs": [
+        "requirement.support_dashboard"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.ticket"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.support_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.ticket_assignment",
+      "name": "Ticket assignment",
+      "description": "Managers assign tickets to agents.",
+      "requirement_refs": [
+        "requirement.ticket_assignment"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.ticket",
+        "entity.user"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.ticket_comments",
+      "name": "Ticket comments",
+      "description": "Create, view, change and remove comments.",
+      "requirement_refs": [
+        "requirement.ticket_comments"
+      ],
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.ticket",
+        "entity.ticket_comment"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_comments, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.ticket_management",
+      "name": "Ticket management",
+      "description": "Create, view, change and remove tickets.",
+      "requirement_refs": [
+        "requirement.ticket_management"
+      ],
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.ticket"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.ticket_status",
+      "name": "Ticket status",
+      "description": "Agents move tickets through their lifecycle.",
+      "requirement_refs": [
+        "requirement.ticket_status"
+      ],
+      "actor_refs": [
+        "actor.agent",
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.ticket"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

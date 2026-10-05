@@ -1,0 +1,48 @@
+{
+  "name": "Ecommerce Store",
+  "description": "An online store where users browse products, fill a cart and check out.",
+  "product_type": "ecommerce",
+  "primary_objective": "Let customers find and buy products online.",
+  "target_users": [
+    "Customer"
+  ],
+  "technology_constraints": [],
+  "security_requirements": [
+    "Passwords are stored hashed; protected endpoints require authentication."
+  ],
+  "integration_requirements": [
+    "Payment gateway (provider not decided)"
+  ],
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "graph_version": "1.0.0",
+  "actors": [
+    "actor.customer"
+  ],
+  "roles": [
+    "role.customer"
+  ],
+  "capabilities": [
+    "capability.authentication",
+    "capability.checkout",
+    "capability.product_catalog",
+    "capability.product_filter",
+    "capability.product_search",
+    "capability.shopping_cart"
+  ],
+  "functional_requirements": [
+    "requirement.authentication",
+    "requirement.checkout",
+    "requirement.product_catalog",
+    "requirement.product_filter",
+    "requirement.product_search",
+    "requirement.shopping_cart"
+  ],
+  "non_functional_requirements": [
+    "requirement.nfr.accessibility",
+    "requirement.nfr.performance",
+    "requirement.nfr.responsive",
+    "requirement.nfr.security"
+  ]
+}

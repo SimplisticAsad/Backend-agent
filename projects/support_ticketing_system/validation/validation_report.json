@@ -1,0 +1,133 @@
+{
+  "status": "valid",
+  "safe_for_downstream": true,
+  "errors": [],
+  "warnings": [
+    {
+      "id": "warning.001",
+      "severity": "warning",
+      "code": "QUESTION_OPEN",
+      "message": "unresolved question: Should tickets also be created from incoming email?",
+      "graph": "questions",
+      "object_id": "question.email_channel",
+      "ref": null
+    },
+    {
+      "id": "warning.002",
+      "severity": "warning",
+      "code": "QUESTION_OPEN",
+      "message": "unresolved question: Can customers see internal agent notes on their tickets?",
+      "graph": "questions",
+      "object_id": "question.internal_notes",
+      "ref": null
+    },
+    {
+      "id": "warning.003",
+      "severity": "warning",
+      "code": "QUESTION_OPEN",
+      "message": "unresolved question: Are there response-time targets (SLAs) tickets must meet?",
+      "graph": "questions",
+      "object_id": "question.sla",
+      "ref": null
+    }
+  ],
+  "coverage": {
+    "requirements": 1.0,
+    "screens": 1.0,
+    "api": 1.0,
+    "permissions": 1.0,
+    "acceptance_criteria": 1.0
+  },
+  "checks": [
+    {
+      "name": "Schema validation",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Reference validation",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Dependency validation",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Requirement coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Screen coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "API coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Permission coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Acceptance coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Cross-graph consistency",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Ambiguity",
+      "passed": true,
+      "errors": 0,
+      "warnings": 3
+    }
+  ],
+  "summary": {
+    "project_id": "project.support_ticketing_system",
+    "object_counts": {
+      "actors": 3,
+      "roles": 3,
+      "entities": 3,
+      "relationships": 4,
+      "capabilities": 6,
+      "requirements": 10,
+      "screens": 10,
+      "components": 11,
+      "workflows": 11,
+      "operations": 14,
+      "endpoints": 14,
+      "permissions": 11,
+      "validations": 5,
+      "state_machines": 1,
+      "acceptance_criteria": 13
+    },
+    "assumptions": 1,
+    "open_questions": 3,
+    "provenance": {
+      "assumption": 1,
+      "derived": 95,
+      "inferred": 4,
+      "system_default": 5,
+      "user_requirement": 15
+    },
+    "review_findings": 0
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "assumptions": [
+    {
+      "id": "assumption.authentication",
+      "description": "Users authenticate with email and password (no social login, no multi-factor).",
+      "confidence": "medium",
+      "reason": "The idea does not say how users sign in.",
+      "affects": [
+        "capability.authentication",
+        "operation.user.login"
+      ],
+      "provenance": {
+        "source": {
+          "type": "assumption",
+          "text": "The idea does not say how users sign in."
+        },
+        "confidence": 0.5
+      }
+    },
+    {
+      "id": "assumption.checkout_requires_login",
+      "description": "Checkout requires a signed-in customer.",
+      "confidence": "medium",
+      "reason": "Orders must be tied to an account for history and support.",
+      "affects": [
+        "operation.order.place",
+        "screen.order.checkout"
+      ],
+      "provenance": {
+        "source": {
+          "type": "assumption",
+          "text": "Orders must be tied to an account for history and support."
+        },
+        "confidence": 0.5
+      }
+    },
+    {
+      "id": "assumption.guest_browse",
+      "description": "Guests can browse and search products without logging in.",
+      "confidence": "medium",
+      "reason": "The idea does not say whether browsing needs an account.",
+      "affects": [
+        "operation.product.list",
+        "screen.product.list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "assumption",
+          "text": "The idea does not say whether browsing needs an account."
+        },
+        "confidence": 0.5
+      }
+    },
+    {
+      "id": "assumption.inferred.authentication",
+      "description": "Authentication is part of the product although the idea does not mention it.",
+      "confidence": "medium",
+      "reason": "Users must be able to log in with email and password and reset a forgotten password.",
+      "affects": [
+        "capability.authentication"
+      ],
+      "provenance": {
+        "source": {
+          "type": "assumption",
+          "text": "Included to keep the product usable"
+        },
+        "confidence": 0.55
+      }
+    },
+    {
+      "id": "assumption.inferred.product_catalog",
+      "description": "Product catalog is part of the product although the idea does not mention it.",
+      "confidence": "medium",
+      "reason": "Users can browse the product catalog and view product details.",
+      "affects": [
+        "capability.product_catalog"
+      ],
+      "provenance": {
+        "source": {
+          "type": "assumption",
+          "text": "Included to keep the product usable"
+        },
+        "confidence": 0.55
+      }
+    },
+    {
+      "id": "assumption.single_currency",
+      "description": "All prices use one currency.",
+      "confidence": "medium",
+      "reason": "No multi-currency requirement was stated.",
+      "affects": [],
+      "provenance": {
+        "source": {
+          "type": "assumption",
+          "text": "No multi-currency requirement was stated."
+        },
+        "confidence": 0.5
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "graph": "roles",
+  "nodes": [
+    {
+      "id": "role.manager",
+      "key": "manager",
+      "name": "Manager",
+      "actor": "actor.person",
+      "permissions": [
+        "permission.dashboard.view",
+        "permission.project.view",
+        "permission.project.create",
+        "permission.project.delete",
+        "permission.task.view",
+        "permission.task.create",
+        "permission.task.update_status",
+        "permission.task.reopen"
+      ]
+    },
+    {
+      "id": "role.employee",
+      "key": "employee",
+      "name": "Employee",
+      "actor": "actor.person",
+      "permissions": [
+        "permission.dashboard.view",
+        "permission.project.view",
+        "permission.task.view",
+        "permission.task.update_status"
+      ]
+    }
+  ]
+}

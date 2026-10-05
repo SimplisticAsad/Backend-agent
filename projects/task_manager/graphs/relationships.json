@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "relationships": [
+    {
+      "id": "relationship.employee.department",
+      "source": "entity.employee",
+      "target": "entity.department",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Employee belongs to one Department through department_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "department_id links employee to department"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.employee.user",
+      "source": "entity.employee",
+      "target": "entity.user",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Employee belongs to one User through user_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "user_id links employee to user"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.project.owner",
+      "source": "entity.project",
+      "target": "entity.user",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Project belongs to one User through owner_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "owner_id links project to user"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.project_member.project",
+      "source": "entity.project_member",
+      "target": "entity.project",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Project Member belongs to one Project through project_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "project_id links project_member to project"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.project_member.user",
+      "source": "entity.project_member",
+      "target": "entity.user",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Project Member belongs to one User through user_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "user_id links project_member to user"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.task.assignee",
+      "source": "entity.task",
+      "target": "entity.user",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Task belongs to one User through assignee_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "assignee_id links task to user"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.task.project",
+      "source": "entity.task",
+      "target": "entity.project",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Task belongs to one Project through project_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "project_id links task to project"
+        },
+        "confidence": 0.8
+      }
+    }
+  ]
+}

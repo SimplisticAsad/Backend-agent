@@ -1,0 +1,685 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "screens": [
+    {
+      "id": "screen.auth.forgot_password",
+      "name": "Forgot Password",
+      "route": "/forgot-password",
+      "purpose": "Request a password reset link",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.user"
+      ],
+      "workflow_refs": [
+        "workflow.auth.password_reset"
+      ],
+      "component_refs": [
+        "component.auth.forgot_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.auth_password_reset",
+          "label": "Reset password",
+          "workflow_ref": "workflow.auth.password_reset"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Reset Password",
+          "target": "screen.auth.reset_password"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Forgot Password content is fetched",
+        "empty": "Explain that there are no users to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Forgot Password content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.auth.login",
+      "name": "Login",
+      "route": "/login",
+      "purpose": "Authenticate with email and password",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.user"
+      ],
+      "workflow_refs": [
+        "workflow.auth.login",
+        "workflow.auth.logout",
+        "workflow.auth.password_reset"
+      ],
+      "component_refs": [
+        "component.auth.login_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.auth_login",
+          "label": "Log in",
+          "workflow_ref": "workflow.auth.login"
+        },
+        {
+          "id": "action.auth_logout",
+          "label": "Log out",
+          "workflow_ref": "workflow.auth.logout"
+        },
+        {
+          "id": "action.auth_password_reset",
+          "label": "Reset password",
+          "workflow_ref": "workflow.auth.password_reset"
+        }
+      ],
+      "navigation": [],
+      "states": {
+        "loading": "Show a loading indicator while the Login content is fetched",
+        "empty": "Explain that there are no users to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Login content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.auth.reset_password",
+      "name": "Reset Password",
+      "route": "/reset-password",
+      "purpose": "Choose a new password",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.user"
+      ],
+      "workflow_refs": [
+        "workflow.auth.password_reset"
+      ],
+      "component_refs": [
+        "component.auth.reset_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.auth_password_reset",
+          "label": "Reset password",
+          "workflow_ref": "workflow.auth.password_reset"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Login",
+          "target": "screen.auth.login"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Reset Password content is fetched",
+        "empty": "Explain that there are no users to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Reset Password content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.dashboard.support",
+      "name": "Support Dashboard",
+      "route": "/dashboard",
+      "purpose": "Show ticket volumes by status and priority",
+      "capability_refs": [
+        "capability.support_dashboard"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.ticket"
+      ],
+      "workflow_refs": [
+        "workflow.dashboard.support_view"
+      ],
+      "component_refs": [
+        "component.dashboard.ticket_chart",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.ticket",
+          "operation_ref": "operation.ticket.stats",
+          "description": "Loads data via Get ticket statistics"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.dashboard_support_view",
+          "label": "View support dashboard",
+          "workflow_ref": "workflow.dashboard.support_view"
+        }
+      ],
+      "navigation": [],
+      "states": {
+        "loading": "Show a loading indicator while the Support Dashboard content is fetched",
+        "empty": "Explain that there are no tickets to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Support Dashboard content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.support_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.ticket.create",
+      "name": "Create Ticket",
+      "route": "/tickets/new",
+      "purpose": "Create a ticket",
+      "capability_refs": [
+        "capability.ticket_management"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.ticket"
+      ],
+      "workflow_refs": [
+        "workflow.ticket.create"
+      ],
+      "component_refs": [
+        "component.ticket.create_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.ticket_create",
+          "label": "Create Ticket",
+          "workflow_ref": "workflow.ticket.create"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Ticket List",
+          "target": "screen.ticket.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Create Ticket content is fetched",
+        "empty": "Explain that there are no tickets to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Create Ticket content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.customer"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.ticket.detail",
+      "name": "Ticket Details",
+      "route": "/tickets/:id",
+      "purpose": "Show one ticket",
+      "capability_refs": [
+        "capability.ticket_assignment",
+        "capability.ticket_management",
+        "capability.ticket_status"
+      ],
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.ticket"
+      ],
+      "workflow_refs": [
+        "workflow.ticket.update",
+        "workflow.ticket.browse",
+        "workflow.ticket.assign",
+        "workflow.ticket.change_status"
+      ],
+      "component_refs": [
+        "component.ticket.card"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.ticket",
+          "operation_ref": "operation.ticket.read",
+          "description": "Loads data via View Ticket"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.ticket_update",
+          "label": "Update Ticket",
+          "workflow_ref": "workflow.ticket.update"
+        },
+        {
+          "id": "action.ticket_browse",
+          "label": "Browse Tickets",
+          "workflow_ref": "workflow.ticket.browse"
+        },
+        {
+          "id": "action.ticket_assign",
+          "label": "Assign ticket",
+          "workflow_ref": "workflow.ticket.assign"
+        },
+        {
+          "id": "action.ticket_change_status",
+          "label": "Change ticket status",
+          "workflow_ref": "workflow.ticket.change_status"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Edit Ticket",
+          "target": "screen.ticket.edit"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Ticket Details content is fetched",
+        "empty": "Explain that there are no tickets to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Ticket Details content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.ticket.edit",
+      "name": "Edit Ticket",
+      "route": "/tickets/:id/edit",
+      "purpose": "Edit a ticket",
+      "capability_refs": [
+        "capability.ticket_management"
+      ],
+      "actor_refs": [
+        "actor.agent",
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.ticket"
+      ],
+      "workflow_refs": [
+        "workflow.ticket.update"
+      ],
+      "component_refs": [
+        "component.ticket.edit_form"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.ticket",
+          "operation_ref": "operation.ticket.read",
+          "description": "Loads data via View Ticket"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.ticket_update",
+          "label": "Update Ticket",
+          "workflow_ref": "workflow.ticket.update"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Ticket List",
+          "target": "screen.ticket.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Edit Ticket content is fetched",
+        "empty": "Explain that there are no tickets to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Edit Ticket content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.agent",
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.ticket.list",
+      "name": "Ticket List",
+      "route": "/tickets",
+      "purpose": "Browse tickets",
+      "capability_refs": [
+        "capability.ticket_management",
+        "capability.ticket_status"
+      ],
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.ticket"
+      ],
+      "workflow_refs": [
+        "workflow.ticket.create",
+        "workflow.ticket.update",
+        "workflow.ticket.browse",
+        "workflow.ticket.change_status"
+      ],
+      "component_refs": [
+        "component.ticket.table",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.ticket",
+          "operation_ref": "operation.ticket.list",
+          "description": "Loads data via List Tickets"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.ticket_create",
+          "label": "Create Ticket",
+          "workflow_ref": "workflow.ticket.create"
+        },
+        {
+          "id": "action.ticket_update",
+          "label": "Update Ticket",
+          "workflow_ref": "workflow.ticket.update"
+        },
+        {
+          "id": "action.ticket_browse",
+          "label": "Browse Tickets",
+          "workflow_ref": "workflow.ticket.browse"
+        },
+        {
+          "id": "action.ticket_change_status",
+          "label": "Change ticket status",
+          "workflow_ref": "workflow.ticket.change_status"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Create Ticket",
+          "target": "screen.ticket.create"
+        },
+        {
+          "label": "Go to Ticket Details",
+          "target": "screen.ticket.detail"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Ticket List content is fetched",
+        "empty": "Explain that there are no tickets to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Ticket List content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.ticket_comment.create",
+      "name": "Create Comment",
+      "route": "/ticket-comments/new",
+      "purpose": "Create a comment",
+      "capability_refs": [
+        "capability.ticket_comments"
+      ],
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent"
+      ],
+      "entity_refs": [
+        "entity.ticket_comment"
+      ],
+      "workflow_refs": [
+        "workflow.ticket_comment.create"
+      ],
+      "component_refs": [
+        "component.ticket_comment.create_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.ticket_comment_create",
+          "label": "Create Comment",
+          "workflow_ref": "workflow.ticket_comment.create"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Comment List",
+          "target": "screen.ticket_comment.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Create Comment content is fetched",
+        "empty": "Explain that there are no ticket comments to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Create Comment content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.customer",
+          "role.agent"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_comments, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.ticket_comment.list",
+      "name": "Comment List",
+      "route": "/ticket-comments",
+      "purpose": "Browse comments",
+      "capability_refs": [
+        "capability.ticket_comments"
+      ],
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.ticket_comment"
+      ],
+      "workflow_refs": [
+        "workflow.ticket_comment.create",
+        "workflow.ticket_comment.browse"
+      ],
+      "component_refs": [
+        "component.ticket_comment.table",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.ticket_comment",
+          "operation_ref": "operation.ticket_comment.list",
+          "description": "Loads data via List Comments"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.ticket_comment_create",
+          "label": "Create Comment",
+          "workflow_ref": "workflow.ticket_comment.create"
+        },
+        {
+          "id": "action.ticket_comment_browse",
+          "label": "Browse Comments",
+          "workflow_ref": "workflow.ticket_comment.browse"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Create Comment",
+          "target": "screen.ticket_comment.create"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Comment List content is fetched",
+        "empty": "Explain that there are no ticket comments to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Comment List content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_comments, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

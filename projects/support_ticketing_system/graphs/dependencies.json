@@ -1,0 +1,3420 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "edges": [
+    {
+      "id": "dependency.c6ea1d3516",
+      "source": "ac.auth.login",
+      "target": "operation.user.login",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.c058313d7e",
+      "source": "ac.auth.login",
+      "target": "requirement.authentication",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.120eb27a6c",
+      "source": "ac.auth.login",
+      "target": "workflow.auth.login",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.21620ab98c",
+      "source": "ac.auth.logout",
+      "target": "operation.user.logout",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.046aa624d5",
+      "source": "ac.auth.logout",
+      "target": "requirement.authentication",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.532306cc33",
+      "source": "ac.auth.logout",
+      "target": "workflow.auth.logout",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.f583fa25db",
+      "source": "ac.auth.password_reset",
+      "target": "operation.user.request_password_reset",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.a463deb396",
+      "source": "ac.auth.password_reset",
+      "target": "operation.user.reset_password",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.6595bc79da",
+      "source": "ac.auth.password_reset",
+      "target": "requirement.authentication",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.88702de63c",
+      "source": "ac.auth.password_reset",
+      "target": "workflow.auth.password_reset",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.aaac178a3d",
+      "source": "ac.dashboard.support_view",
+      "target": "operation.ticket.stats",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.089c2d60b7",
+      "source": "ac.dashboard.support_view",
+      "target": "requirement.support_dashboard",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.b4f2f99baf",
+      "source": "ac.dashboard.support_view",
+      "target": "workflow.dashboard.support_view",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.50f6aeba2e",
+      "source": "ac.ticket.assign",
+      "target": "operation.ticket.assign",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.16d996d3f8",
+      "source": "ac.ticket.assign",
+      "target": "operation.user.list_agents",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.b3395adafd",
+      "source": "ac.ticket.assign",
+      "target": "requirement.ticket_assignment",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.5eed7d5046",
+      "source": "ac.ticket.assign",
+      "target": "workflow.ticket.assign",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.100ab73050",
+      "source": "ac.ticket.browse",
+      "target": "operation.ticket.list",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.189d3f8094",
+      "source": "ac.ticket.browse",
+      "target": "operation.ticket.read",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.2efb6fb64e",
+      "source": "ac.ticket.browse",
+      "target": "requirement.ticket_management",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.bb8845e822",
+      "source": "ac.ticket.browse",
+      "target": "workflow.ticket.browse",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.9955324105",
+      "source": "ac.ticket.change_status",
+      "target": "operation.ticket.change_status",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.5724a6d16b",
+      "source": "ac.ticket.change_status",
+      "target": "requirement.ticket_status",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.e0c9f3a75b",
+      "source": "ac.ticket.change_status",
+      "target": "workflow.ticket.change_status",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.a8d9eaae74",
+      "source": "ac.ticket.closed_read_only",
+      "target": "operation.ticket.update",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.5745af1ee1",
+      "source": "ac.ticket.closed_read_only",
+      "target": "requirement.ticket_management",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.f85cb320a2",
+      "source": "ac.ticket.create",
+      "target": "operation.ticket.create",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.ea6ba67e7e",
+      "source": "ac.ticket.create",
+      "target": "requirement.ticket_management",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.201955e092",
+      "source": "ac.ticket.create",
+      "target": "workflow.ticket.create",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.8c3928310e",
+      "source": "ac.ticket.update",
+      "target": "operation.ticket.update",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.b958722198",
+      "source": "ac.ticket.update",
+      "target": "requirement.ticket_management",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.3a7fdea77c",
+      "source": "ac.ticket.update",
+      "target": "workflow.ticket.update",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.cf2c15ca9c",
+      "source": "ac.ticket_comment.browse",
+      "target": "operation.ticket_comment.list",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.6c579c6b44",
+      "source": "ac.ticket_comment.browse",
+      "target": "requirement.ticket_comments",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.2bea132547",
+      "source": "ac.ticket_comment.browse",
+      "target": "workflow.ticket_comment.browse",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.7727427467",
+      "source": "ac.ticket_comment.create",
+      "target": "operation.ticket_comment.create",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.c7e69db498",
+      "source": "ac.ticket_comment.create",
+      "target": "requirement.ticket_comments",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.a4d1dd6784",
+      "source": "ac.ticket_comment.create",
+      "target": "workflow.ticket_comment.create",
+      "type": "references",
+      "reason": "acceptance_criteria:workflow_refs"
+    },
+    {
+      "id": "dependency.3ea341ec7f",
+      "source": "ac.user.invalid_login",
+      "target": "operation.user.login",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:operation_refs"
+    },
+    {
+      "id": "dependency.c43b8510f1",
+      "source": "ac.user.invalid_login",
+      "target": "requirement.authentication",
+      "type": "depends_on",
+      "reason": "acceptance_criteria:requirement_refs"
+    },
+    {
+      "id": "dependency.c1e5cb4ab9",
+      "source": "actor.agent",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "actors:role_refs"
+    },
+    {
+      "id": "dependency.d23fb46a8a",
+      "source": "actor.customer",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "actors:role_refs"
+    },
+    {
+      "id": "dependency.b181a94985",
+      "source": "actor.manager",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "actors:role_refs"
+    },
+    {
+      "id": "dependency.8d126d2bc3",
+      "source": "api.ticket.assign",
+      "target": "operation.ticket.assign",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.17563a3081",
+      "source": "api.ticket.assign",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.035077bc85",
+      "source": "api.ticket.assign",
+      "target": "schema.ticket",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.d0c719e21b",
+      "source": "api.ticket.assign",
+      "target": "schema.ticket.assign",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.71958c5f82",
+      "source": "api.ticket.change_status",
+      "target": "operation.ticket.change_status",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.6377d95876",
+      "source": "api.ticket.change_status",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.db0007ef20",
+      "source": "api.ticket.change_status",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.faa0a09729",
+      "source": "api.ticket.change_status",
+      "target": "schema.ticket",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.b7fdafbc45",
+      "source": "api.ticket.change_status",
+      "target": "schema.ticket.change_status",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.0f62f86cb5",
+      "source": "api.ticket.create",
+      "target": "operation.ticket.create",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.47f253f187",
+      "source": "api.ticket.create",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.b4dc8d90f9",
+      "source": "api.ticket.create",
+      "target": "schema.ticket",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.75dfa59df3",
+      "source": "api.ticket.create",
+      "target": "schema.ticket.create",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.1c72a2b7ed",
+      "source": "api.ticket.list",
+      "target": "operation.ticket.list",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.1745fc31ad",
+      "source": "api.ticket.list",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.1a60ec0e5f",
+      "source": "api.ticket.list",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.9a730d3487",
+      "source": "api.ticket.list",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.c2c467e4b3",
+      "source": "api.ticket.list",
+      "target": "schema.ticket",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.9e43d9fcd1",
+      "source": "api.ticket.read",
+      "target": "operation.ticket.read",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.e8545a47f7",
+      "source": "api.ticket.read",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.b5bd338f4a",
+      "source": "api.ticket.read",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.2635587239",
+      "source": "api.ticket.read",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.8ae7c77774",
+      "source": "api.ticket.read",
+      "target": "schema.ticket",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.2dc63181cf",
+      "source": "api.ticket.stats",
+      "target": "operation.ticket.stats",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.9b8495ed2a",
+      "source": "api.ticket.stats",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.60b626bd0a",
+      "source": "api.ticket.stats",
+      "target": "schema.ticket",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.46fede0cc4",
+      "source": "api.ticket.update",
+      "target": "operation.ticket.update",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.76ed53c70e",
+      "source": "api.ticket.update",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.4950cdea1b",
+      "source": "api.ticket.update",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.ef4440b4fc",
+      "source": "api.ticket.update",
+      "target": "schema.ticket",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.df81530d83",
+      "source": "api.ticket.update",
+      "target": "schema.ticket.update",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.3e41429e65",
+      "source": "api.ticket_comment.create",
+      "target": "operation.ticket_comment.create",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.769376f5f9",
+      "source": "api.ticket_comment.create",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.d8098c854a",
+      "source": "api.ticket_comment.create",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.d2de5a699a",
+      "source": "api.ticket_comment.create",
+      "target": "schema.ticket_comment",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.46108863f7",
+      "source": "api.ticket_comment.create",
+      "target": "schema.ticket_comment.create",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.faefea746b",
+      "source": "api.ticket_comment.list",
+      "target": "operation.ticket_comment.list",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.f8e1eb66c0",
+      "source": "api.ticket_comment.list",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.f62b4c77f2",
+      "source": "api.ticket_comment.list",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.1022be1f43",
+      "source": "api.ticket_comment.list",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.e84115651f",
+      "source": "api.ticket_comment.list",
+      "target": "schema.ticket_comment",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.f29de27ab9",
+      "source": "api.user.list_agents",
+      "target": "operation.user.list_agents",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.0572ad5cff",
+      "source": "api.user.list_agents",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "api:authorization.roles"
+    },
+    {
+      "id": "dependency.1617ae0871",
+      "source": "api.user.list_agents",
+      "target": "schema.user",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.50b7530ae2",
+      "source": "api.user.login",
+      "target": "operation.user.login",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.429ddc8ff6",
+      "source": "api.user.login",
+      "target": "schema.user",
+      "type": "depends_on",
+      "reason": "api:response_schema_ref"
+    },
+    {
+      "id": "dependency.9c8ee30704",
+      "source": "api.user.login",
+      "target": "schema.user.login",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.b9f425102a",
+      "source": "api.user.logout",
+      "target": "operation.user.logout",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.286e68302d",
+      "source": "api.user.request_password_reset",
+      "target": "operation.user.request_password_reset",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.0aa14becd2",
+      "source": "api.user.request_password_reset",
+      "target": "schema.user.request_password_reset",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.38bff31936",
+      "source": "api.user.reset_password",
+      "target": "operation.user.reset_password",
+      "type": "depends_on",
+      "reason": "api:operation_ref"
+    },
+    {
+      "id": "dependency.1342fd4faf",
+      "source": "api.user.reset_password",
+      "target": "schema.user.reset_password",
+      "type": "depends_on",
+      "reason": "api:request_schema_ref"
+    },
+    {
+      "id": "dependency.a58fae3930",
+      "source": "capability.authentication",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.a76a5ba097",
+      "source": "capability.authentication",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.69e12ea502",
+      "source": "capability.authentication",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.0aebeab0d5",
+      "source": "capability.authentication",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.f58a176484",
+      "source": "capability.authentication",
+      "target": "requirement.authentication",
+      "type": "depends_on",
+      "reason": "capabilities:requirement_refs"
+    },
+    {
+      "id": "dependency.9d36fe9f3b",
+      "source": "capability.support_dashboard",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.142e3300fe",
+      "source": "capability.support_dashboard",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.9be6f62b9d",
+      "source": "capability.support_dashboard",
+      "target": "requirement.support_dashboard",
+      "type": "depends_on",
+      "reason": "capabilities:requirement_refs"
+    },
+    {
+      "id": "dependency.84ba82f0b0",
+      "source": "capability.ticket_assignment",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.d2fed375b0",
+      "source": "capability.ticket_assignment",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.fb3cb8d013",
+      "source": "capability.ticket_assignment",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.d90ff52ec7",
+      "source": "capability.ticket_assignment",
+      "target": "requirement.ticket_assignment",
+      "type": "depends_on",
+      "reason": "capabilities:requirement_refs"
+    },
+    {
+      "id": "dependency.a71d53925c",
+      "source": "capability.ticket_comments",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.8b5b880d73",
+      "source": "capability.ticket_comments",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.807d032b80",
+      "source": "capability.ticket_comments",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.83e0cf2561",
+      "source": "capability.ticket_comments",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.a31fb6ec53",
+      "source": "capability.ticket_comments",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.65e630725e",
+      "source": "capability.ticket_comments",
+      "target": "requirement.ticket_comments",
+      "type": "depends_on",
+      "reason": "capabilities:requirement_refs"
+    },
+    {
+      "id": "dependency.6a67999f52",
+      "source": "capability.ticket_management",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.873d2afb37",
+      "source": "capability.ticket_management",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.6866081f67",
+      "source": "capability.ticket_management",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.8d982a353c",
+      "source": "capability.ticket_management",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.df89800a91",
+      "source": "capability.ticket_management",
+      "target": "requirement.ticket_management",
+      "type": "depends_on",
+      "reason": "capabilities:requirement_refs"
+    },
+    {
+      "id": "dependency.946fbdcc96",
+      "source": "capability.ticket_status",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.f9066f2688",
+      "source": "capability.ticket_status",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "capabilities:actor_refs"
+    },
+    {
+      "id": "dependency.707bcbe118",
+      "source": "capability.ticket_status",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "capabilities:entity_refs"
+    },
+    {
+      "id": "dependency.7ed2a9b223",
+      "source": "capability.ticket_status",
+      "target": "requirement.ticket_status",
+      "type": "depends_on",
+      "reason": "capabilities:requirement_refs"
+    },
+    {
+      "id": "dependency.88ec1428f2",
+      "source": "component.app.navigation",
+      "target": "screen.dashboard.support",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.f419a47fe5",
+      "source": "component.app.navigation",
+      "target": "screen.ticket.list",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.496792611e",
+      "source": "component.app.navigation",
+      "target": "screen.ticket_comment.list",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.7660cd8c69",
+      "source": "component.auth.forgot_form",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.e994446d16",
+      "source": "component.auth.forgot_form",
+      "target": "screen.auth.forgot_password",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.6ce9f67c60",
+      "source": "component.auth.forgot_form",
+      "target": "workflow.auth.password_reset",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.5d9ffecc15",
+      "source": "component.auth.login_form",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.9512ed117c",
+      "source": "component.auth.login_form",
+      "target": "screen.auth.login",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.0fca1aa5ad",
+      "source": "component.auth.login_form",
+      "target": "workflow.auth.login",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.4a8511dcaa",
+      "source": "component.auth.reset_form",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.6ab356452c",
+      "source": "component.auth.reset_form",
+      "target": "screen.auth.reset_password",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.0b2892ca3c",
+      "source": "component.auth.reset_form",
+      "target": "workflow.auth.password_reset",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.bf2a228613",
+      "source": "component.dashboard.ticket_chart",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.b521c1c9cd",
+      "source": "component.dashboard.ticket_chart",
+      "target": "screen.dashboard.support",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.f80639d91b",
+      "source": "component.ticket.card",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.85231073e3",
+      "source": "component.ticket.card",
+      "target": "screen.ticket.detail",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.338fb847e6",
+      "source": "component.ticket.create_form",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.7c146742b8",
+      "source": "component.ticket.create_form",
+      "target": "screen.ticket.create",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.45ad1d2c12",
+      "source": "component.ticket.create_form",
+      "target": "workflow.ticket.create",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.66741b19d8",
+      "source": "component.ticket.edit_form",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.f2a442d32c",
+      "source": "component.ticket.edit_form",
+      "target": "screen.ticket.edit",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.6b8add9ff8",
+      "source": "component.ticket.edit_form",
+      "target": "workflow.ticket.update",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.1ac419fd5d",
+      "source": "component.ticket.table",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.85c88e4830",
+      "source": "component.ticket.table",
+      "target": "screen.ticket.list",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.ff54e6e6a4",
+      "source": "component.ticket.table",
+      "target": "workflow.ticket.create",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.7056f181e8",
+      "source": "component.ticket.table",
+      "target": "workflow.ticket.update",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.83219fcd72",
+      "source": "component.ticket_comment.create_form",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.9014e89293",
+      "source": "component.ticket_comment.create_form",
+      "target": "screen.ticket_comment.create",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.9c060a5d2c",
+      "source": "component.ticket_comment.create_form",
+      "target": "workflow.ticket_comment.create",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.7b0661622e",
+      "source": "component.ticket_comment.table",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "components:data_source"
+    },
+    {
+      "id": "dependency.eb38c63f42",
+      "source": "component.ticket_comment.table",
+      "target": "screen.ticket_comment.list",
+      "type": "references",
+      "reason": "components:used_by"
+    },
+    {
+      "id": "dependency.3569675496",
+      "source": "component.ticket_comment.table",
+      "target": "workflow.ticket_comment.create",
+      "type": "references",
+      "reason": "components:actions"
+    },
+    {
+      "id": "dependency.271604c5b3",
+      "source": "entity.ticket",
+      "target": "entity.user",
+      "type": "references",
+      "reason": "entities:attributes.requester_id.reference_to"
+    },
+    {
+      "id": "dependency.85b1c56b2e",
+      "source": "entity.ticket_comment",
+      "target": "entity.ticket",
+      "type": "references",
+      "reason": "entities:attributes.ticket_id.reference_to"
+    },
+    {
+      "id": "dependency.6a860a1e53",
+      "source": "entity.ticket_comment",
+      "target": "entity.user",
+      "type": "references",
+      "reason": "entities:attributes.author_id.reference_to"
+    },
+    {
+      "id": "dependency.e973881b9e",
+      "source": "operation.ticket.assign",
+      "target": "capability.ticket_assignment",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.0e2cd06245",
+      "source": "operation.ticket.assign",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.0c6f1a00da",
+      "source": "operation.ticket.assign",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.97abc33e97",
+      "source": "operation.ticket.assign",
+      "target": "service.ticket",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.7dfb158558",
+      "source": "operation.ticket.change_status",
+      "target": "capability.ticket_status",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.05671f07fa",
+      "source": "operation.ticket.change_status",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.ba6227579f",
+      "source": "operation.ticket.change_status",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.ee8454aecd",
+      "source": "operation.ticket.change_status",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.0937947d85",
+      "source": "operation.ticket.change_status",
+      "target": "service.ticket",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.a45e22b2f4",
+      "source": "operation.ticket.create",
+      "target": "capability.ticket_management",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.7846e84d63",
+      "source": "operation.ticket.create",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.1e55c18e54",
+      "source": "operation.ticket.create",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.3534ea7832",
+      "source": "operation.ticket.create",
+      "target": "service.ticket",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.4e4b08ffee",
+      "source": "operation.ticket.list",
+      "target": "capability.ticket_management",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.9399efb917",
+      "source": "operation.ticket.list",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.af29b02e3f",
+      "source": "operation.ticket.list",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.9c0a79136f",
+      "source": "operation.ticket.list",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.9c2af83822",
+      "source": "operation.ticket.list",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.ec9dc2ba61",
+      "source": "operation.ticket.list",
+      "target": "service.ticket",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.8442ea7643",
+      "source": "operation.ticket.read",
+      "target": "capability.ticket_management",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.4ecbe26b17",
+      "source": "operation.ticket.read",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.14ce54672e",
+      "source": "operation.ticket.read",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.ae4960cb0b",
+      "source": "operation.ticket.read",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.a070a97227",
+      "source": "operation.ticket.read",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.898563253a",
+      "source": "operation.ticket.read",
+      "target": "service.ticket",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.725d3c2db8",
+      "source": "operation.ticket.stats",
+      "target": "capability.support_dashboard",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.c0f109d501",
+      "source": "operation.ticket.stats",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.29cfb44236",
+      "source": "operation.ticket.stats",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.99982329de",
+      "source": "operation.ticket.stats",
+      "target": "service.ticket",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.d829472b5e",
+      "source": "operation.ticket.update",
+      "target": "capability.ticket_management",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.e23dbaf23c",
+      "source": "operation.ticket.update",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.76d96448af",
+      "source": "operation.ticket.update",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.5a7df15e62",
+      "source": "operation.ticket.update",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.4f8f97ec70",
+      "source": "operation.ticket.update",
+      "target": "service.ticket",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.4d4f198552",
+      "source": "operation.ticket_comment.create",
+      "target": "capability.ticket_comments",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.edbebbd237",
+      "source": "operation.ticket_comment.create",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.171b24cad6",
+      "source": "operation.ticket_comment.create",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.bf73933dfc",
+      "source": "operation.ticket_comment.create",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.92c196091c",
+      "source": "operation.ticket_comment.create",
+      "target": "service.ticket_comment",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.3b41dac9ff",
+      "source": "operation.ticket_comment.list",
+      "target": "capability.ticket_comments",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.28ce83ff6a",
+      "source": "operation.ticket_comment.list",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.b3da6c6403",
+      "source": "operation.ticket_comment.list",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.f2e8cfe142",
+      "source": "operation.ticket_comment.list",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.a2a8a5e299",
+      "source": "operation.ticket_comment.list",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.aaf1df8eb0",
+      "source": "operation.ticket_comment.list",
+      "target": "service.ticket_comment",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.27c6659d28",
+      "source": "operation.user.list_agents",
+      "target": "capability.ticket_assignment",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.e4cf26a120",
+      "source": "operation.user.list_agents",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.2275e3212f",
+      "source": "operation.user.list_agents",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "backend:required_roles"
+    },
+    {
+      "id": "dependency.53f84d1c9d",
+      "source": "operation.user.list_agents",
+      "target": "service.user",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.9b2370804f",
+      "source": "operation.user.login",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.90621eade5",
+      "source": "operation.user.login",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.34327d488e",
+      "source": "operation.user.login",
+      "target": "service.user",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.79d5e85f3f",
+      "source": "operation.user.logout",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.195aa029f8",
+      "source": "operation.user.logout",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.b351241742",
+      "source": "operation.user.logout",
+      "target": "service.user",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.b3ed805754",
+      "source": "operation.user.request_password_reset",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.051cc65e56",
+      "source": "operation.user.request_password_reset",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.81777b29d8",
+      "source": "operation.user.request_password_reset",
+      "target": "service.user",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.dca5f66fae",
+      "source": "operation.user.reset_password",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "backend:capability_refs"
+    },
+    {
+      "id": "dependency.3ae41ffe83",
+      "source": "operation.user.reset_password",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "backend:entity_ref"
+    },
+    {
+      "id": "dependency.13cd0d3494",
+      "source": "operation.user.reset_password",
+      "target": "service.user",
+      "type": "depends_on",
+      "reason": "backend:service_ref"
+    },
+    {
+      "id": "dependency.23e44a6b6a",
+      "source": "permission.ticket.assign",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.17346ef02c",
+      "source": "permission.ticket.assign",
+      "target": "operation.ticket.assign",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.e1aafba29b",
+      "source": "permission.ticket.assign",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.3bb4d3ff15",
+      "source": "permission.ticket.change_status",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.72e59d0b8a",
+      "source": "permission.ticket.change_status",
+      "target": "operation.ticket.change_status",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.1940302cb8",
+      "source": "permission.ticket.change_status",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.3f31d35050",
+      "source": "permission.ticket.change_status",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.2e935ded83",
+      "source": "permission.ticket.create",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.a725840b69",
+      "source": "permission.ticket.create",
+      "target": "operation.ticket.create",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.b93c3f912f",
+      "source": "permission.ticket.create",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.143f76696d",
+      "source": "permission.ticket.list",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.bc93b30b7f",
+      "source": "permission.ticket.list",
+      "target": "operation.ticket.list",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.36e091213f",
+      "source": "permission.ticket.list",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.5606fa6b19",
+      "source": "permission.ticket.list",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.eb41505979",
+      "source": "permission.ticket.list",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.c6cac3d120",
+      "source": "permission.ticket.read",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.8b68c7418b",
+      "source": "permission.ticket.read",
+      "target": "operation.ticket.read",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.1d67974593",
+      "source": "permission.ticket.read",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.7490f4d3b5",
+      "source": "permission.ticket.read",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.84aa77f6f6",
+      "source": "permission.ticket.read",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.4831aeb8e8",
+      "source": "permission.ticket.stats",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.adb4c06013",
+      "source": "permission.ticket.stats",
+      "target": "operation.ticket.stats",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.6ab61d373d",
+      "source": "permission.ticket.stats",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.ea99143f87",
+      "source": "permission.ticket.update",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.6309b6973f",
+      "source": "permission.ticket.update",
+      "target": "operation.ticket.update",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.5691e58bd8",
+      "source": "permission.ticket.update",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.f4ef5720ff",
+      "source": "permission.ticket.update",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.da474fe3d4",
+      "source": "permission.ticket_comment.create",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.072cea0432",
+      "source": "permission.ticket_comment.create",
+      "target": "operation.ticket_comment.create",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.0d3915fa68",
+      "source": "permission.ticket_comment.create",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.785ff7f23e",
+      "source": "permission.ticket_comment.create",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.400a30ea06",
+      "source": "permission.ticket_comment.list",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.d06505e925",
+      "source": "permission.ticket_comment.list",
+      "target": "operation.ticket_comment.list",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.f4c8c10f6d",
+      "source": "permission.ticket_comment.list",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.7e0518cd7d",
+      "source": "permission.ticket_comment.list",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.33e408f364",
+      "source": "permission.ticket_comment.list",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.8d2d4c0be7",
+      "source": "permission.user.list_agents",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.9ceeff0d0c",
+      "source": "permission.user.list_agents",
+      "target": "operation.user.list_agents",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.4e6759b3d3",
+      "source": "permission.user.list_agents",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.cfc4b2465b",
+      "source": "permission.user.logout",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "permissions:resource"
+    },
+    {
+      "id": "dependency.2ece22e3ea",
+      "source": "permission.user.logout",
+      "target": "operation.user.logout",
+      "type": "depends_on",
+      "reason": "permissions:operation_refs"
+    },
+    {
+      "id": "dependency.cc450a72cd",
+      "source": "permission.user.logout",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.096aae4b78",
+      "source": "permission.user.logout",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.7928052620",
+      "source": "permission.user.logout",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "permissions:roles"
+    },
+    {
+      "id": "dependency.4aac0110c5",
+      "source": "relationship.ticket.assignee",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "relationships:source"
+    },
+    {
+      "id": "dependency.2158155029",
+      "source": "relationship.ticket.assignee",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "relationships:target"
+    },
+    {
+      "id": "dependency.98246743d7",
+      "source": "relationship.ticket.requester",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "relationships:source"
+    },
+    {
+      "id": "dependency.31b60f0505",
+      "source": "relationship.ticket.requester",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "relationships:target"
+    },
+    {
+      "id": "dependency.91a2dbe33b",
+      "source": "relationship.ticket_comment.author",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "relationships:source"
+    },
+    {
+      "id": "dependency.485364aad8",
+      "source": "relationship.ticket_comment.author",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "relationships:target"
+    },
+    {
+      "id": "dependency.1ad7f3f39f",
+      "source": "relationship.ticket_comment.ticket",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "relationships:target"
+    },
+    {
+      "id": "dependency.eefb169a98",
+      "source": "relationship.ticket_comment.ticket",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "relationships:source"
+    },
+    {
+      "id": "dependency.5f0d8d3cda",
+      "source": "schema.ticket",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.0791e43fc8",
+      "source": "schema.ticket.assign",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.a6543536f4",
+      "source": "schema.ticket.change_status",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.812fc55c7d",
+      "source": "schema.ticket.create",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.0bc2bb3033",
+      "source": "schema.ticket.update",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.211a6ca3e1",
+      "source": "schema.ticket_comment",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.4dc56f5a10",
+      "source": "schema.ticket_comment.create",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.4be1b88689",
+      "source": "schema.user",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.dac13e2390",
+      "source": "schema.user.login",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.4d61a3fcd8",
+      "source": "schema.user.request_password_reset",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.b7cc79e57a",
+      "source": "schema.user.reset_password",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "api:entity_ref"
+    },
+    {
+      "id": "dependency.01ed50d102",
+      "source": "screen.auth.forgot_password",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.cdb50153e9",
+      "source": "screen.auth.forgot_password",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.61a7efba75",
+      "source": "screen.auth.forgot_password",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.b876ea8af5",
+      "source": "screen.auth.forgot_password",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.eef4bf50c7",
+      "source": "screen.auth.forgot_password",
+      "target": "component.auth.forgot_form",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.737380c61e",
+      "source": "screen.auth.forgot_password",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.57ded40de6",
+      "source": "screen.auth.forgot_password",
+      "target": "screen.auth.reset_password",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.a3d7ee1b34",
+      "source": "screen.auth.forgot_password",
+      "target": "workflow.auth.password_reset",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.e12c3407df",
+      "source": "screen.auth.login",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.5dc07a3c3a",
+      "source": "screen.auth.login",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.f3eb816157",
+      "source": "screen.auth.login",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.f8f7793a17",
+      "source": "screen.auth.login",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.014ec489bb",
+      "source": "screen.auth.login",
+      "target": "component.auth.login_form",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.9dacccb36c",
+      "source": "screen.auth.login",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.5aa9bbdf47",
+      "source": "screen.auth.login",
+      "target": "workflow.auth.login",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.b263727865",
+      "source": "screen.auth.login",
+      "target": "workflow.auth.logout",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.3309ed8595",
+      "source": "screen.auth.login",
+      "target": "workflow.auth.password_reset",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.76de470877",
+      "source": "screen.auth.reset_password",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.9b8ca1a05b",
+      "source": "screen.auth.reset_password",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.2921bc62c3",
+      "source": "screen.auth.reset_password",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.6e700221e9",
+      "source": "screen.auth.reset_password",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.5bff8d633d",
+      "source": "screen.auth.reset_password",
+      "target": "component.auth.reset_form",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.cb828d719e",
+      "source": "screen.auth.reset_password",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.56b6b87424",
+      "source": "screen.auth.reset_password",
+      "target": "screen.auth.login",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.1d035178ee",
+      "source": "screen.auth.reset_password",
+      "target": "workflow.auth.password_reset",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.83b672a6c6",
+      "source": "screen.dashboard.support",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.4886488ec4",
+      "source": "screen.dashboard.support",
+      "target": "capability.support_dashboard",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.a585f94b20",
+      "source": "screen.dashboard.support",
+      "target": "component.app.navigation",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.fa2e8418f2",
+      "source": "screen.dashboard.support",
+      "target": "component.dashboard.ticket_chart",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.096c167266",
+      "source": "screen.dashboard.support",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.d7dd10b0a9",
+      "source": "screen.dashboard.support",
+      "target": "operation.ticket.stats",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.b6a9186814",
+      "source": "screen.dashboard.support",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "screens:authorization.roles"
+    },
+    {
+      "id": "dependency.d04727739d",
+      "source": "screen.dashboard.support",
+      "target": "workflow.dashboard.support_view",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.6855f2131f",
+      "source": "screen.ticket.create",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.42c67ec209",
+      "source": "screen.ticket.create",
+      "target": "capability.ticket_management",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.3c5c70f1dc",
+      "source": "screen.ticket.create",
+      "target": "component.ticket.create_form",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.6b0308a6ab",
+      "source": "screen.ticket.create",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.522a61431f",
+      "source": "screen.ticket.create",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "screens:authorization.roles"
+    },
+    {
+      "id": "dependency.46df81c5e4",
+      "source": "screen.ticket.create",
+      "target": "screen.ticket.list",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.7780cf76fa",
+      "source": "screen.ticket.create",
+      "target": "workflow.ticket.create",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.073b955afe",
+      "source": "screen.ticket.detail",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.33edcd5636",
+      "source": "screen.ticket.detail",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.81bbfbbe60",
+      "source": "screen.ticket.detail",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.c4ead6bfff",
+      "source": "screen.ticket.detail",
+      "target": "capability.ticket_assignment",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.d3efc360c5",
+      "source": "screen.ticket.detail",
+      "target": "capability.ticket_management",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.3aa1a9e9a1",
+      "source": "screen.ticket.detail",
+      "target": "capability.ticket_status",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.6a7ca6abb0",
+      "source": "screen.ticket.detail",
+      "target": "component.ticket.card",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.671b0892e6",
+      "source": "screen.ticket.detail",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.5709799447",
+      "source": "screen.ticket.detail",
+      "target": "operation.ticket.read",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.557a493321",
+      "source": "screen.ticket.detail",
+      "target": "screen.ticket.edit",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.fb06880718",
+      "source": "screen.ticket.detail",
+      "target": "workflow.ticket.assign",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.439c6523ab",
+      "source": "screen.ticket.detail",
+      "target": "workflow.ticket.browse",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.a6e6f5c4ee",
+      "source": "screen.ticket.detail",
+      "target": "workflow.ticket.change_status",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.5886ed7218",
+      "source": "screen.ticket.detail",
+      "target": "workflow.ticket.update",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.67b9657561",
+      "source": "screen.ticket.edit",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.2cd7ae293a",
+      "source": "screen.ticket.edit",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.bc5ffdb880",
+      "source": "screen.ticket.edit",
+      "target": "capability.ticket_management",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.2720e2bf0b",
+      "source": "screen.ticket.edit",
+      "target": "component.ticket.edit_form",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.fc767f532b",
+      "source": "screen.ticket.edit",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.9d98ea9807",
+      "source": "screen.ticket.edit",
+      "target": "operation.ticket.read",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.926c6a07b2",
+      "source": "screen.ticket.edit",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "screens:authorization.roles"
+    },
+    {
+      "id": "dependency.2f883427b5",
+      "source": "screen.ticket.edit",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "screens:authorization.roles"
+    },
+    {
+      "id": "dependency.8ac9ddff6a",
+      "source": "screen.ticket.edit",
+      "target": "screen.ticket.list",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.36ee78d6a0",
+      "source": "screen.ticket.edit",
+      "target": "workflow.ticket.update",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.51c51f98e8",
+      "source": "screen.ticket.list",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.c54e1bc50b",
+      "source": "screen.ticket.list",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.62c497ed5b",
+      "source": "screen.ticket.list",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.519cc5dbf1",
+      "source": "screen.ticket.list",
+      "target": "capability.ticket_management",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.9538a1e9f7",
+      "source": "screen.ticket.list",
+      "target": "capability.ticket_status",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.4c56ead88d",
+      "source": "screen.ticket.list",
+      "target": "component.app.navigation",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.b7fdad32b3",
+      "source": "screen.ticket.list",
+      "target": "component.ticket.table",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.241632eae4",
+      "source": "screen.ticket.list",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.eed9977059",
+      "source": "screen.ticket.list",
+      "target": "operation.ticket.list",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.6f1b7f8f9c",
+      "source": "screen.ticket.list",
+      "target": "screen.ticket.create",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.e9c30b8ead",
+      "source": "screen.ticket.list",
+      "target": "screen.ticket.detail",
+      "type": "references",
+      "reason": "screens:navigation[1].target"
+    },
+    {
+      "id": "dependency.c0bbd8a2dc",
+      "source": "screen.ticket.list",
+      "target": "workflow.ticket.browse",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.9532f231f1",
+      "source": "screen.ticket.list",
+      "target": "workflow.ticket.change_status",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.8bcc9a8454",
+      "source": "screen.ticket.list",
+      "target": "workflow.ticket.create",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.1fdeea68ab",
+      "source": "screen.ticket.list",
+      "target": "workflow.ticket.update",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.ffb9fb66f8",
+      "source": "screen.ticket_comment.create",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.68c27dbd31",
+      "source": "screen.ticket_comment.create",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.b136067c9c",
+      "source": "screen.ticket_comment.create",
+      "target": "capability.ticket_comments",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.d393d2a23d",
+      "source": "screen.ticket_comment.create",
+      "target": "component.ticket_comment.create_form",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.97b5c8429f",
+      "source": "screen.ticket_comment.create",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.ac6c2c253e",
+      "source": "screen.ticket_comment.create",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "screens:authorization.roles"
+    },
+    {
+      "id": "dependency.ed1888d52f",
+      "source": "screen.ticket_comment.create",
+      "target": "role.customer",
+      "type": "depends_on",
+      "reason": "screens:authorization.roles"
+    },
+    {
+      "id": "dependency.cee9e53629",
+      "source": "screen.ticket_comment.create",
+      "target": "screen.ticket_comment.list",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.1e369f2c32",
+      "source": "screen.ticket_comment.create",
+      "target": "workflow.ticket_comment.create",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.a4a497cea0",
+      "source": "screen.ticket_comment.list",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.69ac4c515d",
+      "source": "screen.ticket_comment.list",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.18a80e72c8",
+      "source": "screen.ticket_comment.list",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "screens:actor_refs"
+    },
+    {
+      "id": "dependency.7a7b37a739",
+      "source": "screen.ticket_comment.list",
+      "target": "capability.ticket_comments",
+      "type": "depends_on",
+      "reason": "screens:capability_refs"
+    },
+    {
+      "id": "dependency.f966410fef",
+      "source": "screen.ticket_comment.list",
+      "target": "component.app.navigation",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.c66439c8fc",
+      "source": "screen.ticket_comment.list",
+      "target": "component.ticket_comment.table",
+      "type": "depends_on",
+      "reason": "screens:component_refs"
+    },
+    {
+      "id": "dependency.0e446f65bf",
+      "source": "screen.ticket_comment.list",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "screens:entity_refs"
+    },
+    {
+      "id": "dependency.03891959bb",
+      "source": "screen.ticket_comment.list",
+      "target": "operation.ticket_comment.list",
+      "type": "depends_on",
+      "reason": "screens:data_required[0].operation_ref"
+    },
+    {
+      "id": "dependency.1d81cc5621",
+      "source": "screen.ticket_comment.list",
+      "target": "screen.ticket_comment.create",
+      "type": "references",
+      "reason": "screens:navigation[0].target"
+    },
+    {
+      "id": "dependency.2095f797d6",
+      "source": "screen.ticket_comment.list",
+      "target": "workflow.ticket_comment.browse",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.3ce8b71919",
+      "source": "screen.ticket_comment.list",
+      "target": "workflow.ticket_comment.create",
+      "type": "references",
+      "reason": "screens:workflow_refs"
+    },
+    {
+      "id": "dependency.c6b105530b",
+      "source": "service.ticket",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "backend:entity_refs"
+    },
+    {
+      "id": "dependency.7c2d36f87f",
+      "source": "service.ticket_comment",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "backend:entity_refs"
+    },
+    {
+      "id": "dependency.f7b334d6d7",
+      "source": "service.user",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "backend:entity_refs"
+    },
+    {
+      "id": "dependency.e5b311df70",
+      "source": "state_machine.ticket",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "state_machines:entity_ref"
+    },
+    {
+      "id": "dependency.988b566c4a",
+      "source": "state_machine.ticket",
+      "target": "operation.ticket.change_status",
+      "type": "depends_on",
+      "reason": "state_machines:transitions[0].operation_ref"
+    },
+    {
+      "id": "dependency.71197dc25e",
+      "source": "state_machine.ticket",
+      "target": "role.agent",
+      "type": "depends_on",
+      "reason": "state_machines:transitions[0].role_refs"
+    },
+    {
+      "id": "dependency.7cb4d5248a",
+      "source": "state_machine.ticket",
+      "target": "role.manager",
+      "type": "depends_on",
+      "reason": "state_machines:transitions[0].role_refs"
+    },
+    {
+      "id": "dependency.b39ccfc206",
+      "source": "validation.ticket.closed_read_only",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "validations:target.entity_ref"
+    },
+    {
+      "id": "dependency.92396ff0c1",
+      "source": "validation.ticket.closed_read_only",
+      "target": "operation.ticket.update",
+      "type": "depends_on",
+      "reason": "validations:operation_refs"
+    },
+    {
+      "id": "dependency.c2c14cc9b5",
+      "source": "validation.ticket.required_fields",
+      "target": "entity.ticket",
+      "type": "depends_on",
+      "reason": "validations:target.entity_ref"
+    },
+    {
+      "id": "dependency.ae61565ce2",
+      "source": "validation.ticket.required_fields",
+      "target": "operation.ticket.create",
+      "type": "depends_on",
+      "reason": "validations:operation_refs"
+    },
+    {
+      "id": "dependency.dc3e656fea",
+      "source": "validation.ticket_comment.required_fields",
+      "target": "entity.ticket_comment",
+      "type": "depends_on",
+      "reason": "validations:target.entity_ref"
+    },
+    {
+      "id": "dependency.bef862cfff",
+      "source": "validation.ticket_comment.required_fields",
+      "target": "operation.ticket_comment.create",
+      "type": "depends_on",
+      "reason": "validations:operation_refs"
+    },
+    {
+      "id": "dependency.d1829fe008",
+      "source": "validation.user.email_format",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "validations:target.entity_ref"
+    },
+    {
+      "id": "dependency.64fcbe6842",
+      "source": "validation.user.email_format",
+      "target": "operation.user.login",
+      "type": "depends_on",
+      "reason": "validations:operation_refs"
+    },
+    {
+      "id": "dependency.8bca79a359",
+      "source": "validation.user.email_format",
+      "target": "operation.user.request_password_reset",
+      "type": "depends_on",
+      "reason": "validations:operation_refs"
+    },
+    {
+      "id": "dependency.44f9225d49",
+      "source": "validation.user.invalid_login",
+      "target": "entity.user",
+      "type": "depends_on",
+      "reason": "validations:target.entity_ref"
+    },
+    {
+      "id": "dependency.e6bb4f3fa6",
+      "source": "validation.user.invalid_login",
+      "target": "operation.user.login",
+      "type": "depends_on",
+      "reason": "validations:operation_refs"
+    },
+    {
+      "id": "dependency.afea932ae6",
+      "source": "workflow.auth.login",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.08848baa61",
+      "source": "workflow.auth.login",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.e6d3c4c072",
+      "source": "workflow.auth.login",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.4fe1156413",
+      "source": "workflow.auth.login",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.ac1733e765",
+      "source": "workflow.auth.login",
+      "target": "operation.user.login",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.03_act.operation_ref"
+    },
+    {
+      "id": "dependency.6dec4fc0f3",
+      "source": "workflow.auth.login",
+      "target": "screen.auth.login",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.fb56476afa",
+      "source": "workflow.auth.logout",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.2e003f1caa",
+      "source": "workflow.auth.logout",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.4df78e9b54",
+      "source": "workflow.auth.logout",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.03ea602d6d",
+      "source": "workflow.auth.logout",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.66cc783fd2",
+      "source": "workflow.auth.logout",
+      "target": "operation.user.logout",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_act.operation_ref"
+    },
+    {
+      "id": "dependency.3328760d91",
+      "source": "workflow.auth.logout",
+      "target": "screen.auth.login",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.03_nav.target"
+    },
+    {
+      "id": "dependency.2163c7ae7f",
+      "source": "workflow.auth.password_reset",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.22f39426d2",
+      "source": "workflow.auth.password_reset",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.698729aace",
+      "source": "workflow.auth.password_reset",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.52e4a912a4",
+      "source": "workflow.auth.password_reset",
+      "target": "capability.authentication",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.0c39cbc411",
+      "source": "workflow.auth.password_reset",
+      "target": "operation.user.request_password_reset",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.03_act.operation_ref"
+    },
+    {
+      "id": "dependency.ea1d4b2f38",
+      "source": "workflow.auth.password_reset",
+      "target": "operation.user.reset_password",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.06_act.operation_ref"
+    },
+    {
+      "id": "dependency.2a8ff6fe88",
+      "source": "workflow.auth.password_reset",
+      "target": "screen.auth.forgot_password",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.be8a6991d7",
+      "source": "workflow.auth.password_reset",
+      "target": "screen.auth.login",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.07_nav.target"
+    },
+    {
+      "id": "dependency.8696be35e8",
+      "source": "workflow.auth.password_reset",
+      "target": "screen.auth.reset_password",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_nav.target"
+    },
+    {
+      "id": "dependency.1ddf4bb179",
+      "source": "workflow.dashboard.support_view",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.3dfb606aee",
+      "source": "workflow.dashboard.support_view",
+      "target": "capability.support_dashboard",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.37b5b9b080",
+      "source": "workflow.dashboard.support_view",
+      "target": "operation.ticket.stats",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_act.operation_ref"
+    },
+    {
+      "id": "dependency.efd4a1e77b",
+      "source": "workflow.dashboard.support_view",
+      "target": "screen.dashboard.support",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.e0cf2161e0",
+      "source": "workflow.ticket.assign",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.afad5f3b68",
+      "source": "workflow.ticket.assign",
+      "target": "capability.ticket_assignment",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.c70c9783eb",
+      "source": "workflow.ticket.assign",
+      "target": "operation.ticket.assign",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_act.operation_ref"
+    },
+    {
+      "id": "dependency.2305e4569c",
+      "source": "workflow.ticket.assign",
+      "target": "operation.user.list_agents",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_act.operation_ref"
+    },
+    {
+      "id": "dependency.db8896592b",
+      "source": "workflow.ticket.assign",
+      "target": "screen.ticket.detail",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.61c5c8312c",
+      "source": "workflow.ticket.browse",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.516c17cc18",
+      "source": "workflow.ticket.browse",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.16c9468465",
+      "source": "workflow.ticket.browse",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.5b41e88c8b",
+      "source": "workflow.ticket.browse",
+      "target": "capability.ticket_management",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.752d5c3691",
+      "source": "workflow.ticket.browse",
+      "target": "operation.ticket.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_act.operation_ref"
+    },
+    {
+      "id": "dependency.78fd478309",
+      "source": "workflow.ticket.browse",
+      "target": "operation.ticket.read",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_act.operation_ref"
+    },
+    {
+      "id": "dependency.4635789e7a",
+      "source": "workflow.ticket.browse",
+      "target": "screen.ticket.detail",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.03_nav.target"
+    },
+    {
+      "id": "dependency.5ff8f4736f",
+      "source": "workflow.ticket.browse",
+      "target": "screen.ticket.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.15848ec473",
+      "source": "workflow.ticket.change_status",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.6088f612a0",
+      "source": "workflow.ticket.change_status",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.93174743ff",
+      "source": "workflow.ticket.change_status",
+      "target": "capability.ticket_status",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.c2988e9f1c",
+      "source": "workflow.ticket.change_status",
+      "target": "operation.ticket.change_status",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_act.operation_ref"
+    },
+    {
+      "id": "dependency.24d1a6df01",
+      "source": "workflow.ticket.change_status",
+      "target": "screen.ticket.detail",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_nav.target"
+    },
+    {
+      "id": "dependency.dbcecb594d",
+      "source": "workflow.ticket.change_status",
+      "target": "screen.ticket.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.ba9c85d45b",
+      "source": "workflow.ticket.create",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.3def204456",
+      "source": "workflow.ticket.create",
+      "target": "capability.ticket_management",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.13da7ac0f2",
+      "source": "workflow.ticket.create",
+      "target": "operation.ticket.create",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_act.operation_ref"
+    },
+    {
+      "id": "dependency.9617414485",
+      "source": "workflow.ticket.create",
+      "target": "screen.ticket.create",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_nav.target"
+    },
+    {
+      "id": "dependency.39028a7b1d",
+      "source": "workflow.ticket.create",
+      "target": "screen.ticket.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.a2b0b21aaf",
+      "source": "workflow.ticket.update",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.5dbc5b2184",
+      "source": "workflow.ticket.update",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.67f0128ac1",
+      "source": "workflow.ticket.update",
+      "target": "capability.ticket_management",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.56945d0386",
+      "source": "workflow.ticket.update",
+      "target": "operation.ticket.update",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_act.operation_ref"
+    },
+    {
+      "id": "dependency.aab0a9c75a",
+      "source": "workflow.ticket.update",
+      "target": "screen.ticket.detail",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.1aa56821db",
+      "source": "workflow.ticket.update",
+      "target": "screen.ticket.edit",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_nav.target"
+    },
+    {
+      "id": "dependency.dd1e4d4fe3",
+      "source": "workflow.ticket.update",
+      "target": "screen.ticket.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.05_nav.target"
+    },
+    {
+      "id": "dependency.57ec8f4a08",
+      "source": "workflow.ticket_comment.browse",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.366acf9684",
+      "source": "workflow.ticket_comment.browse",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.b69650da27",
+      "source": "workflow.ticket_comment.browse",
+      "target": "actor.manager",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.3577cf7c52",
+      "source": "workflow.ticket_comment.browse",
+      "target": "capability.ticket_comments",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.275d233234",
+      "source": "workflow.ticket_comment.browse",
+      "target": "operation.ticket_comment.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_act.operation_ref"
+    },
+    {
+      "id": "dependency.9c1c201000",
+      "source": "workflow.ticket_comment.browse",
+      "target": "screen.ticket_comment.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    },
+    {
+      "id": "dependency.af7255e299",
+      "source": "workflow.ticket_comment.create",
+      "target": "actor.agent",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.06a1508a22",
+      "source": "workflow.ticket_comment.create",
+      "target": "actor.customer",
+      "type": "depends_on",
+      "reason": "workflows:actor_refs"
+    },
+    {
+      "id": "dependency.08a790248e",
+      "source": "workflow.ticket_comment.create",
+      "target": "capability.ticket_comments",
+      "type": "depends_on",
+      "reason": "workflows:capability_refs"
+    },
+    {
+      "id": "dependency.1adf03e08b",
+      "source": "workflow.ticket_comment.create",
+      "target": "operation.ticket_comment.create",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.04_act.operation_ref"
+    },
+    {
+      "id": "dependency.a045c9de90",
+      "source": "workflow.ticket_comment.create",
+      "target": "screen.ticket_comment.create",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.02_nav.target"
+    },
+    {
+      "id": "dependency.4c1f4d53be",
+      "source": "workflow.ticket_comment.create",
+      "target": "screen.ticket_comment.list",
+      "type": "depends_on",
+      "reason": "workflows:steps.step.01_nav.target"
+    }
+  ],
+  "implementation_order": [
+    [
+      "assumption.default_priority",
+      "component.app.navigation",
+      "entity.ticket",
+      "entity.ticket_comment",
+      "entity.user",
+      "question.email_channel",
+      "question.internal_notes",
+      "question.sla",
+      "requirement.authentication",
+      "requirement.nfr.accessibility",
+      "requirement.nfr.performance",
+      "requirement.nfr.responsive",
+      "requirement.nfr.security",
+      "requirement.support_dashboard",
+      "requirement.ticket_assignment",
+      "requirement.ticket_comments",
+      "requirement.ticket_management",
+      "requirement.ticket_status",
+      "role.agent",
+      "role.customer",
+      "role.manager"
+    ],
+    [
+      "actor.agent",
+      "actor.customer",
+      "actor.manager",
+      "component.auth.forgot_form",
+      "component.auth.login_form",
+      "component.auth.reset_form",
+      "component.dashboard.ticket_chart",
+      "component.ticket.card",
+      "component.ticket.create_form",
+      "component.ticket.edit_form",
+      "component.ticket.table",
+      "component.ticket_comment.create_form",
+      "component.ticket_comment.table",
+      "relationship.ticket.assignee",
+      "relationship.ticket.requester",
+      "relationship.ticket_comment.author",
+      "relationship.ticket_comment.ticket",
+      "schema.ticket",
+      "schema.ticket.assign",
+      "schema.ticket.change_status",
+      "schema.ticket.create",
+      "schema.ticket.update",
+      "schema.ticket_comment",
+      "schema.ticket_comment.create",
+      "schema.user",
+      "schema.user.login",
+      "schema.user.request_password_reset",
+      "schema.user.reset_password",
+      "service.ticket",
+      "service.ticket_comment",
+      "service.user"
+    ],
+    [
+      "capability.authentication",
+      "capability.support_dashboard",
+      "capability.ticket_assignment",
+      "capability.ticket_comments",
+      "capability.ticket_management",
+      "capability.ticket_status"
+    ],
+    [
+      "operation.ticket.assign",
+      "operation.ticket.change_status",
+      "operation.ticket.create",
+      "operation.ticket.list",
+      "operation.ticket.read",
+      "operation.ticket.stats",
+      "operation.ticket.update",
+      "operation.ticket_comment.create",
+      "operation.ticket_comment.list",
+      "operation.user.list_agents",
+      "operation.user.login",
+      "operation.user.logout",
+      "operation.user.request_password_reset",
+      "operation.user.reset_password",
+      "screen.auth.forgot_password",
+      "screen.auth.login",
+      "screen.auth.reset_password",
+      "screen.ticket.create",
+      "screen.ticket_comment.create"
+    ],
+    [
+      "ac.auth.login",
+      "ac.auth.logout",
+      "ac.auth.password_reset",
+      "ac.dashboard.support_view",
+      "ac.ticket.assign",
+      "ac.ticket.browse",
+      "ac.ticket.change_status",
+      "ac.ticket.closed_read_only",
+      "ac.ticket.create",
+      "ac.ticket.update",
+      "ac.ticket_comment.browse",
+      "ac.ticket_comment.create",
+      "ac.user.invalid_login",
+      "api.ticket.assign",
+      "api.ticket.change_status",
+      "api.ticket.create",
+      "api.ticket.list",
+      "api.ticket.read",
+      "api.ticket.stats",
+      "api.ticket.update",
+      "api.ticket_comment.create",
+      "api.ticket_comment.list",
+      "api.user.list_agents",
+      "api.user.login",
+      "api.user.logout",
+      "api.user.request_password_reset",
+      "api.user.reset_password",
+      "permission.ticket.assign",
+      "permission.ticket.change_status",
+      "permission.ticket.create",
+      "permission.ticket.list",
+      "permission.ticket.read",
+      "permission.ticket.stats",
+      "permission.ticket.update",
+      "permission.ticket_comment.create",
+      "permission.ticket_comment.list",
+      "permission.user.list_agents",
+      "permission.user.logout",
+      "screen.dashboard.support",
+      "screen.ticket.detail",
+      "screen.ticket.edit",
+      "screen.ticket.list",
+      "screen.ticket_comment.list",
+      "state_machine.ticket",
+      "validation.ticket.closed_read_only",
+      "validation.ticket.required_fields",
+      "validation.ticket_comment.required_fields",
+      "validation.user.email_format",
+      "validation.user.invalid_login",
+      "workflow.auth.login",
+      "workflow.auth.logout",
+      "workflow.auth.password_reset"
+    ],
+    [
+      "workflow.dashboard.support_view",
+      "workflow.ticket.assign",
+      "workflow.ticket.browse",
+      "workflow.ticket.change_status",
+      "workflow.ticket.create",
+      "workflow.ticket.update",
+      "workflow.ticket_comment.browse",
+      "workflow.ticket_comment.create"
+    ]
+  ]
+}

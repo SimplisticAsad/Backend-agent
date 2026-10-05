@@ -1,0 +1,499 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "permissions": [
+    {
+      "id": "permission.department.create",
+      "resource": "entity.department",
+      "action": "create",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.department.create"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Create Department"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.department.list",
+      "resource": "entity.department",
+      "action": "list",
+      "roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "operation_refs": [
+        "operation.department.list"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: List Departments"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.department.update",
+      "resource": "entity.department",
+      "action": "update",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.department.update"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Update Department"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.employee.create",
+      "resource": "entity.employee",
+      "action": "create",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.employee.create"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Create Employee"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.employee.list",
+      "resource": "entity.employee",
+      "action": "list",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.employee.list"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: List Employees"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.employee.read",
+      "resource": "entity.employee",
+      "action": "read",
+      "roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "operation_refs": [
+        "operation.employee.read"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: View Employee"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.employee.update",
+      "resource": "entity.employee",
+      "action": "update",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.employee.update"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Update Employee"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.project.create",
+      "resource": "entity.project",
+      "action": "create",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.project.create"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Create Project"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.project.delete",
+      "resource": "entity.project",
+      "action": "delete",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.project.delete"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Delete Project"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.project.list",
+      "resource": "entity.project",
+      "action": "list",
+      "roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "operation_refs": [
+        "operation.project.list"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: List Projects"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.project.progress",
+      "resource": "entity.project",
+      "action": "list",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.project.progress"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Get project progress"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.project.read",
+      "resource": "entity.project",
+      "action": "read",
+      "roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "operation_refs": [
+        "operation.project.read"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: View Project"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.project.update",
+      "resource": "entity.project",
+      "action": "update",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.project.update"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Update Project"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.project_member.create",
+      "resource": "entity.project_member",
+      "action": "create",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.project_member.create"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Create Project Member"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.project_member.delete",
+      "resource": "entity.project_member",
+      "action": "delete",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.project_member.delete"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Delete Project Member"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.project_member.list",
+      "resource": "entity.project_member",
+      "action": "list",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.project_member.list"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: List Project Members"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.task.create",
+      "resource": "entity.task",
+      "action": "create",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.task.create"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Create Task"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.task.delete",
+      "resource": "entity.task",
+      "action": "delete",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.task.delete"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Delete Task"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.task.list",
+      "resource": "entity.task",
+      "action": "list",
+      "roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "operation_refs": [
+        "operation.task.list"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: List Tasks"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.task.list_assigned",
+      "resource": "entity.task",
+      "action": "list",
+      "roles": [
+        "role.employee"
+      ],
+      "operation_refs": [
+        "operation.task.list_assigned"
+      ],
+      "conditions": [
+        "Only tasks assigned to the caller"
+      ],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: List my assigned tasks"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.task.read",
+      "resource": "entity.task",
+      "action": "read",
+      "roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "operation_refs": [
+        "operation.task.read"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: View Task"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.task.update",
+      "resource": "entity.task",
+      "action": "update",
+      "roles": [
+        "role.manager"
+      ],
+      "operation_refs": [
+        "operation.task.update"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Update Task"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.task.update_status",
+      "resource": "entity.task",
+      "action": "update",
+      "roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "operation_refs": [
+        "operation.task.update_status"
+      ],
+      "conditions": [
+        "Employees may only change tasks assigned to them"
+      ],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Update task status"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.user.logout",
+      "resource": "entity.user",
+      "action": "execute",
+      "roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "operation_refs": [
+        "operation.user.logout"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Log out"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

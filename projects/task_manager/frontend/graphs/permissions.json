@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "graph": "permissions",
+  "nodes": [
+    {
+      "id": "permission.dashboard.view",
+      "action": "view",
+      "resource": "dashboard",
+      "roles": [
+        "role.manager",
+        "role.employee"
+      ]
+    },
+    {
+      "id": "permission.project.view",
+      "action": "view",
+      "resource": "project",
+      "roles": [
+        "role.manager",
+        "role.employee"
+      ]
+    },
+    {
+      "id": "permission.project.create",
+      "action": "create",
+      "resource": "project",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "id": "permission.project.delete",
+      "action": "delete",
+      "resource": "project",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "id": "permission.task.view",
+      "action": "view",
+      "resource": "task",
+      "roles": [
+        "role.manager",
+        "role.employee"
+      ]
+    },
+    {
+      "id": "permission.task.create",
+      "action": "create",
+      "resource": "task",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "id": "permission.task.update_status",
+      "action": "update_status",
+      "resource": "task",
+      "roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "conditions": {
+        "role.employee": {
+          "scope": "assigned",
+          "field": "assignee_id"
+        }
+      }
+    },
+    {
+      "id": "permission.task.reopen",
+      "action": "reopen",
+      "resource": "task",
+      "roles": [
+        "role.manager"
+      ]
+    }
+  ]
+}

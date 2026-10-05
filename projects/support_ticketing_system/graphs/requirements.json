@@ -1,0 +1,222 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "requirements": [
+    {
+      "id": "requirement.authentication",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Users must be able to log in with email and password and reset a forgotten password.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria",
+        "validations"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Users must log in."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.nfr.accessibility",
+      "type": "non_functional",
+      "category": "accessibility",
+      "priority": "should",
+      "description": "Screens meet WCAG 2.1 AA basics: keyboard navigation, labels and contrast.",
+      "affected_graphs": [
+        "screens",
+        "components"
+      ],
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard practice; the user did not specify it"
+        },
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "requirement.nfr.performance",
+      "type": "non_functional",
+      "category": "performance",
+      "priority": "should",
+      "description": "List endpoints are paginated and typical requests complete within 500 ms.",
+      "affected_graphs": [
+        "api",
+        "backend"
+      ],
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard practice; the user did not specify it"
+        },
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "requirement.nfr.responsive",
+      "type": "non_functional",
+      "category": "responsiveness",
+      "priority": "should",
+      "description": "Every screen is usable on mobile, tablet and desktop widths.",
+      "affected_graphs": [
+        "screens",
+        "ui"
+      ],
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard practice; the user did not specify it"
+        },
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "requirement.nfr.security",
+      "type": "non_functional",
+      "category": "security",
+      "priority": "must",
+      "description": "Passwords are hashed, sessions expire, and every non-public endpoint requires authentication.",
+      "affected_graphs": [
+        "api",
+        "permissions",
+        "backend"
+      ],
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard practice; the user did not specify it"
+        },
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "requirement.support_dashboard",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Managers can view ticket statistics on a dashboard.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Managers assign tickets to agents and see a dashboard with ticket statistics."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.ticket_assignment",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Managers can assign a ticket to a support agent.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Managers assign tickets to agents and see a dashboard with ticket statistics."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.ticket_comments",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Customers and agents can discuss a ticket through comments.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Customers can open tickets and add comments."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.ticket_management",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Customers can open support tickets that agents work on.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria",
+        "validations"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Customers can open tickets and add comments."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.ticket_status",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Agents update a ticket's status from open to resolved and closed.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria",
+        "validations",
+        "state_machines"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Agents respond to tickets and resolve them."
+        },
+        "confidence": 0.95
+      }
+    }
+  ]
+}

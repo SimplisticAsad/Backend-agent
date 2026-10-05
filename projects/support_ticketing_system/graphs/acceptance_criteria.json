@@ -1,0 +1,401 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "acceptance_criteria": [
+    {
+      "id": "ac.auth.login",
+      "name": "Log in succeeds",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "workflow_refs": [
+        "workflow.auth.login"
+      ],
+      "operation_refs": [
+        "operation.user.login"
+      ],
+      "given": [
+        "the user is not signed in"
+      ],
+      "when": [
+        "Enter email and password",
+        "Log in"
+      ],
+      "then": [
+        "The user is authenticated and sees their home screen"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.auth.logout",
+      "name": "Log out succeeds",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "workflow_refs": [
+        "workflow.auth.logout"
+      ],
+      "operation_refs": [
+        "operation.user.logout"
+      ],
+      "given": [
+        "the user is signed in as Customer or Agent or Manager"
+      ],
+      "when": [
+        "Choose log out",
+        "Log out"
+      ],
+      "then": [
+        "The session ends and the login screen is shown"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.auth.password_reset",
+      "name": "Reset password succeeds",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "workflow_refs": [
+        "workflow.auth.password_reset"
+      ],
+      "operation_refs": [
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ],
+      "given": [
+        "the user is not signed in"
+      ],
+      "when": [
+        "Enter the account email",
+        "Request password reset",
+        "Enter the new password",
+        "Reset password"
+      ],
+      "then": [
+        "The password is changed and the user can log in again"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.dashboard.support_view",
+      "name": "View support dashboard succeeds",
+      "requirement_refs": [
+        "requirement.support_dashboard"
+      ],
+      "workflow_refs": [
+        "workflow.dashboard.support_view"
+      ],
+      "operation_refs": [
+        "operation.ticket.stats"
+      ],
+      "given": [
+        "the user is signed in as Manager"
+      ],
+      "when": [
+        "Get ticket statistics"
+      ],
+      "then": [
+        "The manager sees ticket statistics"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.support_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.ticket.assign",
+      "name": "Assign ticket succeeds",
+      "requirement_refs": [
+        "requirement.ticket_assignment"
+      ],
+      "workflow_refs": [
+        "workflow.ticket.assign"
+      ],
+      "operation_refs": [
+        "operation.user.list_agents",
+        "operation.ticket.assign"
+      ],
+      "given": [
+        "the user is signed in as Manager",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "List agents",
+        "Pick an agent",
+        "Assign ticket"
+      ],
+      "then": [
+        "The ticket shows its new assignee"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.ticket.browse",
+      "name": "Browse Tickets succeeds",
+      "requirement_refs": [
+        "requirement.ticket_management"
+      ],
+      "workflow_refs": [
+        "workflow.ticket.browse"
+      ],
+      "operation_refs": [
+        "operation.ticket.list",
+        "operation.ticket.read"
+      ],
+      "given": [
+        "the user is signed in as Customer or Agent or Manager",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "List Tickets",
+        "View Ticket"
+      ],
+      "then": [
+        "The Ticket information is displayed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.ticket.change_status",
+      "name": "Change ticket status succeeds",
+      "requirement_refs": [
+        "requirement.ticket_status"
+      ],
+      "workflow_refs": [
+        "workflow.ticket.change_status"
+      ],
+      "operation_refs": [
+        "operation.ticket.change_status"
+      ],
+      "given": [
+        "the user is signed in as Agent or Manager",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "Choose the new status",
+        "Change ticket status"
+      ],
+      "then": [
+        "The ticket shows its new status"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.ticket.closed_read_only",
+      "name": "Closed tickets are read-only (negative case)",
+      "requirement_refs": [
+        "requirement.ticket_management"
+      ],
+      "workflow_refs": [],
+      "operation_refs": [
+        "operation.ticket.update"
+      ],
+      "given": [
+        "the user is signed in"
+      ],
+      "when": [
+        "an agent edits a closed ticket"
+      ],
+      "then": [
+        "Closed tickets cannot be changed (error TICKET_CLOSED)",
+        "no data is changed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.ticket.create",
+      "name": "Create Ticket succeeds",
+      "requirement_refs": [
+        "requirement.ticket_management"
+      ],
+      "workflow_refs": [
+        "workflow.ticket.create"
+      ],
+      "operation_refs": [
+        "operation.ticket.create"
+      ],
+      "given": [
+        "the user is signed in as Customer"
+      ],
+      "when": [
+        "Fill in the Ticket form",
+        "Create Ticket"
+      ],
+      "then": [
+        "The Ticket is created and appears in the Ticket list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.ticket.update",
+      "name": "Update Ticket succeeds",
+      "requirement_refs": [
+        "requirement.ticket_management"
+      ],
+      "workflow_refs": [
+        "workflow.ticket.update"
+      ],
+      "operation_refs": [
+        "operation.ticket.update"
+      ],
+      "given": [
+        "the user is signed in as Agent or Manager",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "Change the Ticket details",
+        "Update Ticket"
+      ],
+      "then": [
+        "The changes to the Ticket are saved"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.ticket_comment.browse",
+      "name": "Browse Comments succeeds",
+      "requirement_refs": [
+        "requirement.ticket_comments"
+      ],
+      "workflow_refs": [
+        "workflow.ticket_comment.browse"
+      ],
+      "operation_refs": [
+        "operation.ticket_comment.list"
+      ],
+      "given": [
+        "the user is signed in as Customer or Agent or Manager"
+      ],
+      "when": [
+        "List Comments"
+      ],
+      "then": [
+        "The Comment information is displayed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_comments, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.ticket_comment.create",
+      "name": "Create Comment succeeds",
+      "requirement_refs": [
+        "requirement.ticket_comments"
+      ],
+      "workflow_refs": [
+        "workflow.ticket_comment.create"
+      ],
+      "operation_refs": [
+        "operation.ticket_comment.create"
+      ],
+      "given": [
+        "the user is signed in as Customer or Agent"
+      ],
+      "when": [
+        "Fill in the Comment form",
+        "Create Comment"
+      ],
+      "then": [
+        "The Comment is created and appears in the Comment list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_comments, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.user.invalid_login",
+      "name": "Wrong credentials are rejected (negative case)",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "workflow_refs": [],
+      "operation_refs": [
+        "operation.user.login"
+      ],
+      "given": [
+        "the user is not signed in"
+      ],
+      "when": [
+        "the user submits a wrong password"
+      ],
+      "then": [
+        "Email or password is wrong (error INVALID_CREDENTIALS)",
+        "no data is changed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

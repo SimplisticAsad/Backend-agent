@@ -1,0 +1,459 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "acceptance_criteria": [
+    {
+      "id": "ac.auth.login",
+      "name": "Log in succeeds",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "workflow_refs": [
+        "workflow.auth.login"
+      ],
+      "operation_refs": [
+        "operation.user.login"
+      ],
+      "given": [
+        "the user is not signed in"
+      ],
+      "when": [
+        "Enter email and password",
+        "Log in"
+      ],
+      "then": [
+        "The user is authenticated and sees their home screen"
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "ac.auth.logout",
+      "name": "Log out succeeds",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "workflow_refs": [
+        "workflow.auth.logout"
+      ],
+      "operation_refs": [
+        "operation.user.logout"
+      ],
+      "given": [
+        "the user is signed in as Customer"
+      ],
+      "when": [
+        "Choose log out",
+        "Log out"
+      ],
+      "then": [
+        "The session ends and the login screen is shown"
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "ac.auth.password_reset",
+      "name": "Reset password succeeds",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "workflow_refs": [
+        "workflow.auth.password_reset"
+      ],
+      "operation_refs": [
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ],
+      "given": [
+        "the user is not signed in"
+      ],
+      "when": [
+        "Enter the account email",
+        "Request password reset",
+        "Enter the new password",
+        "Reset password"
+      ],
+      "then": [
+        "The password is changed and the user can log in again"
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "ac.cart_item.browse",
+      "name": "Browse Cart Items succeeds",
+      "requirement_refs": [
+        "requirement.shopping_cart"
+      ],
+      "workflow_refs": [
+        "workflow.cart_item.browse"
+      ],
+      "operation_refs": [
+        "operation.cart_item.list"
+      ],
+      "given": [
+        "the user is signed in as Customer"
+      ],
+      "when": [
+        "List Cart Items"
+      ],
+      "then": [
+        "The Cart Item information is displayed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.cart_item.create",
+      "name": "Create Cart Item succeeds",
+      "requirement_refs": [
+        "requirement.shopping_cart"
+      ],
+      "workflow_refs": [
+        "workflow.cart_item.create"
+      ],
+      "operation_refs": [
+        "operation.cart_item.create"
+      ],
+      "given": [
+        "the user is signed in as Customer"
+      ],
+      "when": [
+        "Fill in the Cart Item form",
+        "Create Cart Item"
+      ],
+      "then": [
+        "The Cart Item is created and appears in the Cart Item list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.cart_item.delete",
+      "name": "Delete Cart Item succeeds",
+      "requirement_refs": [
+        "requirement.shopping_cart"
+      ],
+      "workflow_refs": [
+        "workflow.cart_item.delete"
+      ],
+      "operation_refs": [
+        "operation.cart_item.delete"
+      ],
+      "given": [
+        "the user is signed in as Customer",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "Confirm deleting the Cart Item",
+        "Delete Cart Item"
+      ],
+      "then": [
+        "The Cart Item is removed from the Cart Item list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.cart_item.update",
+      "name": "Update Cart Item succeeds",
+      "requirement_refs": [
+        "requirement.shopping_cart"
+      ],
+      "workflow_refs": [
+        "workflow.cart_item.update"
+      ],
+      "operation_refs": [
+        "operation.cart_item.update"
+      ],
+      "given": [
+        "the user is signed in as Customer",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "Change the Cart Item details",
+        "Update Cart Item"
+      ],
+      "then": [
+        "The changes to the Cart Item are saved"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.order.browse",
+      "name": "Browse Orders succeeds",
+      "requirement_refs": [
+        "requirement.checkout"
+      ],
+      "workflow_refs": [
+        "workflow.order.browse"
+      ],
+      "operation_refs": [
+        "operation.order.list",
+        "operation.order.read"
+      ],
+      "given": [
+        "the user is signed in as Customer",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "List Orders",
+        "View Order"
+      ],
+      "then": [
+        "The Order information is displayed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.order.cart_not_empty",
+      "name": "Cart must not be empty (negative case)",
+      "requirement_refs": [
+        "requirement.checkout"
+      ],
+      "workflow_refs": [],
+      "operation_refs": [
+        "operation.order.place"
+      ],
+      "given": [
+        "the user is signed in"
+      ],
+      "when": [
+        "the customer checks out with an empty cart"
+      ],
+      "then": [
+        "The cart is empty (error CART_EMPTY)",
+        "no data is changed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.order.checkout",
+      "name": "Check out succeeds",
+      "requirement_refs": [
+        "requirement.checkout"
+      ],
+      "workflow_refs": [
+        "workflow.order.checkout"
+      ],
+      "operation_refs": [
+        "operation.order.place"
+      ],
+      "given": [
+        "the user is signed in as Customer"
+      ],
+      "when": [
+        "Enter shipping address and payment method",
+        "Place order"
+      ],
+      "then": [
+        "The order is placed and its details are shown"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.product.browse",
+      "name": "Browse Products succeeds",
+      "requirement_refs": [
+        "requirement.product_catalog"
+      ],
+      "workflow_refs": [
+        "workflow.product.browse"
+      ],
+      "operation_refs": [
+        "operation.product.list",
+        "operation.product.read"
+      ],
+      "given": [
+        "the user is not signed in",
+        "the record being worked on exists"
+      ],
+      "when": [
+        "List Products",
+        "View Product"
+      ],
+      "then": [
+        "The Product information is displayed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.product_catalog, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "ac.product.filter",
+      "name": "Filter products succeeds",
+      "requirement_refs": [
+        "requirement.product_filter"
+      ],
+      "workflow_refs": [
+        "workflow.product.filter"
+      ],
+      "operation_refs": [
+        "operation.product.filter"
+      ],
+      "given": [
+        "the user is not signed in"
+      ],
+      "when": [
+        "Choose category and price range",
+        "Filter products"
+      ],
+      "then": [
+        "Only matching products are listed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_filter, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.product.search",
+      "name": "Search products succeeds",
+      "requirement_refs": [
+        "requirement.product_search"
+      ],
+      "workflow_refs": [
+        "workflow.product.search"
+      ],
+      "operation_refs": [
+        "operation.product.search"
+      ],
+      "given": [
+        "the user is not signed in"
+      ],
+      "when": [
+        "Enter search words",
+        "Search products"
+      ],
+      "then": [
+        "Matching products are listed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_search, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.product.stock_available",
+      "name": "Stock must cover the quantity (negative case)",
+      "requirement_refs": [
+        "requirement.checkout"
+      ],
+      "workflow_refs": [],
+      "operation_refs": [
+        "operation.order.place"
+      ],
+      "given": [
+        "the user is signed in"
+      ],
+      "when": [
+        "the customer orders more units than are in stock"
+      ],
+      "then": [
+        "One or more products are out of stock (error OUT_OF_STOCK)",
+        "no data is changed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "ac.user.invalid_login",
+      "name": "Wrong credentials are rejected (negative case)",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "workflow_refs": [],
+      "operation_refs": [
+        "operation.user.login"
+      ],
+      "given": [
+        "the user is not signed in"
+      ],
+      "when": [
+        "the user submits a wrong password"
+      ],
+      "then": [
+        "Email or password is wrong (error INVALID_CREDENTIALS)",
+        "no data is changed"
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    }
+  ]
+}

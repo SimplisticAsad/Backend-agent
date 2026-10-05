@@ -1,0 +1,254 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "components": [
+    {
+      "id": "component.app.navigation",
+      "type": "navigation",
+      "name": "Main navigation",
+      "used_by": [
+        "screen.ticket.list",
+        "screen.ticket_comment.list",
+        "screen.dashboard.support"
+      ],
+      "data_source": null,
+      "fields": [],
+      "actions": [],
+      "description": "Primary navigation shown on every top-level screen",
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard application shell"
+        },
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "component.auth.forgot_form",
+      "type": "authentication",
+      "name": "Forgot password form",
+      "used_by": [
+        "screen.auth.forgot_password"
+      ],
+      "data_source": "entity.user",
+      "fields": [
+        "email"
+      ],
+      "actions": [
+        "workflow.auth.password_reset"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.auth.login_form",
+      "type": "authentication",
+      "name": "Login form",
+      "used_by": [
+        "screen.auth.login"
+      ],
+      "data_source": "entity.user",
+      "fields": [
+        "email",
+        "password"
+      ],
+      "actions": [
+        "workflow.auth.login"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.auth.reset_form",
+      "type": "authentication",
+      "name": "Reset password form",
+      "used_by": [
+        "screen.auth.reset_password"
+      ],
+      "data_source": "entity.user",
+      "fields": [
+        "reset_token",
+        "new_password"
+      ],
+      "actions": [
+        "workflow.auth.password_reset"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.dashboard.ticket_chart",
+      "type": "chart",
+      "name": "Tickets by status",
+      "used_by": [
+        "screen.dashboard.support"
+      ],
+      "data_source": "entity.ticket",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.support_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.ticket.card",
+      "type": "card",
+      "name": "Ticket card",
+      "used_by": [
+        "screen.ticket.detail"
+      ],
+      "data_source": "entity.ticket",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.ticket.create_form",
+      "type": "form",
+      "name": "Create Ticket form",
+      "used_by": [
+        "screen.ticket.create"
+      ],
+      "data_source": "entity.ticket",
+      "fields": [
+        "title",
+        "description",
+        "priority"
+      ],
+      "actions": [
+        "workflow.ticket.create"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.ticket.edit_form",
+      "type": "form",
+      "name": "Edit Ticket form",
+      "used_by": [
+        "screen.ticket.edit"
+      ],
+      "data_source": "entity.ticket",
+      "fields": [
+        "title",
+        "description",
+        "priority"
+      ],
+      "actions": [
+        "workflow.ticket.update"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.ticket.table",
+      "type": "data_table",
+      "name": "Tickets table",
+      "used_by": [
+        "screen.ticket.list"
+      ],
+      "data_source": "entity.ticket",
+      "fields": [],
+      "actions": [
+        "workflow.ticket.create",
+        "workflow.ticket.update"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.ticket_comment.create_form",
+      "type": "form",
+      "name": "Create Comment form",
+      "used_by": [
+        "screen.ticket_comment.create"
+      ],
+      "data_source": "entity.ticket_comment",
+      "fields": [
+        "ticket_id",
+        "body"
+      ],
+      "actions": [
+        "workflow.ticket_comment.create"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_comments, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.ticket_comment.table",
+      "type": "data_table",
+      "name": "Comments table",
+      "used_by": [
+        "screen.ticket_comment.list"
+      ],
+      "data_source": "entity.ticket_comment",
+      "fields": [],
+      "actions": [
+        "workflow.ticket_comment.create"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_comments, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

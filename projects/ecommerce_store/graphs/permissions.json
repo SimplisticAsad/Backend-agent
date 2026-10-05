@@ -1,0 +1,169 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "permissions": [
+    {
+      "id": "permission.cart_item.create",
+      "resource": "entity.cart_item",
+      "action": "create",
+      "roles": [
+        "role.customer"
+      ],
+      "operation_refs": [
+        "operation.cart_item.create"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Create Cart Item"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.cart_item.delete",
+      "resource": "entity.cart_item",
+      "action": "delete",
+      "roles": [
+        "role.customer"
+      ],
+      "operation_refs": [
+        "operation.cart_item.delete"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Delete Cart Item"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.cart_item.list",
+      "resource": "entity.cart_item",
+      "action": "list",
+      "roles": [
+        "role.customer"
+      ],
+      "operation_refs": [
+        "operation.cart_item.list"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: List Cart Items"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.cart_item.update",
+      "resource": "entity.cart_item",
+      "action": "update",
+      "roles": [
+        "role.customer"
+      ],
+      "operation_refs": [
+        "operation.cart_item.update"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Update Cart Item"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.order.list",
+      "resource": "entity.order",
+      "action": "list",
+      "roles": [
+        "role.customer"
+      ],
+      "operation_refs": [
+        "operation.order.list"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: List Orders"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.order.place",
+      "resource": "entity.order",
+      "action": "create",
+      "roles": [
+        "role.customer"
+      ],
+      "operation_refs": [
+        "operation.order.place"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: Place order"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.order.read",
+      "resource": "entity.order",
+      "action": "read",
+      "roles": [
+        "role.customer"
+      ],
+      "operation_refs": [
+        "operation.order.read"
+      ],
+      "conditions": [],
+      "assumption_refs": [],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Roles stated by the user for: View Order"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "permission.user.logout",
+      "resource": "entity.user",
+      "action": "execute",
+      "roles": [
+        "role.customer"
+      ],
+      "operation_refs": [
+        "operation.user.logout"
+      ],
+      "conditions": [],
+      "assumption_refs": [
+        "assumption.inferred.authentication"
+      ],
+      "provenance": {
+        "source": {
+          "type": "assumption",
+          "text": "Who may log out was not stated; roles are assumed"
+        },
+        "confidence": 0.5
+      }
+    }
+  ]
+}

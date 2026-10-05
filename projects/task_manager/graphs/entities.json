@@ -1,0 +1,392 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "entities": [
+    {
+      "id": "entity.department",
+      "name": "Department",
+      "description": "An organisational unit of the company.",
+      "attributes": [
+        {
+          "id": "entity.department.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.department.name",
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.department.description",
+          "name": "description",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Employees can belong to departments."
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "entity.employee",
+      "name": "Employee",
+      "description": "An employee profile.",
+      "attributes": [
+        {
+          "id": "entity.employee.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.employee.user_id",
+          "name": "user_id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.user"
+        },
+        {
+          "id": "entity.employee.department_id",
+          "name": "department_id",
+          "type": "uuid",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.department"
+        },
+        {
+          "id": "entity.employee.job_title",
+          "name": "job_title",
+          "type": "string",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Build a SaaS application for managing a small company's employees, projects and tasks."
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "entity.project",
+      "name": "Project",
+      "description": "A body of work containing tasks.",
+      "attributes": [
+        {
+          "id": "entity.project.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.project.name",
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.project.description",
+          "name": "description",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.project.status",
+          "name": "status",
+          "type": "enum",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [
+            "planned",
+            "active",
+            "completed"
+          ],
+          "reference_to": null
+        },
+        {
+          "id": "entity.project.owner_id",
+          "name": "owner_id",
+          "type": "uuid",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.user"
+        },
+        {
+          "id": "entity.project.due_date",
+          "name": "due_date",
+          "type": "date",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Build a SaaS application for managing a small company's employees, projects and tasks."
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "entity.project_member",
+      "name": "Project Member",
+      "description": "Assignment of an employee to a project.",
+      "attributes": [
+        {
+          "id": "entity.project_member.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.project_member.project_id",
+          "name": "project_id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.project"
+        },
+        {
+          "id": "entity.project_member.user_id",
+          "name": "user_id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.user"
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Project Member data is needed by the selected capabilities"
+        },
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "entity.task",
+      "name": "Task",
+      "description": "A unit of work inside a project.",
+      "attributes": [
+        {
+          "id": "entity.task.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.task.title",
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.task.description",
+          "name": "description",
+          "type": "text",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.task.status",
+          "name": "status",
+          "type": "enum",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [
+            "todo",
+            "in_progress",
+            "completed"
+          ],
+          "reference_to": null
+        },
+        {
+          "id": "entity.task.due_date",
+          "name": "due_date",
+          "type": "date",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.task.project_id",
+          "name": "project_id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.project"
+        },
+        {
+          "id": "entity.task.assignee_id",
+          "name": "assignee_id",
+          "type": "uuid",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.user"
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Build a SaaS application for managing a small company's employees, projects and tasks."
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "entity.user",
+      "name": "User",
+      "description": "An account that can sign in to the product.",
+      "attributes": [
+        {
+          "id": "entity.user.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.email",
+          "name": "email",
+          "type": "email",
+          "required": true,
+          "unique": true,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.password_hash",
+          "name": "password_hash",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.full_name",
+          "name": "full_name",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.role",
+          "name": "role",
+          "type": "enum",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [
+            "manager",
+            "employee"
+          ],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.created_at",
+          "name": "created_at",
+          "type": "datetime",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Users must log in."
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

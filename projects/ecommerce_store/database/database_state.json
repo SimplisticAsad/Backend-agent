@@ -1,0 +1,631 @@
+{
+  "schema": "ecommerce_store",
+  "tables": {
+    "cart_items": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "user_id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "product_id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "quantity",
+          "data_type": "integer",
+          "nullable": false,
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "ck_cart_items_quantity",
+          "type": "CHECK",
+          "definition": "CHECK ((quantity > 0))",
+          "columns": [
+            "quantity"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "fk_cart_items_product_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (product_id) REFERENCES fixture_10b4793f55.products(id) ON DELETE RESTRICT",
+          "columns": [
+            "product_id"
+          ],
+          "ref_table": "products",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "fk_cart_items_user_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (user_id) REFERENCES fixture_10b4793f55.users(id) ON DELETE RESTRICT",
+          "columns": [
+            "user_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "pk_cart_items",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    },
+    "categories": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "name",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "pk_categories",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    },
+    "order_items": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "order_id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "product_id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "quantity",
+          "data_type": "integer",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "unit_price",
+          "data_type": "numeric",
+          "nullable": false,
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "ck_order_items_quantity",
+          "type": "CHECK",
+          "definition": "CHECK ((quantity > 0))",
+          "columns": [
+            "quantity"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "ck_order_items_unit_price",
+          "type": "CHECK",
+          "definition": "CHECK ((unit_price >= (0)::numeric))",
+          "columns": [
+            "unit_price"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "fk_order_items_order_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (order_id) REFERENCES fixture_10b4793f55.orders(id) ON DELETE CASCADE",
+          "columns": [
+            "order_id"
+          ],
+          "ref_table": "orders",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "fk_order_items_product_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (product_id) REFERENCES fixture_10b4793f55.products(id) ON DELETE RESTRICT",
+          "columns": [
+            "product_id"
+          ],
+          "ref_table": "products",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "pk_order_items",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    },
+    "orders": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "user_id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "status",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "total",
+          "data_type": "numeric",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "shipping_address",
+          "data_type": "text",
+          "nullable": true,
+          "column_default": null
+        },
+        {
+          "column_name": "placed_at",
+          "data_type": "timestamp with time zone",
+          "nullable": true,
+          "column_default": "now()"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "ck_orders_status",
+          "type": "CHECK",
+          "definition": "CHECK ((status = ANY (ARRAY['pending'::text, 'paid'::text, 'shipped'::text, 'delivered'::text, 'cancelled'::text])))",
+          "columns": [
+            "status"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "ck_orders_total",
+          "type": "CHECK",
+          "definition": "CHECK ((total >= (0)::numeric))",
+          "columns": [
+            "total"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "fk_orders_user_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (user_id) REFERENCES fixture_10b4793f55.users(id) ON DELETE RESTRICT",
+          "columns": [
+            "user_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "pk_orders",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    },
+    "products": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "name",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "description",
+          "data_type": "text",
+          "nullable": true,
+          "column_default": null
+        },
+        {
+          "column_name": "price",
+          "data_type": "numeric",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "stock",
+          "data_type": "integer",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "category_id",
+          "data_type": "uuid",
+          "nullable": true,
+          "column_default": null
+        },
+        {
+          "column_name": "image_url",
+          "data_type": "text",
+          "nullable": true,
+          "column_default": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "ck_products_price",
+          "type": "CHECK",
+          "definition": "CHECK ((price >= (0)::numeric))",
+          "columns": [
+            "price"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "ck_products_stock",
+          "type": "CHECK",
+          "definition": "CHECK ((stock >= 0))",
+          "columns": [
+            "stock"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "fk_products_category_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (category_id) REFERENCES fixture_10b4793f55.categories(id) ON DELETE RESTRICT",
+          "columns": [
+            "category_id"
+          ],
+          "ref_table": "categories",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "pk_products",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    },
+    "users": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "email",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "password_hash",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "full_name",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "role",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "nullable": false,
+          "column_default": "now()"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "ck_users_role",
+          "type": "CHECK",
+          "definition": "CHECK ((role = 'customer'::text))",
+          "columns": [
+            "role"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "pk_users",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "uq_users_email",
+          "type": "UNIQUE",
+          "definition": "UNIQUE (email)",
+          "columns": [
+            "email"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    }
+  },
+  "functions": [
+    {
+      "name": "create_cart_item",
+      "arguments": "p_user_id uuid, p_product_id uuid, p_quantity integer",
+      "returns": "fixture_10b4793f55.cart_items",
+      "kind": "function"
+    },
+    {
+      "name": "create_category",
+      "arguments": "p_name text",
+      "returns": "fixture_10b4793f55.categories",
+      "kind": "function"
+    },
+    {
+      "name": "create_order",
+      "arguments": "p_user_id uuid, p_status text, p_total numeric, p_shipping_address text, p_placed_at timestamp with time zone",
+      "returns": "fixture_10b4793f55.orders",
+      "kind": "function"
+    },
+    {
+      "name": "create_order_item",
+      "arguments": "p_order_id uuid, p_product_id uuid, p_quantity integer, p_unit_price numeric",
+      "returns": "fixture_10b4793f55.order_items",
+      "kind": "function"
+    },
+    {
+      "name": "create_product",
+      "arguments": "p_name text, p_description text, p_price numeric, p_stock integer, p_category_id uuid, p_image_url text",
+      "returns": "fixture_10b4793f55.products",
+      "kind": "function"
+    },
+    {
+      "name": "create_user",
+      "arguments": "p_email text, p_password_hash text, p_full_name text, p_role text, p_created_at timestamp with time zone",
+      "returns": "fixture_10b4793f55.users",
+      "kind": "function"
+    },
+    {
+      "name": "delete_cart_item",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "delete_category",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "delete_order",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "delete_order_item",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "delete_product",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "delete_user",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "get_cart_item",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_10b4793f55.cart_items",
+      "kind": "function"
+    },
+    {
+      "name": "get_category",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_10b4793f55.categories",
+      "kind": "function"
+    },
+    {
+      "name": "get_order",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_10b4793f55.orders",
+      "kind": "function"
+    },
+    {
+      "name": "get_order_item",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_10b4793f55.order_items",
+      "kind": "function"
+    },
+    {
+      "name": "get_product",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_10b4793f55.products",
+      "kind": "function"
+    },
+    {
+      "name": "get_user",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_10b4793f55.users",
+      "kind": "function"
+    },
+    {
+      "name": "list_cart_items",
+      "arguments": "",
+      "returns": "SETOF fixture_10b4793f55.cart_items",
+      "kind": "function"
+    },
+    {
+      "name": "list_categories",
+      "arguments": "",
+      "returns": "SETOF fixture_10b4793f55.categories",
+      "kind": "function"
+    },
+    {
+      "name": "list_order_items",
+      "arguments": "",
+      "returns": "SETOF fixture_10b4793f55.order_items",
+      "kind": "function"
+    },
+    {
+      "name": "list_orders",
+      "arguments": "",
+      "returns": "SETOF fixture_10b4793f55.orders",
+      "kind": "function"
+    },
+    {
+      "name": "list_products",
+      "arguments": "",
+      "returns": "SETOF fixture_10b4793f55.products",
+      "kind": "function"
+    },
+    {
+      "name": "list_users",
+      "arguments": "",
+      "returns": "SETOF fixture_10b4793f55.users",
+      "kind": "function"
+    },
+    {
+      "name": "update_cart_item",
+      "arguments": "p_id uuid, p_user_id uuid, p_product_id uuid, p_quantity integer",
+      "returns": "fixture_10b4793f55.cart_items",
+      "kind": "function"
+    },
+    {
+      "name": "update_category",
+      "arguments": "p_id uuid, p_name text",
+      "returns": "fixture_10b4793f55.categories",
+      "kind": "function"
+    },
+    {
+      "name": "update_order",
+      "arguments": "p_id uuid, p_user_id uuid, p_status text, p_total numeric, p_shipping_address text, p_placed_at timestamp with time zone",
+      "returns": "fixture_10b4793f55.orders",
+      "kind": "function"
+    },
+    {
+      "name": "update_order_item",
+      "arguments": "p_id uuid, p_order_id uuid, p_product_id uuid, p_quantity integer, p_unit_price numeric",
+      "returns": "fixture_10b4793f55.order_items",
+      "kind": "function"
+    },
+    {
+      "name": "update_product",
+      "arguments": "p_id uuid, p_name text, p_description text, p_price numeric, p_stock integer, p_category_id uuid, p_image_url text",
+      "returns": "fixture_10b4793f55.products",
+      "kind": "function"
+    },
+    {
+      "name": "update_user",
+      "arguments": "p_id uuid, p_email text, p_password_hash text, p_full_name text, p_role text, p_created_at timestamp with time zone",
+      "returns": "fixture_10b4793f55.users",
+      "kind": "function"
+    }
+  ]
+}

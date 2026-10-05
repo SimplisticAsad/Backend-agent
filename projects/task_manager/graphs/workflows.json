@@ -1,0 +1,1265 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "workflows": [
+    {
+      "id": "workflow.auth.login",
+      "name": "Log in",
+      "description": "Log in workflow of Authentication.",
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Login",
+          "target": "screen.auth.login",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_in",
+          "type": "input",
+          "description": "Enter email and password",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_act",
+          "type": "action",
+          "description": "Log in",
+          "target": null,
+          "operation_ref": "operation.user.login",
+          "next": []
+        },
+        {
+          "id": "step.04_sys",
+          "type": "system",
+          "description": "Redirect the user to their home screen",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The user is authenticated and sees their home screen",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.auth.logout",
+      "name": "Log out",
+      "description": "Log out workflow of Authentication.",
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "steps": [
+        {
+          "id": "step.01_in",
+          "type": "input",
+          "description": "Choose log out",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "Log out",
+          "target": null,
+          "operation_ref": "operation.user.logout",
+          "next": []
+        },
+        {
+          "id": "step.03_nav",
+          "type": "navigation",
+          "description": "Open Login",
+          "target": "screen.auth.login",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The session ends and the login screen is shown",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.auth.password_reset",
+      "name": "Reset password",
+      "description": "Reset password workflow of Authentication.",
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Forgot Password",
+          "target": "screen.auth.forgot_password",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_in",
+          "type": "input",
+          "description": "Enter the account email",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_act",
+          "type": "action",
+          "description": "Request password reset",
+          "target": null,
+          "operation_ref": "operation.user.request_password_reset",
+          "next": []
+        },
+        {
+          "id": "step.04_nav",
+          "type": "navigation",
+          "description": "Open Reset Password",
+          "target": "screen.auth.reset_password",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.05_in",
+          "type": "input",
+          "description": "Enter the new password",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.06_act",
+          "type": "action",
+          "description": "Reset password",
+          "target": null,
+          "operation_ref": "operation.user.reset_password",
+          "next": []
+        },
+        {
+          "id": "step.07_nav",
+          "type": "navigation",
+          "description": "Open Login",
+          "target": "screen.auth.login",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The password is changed and the user can log in again",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.dashboard.employee_view",
+      "name": "View my dashboard",
+      "description": "View my dashboard workflow of Employee dashboard.",
+      "actor_refs": [
+        "actor.employee"
+      ],
+      "capability_refs": [
+        "capability.employee_dashboard"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Employee Dashboard",
+          "target": "screen.dashboard.employee",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "List my assigned tasks",
+          "target": null,
+          "operation_ref": "operation.task.list_assigned",
+          "next": []
+        }
+      ],
+      "outcome": "The employee sees their assigned tasks",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.dashboard.manager_progress",
+      "name": "View project progress",
+      "description": "View project progress workflow of Project progress dashboard.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.project_progress"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Project Progress Dashboard",
+          "target": "screen.dashboard.manager",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "Get project progress",
+          "target": null,
+          "operation_ref": "operation.project.progress",
+          "next": []
+        }
+      ],
+      "outcome": "The manager sees progress per project",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_progress, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.department.browse",
+      "name": "Browse Departments",
+      "description": "Browse Departments workflow of Department management.",
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "capability_refs": [
+        "capability.department_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Department List",
+          "target": "screen.department.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "List Departments",
+          "target": null,
+          "operation_ref": "operation.department.list",
+          "next": []
+        }
+      ],
+      "outcome": "The Department information is displayed",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.department.create",
+      "name": "Create Department",
+      "description": "Create Department workflow of Department management.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.department_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Department List",
+          "target": "screen.department.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Create Department",
+          "target": "screen.department.create",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Fill in the Department form",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Create Department",
+          "target": null,
+          "operation_ref": "operation.department.create",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Department List",
+          "target": "screen.department.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The Department is created and appears in the Department list",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.department.update",
+      "name": "Update Department",
+      "description": "Update Department workflow of Department management.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.department_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Department List",
+          "target": "screen.department.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Edit Department",
+          "target": "screen.department.edit",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Change the Department details",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Update Department",
+          "target": null,
+          "operation_ref": "operation.department.update",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Department List",
+          "target": "screen.department.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The changes to the Department are saved",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.employee.browse",
+      "name": "Browse Employees",
+      "description": "Browse Employees workflow of Employee directory.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.employee_directory"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Employee List",
+          "target": "screen.employee.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "List Employees",
+          "target": null,
+          "operation_ref": "operation.employee.list",
+          "next": []
+        },
+        {
+          "id": "step.03_nav",
+          "type": "navigation",
+          "description": "Open Employee Details",
+          "target": "screen.employee.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "View Employee",
+          "target": null,
+          "operation_ref": "operation.employee.read",
+          "next": []
+        }
+      ],
+      "outcome": "The Employee information is displayed",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.employee.create",
+      "name": "Create Employee",
+      "description": "Create Employee workflow of Employee directory.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.employee_directory"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Employee List",
+          "target": "screen.employee.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Create Employee",
+          "target": "screen.employee.create",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Fill in the Employee form",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Create Employee",
+          "target": null,
+          "operation_ref": "operation.employee.create",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Employee List",
+          "target": "screen.employee.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The Employee is created and appears in the Employee list",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.employee.update",
+      "name": "Update Employee",
+      "description": "Update Employee workflow of Employee directory.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.employee_directory"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Employee Details",
+          "target": "screen.employee.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Edit Employee",
+          "target": "screen.employee.edit",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Change the Employee details",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Update Employee",
+          "target": null,
+          "operation_ref": "operation.employee.update",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Employee List",
+          "target": "screen.employee.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The changes to the Employee are saved",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.project.browse",
+      "name": "Browse Projects",
+      "description": "Browse Projects workflow of Project management.",
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Project List",
+          "target": "screen.project.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "List Projects",
+          "target": null,
+          "operation_ref": "operation.project.list",
+          "next": []
+        },
+        {
+          "id": "step.03_nav",
+          "type": "navigation",
+          "description": "Open Project Details",
+          "target": "screen.project.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "View Project",
+          "target": null,
+          "operation_ref": "operation.project.read",
+          "next": []
+        }
+      ],
+      "outcome": "The Project information is displayed",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.project.create",
+      "name": "Create Project",
+      "description": "Create Project workflow of Project management.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Project List",
+          "target": "screen.project.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Create Project",
+          "target": "screen.project.create",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Fill in the Project form",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Create Project",
+          "target": null,
+          "operation_ref": "operation.project.create",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Project List",
+          "target": "screen.project.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The Project is created and appears in the Project list",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.project.delete",
+      "name": "Delete Project",
+      "description": "Delete Project workflow of Project management.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Project List",
+          "target": "screen.project.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_decide",
+          "type": "decision",
+          "description": "Confirm deleting the Project",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_act",
+          "type": "action",
+          "description": "Delete Project",
+          "target": null,
+          "operation_ref": "operation.project.delete",
+          "next": []
+        },
+        {
+          "id": "step.04_nav",
+          "type": "navigation",
+          "description": "Open Project List",
+          "target": "screen.project.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The Project is removed from the Project list",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.project.update",
+      "name": "Update Project",
+      "description": "Update Project workflow of Project management.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Project Details",
+          "target": "screen.project.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Edit Project",
+          "target": "screen.project.edit",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Change the Project details",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Update Project",
+          "target": null,
+          "operation_ref": "operation.project.update",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Project List",
+          "target": "screen.project.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The changes to the Project are saved",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.project_member.browse",
+      "name": "Browse Project Members",
+      "description": "Browse Project Members workflow of Project assignment.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.project_assignment"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Project Member List",
+          "target": "screen.project_member.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "List Project Members",
+          "target": null,
+          "operation_ref": "operation.project_member.list",
+          "next": []
+        }
+      ],
+      "outcome": "The Project Member information is displayed",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.project_member.create",
+      "name": "Create Project Member",
+      "description": "Create Project Member workflow of Project assignment.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.project_assignment"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Project Member List",
+          "target": "screen.project_member.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Create Project Member",
+          "target": "screen.project_member.create",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Fill in the Project Member form",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Create Project Member",
+          "target": null,
+          "operation_ref": "operation.project_member.create",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Project Member List",
+          "target": "screen.project_member.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The Project Member is created and appears in the Project Member list",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.project_member.delete",
+      "name": "Delete Project Member",
+      "description": "Delete Project Member workflow of Project assignment.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.project_assignment"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Project Member List",
+          "target": "screen.project_member.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_decide",
+          "type": "decision",
+          "description": "Confirm deleting the Project Member",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_act",
+          "type": "action",
+          "description": "Delete Project Member",
+          "target": null,
+          "operation_ref": "operation.project_member.delete",
+          "next": []
+        },
+        {
+          "id": "step.04_nav",
+          "type": "navigation",
+          "description": "Open Project Member List",
+          "target": "screen.project_member.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The Project Member is removed from the Project Member list",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.task.browse",
+      "name": "Browse Tasks",
+      "description": "Browse Tasks workflow of Task management.",
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "capability_refs": [
+        "capability.task_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Task List",
+          "target": "screen.task.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "List Tasks",
+          "target": null,
+          "operation_ref": "operation.task.list",
+          "next": []
+        },
+        {
+          "id": "step.03_nav",
+          "type": "navigation",
+          "description": "Open Task Details",
+          "target": "screen.task.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "View Task",
+          "target": null,
+          "operation_ref": "operation.task.read",
+          "next": []
+        }
+      ],
+      "outcome": "The Task information is displayed",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.task.create",
+      "name": "Create Task",
+      "description": "Create Task workflow of Task management.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.task_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Task List",
+          "target": "screen.task.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Create Task",
+          "target": "screen.task.create",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Fill in the Task form",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Create Task",
+          "target": null,
+          "operation_ref": "operation.task.create",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Task List",
+          "target": "screen.task.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The Task is created and appears in the Task list",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.task.delete",
+      "name": "Delete Task",
+      "description": "Delete Task workflow of Task management.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.task_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Task List",
+          "target": "screen.task.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_decide",
+          "type": "decision",
+          "description": "Confirm deleting the Task",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_act",
+          "type": "action",
+          "description": "Delete Task",
+          "target": null,
+          "operation_ref": "operation.task.delete",
+          "next": []
+        },
+        {
+          "id": "step.04_nav",
+          "type": "navigation",
+          "description": "Open Task List",
+          "target": "screen.task.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The Task is removed from the Task list",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.task.update",
+      "name": "Update Task",
+      "description": "Update Task workflow of Task management.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.task_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Task Details",
+          "target": "screen.task.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Edit Task",
+          "target": "screen.task.edit",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Change the Task details",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Update Task",
+          "target": null,
+          "operation_ref": "operation.task.update",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Task List",
+          "target": "screen.task.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The changes to the Task are saved",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.task.update_status",
+      "name": "Update task status",
+      "description": "Update task status workflow of Task status tracking.",
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "capability_refs": [
+        "capability.task_status"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Task List",
+          "target": "screen.task.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Task Details",
+          "target": "screen.task.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Choose the new status",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Update task status",
+          "target": null,
+          "operation_ref": "operation.task.update_status",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Task Details",
+          "target": "screen.task.detail",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The task shows its new status",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

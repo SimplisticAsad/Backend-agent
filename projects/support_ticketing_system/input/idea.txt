@@ -1,0 +1,9 @@
+Build a customer support ticketing system.
+
+Customers can open tickets and add comments.
+
+Agents respond to tickets and resolve them.
+
+Managers assign tickets to agents and see a dashboard with ticket statistics.
+
+Users must log in.

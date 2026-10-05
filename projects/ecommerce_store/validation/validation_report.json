@@ -1,0 +1,133 @@
+{
+  "status": "valid",
+  "safe_for_downstream": true,
+  "errors": [],
+  "warnings": [
+    {
+      "id": "warning.001",
+      "severity": "warning",
+      "code": "QUESTION_OPEN",
+      "message": "unresolved question: Should guests be allowed to checkout?",
+      "graph": "questions",
+      "object_id": "question.guest_checkout",
+      "ref": null
+    },
+    {
+      "id": "warning.002",
+      "severity": "warning",
+      "code": "QUESTION_OPEN",
+      "message": "unresolved question: Which payment provider should be integrated?",
+      "graph": "questions",
+      "object_id": "question.payment_provider",
+      "ref": null
+    },
+    {
+      "id": "warning.003",
+      "severity": "warning",
+      "code": "QUESTION_OPEN",
+      "message": "unresolved question: Should stock be reserved when a product is added to the cart?",
+      "graph": "questions",
+      "object_id": "question.stock_reservation",
+      "ref": null
+    }
+  ],
+  "coverage": {
+    "requirements": 1.0,
+    "screens": 1.0,
+    "api": 1.0,
+    "permissions": 1.0,
+    "acceptance_criteria": 1.0
+  },
+  "checks": [
+    {
+      "name": "Schema validation",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Reference validation",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Dependency validation",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Requirement coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Screen coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "API coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Permission coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Acceptance coverage",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Cross-graph consistency",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "name": "Ambiguity",
+      "passed": true,
+      "errors": 0,
+      "warnings": 3
+    }
+  ],
+  "summary": {
+    "project_id": "project.ecommerce_store",
+    "object_counts": {
+      "actors": 1,
+      "roles": 1,
+      "entities": 6,
+      "relationships": 6,
+      "capabilities": 6,
+      "requirements": 10,
+      "screens": 13,
+      "components": 17,
+      "workflows": 12,
+      "operations": 15,
+      "endpoints": 15,
+      "permissions": 8,
+      "validations": 5,
+      "state_machines": 1,
+      "acceptance_criteria": 15
+    },
+    "assumptions": 6,
+    "open_questions": 3,
+    "provenance": {
+      "assumption": 7,
+      "derived": 70,
+      "inferred": 48,
+      "system_default": 5,
+      "user_requirement": 7
+    },
+    "review_findings": 0
+  }
+}

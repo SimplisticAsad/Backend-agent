@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "layout": "sidebar_with_topbar",
+  "entry_screen_ref": "screen.auth.login",
+  "navigation": [
+    {
+      "id": "nav.project_list",
+      "label": "Project List",
+      "screen_ref": "screen.project.list",
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "role_refs": []
+    },
+    {
+      "id": "nav.task_list",
+      "label": "Task List",
+      "screen_ref": "screen.task.list",
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "role_refs": []
+    },
+    {
+      "id": "nav.project_member_list",
+      "label": "Project Member List",
+      "screen_ref": "screen.project_member.list",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "role_refs": []
+    },
+    {
+      "id": "nav.department_list",
+      "label": "Department List",
+      "screen_ref": "screen.department.list",
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "role_refs": []
+    },
+    {
+      "id": "nav.employee_list",
+      "label": "Employee List",
+      "screen_ref": "screen.employee.list",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "role_refs": []
+    },
+    {
+      "id": "nav.dashboard_employee",
+      "label": "Employee Dashboard",
+      "screen_ref": "screen.dashboard.employee",
+      "actor_refs": [
+        "actor.employee"
+      ],
+      "role_refs": []
+    },
+    {
+      "id": "nav.dashboard_manager",
+      "label": "Project Progress Dashboard",
+      "screen_ref": "screen.dashboard.manager",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "role_refs": []
+    }
+  ],
+  "breakpoints": {
+    "mobile": 0,
+    "tablet": 768,
+    "desktop": 1280
+  },
+  "global_states": {
+    "loading": "Skeleton placeholders",
+    "empty": "Illustrated empty state with a call to action",
+    "error": "Inline error banner with retry"
+  },
+  "accessibility": [
+    "WCAG 2.1 AA",
+    "Full keyboard navigation",
+    "Visible focus indicators"
+  ],
+  "notifications": [
+    "Toast on success",
+    "Toast on failure"
+  ]
+}

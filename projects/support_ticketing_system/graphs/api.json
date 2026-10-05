@@ -1,0 +1,546 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "schemas": [
+    {
+      "id": "schema.ticket",
+      "name": "Ticket",
+      "entity_ref": "entity.ticket",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "required": true
+        },
+        {
+          "name": "priority",
+          "type": "enum",
+          "required": true
+        },
+        {
+          "name": "requester_id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "assignee_id",
+          "type": "uuid",
+          "required": false
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.ticket.assign",
+      "name": "Assign ticket request",
+      "entity_ref": "entity.ticket",
+      "fields": [
+        {
+          "name": "assignee_id",
+          "type": "uuid>user",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.ticket.change_status",
+      "name": "Change ticket status request",
+      "entity_ref": "entity.ticket",
+      "fields": [
+        {
+          "name": "status",
+          "type": "enum",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.ticket.create",
+      "name": "Create Ticket request",
+      "entity_ref": "entity.ticket",
+      "fields": [
+        {
+          "name": "title",
+          "type": "string!",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "text!",
+          "required": true
+        },
+        {
+          "name": "priority",
+          "type": "enum",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.ticket.update",
+      "name": "Update Ticket request",
+      "entity_ref": "entity.ticket",
+      "fields": [
+        {
+          "name": "title",
+          "type": "string!",
+          "required": false
+        },
+        {
+          "name": "description",
+          "type": "text!",
+          "required": false
+        },
+        {
+          "name": "priority",
+          "type": "enum",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.ticket_comment",
+      "name": "Ticket Comment",
+      "entity_ref": "entity.ticket_comment",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "ticket_id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "author_id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "body",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.ticket_comment.create",
+      "name": "Create Comment request",
+      "entity_ref": "entity.ticket_comment",
+      "fields": [
+        {
+          "name": "ticket_id",
+          "type": "uuid!>ticket",
+          "required": true
+        },
+        {
+          "name": "body",
+          "type": "text!",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.user",
+      "name": "User",
+      "entity_ref": "entity.user",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "name": "full_name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "role",
+          "type": "enum",
+          "required": true
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.user.login",
+      "name": "Log in request",
+      "entity_ref": "entity.user",
+      "fields": [
+        {
+          "name": "email",
+          "type": "email!*",
+          "required": true
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.user.request_password_reset",
+      "name": "Request password reset request",
+      "entity_ref": "entity.user",
+      "fields": [
+        {
+          "name": "email",
+          "type": "email!*",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.user.reset_password",
+      "name": "Reset password request",
+      "entity_ref": "entity.user",
+      "fields": [
+        {
+          "name": "reset_token",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "new_password",
+          "type": "string",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "endpoints": [
+    {
+      "id": "api.ticket.assign",
+      "method": "PATCH",
+      "path": "/tickets/{id}/assignee",
+      "operation_ref": "operation.ticket.assign",
+      "request_schema_ref": "schema.ticket.assign",
+      "response_schema_ref": "schema.ticket",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.ticket.change_status",
+      "method": "PATCH",
+      "path": "/tickets/{id}/status",
+      "operation_ref": "operation.ticket.change_status",
+      "request_schema_ref": "schema.ticket.change_status",
+      "response_schema_ref": "schema.ticket",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.agent",
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.ticket.create",
+      "method": "POST",
+      "path": "/tickets",
+      "operation_ref": "operation.ticket.create",
+      "request_schema_ref": "schema.ticket.create",
+      "response_schema_ref": "schema.ticket",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.customer"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.ticket.list",
+      "method": "GET",
+      "path": "/tickets",
+      "operation_ref": "operation.ticket.list",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.ticket",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.customer",
+          "role.agent",
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.ticket.read",
+      "method": "GET",
+      "path": "/tickets/{id}",
+      "operation_ref": "operation.ticket.read",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.ticket",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.customer",
+          "role.agent",
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.ticket.stats",
+      "method": "GET",
+      "path": "/tickets/stats",
+      "operation_ref": "operation.ticket.stats",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.ticket",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.support_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.ticket.update",
+      "method": "PATCH",
+      "path": "/tickets/{id}",
+      "operation_ref": "operation.ticket.update",
+      "request_schema_ref": "schema.ticket.update",
+      "response_schema_ref": "schema.ticket",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.agent",
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.ticket_comment.create",
+      "method": "POST",
+      "path": "/ticket-comments",
+      "operation_ref": "operation.ticket_comment.create",
+      "request_schema_ref": "schema.ticket_comment.create",
+      "response_schema_ref": "schema.ticket_comment",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.customer",
+          "role.agent"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_comments, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.ticket_comment.list",
+      "method": "GET",
+      "path": "/ticket-comments",
+      "operation_ref": "operation.ticket_comment.list",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.ticket_comment",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.customer",
+          "role.agent",
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_comments, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.user.list_agents",
+      "method": "GET",
+      "path": "/users/agents",
+      "operation_ref": "operation.user.list_agents",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.user",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.user.login",
+      "method": "POST",
+      "path": "/auth/login",
+      "operation_ref": "operation.user.login",
+      "request_schema_ref": "schema.user.login",
+      "response_schema_ref": "schema.user",
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.user.logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "operation_ref": "operation.user.logout",
+      "request_schema_ref": null,
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.user.request_password_reset",
+      "method": "POST",
+      "path": "/auth/forgot-password",
+      "operation_ref": "operation.user.request_password_reset",
+      "request_schema_ref": "schema.user.request_password_reset",
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.user.reset_password",
+      "method": "POST",
+      "path": "/auth/reset-password",
+      "operation_ref": "operation.user.reset_password",
+      "request_schema_ref": "schema.user.reset_password",
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

@@ -1,0 +1,650 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "services": [
+    {
+      "id": "service.cart_item",
+      "name": "Cart Item service",
+      "description": "Business operations on Cart Item.",
+      "entity_refs": [
+        "entity.cart_item"
+      ]
+    },
+    {
+      "id": "service.order",
+      "name": "Order service",
+      "description": "Business operations on Order.",
+      "entity_refs": [
+        "entity.order"
+      ]
+    },
+    {
+      "id": "service.product",
+      "name": "Product service",
+      "description": "Business operations on Product.",
+      "entity_refs": [
+        "entity.product"
+      ]
+    },
+    {
+      "id": "service.user",
+      "name": "User service",
+      "description": "Business operations on User.",
+      "entity_refs": [
+        "entity.user"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "operation.cart_item.create",
+      "name": "Create Cart Item",
+      "description": "Create Cart Item.",
+      "type": "command",
+      "action": "create",
+      "entity_ref": "entity.cart_item",
+      "service_ref": "service.cart_item",
+      "capability_refs": [
+        "capability.shopping_cart"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.customer"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "product_id",
+          "quantity"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.cart_item",
+        "cardinality": "one"
+      },
+      "errors": [],
+      "side_effects": [
+        "A new Cart Item is persisted"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.cart_item.delete",
+      "name": "Delete Cart Item",
+      "description": "Delete Cart Item.",
+      "type": "command",
+      "action": "delete",
+      "entity_ref": "entity.cart_item",
+      "service_ref": "service.cart_item",
+      "capability_refs": [
+        "capability.shopping_cart"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.customer"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": null,
+        "cardinality": "none"
+      },
+      "errors": [
+        {
+          "code": "CART_ITEM_NOT_FOUND",
+          "description": "The Cart Item does not exist"
+        }
+      ],
+      "side_effects": [
+        "The Cart Item is removed"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.cart_item.list",
+      "name": "List Cart Items",
+      "description": "List Cart Items.",
+      "type": "query",
+      "action": "list",
+      "entity_ref": "entity.cart_item",
+      "service_ref": "service.cart_item",
+      "capability_refs": [
+        "capability.shopping_cart"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.customer"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.cart_item",
+        "cardinality": "many"
+      },
+      "errors": [],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.cart_item.update",
+      "name": "Update Cart Item",
+      "description": "Update Cart Item.",
+      "type": "command",
+      "action": "update",
+      "entity_ref": "entity.cart_item",
+      "service_ref": "service.cart_item",
+      "capability_refs": [
+        "capability.shopping_cart"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.customer"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [
+          "quantity"
+        ],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.cart_item",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "CART_ITEM_NOT_FOUND",
+          "description": "The Cart Item does not exist"
+        }
+      ],
+      "side_effects": [
+        "The Cart Item is modified"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.order.list",
+      "name": "List Orders",
+      "description": "List Orders.",
+      "type": "query",
+      "action": "list",
+      "entity_ref": "entity.order",
+      "service_ref": "service.order",
+      "capability_refs": [
+        "capability.checkout"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.customer"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.order",
+        "cardinality": "many"
+      },
+      "errors": [],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.order.place",
+      "name": "Place order",
+      "description": "Place order.",
+      "type": "command",
+      "action": "create",
+      "entity_ref": "entity.order",
+      "service_ref": "service.order",
+      "capability_refs": [
+        "capability.checkout"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.customer"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": [
+          "shipping_address",
+          "payment_method"
+        ]
+      },
+      "output": {
+        "entity_ref": "entity.order",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "CART_EMPTY",
+          "description": "The cart has no items"
+        },
+        {
+          "code": "OUT_OF_STOCK",
+          "description": "A product is out of stock"
+        }
+      ],
+      "side_effects": [
+        "An order is created from the cart",
+        "The cart is emptied",
+        "Product stock is reduced"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.order.read",
+      "name": "View Order",
+      "description": "View Order.",
+      "type": "query",
+      "action": "read",
+      "entity_ref": "entity.order",
+      "service_ref": "service.order",
+      "capability_refs": [
+        "capability.checkout"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.customer"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.order",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "ORDER_NOT_FOUND",
+          "description": "The Order does not exist"
+        }
+      ],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.product.filter",
+      "name": "Filter products",
+      "description": "Filter products.",
+      "type": "query",
+      "action": "list",
+      "entity_ref": "entity.product",
+      "service_ref": "service.product",
+      "capability_refs": [
+        "capability.product_filter"
+      ],
+      "access": "public",
+      "required_roles": [],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [
+          "category_id",
+          "price"
+        ],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.product",
+        "cardinality": "many"
+      },
+      "errors": [],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_filter, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.product.list",
+      "name": "List Products",
+      "description": "List Products.",
+      "type": "query",
+      "action": "list",
+      "entity_ref": "entity.product",
+      "service_ref": "service.product",
+      "capability_refs": [
+        "capability.product_catalog"
+      ],
+      "access": "public",
+      "required_roles": [],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.product",
+        "cardinality": "many"
+      },
+      "errors": [],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.product_catalog, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "operation.product.read",
+      "name": "View Product",
+      "description": "View Product.",
+      "type": "query",
+      "action": "read",
+      "entity_ref": "entity.product",
+      "service_ref": "service.product",
+      "capability_refs": [
+        "capability.product_catalog"
+      ],
+      "access": "public",
+      "required_roles": [],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.product",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "PRODUCT_NOT_FOUND",
+          "description": "The Product does not exist"
+        }
+      ],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.product_catalog, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "operation.product.search",
+      "name": "Search products",
+      "description": "Search products.",
+      "type": "query",
+      "action": "list",
+      "entity_ref": "entity.product",
+      "service_ref": "service.product",
+      "capability_refs": [
+        "capability.product_search"
+      ],
+      "access": "public",
+      "required_roles": [],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": [
+          "query"
+        ]
+      },
+      "output": {
+        "entity_ref": "entity.product",
+        "cardinality": "many"
+      },
+      "errors": [],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_search, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.user.login",
+      "name": "Log in",
+      "description": "Log in.",
+      "type": "command",
+      "action": "execute",
+      "entity_ref": "entity.user",
+      "service_ref": "service.user",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "access": "public",
+      "required_roles": [],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "email"
+        ],
+        "optional_fields": [],
+        "extra_fields": [
+          "password"
+        ]
+      },
+      "output": {
+        "entity_ref": "entity.user",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "INVALID_CREDENTIALS",
+          "description": "Email or password is wrong"
+        }
+      ],
+      "side_effects": [
+        "A session token is issued"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "operation.user.logout",
+      "name": "Log out",
+      "description": "Log out.",
+      "type": "command",
+      "action": "execute",
+      "entity_ref": "entity.user",
+      "service_ref": "service.user",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "access": "authenticated",
+      "required_roles": [],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": null,
+        "cardinality": "none"
+      },
+      "errors": [],
+      "side_effects": [
+        "The session token is revoked"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "operation.user.request_password_reset",
+      "name": "Request password reset",
+      "description": "Request password reset.",
+      "type": "command",
+      "action": "execute",
+      "entity_ref": "entity.user",
+      "service_ref": "service.user",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "access": "public",
+      "required_roles": [],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "email"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": null,
+        "cardinality": "none"
+      },
+      "errors": [],
+      "side_effects": [
+        "A reset link is sent to the email address"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "operation.user.reset_password",
+      "name": "Reset password",
+      "description": "Reset password.",
+      "type": "command",
+      "action": "execute",
+      "entity_ref": "entity.user",
+      "service_ref": "service.user",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "access": "public",
+      "required_roles": [],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": [
+          "reset_token",
+          "new_password"
+        ]
+      },
+      "output": {
+        "entity_ref": null,
+        "cardinality": "none"
+      },
+      "errors": [
+        {
+          "code": "INVALID_RESET_TOKEN",
+          "description": "The reset token is invalid or expired"
+        }
+      ],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    }
+  ]
+}

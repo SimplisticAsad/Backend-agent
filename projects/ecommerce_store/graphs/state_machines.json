@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "state_machines": [
+    {
+      "id": "state_machine.order",
+      "entity_ref": "entity.order",
+      "field": "status",
+      "states": [
+        "pending",
+        "paid",
+        "shipped",
+        "delivered",
+        "cancelled"
+      ],
+      "initial_state": "pending",
+      "transitions": [
+        {
+          "from": "pending",
+          "to": "paid",
+          "role_refs": [
+            "role.customer"
+          ],
+          "operation_ref": null,
+          "guard": ""
+        },
+        {
+          "from": "pending",
+          "to": "cancelled",
+          "role_refs": [
+            "role.customer"
+          ],
+          "operation_ref": null,
+          "guard": ""
+        },
+        {
+          "from": "paid",
+          "to": "shipped",
+          "role_refs": [],
+          "operation_ref": null,
+          "guard": ""
+        },
+        {
+          "from": "shipped",
+          "to": "delivered",
+          "role_refs": [],
+          "operation_ref": null,
+          "guard": ""
+        },
+        {
+          "from": "paid",
+          "to": "cancelled",
+          "role_refs": [],
+          "operation_ref": null,
+          "guard": ""
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

@@ -1,0 +1,829 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "screens": [
+    {
+      "id": "screen.auth.forgot_password",
+      "name": "Forgot Password",
+      "route": "/forgot-password",
+      "purpose": "Request a password reset link",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.user"
+      ],
+      "workflow_refs": [
+        "workflow.auth.password_reset"
+      ],
+      "component_refs": [
+        "component.auth.forgot_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.auth_password_reset",
+          "label": "Reset password",
+          "workflow_ref": "workflow.auth.password_reset"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Reset Password",
+          "target": "screen.auth.reset_password"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Forgot Password content is fetched",
+        "empty": "Explain that there are no users to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Forgot Password content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "screen.auth.login",
+      "name": "Login",
+      "route": "/login",
+      "purpose": "Authenticate with email and password",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.user"
+      ],
+      "workflow_refs": [
+        "workflow.auth.login",
+        "workflow.auth.logout",
+        "workflow.auth.password_reset"
+      ],
+      "component_refs": [
+        "component.auth.login_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.auth_login",
+          "label": "Log in",
+          "workflow_ref": "workflow.auth.login"
+        },
+        {
+          "id": "action.auth_logout",
+          "label": "Log out",
+          "workflow_ref": "workflow.auth.logout"
+        },
+        {
+          "id": "action.auth_password_reset",
+          "label": "Reset password",
+          "workflow_ref": "workflow.auth.password_reset"
+        }
+      ],
+      "navigation": [],
+      "states": {
+        "loading": "Show a loading indicator while the Login content is fetched",
+        "empty": "Explain that there are no users to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Login content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "screen.auth.reset_password",
+      "name": "Reset Password",
+      "route": "/reset-password",
+      "purpose": "Choose a new password",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.user"
+      ],
+      "workflow_refs": [
+        "workflow.auth.password_reset"
+      ],
+      "component_refs": [
+        "component.auth.reset_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.auth_password_reset",
+          "label": "Reset password",
+          "workflow_ref": "workflow.auth.password_reset"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Login",
+          "target": "screen.auth.login"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Reset Password content is fetched",
+        "empty": "Explain that there are no users to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Reset Password content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "screen.cart_item.create",
+      "name": "Create Cart Item",
+      "route": "/cart-items/new",
+      "purpose": "Create a cart item",
+      "capability_refs": [
+        "capability.shopping_cart"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.cart_item"
+      ],
+      "workflow_refs": [
+        "workflow.cart_item.create"
+      ],
+      "component_refs": [
+        "component.cart_item.create_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.cart_item_create",
+          "label": "Create Cart Item",
+          "workflow_ref": "workflow.cart_item.create"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Cart Item List",
+          "target": "screen.cart_item.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Create Cart Item content is fetched",
+        "empty": "Explain that there are no cart items to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Create Cart Item content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.cart_item.edit",
+      "name": "Edit Cart Item",
+      "route": "/cart-items/:id/edit",
+      "purpose": "Edit a cart item",
+      "capability_refs": [
+        "capability.shopping_cart"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.cart_item"
+      ],
+      "workflow_refs": [
+        "workflow.cart_item.update"
+      ],
+      "component_refs": [
+        "component.cart_item.edit_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.cart_item_update",
+          "label": "Update Cart Item",
+          "workflow_ref": "workflow.cart_item.update"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Cart Item List",
+          "target": "screen.cart_item.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Edit Cart Item content is fetched",
+        "empty": "Explain that there are no cart items to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Edit Cart Item content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.cart_item.list",
+      "name": "Cart Item List",
+      "route": "/cart-items",
+      "purpose": "Browse cart items",
+      "capability_refs": [
+        "capability.checkout",
+        "capability.shopping_cart"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.cart_item"
+      ],
+      "workflow_refs": [
+        "workflow.cart_item.create",
+        "workflow.cart_item.update",
+        "workflow.cart_item.delete",
+        "workflow.cart_item.browse",
+        "workflow.order.checkout"
+      ],
+      "component_refs": [
+        "component.cart_item.table",
+        "component.cart_item.delete_confirm",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.cart_item",
+          "operation_ref": "operation.cart_item.list",
+          "description": "Loads data via List Cart Items"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.cart_item_create",
+          "label": "Create Cart Item",
+          "workflow_ref": "workflow.cart_item.create"
+        },
+        {
+          "id": "action.cart_item_update",
+          "label": "Update Cart Item",
+          "workflow_ref": "workflow.cart_item.update"
+        },
+        {
+          "id": "action.cart_item_delete",
+          "label": "Delete Cart Item",
+          "workflow_ref": "workflow.cart_item.delete"
+        },
+        {
+          "id": "action.cart_item_browse",
+          "label": "Browse Cart Items",
+          "workflow_ref": "workflow.cart_item.browse"
+        },
+        {
+          "id": "action.order_checkout",
+          "label": "Check out",
+          "workflow_ref": "workflow.order.checkout"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Create Cart Item",
+          "target": "screen.cart_item.create"
+        },
+        {
+          "label": "Go to Edit Cart Item",
+          "target": "screen.cart_item.edit"
+        },
+        {
+          "label": "Go to Checkout",
+          "target": "screen.order.checkout"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Cart Item List content is fetched",
+        "empty": "Explain that there are no cart items to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Cart Item List content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.order.checkout",
+      "name": "Checkout",
+      "route": "/checkout",
+      "purpose": "Review the cart and enter shipping and payment details",
+      "capability_refs": [
+        "capability.checkout"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.order",
+        "entity.cart_item"
+      ],
+      "workflow_refs": [
+        "workflow.order.checkout"
+      ],
+      "component_refs": [
+        "component.order.checkout_form"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.cart_item",
+          "operation_ref": "operation.cart_item.list",
+          "description": "Loads data via List Cart Items"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.order_checkout",
+          "label": "Check out",
+          "workflow_ref": "workflow.order.checkout"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Order Details",
+          "target": "screen.order.detail"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Checkout content is fetched",
+        "empty": "Explain that there are no orders to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Checkout content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.order.detail",
+      "name": "Order Details",
+      "route": "/orders/:id",
+      "purpose": "Show one order",
+      "capability_refs": [
+        "capability.checkout"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.order"
+      ],
+      "workflow_refs": [
+        "workflow.order.browse",
+        "workflow.order.checkout"
+      ],
+      "component_refs": [
+        "component.order.card"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.order",
+          "operation_ref": "operation.order.read",
+          "description": "Loads data via View Order"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.order_browse",
+          "label": "Browse Orders",
+          "workflow_ref": "workflow.order.browse"
+        },
+        {
+          "id": "action.order_checkout",
+          "label": "Check out",
+          "workflow_ref": "workflow.order.checkout"
+        }
+      ],
+      "navigation": [],
+      "states": {
+        "loading": "Show a loading indicator while the Order Details content is fetched",
+        "empty": "Explain that there are no orders to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Order Details content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.order.list",
+      "name": "Order List",
+      "route": "/orders",
+      "purpose": "Browse orders",
+      "capability_refs": [
+        "capability.checkout"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.order"
+      ],
+      "workflow_refs": [
+        "workflow.order.browse"
+      ],
+      "component_refs": [
+        "component.order.table",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.order",
+          "operation_ref": "operation.order.list",
+          "description": "Loads data via List Orders"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.order_browse",
+          "label": "Browse Orders",
+          "workflow_ref": "workflow.order.browse"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Order Details",
+          "target": "screen.order.detail"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Order List content is fetched",
+        "empty": "Explain that there are no orders to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Order List content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.product.detail",
+      "name": "Product Details",
+      "route": "/products/:id",
+      "purpose": "Show one product",
+      "capability_refs": [
+        "capability.product_catalog"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.product"
+      ],
+      "workflow_refs": [
+        "workflow.product.browse"
+      ],
+      "component_refs": [
+        "component.product.card"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.product",
+          "operation_ref": "operation.product.read",
+          "description": "Loads data via View Product"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.product_browse",
+          "label": "Browse Products",
+          "workflow_ref": "workflow.product.browse"
+        }
+      ],
+      "navigation": [],
+      "states": {
+        "loading": "Show a loading indicator while the Product Details content is fetched",
+        "empty": "Explain that there are no products to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Product Details content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.product_catalog, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "screen.product.filter",
+      "name": "Filter Products",
+      "route": "/products/filter",
+      "purpose": "Narrow products by category and price",
+      "capability_refs": [
+        "capability.product_filter"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.product"
+      ],
+      "workflow_refs": [
+        "workflow.product.filter"
+      ],
+      "component_refs": [
+        "component.product.filter_panel",
+        "component.product.filter_results"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.product",
+          "operation_ref": "operation.product.filter",
+          "description": "Loads data via Filter products"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.product_filter",
+          "label": "Filter products",
+          "workflow_ref": "workflow.product.filter"
+        }
+      ],
+      "navigation": [],
+      "states": {
+        "loading": "Show a loading indicator while the Filter Products content is fetched",
+        "empty": "Explain that there are no products to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Filter Products content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_filter, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.product.list",
+      "name": "Product List",
+      "route": "/products",
+      "purpose": "Browse products",
+      "capability_refs": [
+        "capability.product_catalog"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.product"
+      ],
+      "workflow_refs": [
+        "workflow.product.browse"
+      ],
+      "component_refs": [
+        "component.product.table",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.product",
+          "operation_ref": "operation.product.list",
+          "description": "Loads data via List Products"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.product_browse",
+          "label": "Browse Products",
+          "workflow_ref": "workflow.product.browse"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Product Details",
+          "target": "screen.product.detail"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Product List content is fetched",
+        "empty": "Explain that there are no products to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Product List content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.product_catalog, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "screen.product.search",
+      "name": "Product Search",
+      "route": "/products/search",
+      "purpose": "Find products by keyword",
+      "capability_refs": [
+        "capability.product_search"
+      ],
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "entity_refs": [
+        "entity.product"
+      ],
+      "workflow_refs": [
+        "workflow.product.search"
+      ],
+      "component_refs": [
+        "component.product.search_box",
+        "component.product.search_results"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.product",
+          "operation_ref": "operation.product.search",
+          "description": "Loads data via Search products"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.product_search",
+          "label": "Search products",
+          "workflow_ref": "workflow.product.search"
+        }
+      ],
+      "navigation": [],
+      "states": {
+        "loading": "Show a loading indicator while the Product Search content is fetched",
+        "empty": "Explain that there are no products to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Product Search content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_search, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

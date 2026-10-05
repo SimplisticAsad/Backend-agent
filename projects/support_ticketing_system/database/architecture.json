@@ -1,0 +1,280 @@
+{
+  "tables": [
+    {
+      "name": "users",
+      "purpose": "An account that can sign in to the product.",
+      "source_entities": [
+        "User"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "email",
+          "type": "text",
+          "nullable": false,
+          "source_field": "email"
+        },
+        {
+          "name": "password_hash",
+          "type": "text",
+          "nullable": false,
+          "source_field": "password_hash"
+        },
+        {
+          "name": "full_name",
+          "type": "text",
+          "nullable": false,
+          "source_field": "full_name"
+        },
+        {
+          "name": "role",
+          "type": "text",
+          "nullable": false,
+          "source_field": "role"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "source_field": "created_at"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [],
+      "unique_constraints": [
+        [
+          "email"
+        ]
+      ],
+      "indexes": [],
+      "dependencies": []
+    },
+    {
+      "name": "tickets",
+      "purpose": "A support request.",
+      "source_entities": [
+        "Ticket"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "title",
+          "type": "text",
+          "nullable": false,
+          "source_field": "title"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": false,
+          "source_field": "description"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "nullable": false,
+          "source_field": "status"
+        },
+        {
+          "name": "priority",
+          "type": "text",
+          "nullable": false,
+          "source_field": "priority"
+        },
+        {
+          "name": "requester_id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "requester_id"
+        },
+        {
+          "name": "assignee_id",
+          "type": "uuid",
+          "nullable": true,
+          "source_field": "assignee_id"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "source_field": "created_at"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "requester_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        },
+        {
+          "columns": [
+            "assignee_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        }
+      ],
+      "unique_constraints": [],
+      "indexes": [
+        {
+          "columns": [
+            "requester_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on requester_id"
+        },
+        {
+          "columns": [
+            "assignee_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on assignee_id"
+        }
+      ],
+      "dependencies": [
+        "users"
+      ]
+    },
+    {
+      "name": "ticket_comments",
+      "purpose": "A message on a ticket.",
+      "source_entities": [
+        "TicketComment"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "ticket_id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "ticket_id"
+        },
+        {
+          "name": "author_id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "author_id"
+        },
+        {
+          "name": "body",
+          "type": "text",
+          "nullable": false,
+          "source_field": "body"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "source_field": "created_at"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "ticket_id"
+          ],
+          "ref_table": "tickets",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        },
+        {
+          "columns": [
+            "author_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        }
+      ],
+      "unique_constraints": [],
+      "indexes": [
+        {
+          "columns": [
+            "ticket_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on ticket_id"
+        },
+        {
+          "columns": [
+            "author_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on author_id"
+        }
+      ],
+      "dependencies": [
+        "tickets",
+        "users"
+      ]
+    }
+  ],
+  "relationships": [],
+  "creation_order": [
+    "users",
+    "tickets",
+    "ticket_comments"
+  ],
+  "normalization": {
+    "target": "3NF",
+    "analysis": [
+      "fixture generated from entities.json"
+    ],
+    "violations": [],
+    "intentional_denormalizations": []
+  },
+  "normalization_notes": []
+}

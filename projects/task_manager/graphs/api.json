@@ -1,0 +1,993 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "schemas": [
+    {
+      "id": "schema.department",
+      "name": "Department",
+      "entity_ref": "entity.department",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.department.create",
+      "name": "Create Department request",
+      "entity_ref": "entity.department",
+      "fields": [
+        {
+          "name": "name",
+          "type": "string!",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.department.update",
+      "name": "Update Department request",
+      "entity_ref": "entity.department",
+      "fields": [
+        {
+          "name": "name",
+          "type": "string!",
+          "required": false
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.employee",
+      "name": "Employee",
+      "entity_ref": "entity.employee",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "department_id",
+          "type": "uuid",
+          "required": false
+        },
+        {
+          "name": "job_title",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.employee.create",
+      "name": "Create Employee request",
+      "entity_ref": "entity.employee",
+      "fields": [
+        {
+          "name": "user_id",
+          "type": "uuid!>user",
+          "required": true
+        },
+        {
+          "name": "department_id",
+          "type": "uuid>department",
+          "required": true
+        },
+        {
+          "name": "job_title",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.employee.update",
+      "name": "Update Employee request",
+      "entity_ref": "entity.employee",
+      "fields": [
+        {
+          "name": "user_id",
+          "type": "uuid!>user",
+          "required": false
+        },
+        {
+          "name": "department_id",
+          "type": "uuid>department",
+          "required": false
+        },
+        {
+          "name": "job_title",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.project",
+      "name": "Project",
+      "entity_ref": "entity.project",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "required": true
+        },
+        {
+          "name": "owner_id",
+          "type": "uuid",
+          "required": false
+        },
+        {
+          "name": "due_date",
+          "type": "date",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.project.create",
+      "name": "Create Project request",
+      "entity_ref": "entity.project",
+      "fields": [
+        {
+          "name": "name",
+          "type": "string!",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.project.update",
+      "name": "Update Project request",
+      "entity_ref": "entity.project",
+      "fields": [
+        {
+          "name": "name",
+          "type": "string!",
+          "required": false
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "required": false
+        },
+        {
+          "name": "due_date",
+          "type": "date",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.project_member",
+      "name": "Project Member",
+      "entity_ref": "entity.project_member",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "project_id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.project_member.create",
+      "name": "Create Project Member request",
+      "entity_ref": "entity.project_member",
+      "fields": [
+        {
+          "name": "project_id",
+          "type": "uuid!>project",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "type": "uuid!>user",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.task",
+      "name": "Task",
+      "entity_ref": "entity.task",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "required": true
+        },
+        {
+          "name": "due_date",
+          "type": "date",
+          "required": false
+        },
+        {
+          "name": "project_id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "assignee_id",
+          "type": "uuid",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.task.create",
+      "name": "Create Task request",
+      "entity_ref": "entity.task",
+      "fields": [
+        {
+          "name": "title",
+          "type": "string!",
+          "required": true
+        },
+        {
+          "name": "project_id",
+          "type": "uuid!>project",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.task.update",
+      "name": "Update Task request",
+      "entity_ref": "entity.task",
+      "fields": [
+        {
+          "name": "title",
+          "type": "string!",
+          "required": false
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "due_date",
+          "type": "date",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.task.update_status",
+      "name": "Update task status request",
+      "entity_ref": "entity.task",
+      "fields": [
+        {
+          "name": "status",
+          "type": "enum",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.user",
+      "name": "User",
+      "entity_ref": "entity.user",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "name": "full_name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "role",
+          "type": "enum",
+          "required": true
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.user.login",
+      "name": "Log in request",
+      "entity_ref": "entity.user",
+      "fields": [
+        {
+          "name": "email",
+          "type": "email!*",
+          "required": true
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.user.request_password_reset",
+      "name": "Request password reset request",
+      "entity_ref": "entity.user",
+      "fields": [
+        {
+          "name": "email",
+          "type": "email!*",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.user.reset_password",
+      "name": "Reset password request",
+      "entity_ref": "entity.user",
+      "fields": [
+        {
+          "name": "reset_token",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "new_password",
+          "type": "string",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "endpoints": [
+    {
+      "id": "api.department.create",
+      "method": "POST",
+      "path": "/departments",
+      "operation_ref": "operation.department.create",
+      "request_schema_ref": "schema.department.create",
+      "response_schema_ref": "schema.department",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.department.list",
+      "method": "GET",
+      "path": "/departments",
+      "operation_ref": "operation.department.list",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.department",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager",
+          "role.employee"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.department.update",
+      "method": "PATCH",
+      "path": "/departments/{id}",
+      "operation_ref": "operation.department.update",
+      "request_schema_ref": "schema.department.update",
+      "response_schema_ref": "schema.department",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.employee.create",
+      "method": "POST",
+      "path": "/employees",
+      "operation_ref": "operation.employee.create",
+      "request_schema_ref": "schema.employee.create",
+      "response_schema_ref": "schema.employee",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.employee.list",
+      "method": "GET",
+      "path": "/employees",
+      "operation_ref": "operation.employee.list",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.employee",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.employee.read",
+      "method": "GET",
+      "path": "/employees/{id}",
+      "operation_ref": "operation.employee.read",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.employee",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager",
+          "role.employee"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.employee.update",
+      "method": "PATCH",
+      "path": "/employees/{id}",
+      "operation_ref": "operation.employee.update",
+      "request_schema_ref": "schema.employee.update",
+      "response_schema_ref": "schema.employee",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.project.create",
+      "method": "POST",
+      "path": "/projects",
+      "operation_ref": "operation.project.create",
+      "request_schema_ref": "schema.project.create",
+      "response_schema_ref": "schema.project",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.project.delete",
+      "method": "DELETE",
+      "path": "/projects/{id}",
+      "operation_ref": "operation.project.delete",
+      "request_schema_ref": null,
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.project.list",
+      "method": "GET",
+      "path": "/projects",
+      "operation_ref": "operation.project.list",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.project",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager",
+          "role.employee"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.project.progress",
+      "method": "GET",
+      "path": "/projects/progress",
+      "operation_ref": "operation.project.progress",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.project",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_progress, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.project.read",
+      "method": "GET",
+      "path": "/projects/{id}",
+      "operation_ref": "operation.project.read",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.project",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager",
+          "role.employee"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.project.update",
+      "method": "PATCH",
+      "path": "/projects/{id}",
+      "operation_ref": "operation.project.update",
+      "request_schema_ref": "schema.project.update",
+      "response_schema_ref": "schema.project",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.project_member.create",
+      "method": "POST",
+      "path": "/project-members",
+      "operation_ref": "operation.project_member.create",
+      "request_schema_ref": "schema.project_member.create",
+      "response_schema_ref": "schema.project_member",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.project_member.delete",
+      "method": "DELETE",
+      "path": "/project-members/{id}",
+      "operation_ref": "operation.project_member.delete",
+      "request_schema_ref": null,
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.project_member.list",
+      "method": "GET",
+      "path": "/project-members",
+      "operation_ref": "operation.project_member.list",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.project_member",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.task.create",
+      "method": "POST",
+      "path": "/tasks",
+      "operation_ref": "operation.task.create",
+      "request_schema_ref": "schema.task.create",
+      "response_schema_ref": "schema.task",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.task.delete",
+      "method": "DELETE",
+      "path": "/tasks/{id}",
+      "operation_ref": "operation.task.delete",
+      "request_schema_ref": null,
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.task.list",
+      "method": "GET",
+      "path": "/tasks",
+      "operation_ref": "operation.task.list",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.task",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager",
+          "role.employee"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.task.list_assigned",
+      "method": "GET",
+      "path": "/tasks/assigned",
+      "operation_ref": "operation.task.list_assigned",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.task",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.employee"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.task.read",
+      "method": "GET",
+      "path": "/tasks/{id}",
+      "operation_ref": "operation.task.read",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.task",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager",
+          "role.employee"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.task.update",
+      "method": "PATCH",
+      "path": "/tasks/{id}",
+      "operation_ref": "operation.task.update",
+      "request_schema_ref": "schema.task.update",
+      "response_schema_ref": "schema.task",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.task.update_status",
+      "method": "PATCH",
+      "path": "/tasks/{id}/status",
+      "operation_ref": "operation.task.update_status",
+      "request_schema_ref": "schema.task.update_status",
+      "response_schema_ref": "schema.task",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.manager",
+          "role.employee"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.user.login",
+      "method": "POST",
+      "path": "/auth/login",
+      "operation_ref": "operation.user.login",
+      "request_schema_ref": "schema.user.login",
+      "response_schema_ref": "schema.user",
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.user.logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "operation_ref": "operation.user.logout",
+      "request_schema_ref": null,
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.user.request_password_reset",
+      "method": "POST",
+      "path": "/auth/forgot-password",
+      "operation_ref": "operation.user.request_password_reset",
+      "request_schema_ref": "schema.user.request_password_reset",
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.user.reset_password",
+      "method": "POST",
+      "path": "/auth/reset-password",
+      "operation_ref": "operation.user.reset_password",
+      "request_schema_ref": "schema.user.reset_password",
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

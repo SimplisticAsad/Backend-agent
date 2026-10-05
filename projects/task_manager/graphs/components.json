@@ -1,0 +1,594 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "components": [
+    {
+      "id": "component.app.navigation",
+      "type": "navigation",
+      "name": "Main navigation",
+      "used_by": [
+        "screen.project.list",
+        "screen.task.list",
+        "screen.project_member.list",
+        "screen.department.list",
+        "screen.employee.list",
+        "screen.dashboard.employee",
+        "screen.dashboard.manager"
+      ],
+      "data_source": null,
+      "fields": [],
+      "actions": [],
+      "description": "Primary navigation shown on every top-level screen",
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard application shell"
+        },
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "component.auth.forgot_form",
+      "type": "authentication",
+      "name": "Forgot password form",
+      "used_by": [
+        "screen.auth.forgot_password"
+      ],
+      "data_source": "entity.user",
+      "fields": [
+        "email"
+      ],
+      "actions": [
+        "workflow.auth.password_reset"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.auth.login_form",
+      "type": "authentication",
+      "name": "Login form",
+      "used_by": [
+        "screen.auth.login"
+      ],
+      "data_source": "entity.user",
+      "fields": [
+        "email",
+        "password"
+      ],
+      "actions": [
+        "workflow.auth.login"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.auth.reset_form",
+      "type": "authentication",
+      "name": "Reset password form",
+      "used_by": [
+        "screen.auth.reset_password"
+      ],
+      "data_source": "entity.user",
+      "fields": [
+        "reset_token",
+        "new_password"
+      ],
+      "actions": [
+        "workflow.auth.password_reset"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.dashboard.employee_tasks",
+      "type": "dashboard_widget",
+      "name": "Assigned tasks",
+      "used_by": [
+        "screen.dashboard.employee"
+      ],
+      "data_source": "entity.task",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.dashboard.progress_chart",
+      "type": "chart",
+      "name": "Project progress chart",
+      "used_by": [
+        "screen.dashboard.manager"
+      ],
+      "data_source": "entity.project",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_progress, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.department.create_form",
+      "type": "form",
+      "name": "Create Department form",
+      "used_by": [
+        "screen.department.create"
+      ],
+      "data_source": "entity.department",
+      "fields": [
+        "name",
+        "description"
+      ],
+      "actions": [
+        "workflow.department.create"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.department.edit_form",
+      "type": "form",
+      "name": "Edit Department form",
+      "used_by": [
+        "screen.department.edit"
+      ],
+      "data_source": "entity.department",
+      "fields": [
+        "name",
+        "description"
+      ],
+      "actions": [
+        "workflow.department.update"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.department.table",
+      "type": "data_table",
+      "name": "Departments table",
+      "used_by": [
+        "screen.department.list"
+      ],
+      "data_source": "entity.department",
+      "fields": [],
+      "actions": [
+        "workflow.department.create",
+        "workflow.department.update"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.employee.card",
+      "type": "card",
+      "name": "Employee card",
+      "used_by": [
+        "screen.employee.detail"
+      ],
+      "data_source": "entity.employee",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.employee.create_form",
+      "type": "form",
+      "name": "Create Employee form",
+      "used_by": [
+        "screen.employee.create"
+      ],
+      "data_source": "entity.employee",
+      "fields": [
+        "user_id",
+        "department_id",
+        "job_title"
+      ],
+      "actions": [
+        "workflow.employee.create"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.employee.edit_form",
+      "type": "form",
+      "name": "Edit Employee form",
+      "used_by": [
+        "screen.employee.edit"
+      ],
+      "data_source": "entity.employee",
+      "fields": [
+        "user_id",
+        "department_id",
+        "job_title"
+      ],
+      "actions": [
+        "workflow.employee.update"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.employee.table",
+      "type": "data_table",
+      "name": "Employees table",
+      "used_by": [
+        "screen.employee.list"
+      ],
+      "data_source": "entity.employee",
+      "fields": [],
+      "actions": [
+        "workflow.employee.create",
+        "workflow.employee.update"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.project.card",
+      "type": "card",
+      "name": "Project card",
+      "used_by": [
+        "screen.project.detail"
+      ],
+      "data_source": "entity.project",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.project.create_form",
+      "type": "form",
+      "name": "Create Project form",
+      "used_by": [
+        "screen.project.create"
+      ],
+      "data_source": "entity.project",
+      "fields": [
+        "name",
+        "description"
+      ],
+      "actions": [
+        "workflow.project.create"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.project.delete_confirm",
+      "type": "confirmation",
+      "name": "Confirm Project deletion",
+      "used_by": [
+        "screen.project.list"
+      ],
+      "data_source": "entity.project",
+      "fields": [],
+      "actions": [
+        "workflow.project.delete"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.project.edit_form",
+      "type": "form",
+      "name": "Edit Project form",
+      "used_by": [
+        "screen.project.edit"
+      ],
+      "data_source": "entity.project",
+      "fields": [
+        "name",
+        "description",
+        "status",
+        "due_date"
+      ],
+      "actions": [
+        "workflow.project.update"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.project.table",
+      "type": "data_table",
+      "name": "Projects table",
+      "used_by": [
+        "screen.project.list"
+      ],
+      "data_source": "entity.project",
+      "fields": [],
+      "actions": [
+        "workflow.project.create",
+        "workflow.project.update",
+        "workflow.project.delete"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.project_member.create_form",
+      "type": "form",
+      "name": "Create Project Member form",
+      "used_by": [
+        "screen.project_member.create"
+      ],
+      "data_source": "entity.project_member",
+      "fields": [
+        "project_id",
+        "user_id"
+      ],
+      "actions": [
+        "workflow.project_member.create"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.project_member.delete_confirm",
+      "type": "confirmation",
+      "name": "Confirm Project Member deletion",
+      "used_by": [
+        "screen.project_member.list"
+      ],
+      "data_source": "entity.project_member",
+      "fields": [],
+      "actions": [
+        "workflow.project_member.delete"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.project_member.table",
+      "type": "data_table",
+      "name": "Project Members table",
+      "used_by": [
+        "screen.project_member.list"
+      ],
+      "data_source": "entity.project_member",
+      "fields": [],
+      "actions": [
+        "workflow.project_member.create",
+        "workflow.project_member.delete"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.task.card",
+      "type": "card",
+      "name": "Task card",
+      "used_by": [
+        "screen.task.detail"
+      ],
+      "data_source": "entity.task",
+      "fields": [],
+      "actions": [],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.task.create_form",
+      "type": "form",
+      "name": "Create Task form",
+      "used_by": [
+        "screen.task.create"
+      ],
+      "data_source": "entity.task",
+      "fields": [
+        "title",
+        "project_id"
+      ],
+      "actions": [
+        "workflow.task.create"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.task.delete_confirm",
+      "type": "confirmation",
+      "name": "Confirm Task deletion",
+      "used_by": [
+        "screen.task.list"
+      ],
+      "data_source": "entity.task",
+      "fields": [],
+      "actions": [
+        "workflow.task.delete"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.task.edit_form",
+      "type": "form",
+      "name": "Edit Task form",
+      "used_by": [
+        "screen.task.edit"
+      ],
+      "data_source": "entity.task",
+      "fields": [
+        "title",
+        "description",
+        "due_date"
+      ],
+      "actions": [
+        "workflow.task.update"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "component.task.table",
+      "type": "data_table",
+      "name": "Tasks table",
+      "used_by": [
+        "screen.task.list"
+      ],
+      "data_source": "entity.task",
+      "fields": [],
+      "actions": [
+        "workflow.task.create",
+        "workflow.task.update",
+        "workflow.task.delete"
+      ],
+      "description": "",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

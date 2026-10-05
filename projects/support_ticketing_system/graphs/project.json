@@ -1,0 +1,52 @@
+{
+  "name": "Support Ticketing System",
+  "description": "A helpdesk where customers raise tickets and agents resolve them.",
+  "product_type": "saas",
+  "primary_objective": "Give customers a reliable way to get help and give agents a structured queue.",
+  "target_users": [
+    "Customer",
+    "Agent",
+    "Manager"
+  ],
+  "technology_constraints": [],
+  "security_requirements": [
+    "Passwords are stored hashed; protected endpoints require authentication."
+  ],
+  "integration_requirements": [],
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "graph_version": "1.0.0",
+  "actors": [
+    "actor.agent",
+    "actor.customer",
+    "actor.manager"
+  ],
+  "roles": [
+    "role.agent",
+    "role.customer",
+    "role.manager"
+  ],
+  "capabilities": [
+    "capability.authentication",
+    "capability.support_dashboard",
+    "capability.ticket_assignment",
+    "capability.ticket_comments",
+    "capability.ticket_management",
+    "capability.ticket_status"
+  ],
+  "functional_requirements": [
+    "requirement.authentication",
+    "requirement.support_dashboard",
+    "requirement.ticket_assignment",
+    "requirement.ticket_comments",
+    "requirement.ticket_management",
+    "requirement.ticket_status"
+  ],
+  "non_functional_requirements": [
+    "requirement.nfr.accessibility",
+    "requirement.nfr.performance",
+    "requirement.nfr.responsive",
+    "requirement.nfr.security"
+  ]
+}

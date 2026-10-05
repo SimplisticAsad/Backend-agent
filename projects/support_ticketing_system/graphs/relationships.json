@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "relationships": [
+    {
+      "id": "relationship.ticket.assignee",
+      "source": "entity.ticket",
+      "target": "entity.user",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Ticket belongs to one User through assignee_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "assignee_id links ticket to user"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.ticket.requester",
+      "source": "entity.ticket",
+      "target": "entity.user",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Ticket belongs to one User through requester_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "requester_id links ticket to user"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.ticket_comment.author",
+      "source": "entity.ticket_comment",
+      "target": "entity.user",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Ticket Comment belongs to one User through author_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "author_id links ticket_comment to user"
+        },
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "relationship.ticket_comment.ticket",
+      "source": "entity.ticket_comment",
+      "target": "entity.ticket",
+      "type": "belongs_to",
+      "cardinality": "many_to_one",
+      "description": "Each Ticket Comment belongs to one Ticket through ticket_id.",
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "ticket_id links ticket_comment to ticket"
+        },
+        "confidence": 0.8
+      }
+    }
+  ]
+}

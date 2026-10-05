@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "roles": [
+    {
+      "id": "role.agent",
+      "name": "Agent",
+      "description": "Authority held by a Agent.",
+      "inherits": [],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Agents respond to tickets and resolve them."
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "role.customer",
+      "name": "Customer",
+      "description": "Authority held by a Customer.",
+      "inherits": [],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Build a customer support ticketing system."
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "role.manager",
+      "name": "Manager",
+      "description": "Authority held by a Manager.",
+      "inherits": [],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Managers assign tickets to agents and see a dashboard with ticket statistics."
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

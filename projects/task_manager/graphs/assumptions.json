@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "assumptions": [
+    {
+      "id": "assumption.project_visibility",
+      "description": "Employees can see all projects, not only the ones they are assigned to.",
+      "confidence": "medium",
+      "reason": "The idea does not say what employees may see.",
+      "affects": [
+        "permission.project.list",
+        "operation.project.list"
+      ],
+      "provenance": {
+        "source": {
+          "type": "assumption",
+          "text": "The idea does not say what employees may see."
+        },
+        "confidence": 0.5
+      }
+    }
+  ]
+}

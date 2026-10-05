@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "layout": "sidebar_with_topbar",
+  "entry_screen_ref": "screen.auth.login",
+  "navigation": [
+    {
+      "id": "nav.ticket_list",
+      "label": "Ticket List",
+      "screen_ref": "screen.ticket.list",
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "role_refs": []
+    },
+    {
+      "id": "nav.ticket_comment_list",
+      "label": "Comment List",
+      "screen_ref": "screen.ticket_comment.list",
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "role_refs": []
+    },
+    {
+      "id": "nav.dashboard_support",
+      "label": "Support Dashboard",
+      "screen_ref": "screen.dashboard.support",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "role_refs": []
+    }
+  ],
+  "breakpoints": {
+    "mobile": 0,
+    "tablet": 768,
+    "desktop": 1280
+  },
+  "global_states": {
+    "loading": "Skeleton placeholders",
+    "empty": "Illustrated empty state with a call to action",
+    "error": "Inline error banner with retry"
+  },
+  "accessibility": [
+    "WCAG 2.1 AA",
+    "Full keyboard navigation",
+    "Visible focus indicators"
+  ],
+  "notifications": [
+    "Toast on success",
+    "Toast on failure"
+  ]
+}

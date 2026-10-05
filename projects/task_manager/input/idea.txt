@@ -1,0 +1,20 @@
+Build a SaaS application for managing a small company's employees,
+projects and tasks.
+
+Employees can belong to departments.
+
+Managers can create projects and assign employees to projects.
+
+Projects contain tasks.
+
+Tasks have statuses such as todo, in progress and completed.
+
+Employees should have dashboards showing their assigned tasks.
+
+Managers should have dashboards showing project progress.
+
+Users must log in.
+
+Managers can create, edit and delete projects.
+
+Employees can update their assigned tasks.

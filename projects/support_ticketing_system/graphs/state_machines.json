@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "state_machines": [
+    {
+      "id": "state_machine.ticket",
+      "entity_ref": "entity.ticket",
+      "field": "status",
+      "states": [
+        "open",
+        "in_progress",
+        "resolved",
+        "closed"
+      ],
+      "initial_state": "open",
+      "transitions": [
+        {
+          "from": "open",
+          "to": "in_progress",
+          "role_refs": [
+            "role.agent",
+            "role.manager"
+          ],
+          "operation_ref": "operation.ticket.change_status",
+          "guard": ""
+        },
+        {
+          "from": "in_progress",
+          "to": "resolved",
+          "role_refs": [
+            "role.agent",
+            "role.manager"
+          ],
+          "operation_ref": "operation.ticket.change_status",
+          "guard": ""
+        },
+        {
+          "from": "resolved",
+          "to": "closed",
+          "role_refs": [
+            "role.agent",
+            "role.manager"
+          ],
+          "operation_ref": "operation.ticket.change_status",
+          "guard": ""
+        },
+        {
+          "from": "resolved",
+          "to": "in_progress",
+          "role_refs": [
+            "role.agent",
+            "role.manager"
+          ],
+          "operation_ref": "operation.ticket.change_status",
+          "guard": ""
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

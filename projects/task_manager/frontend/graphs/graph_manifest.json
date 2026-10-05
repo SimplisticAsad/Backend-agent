@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "project_id": "task_manager",
+  "graph_version": "1.0.0",
+  "generated_by": "graph-making-agent (hand-authored fixture)",
+  "files": {
+    "project": "project.json",
+    "actors": "actors.json",
+    "roles": "roles.json",
+    "entities": "entities.json",
+    "relationships": "relationships.json",
+    "capabilities": "capabilities.json",
+    "requirements": "requirements.json",
+    "screens": "screens.json",
+    "components": "components.json",
+    "workflows": "workflows.json",
+    "api": "api.json",
+    "permissions": "permissions.json",
+    "validations": "validations.json",
+    "state_machines": "state_machines.json",
+    "dependencies": "dependencies.json",
+    "acceptance_criteria": "acceptance_criteria.json",
+    "assumptions": "assumptions.json",
+    "questions": "questions.json"
+  }
+}

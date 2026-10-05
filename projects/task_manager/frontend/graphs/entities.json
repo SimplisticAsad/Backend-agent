@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0",
+  "graph": "entities",
+  "nodes": [
+    {
+      "id": "entity.user",
+      "name": "User",
+      "display_field": "name",
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "readonly": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "name": "role",
+          "type": "enum",
+          "required": true,
+          "values": [
+            "manager",
+            "employee"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "entity.credentials",
+      "name": "Credentials",
+      "transient": true,
+      "fields": [
+        {
+          "name": "email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "name": "password",
+          "type": "password",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "entity.project",
+      "name": "Project",
+      "display_field": "name",
+      "list_fields": [
+        "name",
+        "description"
+      ],
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "readonly": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "owner_id",
+          "type": "ref",
+          "required": true,
+          "readonly": true,
+          "ref": "entity.user"
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "required": true,
+          "readonly": true
+        }
+      ]
+    },
+    {
+      "id": "entity.task",
+      "name": "Task",
+      "display_field": "title",
+      "state_machine": "sm.task.status",
+      "list_fields": [
+        "title",
+        "project_id",
+        "assignee_id",
+        "status",
+        "due_date"
+      ],
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "readonly": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "project_id",
+          "type": "ref",
+          "required": true,
+          "ref": "entity.project"
+        },
+        {
+          "name": "assignee_id",
+          "type": "ref",
+          "required": false,
+          "ref": "entity.user"
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "required": true,
+          "readonly": true,
+          "values": [
+            "TODO",
+            "IN_PROGRESS",
+            "COMPLETED"
+          ]
+        },
+        {
+          "name": "due_date",
+          "type": "date",
+          "required": false
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "required": true,
+          "readonly": true
+        }
+      ]
+    }
+  ]
+}

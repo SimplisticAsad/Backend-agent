@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "questions": [
+    {
+      "id": "question.multiple_departments",
+      "question": "Can an employee belong to more than one department?",
+      "impact": [
+        "entities",
+        "relationships"
+      ],
+      "priority": "low",
+      "related_refs": [
+        "entity.employee"
+      ],
+      "default_assumption_ref": null
+    },
+    {
+      "id": "question.project_visibility",
+      "question": "Should employees be able to see projects they are not assigned to?",
+      "impact": [
+        "permissions",
+        "screens",
+        "api"
+      ],
+      "priority": "high",
+      "related_refs": [
+        "operation.project.list",
+        "screen.project.list"
+      ],
+      "default_assumption_ref": "assumption.project_visibility"
+    },
+    {
+      "id": "question.who_assigns_tasks",
+      "question": "Who assigns tasks to employees? The idea refers to assigned tasks but does not say how tasks get an assignee.",
+      "impact": [
+        "workflows",
+        "permissions",
+        "screens"
+      ],
+      "priority": "high",
+      "related_refs": [
+        "entity.task",
+        "operation.task.list_assigned"
+      ],
+      "default_assumption_ref": null
+    }
+  ]
+}

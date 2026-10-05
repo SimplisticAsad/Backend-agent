@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "questions": [
+    {
+      "id": "question.guest_checkout",
+      "question": "Should guests be allowed to checkout?",
+      "impact": [
+        "permissions",
+        "workflows",
+        "screens",
+        "api"
+      ],
+      "priority": "high",
+      "related_refs": [
+        "operation.order.place",
+        "workflow.order.checkout"
+      ],
+      "default_assumption_ref": "assumption.checkout_requires_login"
+    },
+    {
+      "id": "question.payment_provider",
+      "question": "Which payment provider should be integrated?",
+      "impact": [
+        "api",
+        "backend"
+      ],
+      "priority": "medium",
+      "related_refs": [
+        "operation.order.place"
+      ],
+      "default_assumption_ref": null
+    },
+    {
+      "id": "question.stock_reservation",
+      "question": "Should stock be reserved when a product is added to the cart?",
+      "impact": [
+        "backend",
+        "entities"
+      ],
+      "priority": "low",
+      "related_refs": [
+        "entity.product"
+      ],
+      "default_assumption_ref": null
+    }
+  ]
+}

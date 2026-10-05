@@ -1,0 +1,253 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "entities": [
+    {
+      "id": "entity.ticket",
+      "name": "Ticket",
+      "description": "A support request.",
+      "attributes": [
+        {
+          "id": "entity.ticket.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.ticket.title",
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.ticket.description",
+          "name": "description",
+          "type": "text",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.ticket.status",
+          "name": "status",
+          "type": "enum",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [
+            "open",
+            "in_progress",
+            "resolved",
+            "closed"
+          ],
+          "reference_to": null
+        },
+        {
+          "id": "entity.ticket.priority",
+          "name": "priority",
+          "type": "enum",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [
+            "low",
+            "medium",
+            "high",
+            "urgent"
+          ],
+          "reference_to": null
+        },
+        {
+          "id": "entity.ticket.requester_id",
+          "name": "requester_id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.user"
+        },
+        {
+          "id": "entity.ticket.assignee_id",
+          "name": "assignee_id",
+          "type": "uuid",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.user"
+        },
+        {
+          "id": "entity.ticket.created_at",
+          "name": "created_at",
+          "type": "datetime",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Build a customer support ticketing system."
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "entity.ticket_comment",
+      "name": "Ticket Comment",
+      "description": "A message on a ticket.",
+      "attributes": [
+        {
+          "id": "entity.ticket_comment.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.ticket_comment.ticket_id",
+          "name": "ticket_id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.ticket"
+        },
+        {
+          "id": "entity.ticket_comment.author_id",
+          "name": "author_id",
+          "type": "uuid",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": "entity.user"
+        },
+        {
+          "id": "entity.ticket_comment.body",
+          "name": "body",
+          "type": "text",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.ticket_comment.created_at",
+          "name": "created_at",
+          "type": "datetime",
+          "required": false,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Customers can open tickets and add comments."
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "entity.user",
+      "name": "User",
+      "description": "An account that can sign in to the product.",
+      "attributes": [
+        {
+          "id": "entity.user.id",
+          "name": "id",
+          "type": "uuid",
+          "required": true,
+          "unique": true,
+          "description": "Stable identifier",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.email",
+          "name": "email",
+          "type": "email",
+          "required": true,
+          "unique": true,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.password_hash",
+          "name": "password_hash",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.full_name",
+          "name": "full_name",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.role",
+          "name": "role",
+          "type": "enum",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [
+            "customer",
+            "agent",
+            "manager"
+          ],
+          "reference_to": null
+        },
+        {
+          "id": "entity.user.created_at",
+          "name": "created_at",
+          "type": "datetime",
+          "required": true,
+          "unique": false,
+          "description": "",
+          "enum_values": [],
+          "reference_to": null
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Users must log in."
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

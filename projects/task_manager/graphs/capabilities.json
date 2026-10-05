@@ -1,0 +1,217 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "capabilities": [
+    {
+      "id": "capability.authentication",
+      "name": "Authentication",
+      "description": "Email/password login, logout and password reset.",
+      "requirement_refs": [
+        "requirement.authentication"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.user"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.department_management",
+      "name": "Department management",
+      "description": "Create, view, change and remove departments.",
+      "requirement_refs": [
+        "requirement.department_management"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.department"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.employee_dashboard",
+      "name": "Employee dashboard",
+      "description": "Employees see their assigned tasks.",
+      "requirement_refs": [
+        "requirement.employee_dashboard"
+      ],
+      "actor_refs": [
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.task"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.employee_directory",
+      "name": "Employee directory",
+      "description": "Create, view, change and remove employees.",
+      "requirement_refs": [
+        "requirement.employee_directory"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.department",
+        "entity.employee",
+        "entity.user"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.project_assignment",
+      "name": "Project assignment",
+      "description": "Create, view, change and remove project members.",
+      "requirement_refs": [
+        "requirement.project_assignment"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.project",
+        "entity.project_member",
+        "entity.user"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.project_management",
+      "name": "Project management",
+      "description": "Create, view, change and remove projects.",
+      "requirement_refs": [
+        "requirement.project_management"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.project"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.project_progress",
+      "name": "Project progress dashboard",
+      "description": "Managers follow project progress.",
+      "requirement_refs": [
+        "requirement.project_progress"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.project",
+        "entity.task"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_progress, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.task_management",
+      "name": "Task management",
+      "description": "Create, view, change and remove tasks.",
+      "requirement_refs": [
+        "requirement.task_management"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.project",
+        "entity.task"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "capability.task_status",
+      "name": "Task status tracking",
+      "description": "Tasks move through todo, in progress and completed.",
+      "requirement_refs": [
+        "requirement.task_status"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.task"
+      ],
+      "requires_ui": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "graph": "state_machines",
+  "nodes": [
+    {
+      "id": "sm.task.status",
+      "entity": "entity.task",
+      "field": "status",
+      "states": [
+        "TODO",
+        "IN_PROGRESS",
+        "COMPLETED"
+      ],
+      "initial": "TODO",
+      "transitions": [
+        {
+          "from": "TODO",
+          "to": "IN_PROGRESS",
+          "permission": "permission.task.update_status"
+        },
+        {
+          "from": "IN_PROGRESS",
+          "to": "COMPLETED",
+          "permission": "permission.task.update_status"
+        },
+        {
+          "from": "IN_PROGRESS",
+          "to": "TODO",
+          "permission": "permission.task.update_status"
+        },
+        {
+          "from": "COMPLETED",
+          "to": "IN_PROGRESS",
+          "permission": "permission.task.reopen"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "questions": [
+    {
+      "id": "question.email_channel",
+      "question": "Should tickets also be created from incoming email?",
+      "impact": [
+        "api",
+        "backend"
+      ],
+      "priority": "low",
+      "related_refs": [],
+      "default_assumption_ref": null
+    },
+    {
+      "id": "question.internal_notes",
+      "question": "Can customers see internal agent notes on their tickets?",
+      "impact": [
+        "permissions",
+        "entities",
+        "screens"
+      ],
+      "priority": "high",
+      "related_refs": [
+        "entity.ticket_comment"
+      ],
+      "default_assumption_ref": null
+    },
+    {
+      "id": "question.sla",
+      "question": "Are there response-time targets (SLAs) tickets must meet?",
+      "impact": [
+        "requirements",
+        "validations"
+      ],
+      "priority": "medium",
+      "related_refs": [],
+      "default_assumption_ref": null
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "roles": [
+    {
+      "id": "role.customer",
+      "name": "Customer",
+      "description": "Authority held by a Customer.",
+      "inherits": [],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "The Customer role is implied by the capabilities"
+        },
+        "confidence": 0.65
+      }
+    }
+  ]
+}

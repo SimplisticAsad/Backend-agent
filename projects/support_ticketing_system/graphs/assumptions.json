@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "assumptions": [
+    {
+      "id": "assumption.default_priority",
+      "description": "New tickets default to medium priority when the customer does not choose one.",
+      "confidence": "medium",
+      "reason": "No default priority was stated.",
+      "affects": [
+        "entity.ticket"
+      ],
+      "provenance": {
+        "source": {
+          "type": "assumption",
+          "text": "No default priority was stated."
+        },
+        "confidence": 0.5
+      }
+    }
+  ]
+}

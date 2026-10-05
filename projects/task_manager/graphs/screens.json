@@ -1,0 +1,1502 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "screens": [
+    {
+      "id": "screen.auth.forgot_password",
+      "name": "Forgot Password",
+      "route": "/forgot-password",
+      "purpose": "Request a password reset link",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.user"
+      ],
+      "workflow_refs": [
+        "workflow.auth.password_reset"
+      ],
+      "component_refs": [
+        "component.auth.forgot_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.auth_password_reset",
+          "label": "Reset password",
+          "workflow_ref": "workflow.auth.password_reset"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Reset Password",
+          "target": "screen.auth.reset_password"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Forgot Password content is fetched",
+        "empty": "Explain that there are no users to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Forgot Password content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.auth.login",
+      "name": "Login",
+      "route": "/login",
+      "purpose": "Authenticate with email and password",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.user"
+      ],
+      "workflow_refs": [
+        "workflow.auth.login",
+        "workflow.auth.logout",
+        "workflow.auth.password_reset"
+      ],
+      "component_refs": [
+        "component.auth.login_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.auth_login",
+          "label": "Log in",
+          "workflow_ref": "workflow.auth.login"
+        },
+        {
+          "id": "action.auth_logout",
+          "label": "Log out",
+          "workflow_ref": "workflow.auth.logout"
+        },
+        {
+          "id": "action.auth_password_reset",
+          "label": "Reset password",
+          "workflow_ref": "workflow.auth.password_reset"
+        }
+      ],
+      "navigation": [],
+      "states": {
+        "loading": "Show a loading indicator while the Login content is fetched",
+        "empty": "Explain that there are no users to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Login content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.auth.reset_password",
+      "name": "Reset Password",
+      "route": "/reset-password",
+      "purpose": "Choose a new password",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.user"
+      ],
+      "workflow_refs": [
+        "workflow.auth.password_reset"
+      ],
+      "component_refs": [
+        "component.auth.reset_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.auth_password_reset",
+          "label": "Reset password",
+          "workflow_ref": "workflow.auth.password_reset"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Login",
+          "target": "screen.auth.login"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Reset Password content is fetched",
+        "empty": "Explain that there are no users to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Reset Password content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.dashboard.employee",
+      "name": "Employee Dashboard",
+      "route": "/dashboard",
+      "purpose": "Show the employee's assigned tasks",
+      "capability_refs": [
+        "capability.employee_dashboard"
+      ],
+      "actor_refs": [
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.task"
+      ],
+      "workflow_refs": [
+        "workflow.dashboard.employee_view"
+      ],
+      "component_refs": [
+        "component.dashboard.employee_tasks",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.task",
+          "operation_ref": "operation.task.list_assigned",
+          "description": "Loads data via List my assigned tasks"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.dashboard_employee_view",
+          "label": "View my dashboard",
+          "workflow_ref": "workflow.dashboard.employee_view"
+        }
+      ],
+      "navigation": [],
+      "states": {
+        "loading": "Show a loading indicator while the Employee Dashboard content is fetched",
+        "empty": "Explain that there are no tasks to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Employee Dashboard content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.employee"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.dashboard.manager",
+      "name": "Project Progress Dashboard",
+      "route": "/dashboard/progress",
+      "purpose": "Show completion progress of every project",
+      "capability_refs": [
+        "capability.project_progress"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.project"
+      ],
+      "workflow_refs": [
+        "workflow.dashboard.manager_progress"
+      ],
+      "component_refs": [
+        "component.dashboard.progress_chart",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.project",
+          "operation_ref": "operation.project.progress",
+          "description": "Loads data via Get project progress"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.dashboard_manager_progress",
+          "label": "View project progress",
+          "workflow_ref": "workflow.dashboard.manager_progress"
+        }
+      ],
+      "navigation": [],
+      "states": {
+        "loading": "Show a loading indicator while the Project Progress Dashboard content is fetched",
+        "empty": "Explain that there are no projects to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Project Progress Dashboard content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_progress, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.department.create",
+      "name": "Create Department",
+      "route": "/departments/new",
+      "purpose": "Create a department",
+      "capability_refs": [
+        "capability.department_management"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.department"
+      ],
+      "workflow_refs": [
+        "workflow.department.create"
+      ],
+      "component_refs": [
+        "component.department.create_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.department_create",
+          "label": "Create Department",
+          "workflow_ref": "workflow.department.create"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Department List",
+          "target": "screen.department.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Create Department content is fetched",
+        "empty": "Explain that there are no departments to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Create Department content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.department.edit",
+      "name": "Edit Department",
+      "route": "/departments/:id/edit",
+      "purpose": "Edit a department",
+      "capability_refs": [
+        "capability.department_management"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.department"
+      ],
+      "workflow_refs": [
+        "workflow.department.update"
+      ],
+      "component_refs": [
+        "component.department.edit_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.department_update",
+          "label": "Update Department",
+          "workflow_ref": "workflow.department.update"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Department List",
+          "target": "screen.department.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Edit Department content is fetched",
+        "empty": "Explain that there are no departments to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Edit Department content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.department.list",
+      "name": "Department List",
+      "route": "/departments",
+      "purpose": "Browse departments",
+      "capability_refs": [
+        "capability.department_management"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.department"
+      ],
+      "workflow_refs": [
+        "workflow.department.create",
+        "workflow.department.update",
+        "workflow.department.browse"
+      ],
+      "component_refs": [
+        "component.department.table",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.department",
+          "operation_ref": "operation.department.list",
+          "description": "Loads data via List Departments"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.department_create",
+          "label": "Create Department",
+          "workflow_ref": "workflow.department.create"
+        },
+        {
+          "id": "action.department_update",
+          "label": "Update Department",
+          "workflow_ref": "workflow.department.update"
+        },
+        {
+          "id": "action.department_browse",
+          "label": "Browse Departments",
+          "workflow_ref": "workflow.department.browse"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Create Department",
+          "target": "screen.department.create"
+        },
+        {
+          "label": "Go to Edit Department",
+          "target": "screen.department.edit"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Department List content is fetched",
+        "empty": "Explain that there are no departments to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Department List content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.employee.create",
+      "name": "Create Employee",
+      "route": "/employees/new",
+      "purpose": "Create a employee",
+      "capability_refs": [
+        "capability.employee_directory"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.employee"
+      ],
+      "workflow_refs": [
+        "workflow.employee.create"
+      ],
+      "component_refs": [
+        "component.employee.create_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.employee_create",
+          "label": "Create Employee",
+          "workflow_ref": "workflow.employee.create"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Employee List",
+          "target": "screen.employee.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Create Employee content is fetched",
+        "empty": "Explain that there are no employees to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Create Employee content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.employee.detail",
+      "name": "Employee Details",
+      "route": "/employees/:id",
+      "purpose": "Show one employee",
+      "capability_refs": [
+        "capability.employee_directory"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.employee"
+      ],
+      "workflow_refs": [
+        "workflow.employee.update",
+        "workflow.employee.browse"
+      ],
+      "component_refs": [
+        "component.employee.card"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.employee",
+          "operation_ref": "operation.employee.read",
+          "description": "Loads data via View Employee"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.employee_update",
+          "label": "Update Employee",
+          "workflow_ref": "workflow.employee.update"
+        },
+        {
+          "id": "action.employee_browse",
+          "label": "Browse Employees",
+          "workflow_ref": "workflow.employee.browse"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Edit Employee",
+          "target": "screen.employee.edit"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Employee Details content is fetched",
+        "empty": "Explain that there are no employees to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Employee Details content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.employee.edit",
+      "name": "Edit Employee",
+      "route": "/employees/:id/edit",
+      "purpose": "Edit a employee",
+      "capability_refs": [
+        "capability.employee_directory"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.employee"
+      ],
+      "workflow_refs": [
+        "workflow.employee.update"
+      ],
+      "component_refs": [
+        "component.employee.edit_form"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.employee",
+          "operation_ref": "operation.employee.read",
+          "description": "Loads data via View Employee"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.employee_update",
+          "label": "Update Employee",
+          "workflow_ref": "workflow.employee.update"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Employee List",
+          "target": "screen.employee.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Edit Employee content is fetched",
+        "empty": "Explain that there are no employees to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Edit Employee content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.employee.list",
+      "name": "Employee List",
+      "route": "/employees",
+      "purpose": "Browse employees",
+      "capability_refs": [
+        "capability.employee_directory"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.employee"
+      ],
+      "workflow_refs": [
+        "workflow.employee.create",
+        "workflow.employee.update",
+        "workflow.employee.browse"
+      ],
+      "component_refs": [
+        "component.employee.table",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.employee",
+          "operation_ref": "operation.employee.list",
+          "description": "Loads data via List Employees"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.employee_create",
+          "label": "Create Employee",
+          "workflow_ref": "workflow.employee.create"
+        },
+        {
+          "id": "action.employee_update",
+          "label": "Update Employee",
+          "workflow_ref": "workflow.employee.update"
+        },
+        {
+          "id": "action.employee_browse",
+          "label": "Browse Employees",
+          "workflow_ref": "workflow.employee.browse"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Create Employee",
+          "target": "screen.employee.create"
+        },
+        {
+          "label": "Go to Employee Details",
+          "target": "screen.employee.detail"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Employee List content is fetched",
+        "empty": "Explain that there are no employees to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Employee List content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.project.create",
+      "name": "Create Project",
+      "route": "/projects/new",
+      "purpose": "Create a project",
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.project"
+      ],
+      "workflow_refs": [
+        "workflow.project.create"
+      ],
+      "component_refs": [
+        "component.project.create_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.project_create",
+          "label": "Create Project",
+          "workflow_ref": "workflow.project.create"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Project List",
+          "target": "screen.project.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Create Project content is fetched",
+        "empty": "Explain that there are no projects to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Create Project content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.project.detail",
+      "name": "Project Details",
+      "route": "/projects/:id",
+      "purpose": "Show one project",
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.project"
+      ],
+      "workflow_refs": [
+        "workflow.project.update",
+        "workflow.project.browse"
+      ],
+      "component_refs": [
+        "component.project.card"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.project",
+          "operation_ref": "operation.project.read",
+          "description": "Loads data via View Project"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.project_update",
+          "label": "Update Project",
+          "workflow_ref": "workflow.project.update"
+        },
+        {
+          "id": "action.project_browse",
+          "label": "Browse Projects",
+          "workflow_ref": "workflow.project.browse"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Edit Project",
+          "target": "screen.project.edit"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Project Details content is fetched",
+        "empty": "Explain that there are no projects to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Project Details content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.project.edit",
+      "name": "Edit Project",
+      "route": "/projects/:id/edit",
+      "purpose": "Edit a project",
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.project"
+      ],
+      "workflow_refs": [
+        "workflow.project.update"
+      ],
+      "component_refs": [
+        "component.project.edit_form"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.project",
+          "operation_ref": "operation.project.read",
+          "description": "Loads data via View Project"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.project_update",
+          "label": "Update Project",
+          "workflow_ref": "workflow.project.update"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Project List",
+          "target": "screen.project.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Edit Project content is fetched",
+        "empty": "Explain that there are no projects to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Edit Project content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.project.list",
+      "name": "Project List",
+      "route": "/projects",
+      "purpose": "Browse projects",
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.project"
+      ],
+      "workflow_refs": [
+        "workflow.project.create",
+        "workflow.project.update",
+        "workflow.project.delete",
+        "workflow.project.browse"
+      ],
+      "component_refs": [
+        "component.project.table",
+        "component.project.delete_confirm",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.project",
+          "operation_ref": "operation.project.list",
+          "description": "Loads data via List Projects"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.project_create",
+          "label": "Create Project",
+          "workflow_ref": "workflow.project.create"
+        },
+        {
+          "id": "action.project_update",
+          "label": "Update Project",
+          "workflow_ref": "workflow.project.update"
+        },
+        {
+          "id": "action.project_delete",
+          "label": "Delete Project",
+          "workflow_ref": "workflow.project.delete"
+        },
+        {
+          "id": "action.project_browse",
+          "label": "Browse Projects",
+          "workflow_ref": "workflow.project.browse"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Create Project",
+          "target": "screen.project.create"
+        },
+        {
+          "label": "Go to Project Details",
+          "target": "screen.project.detail"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Project List content is fetched",
+        "empty": "Explain that there are no projects to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Project List content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.project_member.create",
+      "name": "Create Project Member",
+      "route": "/project-members/new",
+      "purpose": "Create a project member",
+      "capability_refs": [
+        "capability.project_assignment"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.project_member"
+      ],
+      "workflow_refs": [
+        "workflow.project_member.create"
+      ],
+      "component_refs": [
+        "component.project_member.create_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.project_member_create",
+          "label": "Create Project Member",
+          "workflow_ref": "workflow.project_member.create"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Project Member List",
+          "target": "screen.project_member.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Create Project Member content is fetched",
+        "empty": "Explain that there are no project members to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Create Project Member content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.project_member.list",
+      "name": "Project Member List",
+      "route": "/project-members",
+      "purpose": "Browse project members",
+      "capability_refs": [
+        "capability.project_assignment"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.project_member"
+      ],
+      "workflow_refs": [
+        "workflow.project_member.create",
+        "workflow.project_member.delete",
+        "workflow.project_member.browse"
+      ],
+      "component_refs": [
+        "component.project_member.table",
+        "component.project_member.delete_confirm",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.project_member",
+          "operation_ref": "operation.project_member.list",
+          "description": "Loads data via List Project Members"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.project_member_create",
+          "label": "Create Project Member",
+          "workflow_ref": "workflow.project_member.create"
+        },
+        {
+          "id": "action.project_member_delete",
+          "label": "Delete Project Member",
+          "workflow_ref": "workflow.project_member.delete"
+        },
+        {
+          "id": "action.project_member_browse",
+          "label": "Browse Project Members",
+          "workflow_ref": "workflow.project_member.browse"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Create Project Member",
+          "target": "screen.project_member.create"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Project Member List content is fetched",
+        "empty": "Explain that there are no project members to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Project Member List content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.task.create",
+      "name": "Create Task",
+      "route": "/tasks/new",
+      "purpose": "Create a task",
+      "capability_refs": [
+        "capability.task_management"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.task"
+      ],
+      "workflow_refs": [
+        "workflow.task.create"
+      ],
+      "component_refs": [
+        "component.task.create_form"
+      ],
+      "data_required": [],
+      "actions": [
+        {
+          "id": "action.task_create",
+          "label": "Create Task",
+          "workflow_ref": "workflow.task.create"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Task List",
+          "target": "screen.task.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Create Task content is fetched",
+        "empty": "Explain that there are no tasks to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Create Task content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.task.detail",
+      "name": "Task Details",
+      "route": "/tasks/:id",
+      "purpose": "Show one task",
+      "capability_refs": [
+        "capability.task_management",
+        "capability.task_status"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.task"
+      ],
+      "workflow_refs": [
+        "workflow.task.update",
+        "workflow.task.browse",
+        "workflow.task.update_status"
+      ],
+      "component_refs": [
+        "component.task.card"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.task",
+          "operation_ref": "operation.task.read",
+          "description": "Loads data via View Task"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.task_update",
+          "label": "Update Task",
+          "workflow_ref": "workflow.task.update"
+        },
+        {
+          "id": "action.task_browse",
+          "label": "Browse Tasks",
+          "workflow_ref": "workflow.task.browse"
+        },
+        {
+          "id": "action.task_update_status",
+          "label": "Update task status",
+          "workflow_ref": "workflow.task.update_status"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Edit Task",
+          "target": "screen.task.edit"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Task Details content is fetched",
+        "empty": "Explain that there are no tasks to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Task Details content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.task.edit",
+      "name": "Edit Task",
+      "route": "/tasks/:id/edit",
+      "purpose": "Edit a task",
+      "capability_refs": [
+        "capability.task_management"
+      ],
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "entity_refs": [
+        "entity.task"
+      ],
+      "workflow_refs": [
+        "workflow.task.update"
+      ],
+      "component_refs": [
+        "component.task.edit_form"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.task",
+          "operation_ref": "operation.task.read",
+          "description": "Loads data via View Task"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.task_update",
+          "label": "Update Task",
+          "workflow_ref": "workflow.task.update"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Task List",
+          "target": "screen.task.list"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Edit Task content is fetched",
+        "empty": "Explain that there are no tasks to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Edit Task content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": [
+          "role.manager"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "screen.task.list",
+      "name": "Task List",
+      "route": "/tasks",
+      "purpose": "Browse tasks",
+      "capability_refs": [
+        "capability.task_management",
+        "capability.task_status"
+      ],
+      "actor_refs": [
+        "actor.manager",
+        "actor.employee"
+      ],
+      "entity_refs": [
+        "entity.task"
+      ],
+      "workflow_refs": [
+        "workflow.task.create",
+        "workflow.task.update",
+        "workflow.task.delete",
+        "workflow.task.browse",
+        "workflow.task.update_status"
+      ],
+      "component_refs": [
+        "component.task.table",
+        "component.task.delete_confirm",
+        "component.app.navigation"
+      ],
+      "data_required": [
+        {
+          "entity_ref": "entity.task",
+          "operation_ref": "operation.task.list",
+          "description": "Loads data via List Tasks"
+        }
+      ],
+      "actions": [
+        {
+          "id": "action.task_create",
+          "label": "Create Task",
+          "workflow_ref": "workflow.task.create"
+        },
+        {
+          "id": "action.task_update",
+          "label": "Update Task",
+          "workflow_ref": "workflow.task.update"
+        },
+        {
+          "id": "action.task_delete",
+          "label": "Delete Task",
+          "workflow_ref": "workflow.task.delete"
+        },
+        {
+          "id": "action.task_browse",
+          "label": "Browse Tasks",
+          "workflow_ref": "workflow.task.browse"
+        },
+        {
+          "id": "action.task_update_status",
+          "label": "Update task status",
+          "workflow_ref": "workflow.task.update_status"
+        }
+      ],
+      "navigation": [
+        {
+          "label": "Go to Create Task",
+          "target": "screen.task.create"
+        },
+        {
+          "label": "Go to Task Details",
+          "target": "screen.task.detail"
+        }
+      ],
+      "states": {
+        "loading": "Show a loading indicator while the Task List content is fetched",
+        "empty": "Explain that there are no tasks to show yet and offer the next step",
+        "error": "Show a clear error message with a retry action",
+        "success": "Show the Task List content or a confirmation of the completed action"
+      },
+      "responsive": {
+        "mobile": "Single column layout; tables collapse into stacked cards",
+        "tablet": "Two column layout where it fits",
+        "desktop": "Full layout with side navigation"
+      },
+      "authorization": {
+        "requires_authentication": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

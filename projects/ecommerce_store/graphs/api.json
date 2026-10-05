@@ -1,0 +1,538 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "schemas": [
+    {
+      "id": "schema.cart_item",
+      "name": "Cart Item",
+      "entity_ref": "entity.cart_item",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "product_id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "quantity",
+          "type": "integer",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.cart_item.create",
+      "name": "Create Cart Item request",
+      "entity_ref": "entity.cart_item",
+      "fields": [
+        {
+          "name": "product_id",
+          "type": "uuid!>product",
+          "required": true
+        },
+        {
+          "name": "quantity",
+          "type": "integer!",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.cart_item.update",
+      "name": "Update Cart Item request",
+      "entity_ref": "entity.cart_item",
+      "fields": [
+        {
+          "name": "quantity",
+          "type": "integer!",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.order",
+      "name": "Order",
+      "entity_ref": "entity.order",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "required": true
+        },
+        {
+          "name": "total",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "name": "shipping_address",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "placed_at",
+          "type": "datetime",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.order.place",
+      "name": "Place order request",
+      "entity_ref": "entity.order",
+      "fields": [
+        {
+          "name": "shipping_address",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "payment_method",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.product",
+      "name": "Product",
+      "entity_ref": "entity.product",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "price",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "name": "stock",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "category_id",
+          "type": "uuid",
+          "required": false
+        },
+        {
+          "name": "image_url",
+          "type": "url",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "schema.user",
+      "name": "User",
+      "entity_ref": "entity.user",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "name": "full_name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "role",
+          "type": "enum",
+          "required": true
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.user.login",
+      "name": "Log in request",
+      "entity_ref": "entity.user",
+      "fields": [
+        {
+          "name": "email",
+          "type": "email!*",
+          "required": true
+        },
+        {
+          "name": "password",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.user.request_password_reset",
+      "name": "Request password reset request",
+      "entity_ref": "entity.user",
+      "fields": [
+        {
+          "name": "email",
+          "type": "email!*",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "schema.user.reset_password",
+      "name": "Reset password request",
+      "entity_ref": "entity.user",
+      "fields": [
+        {
+          "name": "reset_token",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "new_password",
+          "type": "string",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "endpoints": [
+    {
+      "id": "api.cart_item.create",
+      "method": "POST",
+      "path": "/cart-items",
+      "operation_ref": "operation.cart_item.create",
+      "request_schema_ref": "schema.cart_item.create",
+      "response_schema_ref": "schema.cart_item",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.customer"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.cart_item.delete",
+      "method": "DELETE",
+      "path": "/cart-items/{id}",
+      "operation_ref": "operation.cart_item.delete",
+      "request_schema_ref": null,
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.customer"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.cart_item.list",
+      "method": "GET",
+      "path": "/cart-items",
+      "operation_ref": "operation.cart_item.list",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.cart_item",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.customer"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.cart_item.update",
+      "method": "PATCH",
+      "path": "/cart-items/{id}",
+      "operation_ref": "operation.cart_item.update",
+      "request_schema_ref": "schema.cart_item.update",
+      "response_schema_ref": "schema.cart_item",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.customer"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.shopping_cart, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.order.list",
+      "method": "GET",
+      "path": "/orders",
+      "operation_ref": "operation.order.list",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.order",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.customer"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.order.place",
+      "method": "POST",
+      "path": "/orders",
+      "operation_ref": "operation.order.place",
+      "request_schema_ref": "schema.order.place",
+      "response_schema_ref": "schema.order",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.customer"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.order.read",
+      "method": "GET",
+      "path": "/orders/{id}",
+      "operation_ref": "operation.order.read",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.order",
+      "authorization": {
+        "authenticated": true,
+        "roles": [
+          "role.customer"
+        ]
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.checkout, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.product.filter",
+      "method": "GET",
+      "path": "/products/filter",
+      "operation_ref": "operation.product.filter",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.product",
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_filter, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.product.list",
+      "method": "GET",
+      "path": "/products",
+      "operation_ref": "operation.product.list",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.product",
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.product_catalog, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "api.product.read",
+      "method": "GET",
+      "path": "/products/{id}",
+      "operation_ref": "operation.product.read",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.product",
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.product_catalog, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "api.product.search",
+      "method": "GET",
+      "path": "/products/search",
+      "operation_ref": "operation.product.search",
+      "request_schema_ref": null,
+      "response_schema_ref": "schema.product",
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.product_search, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "api.user.login",
+      "method": "POST",
+      "path": "/auth/login",
+      "operation_ref": "operation.user.login",
+      "request_schema_ref": "schema.user.login",
+      "response_schema_ref": "schema.user",
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "api.user.logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "operation_ref": "operation.user.logout",
+      "request_schema_ref": null,
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": true,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "api.user.request_password_reset",
+      "method": "POST",
+      "path": "/auth/forgot-password",
+      "operation_ref": "operation.user.request_password_reset",
+      "request_schema_ref": "schema.user.request_password_reset",
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "api.user.reset_password",
+      "method": "POST",
+      "path": "/auth/reset-password",
+      "operation_ref": "operation.user.reset_password",
+      "request_schema_ref": "schema.user.reset_password",
+      "response_schema_ref": null,
+      "authorization": {
+        "authenticated": false,
+        "roles": []
+      },
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Realises requirement.authentication, which the user did not state but the product needs"
+        },
+        "confidence": 0.6
+      }
+    }
+  ]
+}

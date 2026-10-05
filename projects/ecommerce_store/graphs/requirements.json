@@ -1,0 +1,221 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.ecommerce_store",
+  "requirements": [
+    {
+      "id": "requirement.authentication",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Users must be able to log in with email and password and reset a forgotten password.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria",
+        "validations"
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Not stated by the user; needed because the product cannot work without: Authentication"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "requirement.checkout",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Customers can check out their cart, place an order and follow it.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria",
+        "validations",
+        "state_machines"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Users can checkout."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.nfr.accessibility",
+      "type": "non_functional",
+      "category": "accessibility",
+      "priority": "should",
+      "description": "Screens meet WCAG 2.1 AA basics: keyboard navigation, labels and contrast.",
+      "affected_graphs": [
+        "screens",
+        "components"
+      ],
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard practice; the user did not specify it"
+        },
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "requirement.nfr.performance",
+      "type": "non_functional",
+      "category": "performance",
+      "priority": "should",
+      "description": "List endpoints are paginated and typical requests complete within 500 ms.",
+      "affected_graphs": [
+        "api",
+        "backend"
+      ],
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard practice; the user did not specify it"
+        },
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "requirement.nfr.responsive",
+      "type": "non_functional",
+      "category": "responsiveness",
+      "priority": "should",
+      "description": "Every screen is usable on mobile, tablet and desktop widths.",
+      "affected_graphs": [
+        "screens",
+        "ui"
+      ],
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard practice; the user did not specify it"
+        },
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "requirement.nfr.security",
+      "type": "non_functional",
+      "category": "security",
+      "priority": "must",
+      "description": "Passwords are hashed, sessions expire, and every non-public endpoint requires authentication.",
+      "affected_graphs": [
+        "api",
+        "permissions",
+        "backend"
+      ],
+      "provenance": {
+        "source": {
+          "type": "system_default",
+          "text": "Standard practice; the user did not specify it"
+        },
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "requirement.product_catalog",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Users can browse the product catalog and view product details.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "inferred",
+          "text": "Not stated by the user; needed because the product cannot work without: Product catalog"
+        },
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "requirement.product_filter",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Users can filter products by category and price.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Users can filter products."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.product_search",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Users can search products by keyword.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Users can search products."
+        },
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "requirement.shopping_cart",
+      "type": "functional",
+      "category": null,
+      "priority": "must",
+      "description": "Customers can add products to a shopping cart and change quantities.",
+      "affected_graphs": [
+        "capabilities",
+        "workflows",
+        "screens",
+        "backend",
+        "api",
+        "permissions",
+        "acceptance_criteria"
+      ],
+      "provenance": {
+        "source": {
+          "type": "user_requirement",
+          "text": "Users can add products to cart."
+        },
+        "confidence": 0.95
+      }
+    }
+  ]
+}

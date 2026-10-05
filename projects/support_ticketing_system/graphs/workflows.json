@@ -1,0 +1,627 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.support_ticketing_system",
+  "workflows": [
+    {
+      "id": "workflow.auth.login",
+      "name": "Log in",
+      "description": "Log in workflow of Authentication.",
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Login",
+          "target": "screen.auth.login",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_in",
+          "type": "input",
+          "description": "Enter email and password",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_act",
+          "type": "action",
+          "description": "Log in",
+          "target": null,
+          "operation_ref": "operation.user.login",
+          "next": []
+        },
+        {
+          "id": "step.04_sys",
+          "type": "system",
+          "description": "Redirect the user to their home screen",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The user is authenticated and sees their home screen",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.auth.logout",
+      "name": "Log out",
+      "description": "Log out workflow of Authentication.",
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "steps": [
+        {
+          "id": "step.01_in",
+          "type": "input",
+          "description": "Choose log out",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "Log out",
+          "target": null,
+          "operation_ref": "operation.user.logout",
+          "next": []
+        },
+        {
+          "id": "step.03_nav",
+          "type": "navigation",
+          "description": "Open Login",
+          "target": "screen.auth.login",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The session ends and the login screen is shown",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.auth.password_reset",
+      "name": "Reset password",
+      "description": "Reset password workflow of Authentication.",
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Forgot Password",
+          "target": "screen.auth.forgot_password",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_in",
+          "type": "input",
+          "description": "Enter the account email",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_act",
+          "type": "action",
+          "description": "Request password reset",
+          "target": null,
+          "operation_ref": "operation.user.request_password_reset",
+          "next": []
+        },
+        {
+          "id": "step.04_nav",
+          "type": "navigation",
+          "description": "Open Reset Password",
+          "target": "screen.auth.reset_password",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.05_in",
+          "type": "input",
+          "description": "Enter the new password",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.06_act",
+          "type": "action",
+          "description": "Reset password",
+          "target": null,
+          "operation_ref": "operation.user.reset_password",
+          "next": []
+        },
+        {
+          "id": "step.07_nav",
+          "type": "navigation",
+          "description": "Open Login",
+          "target": "screen.auth.login",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The password is changed and the user can log in again",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.dashboard.support_view",
+      "name": "View support dashboard",
+      "description": "View support dashboard workflow of Support dashboard.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.support_dashboard"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Support Dashboard",
+          "target": "screen.dashboard.support",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "Get ticket statistics",
+          "target": null,
+          "operation_ref": "operation.ticket.stats",
+          "next": []
+        }
+      ],
+      "outcome": "The manager sees ticket statistics",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.support_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.ticket.assign",
+      "name": "Assign ticket",
+      "description": "Assign ticket workflow of Ticket assignment.",
+      "actor_refs": [
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.ticket_assignment"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Ticket Details",
+          "target": "screen.ticket.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "List agents",
+          "target": null,
+          "operation_ref": "operation.user.list_agents",
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Pick an agent",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Assign ticket",
+          "target": null,
+          "operation_ref": "operation.ticket.assign",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Ticket Details",
+          "target": "screen.ticket.detail",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The ticket shows its new assignee",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.ticket.browse",
+      "name": "Browse Tickets",
+      "description": "Browse Tickets workflow of Ticket management.",
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.ticket_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Ticket List",
+          "target": "screen.ticket.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "List Tickets",
+          "target": null,
+          "operation_ref": "operation.ticket.list",
+          "next": []
+        },
+        {
+          "id": "step.03_nav",
+          "type": "navigation",
+          "description": "Open Ticket Details",
+          "target": "screen.ticket.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "View Ticket",
+          "target": null,
+          "operation_ref": "operation.ticket.read",
+          "next": []
+        }
+      ],
+      "outcome": "The Ticket information is displayed",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.ticket.change_status",
+      "name": "Change ticket status",
+      "description": "Change ticket status workflow of Ticket status.",
+      "actor_refs": [
+        "actor.agent",
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.ticket_status"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Ticket List",
+          "target": "screen.ticket.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Ticket Details",
+          "target": "screen.ticket.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Choose the new status",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Change ticket status",
+          "target": null,
+          "operation_ref": "operation.ticket.change_status",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Ticket Details",
+          "target": "screen.ticket.detail",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The ticket shows its new status",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.ticket.create",
+      "name": "Create Ticket",
+      "description": "Create Ticket workflow of Ticket management.",
+      "actor_refs": [
+        "actor.customer"
+      ],
+      "capability_refs": [
+        "capability.ticket_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Ticket List",
+          "target": "screen.ticket.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Create Ticket",
+          "target": "screen.ticket.create",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Fill in the Ticket form",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Create Ticket",
+          "target": null,
+          "operation_ref": "operation.ticket.create",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Ticket List",
+          "target": "screen.ticket.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The Ticket is created and appears in the Ticket list",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.ticket.update",
+      "name": "Update Ticket",
+      "description": "Update Ticket workflow of Ticket management.",
+      "actor_refs": [
+        "actor.agent",
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.ticket_management"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Ticket Details",
+          "target": "screen.ticket.detail",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Edit Ticket",
+          "target": "screen.ticket.edit",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Change the Ticket details",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Update Ticket",
+          "target": null,
+          "operation_ref": "operation.ticket.update",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Ticket List",
+          "target": "screen.ticket.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The changes to the Ticket are saved",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.ticket_comment.browse",
+      "name": "Browse Comments",
+      "description": "Browse Comments workflow of Ticket comments.",
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent",
+        "actor.manager"
+      ],
+      "capability_refs": [
+        "capability.ticket_comments"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Comment List",
+          "target": "screen.ticket_comment.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_act",
+          "type": "action",
+          "description": "List Comments",
+          "target": null,
+          "operation_ref": "operation.ticket_comment.list",
+          "next": []
+        }
+      ],
+      "outcome": "The Comment information is displayed",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_comments, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "workflow.ticket_comment.create",
+      "name": "Create Comment",
+      "description": "Create Comment workflow of Ticket comments.",
+      "actor_refs": [
+        "actor.customer",
+        "actor.agent"
+      ],
+      "capability_refs": [
+        "capability.ticket_comments"
+      ],
+      "steps": [
+        {
+          "id": "step.01_nav",
+          "type": "navigation",
+          "description": "Open Comment List",
+          "target": "screen.ticket_comment.list",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.02_nav",
+          "type": "navigation",
+          "description": "Open Create Comment",
+          "target": "screen.ticket_comment.create",
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.03_in",
+          "type": "input",
+          "description": "Fill in the Comment form",
+          "target": null,
+          "operation_ref": null,
+          "next": []
+        },
+        {
+          "id": "step.04_act",
+          "type": "action",
+          "description": "Create Comment",
+          "target": null,
+          "operation_ref": "operation.ticket_comment.create",
+          "next": []
+        },
+        {
+          "id": "step.05_nav",
+          "type": "navigation",
+          "description": "Open Comment List",
+          "target": "screen.ticket_comment.list",
+          "operation_ref": null,
+          "next": []
+        }
+      ],
+      "outcome": "The Comment is created and appears in the Comment list",
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.ticket_comments, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

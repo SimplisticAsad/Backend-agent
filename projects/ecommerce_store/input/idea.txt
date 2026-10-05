@@ -1,0 +1,9 @@
+Build an ecommerce website.
+
+Users can search products.
+
+Users can filter products.
+
+Users can add products to cart.
+
+Users can checkout.

@@ -1,0 +1,1189 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "services": [
+    {
+      "id": "service.department",
+      "name": "Department service",
+      "description": "Business operations on Department.",
+      "entity_refs": [
+        "entity.department"
+      ]
+    },
+    {
+      "id": "service.employee",
+      "name": "Employee service",
+      "description": "Business operations on Employee.",
+      "entity_refs": [
+        "entity.employee"
+      ]
+    },
+    {
+      "id": "service.project",
+      "name": "Project service",
+      "description": "Business operations on Project.",
+      "entity_refs": [
+        "entity.project"
+      ]
+    },
+    {
+      "id": "service.project_member",
+      "name": "Project Member service",
+      "description": "Business operations on Project Member.",
+      "entity_refs": [
+        "entity.project_member"
+      ]
+    },
+    {
+      "id": "service.task",
+      "name": "Task service",
+      "description": "Business operations on Task.",
+      "entity_refs": [
+        "entity.task"
+      ]
+    },
+    {
+      "id": "service.user",
+      "name": "User service",
+      "description": "Business operations on User.",
+      "entity_refs": [
+        "entity.user"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "operation.department.create",
+      "name": "Create Department",
+      "description": "Create Department.",
+      "type": "command",
+      "action": "create",
+      "entity_ref": "entity.department",
+      "service_ref": "service.department",
+      "capability_refs": [
+        "capability.department_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "name",
+          "description"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.department",
+        "cardinality": "one"
+      },
+      "errors": [],
+      "side_effects": [
+        "A new Department is persisted"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.department.list",
+      "name": "List Departments",
+      "description": "List Departments.",
+      "type": "query",
+      "action": "list",
+      "entity_ref": "entity.department",
+      "service_ref": "service.department",
+      "capability_refs": [
+        "capability.department_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.department",
+        "cardinality": "many"
+      },
+      "errors": [],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.department.update",
+      "name": "Update Department",
+      "description": "Update Department.",
+      "type": "command",
+      "action": "update",
+      "entity_ref": "entity.department",
+      "service_ref": "service.department",
+      "capability_refs": [
+        "capability.department_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [
+          "name",
+          "description"
+        ],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.department",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "DEPARTMENT_NOT_FOUND",
+          "description": "The Department does not exist"
+        }
+      ],
+      "side_effects": [
+        "The Department is modified"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.department_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.employee.create",
+      "name": "Create Employee",
+      "description": "Create Employee.",
+      "type": "command",
+      "action": "create",
+      "entity_ref": "entity.employee",
+      "service_ref": "service.employee",
+      "capability_refs": [
+        "capability.employee_directory"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "user_id",
+          "department_id",
+          "job_title"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.employee",
+        "cardinality": "one"
+      },
+      "errors": [],
+      "side_effects": [
+        "A new Employee is persisted"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.employee.list",
+      "name": "List Employees",
+      "description": "List Employees.",
+      "type": "query",
+      "action": "list",
+      "entity_ref": "entity.employee",
+      "service_ref": "service.employee",
+      "capability_refs": [
+        "capability.employee_directory"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.employee",
+        "cardinality": "many"
+      },
+      "errors": [],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.employee.read",
+      "name": "View Employee",
+      "description": "View Employee.",
+      "type": "query",
+      "action": "read",
+      "entity_ref": "entity.employee",
+      "service_ref": "service.employee",
+      "capability_refs": [
+        "capability.employee_directory"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.employee",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "EMPLOYEE_NOT_FOUND",
+          "description": "The Employee does not exist"
+        }
+      ],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.employee.update",
+      "name": "Update Employee",
+      "description": "Update Employee.",
+      "type": "command",
+      "action": "update",
+      "entity_ref": "entity.employee",
+      "service_ref": "service.employee",
+      "capability_refs": [
+        "capability.employee_directory"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [
+          "user_id",
+          "department_id",
+          "job_title"
+        ],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.employee",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "EMPLOYEE_NOT_FOUND",
+          "description": "The Employee does not exist"
+        }
+      ],
+      "side_effects": [
+        "The Employee is modified"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_directory, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.project.create",
+      "name": "Create Project",
+      "description": "Create Project.",
+      "type": "command",
+      "action": "create",
+      "entity_ref": "entity.project",
+      "service_ref": "service.project",
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "name",
+          "description"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.project",
+        "cardinality": "one"
+      },
+      "errors": [],
+      "side_effects": [
+        "A new Project is persisted"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.project.delete",
+      "name": "Delete Project",
+      "description": "Delete Project.",
+      "type": "command",
+      "action": "delete",
+      "entity_ref": "entity.project",
+      "service_ref": "service.project",
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": null,
+        "cardinality": "none"
+      },
+      "errors": [
+        {
+          "code": "PROJECT_NOT_FOUND",
+          "description": "The Project does not exist"
+        }
+      ],
+      "side_effects": [
+        "The Project is removed"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.project.list",
+      "name": "List Projects",
+      "description": "List Projects.",
+      "type": "query",
+      "action": "list",
+      "entity_ref": "entity.project",
+      "service_ref": "service.project",
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.project",
+        "cardinality": "many"
+      },
+      "errors": [],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.project.progress",
+      "name": "Get project progress",
+      "description": "Task completion per project",
+      "type": "query",
+      "action": "list",
+      "entity_ref": "entity.project",
+      "service_ref": "service.project",
+      "capability_refs": [
+        "capability.project_progress"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.project",
+        "cardinality": "many"
+      },
+      "errors": [],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_progress, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.project.read",
+      "name": "View Project",
+      "description": "View Project.",
+      "type": "query",
+      "action": "read",
+      "entity_ref": "entity.project",
+      "service_ref": "service.project",
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.project",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "PROJECT_NOT_FOUND",
+          "description": "The Project does not exist"
+        }
+      ],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.project.update",
+      "name": "Update Project",
+      "description": "Update Project.",
+      "type": "command",
+      "action": "update",
+      "entity_ref": "entity.project",
+      "service_ref": "service.project",
+      "capability_refs": [
+        "capability.project_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [
+          "name",
+          "description",
+          "status",
+          "due_date"
+        ],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.project",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "PROJECT_NOT_FOUND",
+          "description": "The Project does not exist"
+        }
+      ],
+      "side_effects": [
+        "The Project is modified"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.project_member.create",
+      "name": "Create Project Member",
+      "description": "Create Project Member.",
+      "type": "command",
+      "action": "create",
+      "entity_ref": "entity.project_member",
+      "service_ref": "service.project_member",
+      "capability_refs": [
+        "capability.project_assignment"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "project_id",
+          "user_id"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.project_member",
+        "cardinality": "one"
+      },
+      "errors": [],
+      "side_effects": [
+        "A new Project Member is persisted"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.project_member.delete",
+      "name": "Delete Project Member",
+      "description": "Delete Project Member.",
+      "type": "command",
+      "action": "delete",
+      "entity_ref": "entity.project_member",
+      "service_ref": "service.project_member",
+      "capability_refs": [
+        "capability.project_assignment"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": null,
+        "cardinality": "none"
+      },
+      "errors": [
+        {
+          "code": "PROJECT_MEMBER_NOT_FOUND",
+          "description": "The Project Member does not exist"
+        }
+      ],
+      "side_effects": [
+        "The Project Member is removed"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.project_member.list",
+      "name": "List Project Members",
+      "description": "List Project Members.",
+      "type": "query",
+      "action": "list",
+      "entity_ref": "entity.project_member",
+      "service_ref": "service.project_member",
+      "capability_refs": [
+        "capability.project_assignment"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.project_member",
+        "cardinality": "many"
+      },
+      "errors": [],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.project_assignment, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.task.create",
+      "name": "Create Task",
+      "description": "Create Task.",
+      "type": "command",
+      "action": "create",
+      "entity_ref": "entity.task",
+      "service_ref": "service.task",
+      "capability_refs": [
+        "capability.task_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "title",
+          "project_id"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.task",
+        "cardinality": "one"
+      },
+      "errors": [],
+      "side_effects": [
+        "A new Task is persisted"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.task.delete",
+      "name": "Delete Task",
+      "description": "Delete Task.",
+      "type": "command",
+      "action": "delete",
+      "entity_ref": "entity.task",
+      "service_ref": "service.task",
+      "capability_refs": [
+        "capability.task_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": null,
+        "cardinality": "none"
+      },
+      "errors": [
+        {
+          "code": "TASK_NOT_FOUND",
+          "description": "The Task does not exist"
+        }
+      ],
+      "side_effects": [
+        "The Task is removed"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.task.list",
+      "name": "List Tasks",
+      "description": "List Tasks.",
+      "type": "query",
+      "action": "list",
+      "entity_ref": "entity.task",
+      "service_ref": "service.task",
+      "capability_refs": [
+        "capability.task_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.task",
+        "cardinality": "many"
+      },
+      "errors": [],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.task.list_assigned",
+      "name": "List my assigned tasks",
+      "description": "List my assigned tasks.",
+      "type": "query",
+      "action": "list",
+      "entity_ref": "entity.task",
+      "service_ref": "service.task",
+      "capability_refs": [
+        "capability.employee_dashboard"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.employee"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.task",
+        "cardinality": "many"
+      },
+      "errors": [],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.employee_dashboard, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.task.read",
+      "name": "View Task",
+      "description": "View Task.",
+      "type": "query",
+      "action": "read",
+      "entity_ref": "entity.task",
+      "service_ref": "service.task",
+      "capability_refs": [
+        "capability.task_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.task",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "TASK_NOT_FOUND",
+          "description": "The Task does not exist"
+        }
+      ],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.task.update",
+      "name": "Update Task",
+      "description": "Update Task.",
+      "type": "command",
+      "action": "update",
+      "entity_ref": "entity.task",
+      "service_ref": "service.task",
+      "capability_refs": [
+        "capability.task_management"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id"
+        ],
+        "optional_fields": [
+          "title",
+          "description",
+          "due_date"
+        ],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.task",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "TASK_NOT_FOUND",
+          "description": "The Task does not exist"
+        }
+      ],
+      "side_effects": [
+        "The Task is modified"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_management, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.task.update_status",
+      "name": "Update task status",
+      "description": "Update task status.",
+      "type": "command",
+      "action": "update",
+      "entity_ref": "entity.task",
+      "service_ref": "service.task",
+      "capability_refs": [
+        "capability.task_status"
+      ],
+      "access": "restricted",
+      "required_roles": [
+        "role.manager",
+        "role.employee"
+      ],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "id",
+          "status"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": "entity.task",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "TASK_NOT_FOUND",
+          "description": "The task does not exist"
+        }
+      ],
+      "side_effects": [
+        "The task status changes"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.user.login",
+      "name": "Log in",
+      "description": "Log in.",
+      "type": "command",
+      "action": "execute",
+      "entity_ref": "entity.user",
+      "service_ref": "service.user",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "access": "public",
+      "required_roles": [],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "email"
+        ],
+        "optional_fields": [],
+        "extra_fields": [
+          "password"
+        ]
+      },
+      "output": {
+        "entity_ref": "entity.user",
+        "cardinality": "one"
+      },
+      "errors": [
+        {
+          "code": "INVALID_CREDENTIALS",
+          "description": "Email or password is wrong"
+        }
+      ],
+      "side_effects": [
+        "A session token is issued"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.user.logout",
+      "name": "Log out",
+      "description": "Log out.",
+      "type": "command",
+      "action": "execute",
+      "entity_ref": "entity.user",
+      "service_ref": "service.user",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "access": "authenticated",
+      "required_roles": [],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": null,
+        "cardinality": "none"
+      },
+      "errors": [],
+      "side_effects": [
+        "The session token is revoked"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.user.request_password_reset",
+      "name": "Request password reset",
+      "description": "Request password reset.",
+      "type": "command",
+      "action": "execute",
+      "entity_ref": "entity.user",
+      "service_ref": "service.user",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "access": "public",
+      "required_roles": [],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [
+          "email"
+        ],
+        "optional_fields": [],
+        "extra_fields": []
+      },
+      "output": {
+        "entity_ref": null,
+        "cardinality": "none"
+      },
+      "errors": [],
+      "side_effects": [
+        "A reset link is sent to the email address"
+      ],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "operation.user.reset_password",
+      "name": "Reset password",
+      "description": "Reset password.",
+      "type": "command",
+      "action": "execute",
+      "entity_ref": "entity.user",
+      "service_ref": "service.user",
+      "capability_refs": [
+        "capability.authentication"
+      ],
+      "access": "public",
+      "required_roles": [],
+      "assumption_refs": [],
+      "input": {
+        "required_fields": [],
+        "optional_fields": [],
+        "extra_fields": [
+          "reset_token",
+          "new_password"
+        ]
+      },
+      "output": {
+        "entity_ref": null,
+        "cardinality": "none"
+      },
+      "errors": [
+        {
+          "code": "INVALID_RESET_TOKEN",
+          "description": "The reset token is invalid or expired"
+        }
+      ],
+      "side_effects": [],
+      "exposed": true,
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.authentication, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}

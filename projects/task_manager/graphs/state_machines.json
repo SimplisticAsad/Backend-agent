@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "project_version": "0.1.0",
+  "project_id": "project.task_manager",
+  "state_machines": [
+    {
+      "id": "state_machine.task",
+      "entity_ref": "entity.task",
+      "field": "status",
+      "states": [
+        "todo",
+        "in_progress",
+        "completed"
+      ],
+      "initial_state": "todo",
+      "transitions": [
+        {
+          "from": "todo",
+          "to": "in_progress",
+          "role_refs": [
+            "role.manager",
+            "role.employee"
+          ],
+          "operation_ref": "operation.task.update_status",
+          "guard": ""
+        },
+        {
+          "from": "in_progress",
+          "to": "completed",
+          "role_refs": [
+            "role.manager",
+            "role.employee"
+          ],
+          "operation_ref": "operation.task.update_status",
+          "guard": ""
+        },
+        {
+          "from": "in_progress",
+          "to": "todo",
+          "role_refs": [
+            "role.manager",
+            "role.employee"
+          ],
+          "operation_ref": "operation.task.update_status",
+          "guard": ""
+        }
+      ],
+      "provenance": {
+        "source": {
+          "type": "derived",
+          "text": "Realises requirement.task_status, which the user stated"
+        },
+        "confidence": 0.9
+      }
+    }
+  ]
+}
