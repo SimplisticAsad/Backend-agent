@@ -60,7 +60,8 @@ def build_report(*, project: str, graph_ok: bool, graph_warnings: list[str], int
         "database_tests": _suite(results, "repository", "db_failure"),
         "api_tests": _suite(results, "api"),
         "security_tests": _suite(results, "security"),
-        "integration_tests": _suite(results, "bdd", "frontend_compat") if fe_available else _suite(results, "bdd"),
+        "integration_tests": _suite(results, "bdd", "frontend_compat", "e2e") if fe_available else _suite(results, "bdd", "e2e"),
+        "e2e_tests": _suite(results, "e2e"),
         "bdd_tests": _suite(results, "bdd"),
         "frontend_compat_tests": _suite(results, "frontend_compat") if fe_available else "not_available",
         "correction_attempts": correction_attempts,
@@ -79,7 +80,7 @@ def build_report(*, project: str, graph_ok: bool, graph_warnings: list[str], int
         status = "failed"
     elif not tests_requested or not results:
         status = "not_tested"
-    elif skipped_db or any(r.status in ("skipped", "not_run") for n, r in results.items() if n in ("repository", "api", "security", "db_failure", "bdd")):
+    elif skipped_db or any(r.status in ("skipped", "not_run") for n, r in results.items() if n in ("repository", "api", "security", "db_failure", "bdd", "e2e")):
         status = "partial"
     elif integration.status == "conflicts_reported" or unimplemented or any(r.xfailed for r in results.values()):
         status = "passed_with_conflicts"

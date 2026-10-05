@@ -17,6 +17,7 @@ from app.pipeline.failures import Failure, classify
 SUITES = [
     ("unit", "tests/unit", False), ("contract", "tests/contract", False), ("repository", "tests/repository", True), ("api", "tests/api", True),
     ("security", "tests/security", True), ("db_failure", "tests/db_failure", True), ("bdd", "tests/bdd", True), ("frontend_compat", "tests/frontend_compat", True),
+    ("e2e", "tests/e2e", True),
 ]
 
 

@@ -135,6 +135,7 @@
   "correction_stopped_because": "all checks passed",
   "database_contract": "passed",
   "database_tests": "passed",
+  "e2e_tests": "passed",
   "frontend_compat_tests": "not_available",
   "frontend_contract": "not_available",
   "graph_validation": "passed",
@@ -187,7 +188,7 @@
         ],
         "project_id": "project.ecommerce_store"
       },
-      "duration_ms": 2.2,
+      "duration_ms": 2.4,
       "errors": [],
       "stage": "graph_loading",
       "status": "passed",
@@ -197,7 +198,7 @@
       "artifacts": [],
       "correction_attempts": 0,
       "details": {},
-      "duration_ms": 0.9,
+      "duration_ms": 1.0,
       "errors": [],
       "stage": "graph_validation",
       "status": "passed",
@@ -217,7 +218,7 @@
           "users"
         ]
       },
-      "duration_ms": 0.7,
+      "duration_ms": 0.6,
       "errors": [],
       "stage": "database_contract_loading",
       "status": "passed",
@@ -247,7 +248,7 @@
         "major": 1,
         "minor": 1
       },
-      "duration_ms": 1.6,
+      "duration_ms": 1.5,
       "errors": [],
       "stage": "integration_analysis",
       "status": "passed",
@@ -260,7 +261,7 @@
       ],
       "correction_attempts": 0,
       "details": {},
-      "duration_ms": 5.9,
+      "duration_ms": 6.5,
       "errors": [],
       "stage": "backend_analysis",
       "status": "passed",
@@ -270,7 +271,7 @@
       "artifacts": [],
       "correction_attempts": 0,
       "details": {},
-      "duration_ms": 0.5,
+      "duration_ms": 0.4,
       "errors": [],
       "stage": "llm_graph_analysis",
       "status": "passed",
@@ -301,7 +302,7 @@
           "operation.order.place"
         ]
       },
-      "duration_ms": 3.4,
+      "duration_ms": 3.7,
       "errors": [],
       "stage": "llm_api_implementation",
       "status": "passed",
@@ -314,7 +315,7 @@
       ],
       "correction_attempts": 0,
       "details": {},
-      "duration_ms": 9.6,
+      "duration_ms": 9.3,
       "errors": [],
       "stage": "architecture_generation",
       "status": "passed",
@@ -336,7 +337,7 @@
       "details": {
         "files": 70
       },
-      "duration_ms": 31.0,
+      "duration_ms": 33.3,
       "errors": [],
       "stage": "code_generation",
       "status": "passed",
@@ -349,9 +350,9 @@
         "custom_test_modules": [
           "place_order"
         ],
-        "files": 41
+        "files": 43
       },
-      "duration_ms": 19.8,
+      "duration_ms": 19.2,
       "errors": [],
       "stage": "test_generation",
       "status": "passed",
@@ -364,7 +365,7 @@
       ],
       "correction_attempts": 0,
       "details": {},
-      "duration_ms": 899.3,
+      "duration_ms": 813.2,
       "errors": [],
       "stage": "static_validation",
       "status": "passed",
@@ -376,7 +377,7 @@
       "details": {
         "stopped_because": "all checks passed"
       },
-      "duration_ms": 30830.6,
+      "duration_ms": 35007.2,
       "errors": [],
       "stage": "test_execution",
       "status": "passed",
@@ -393,7 +394,7 @@
   "status": "passed_with_conflicts",
   "suites": {
     "api": {
-      "duration_s": 7.7,
+      "duration_s": 7.75,
       "errors": 0,
       "failed": 0,
       "failures": [],
@@ -405,7 +406,7 @@
       "status": "passed"
     },
     "bdd": {
-      "duration_s": 2.65,
+      "duration_s": 2.78,
       "errors": 0,
       "failed": 0,
       "failures": [],
@@ -417,7 +418,7 @@
       "status": "passed"
     },
     "contract": {
-      "duration_s": 1.15,
+      "duration_s": 1.16,
       "errors": 0,
       "failed": 0,
       "failures": [],
@@ -429,13 +430,25 @@
       "status": "passed"
     },
     "db_failure": {
-      "duration_s": 9.51,
+      "duration_s": 9.56,
       "errors": 0,
       "failed": 0,
       "failures": [],
       "known_gap_tests": [],
       "known_gaps": 0,
       "passed": 6,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "e2e": {
+      "duration_s": 4.29,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 2,
       "skip_reason": "",
       "skipped": 0,
       "status": "passed"
@@ -453,7 +466,7 @@
       "status": "skipped"
     },
     "repository": {
-      "duration_s": 2.26,
+      "duration_s": 2.24,
       "errors": 0,
       "failed": 0,
       "failures": [],
@@ -465,7 +478,7 @@
       "status": "passed"
     },
     "security": {
-      "duration_s": 6.43,
+      "duration_s": 6.1,
       "errors": 0,
       "failed": 0,
       "failures": [],
@@ -477,7 +490,7 @@
       "status": "passed"
     },
     "unit": {
-      "duration_s": 1.11,
+      "duration_s": 1.12,
       "errors": 0,
       "failed": 0,
       "failures": [],

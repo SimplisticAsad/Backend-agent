@@ -28,9 +28,9 @@ Result of `integration-test` on the three committed example projects (real Postg
 
 | Project | Status | Generated-suite tests passed | Notes |
 |---|---|---|---|
-| `task_manager` (with Frontend contract) | `passed_with_conflicts` | 430 (incl. 36 frontend-compatibility) | 12 major Graph↔Frontend conflicts, 2 major Graph gaps, 3 minor/shimmed — all documented |
-| `ecommerce_store` | `passed_with_conflicts` | 243 | checkout workflow (transaction, row locking, rollback, concurrent-oversell test) implemented by a validated handler |
-| `support_ticketing_system` | `passed_with_conflicts` | 237 (+1 known gap) | `ticket.stats` is a **known gap** (501): the graph gives it no usable result schema |
+| `task_manager` (with Frontend contract) | `passed_with_conflicts` | 432 (incl. 36 frontend-compatibility) | 12 major Graph↔Frontend conflicts, 2 major Graph gaps, 3 minor/shimmed — all documented |
+| `ecommerce_store` | `passed_with_conflicts` | 245 | checkout workflow (transaction, row locking, rollback, concurrent-oversell test) implemented by a validated handler |
+| `support_ticketing_system` | `passed_with_conflicts` | 239 (+1 known gap) | `ticket.stats` is a **known gap** (501): the graph gives it no usable result schema |
 
 `passed_with_conflicts` means: *every executed test passed, and the integration conflicts listed in the report remain open*. It never means "everything is fine".
 
@@ -148,7 +148,7 @@ Backend-side compatibility shims are explicit and recorded: login session envelo
 role check, operation → service → repository mapping and documented error responses. `operationId` **is** the graph endpoint id (`api.task.update_status`). Paths are served exactly as in the
 graph (no `/api/v1`: the Frontend proxy strips `/api` and forwards graph paths; see the integration analysis). Routes are ordered most-specific-first (`/tasks/assigned` before `/tasks/{id}`).
 Lists are bare arrays with additive `limit`/`offset`/`sort`/`order` (+ `query` where the operation defines search, + the operation's declared filters) and an `X-Total-Count` header; sort/filter fields are allow-listed.
-Status codes: `201` create, `204` for operations without a result, `200` otherwise. `GET /health` and `GET /ready` (database reachable) are the only non-graph endpoints.
+Status codes: `201` create, `204` for operations without a result, `200` otherwise. `GET /health` and `GET /ready` (database reachable) are the only non-graph endpoints. In production the interactive `/docs` UI is disabled; `openapi.json` stays available.
 `openapi.json` is exported and compared with the graph; the implemented contract is `artifacts/backend_api_contract.json` (`api_contract.json`).
 
 Error contract (every non-2xx):
@@ -205,10 +205,11 @@ Each generated backend ships its own suite (`projects/<name>/backend/tests`), **
 | `frontend_compat` | the Frontend client's calls, response shapes, error readability, enum/field/endpoint conflicts as documented |
 | `bdd` | one Gherkin feature per acceptance criterion (`tests/bdd/features`) executed through the HTTP API; error codes named in criteria must exist; custom workflows must have dedicated scenarios |
 | `security` | SQL injection (bodies, query, path, login; `pg_sleep` must not run), forged/expired/`alg:none`/foreign-secret tokens on **every** secured operation, role-claim escalation, mass assignment, IDOR/object-level rules, invalid transitions, guards, malformed/oversized/NUL input, error and secret leakage (responses **and** logs), CORS, request ids |
+| `e2e` | the production entry point (`uvicorn backend_app.main:app`, `APP_ENV=production`) started as a separate process against the test database and driven over real HTTP: health/ready, docs disabled, login per role, every list endpoint per role, 401, CORS allow/deny, graceful shutdown |
 | `db_failure` | outage (liveness stays up, readiness 503, every operation a safe 503), closed pool, pool exhaustion, rollback of a half-finished transaction, constraint violations |
 
 **The suites have teeth.** A mutation check (break authorization, ownership, scope, transition checks, token verification, CORS, error sanitising, …) was killed by the suites in every case that is
-observable at HTTP level; surviving mutants were *equivalent* mutants (a second defence still held). The Backend Agent's **own** suite (`pytest`: 167 offline tests + 9 PostgreSQL pipeline runs) covers the negative cases of the specification
+observable at HTTP level; surviving mutants were *equivalent* mutants (a second defence still held). The Backend Agent's **own** suite (`pytest`: 180 tests — 167 offline, 9 full PostgreSQL pipeline runs incl. the correction-loop scenarios, 4 live database-contract checks) covers the negative cases of the specification
 (missing graph → `GRAPH_ERROR`, bad reference → `GRAPH_REFERENCE_ERROR`, missing table → `DATABASE_CONTRACT_ERROR`, missing frontend endpoint → `FRONTEND_CONTRACT_ERROR`, missing permission →
 `AUTHORIZATION_ERROR`, invalid transition → `STATE_TRANSITION_ERROR`, database unavailable → `DATABASE_ERROR`, contract mismatch → `API_CONTRACT_ERROR`), determinism, prompts, the LLM client, patch safety and the correction loop.
 
@@ -216,7 +217,7 @@ observable at HTTP level; surviving mutants were *equivalent* mutants (a second 
 
 `python -m app.main integration-test` runs generation + all suites against a dedicated PostgreSQL. Safety (task items 68–69): destructive tests refuse a database whose name does not contain `test`
 or whose host is not local (unless `BACKEND_AGENT_TEST_DB_CONFIRM=<dbname>`); each run creates a private random schema (`bt_<hex>`) and drops it; the throw-away cluster uses trust auth on 127.0.0.1 and is removed on exit.
-No PostgreSQL → the command exits `5` and the report says why; `test` instead **skips** the database suites with an explicit reason (status `partial`). A browser end-to-end run (Frontend → Backend → Database) is
+No PostgreSQL → the command exits `5` and the report says why; `test` instead **skips** the database suites with an explicit reason (status `partial`). The `e2e` suite boots the real production server and drives it over HTTP; a *browser* end-to-end run (Frontend app → Backend → Database) is
 **not** performed: see [limitations](#22-known-limitations).
 
 ## 14. Correction loop
@@ -281,11 +282,12 @@ Not implemented — the MVP regenerates everything (deterministically). The desi
 
 ## 22. Known limitations
 
-- **No browser end-to-end test.** Frontend compatibility is tested by replaying the generated client's HTTP calls (and its error handling rules) against the real backend; the React app is not launched.
+- **No browser end-to-end test.** Frontend compatibility is tested by replaying the generated client's HTTP calls (and its error handling rules) against the real backend, and the real server is exercised over HTTP by the `e2e` suite; the React app is not launched.
 - **The Database Agent's output for these graphs is a stand-in** (`scripts/make_database_fixtures.py`), because no graph→database adapter exists and the Database Agent needs an LLM. The contract loader/verification is real; a real Database Agent run should produce the same artifact layout.
 - **Mock-LLM breadth.** The mock implements two handler patterns (cart→order checkout, parent→children progress) from structure, not names; other custom operations are reported `not_implemented` (501 + known-gap test) until a real model implements them — the real-model path (prompts, validation, retries) is covered by unit tests with HTTP transports but was not exercised against a live model here.
 - **Heuristics are declared, not magic:** free-text→rule patterns and the implicit-ownership defaults are documented, recorded as assumptions, and conservative; unrecognised conditions are surfaced as *unmapped* rather than guessed.
 - **In-process state:** logout revocation list and rate limiter are per process (multi-instance deployments need a shared store — the graph defines none). Password-reset tokens are stateless. The login limiter keys on the TCP peer address (`X-Forwarded-For` is deliberately not trusted), so behind a reverse proxy configure `RATE_LIMIT_PER_MINUTE` accordingly.
+- **External integrations:** `project.json`'s `integration_requirements` are surfaced in `backend_analysis.json`, but the only adapter generated is the `EmailService` protocol (password reset); payments/storage/third-party APIs need an adapter written against a protocol like it. `payment_method` in checkout is validated but not processed.
 - Filters on numeric/date fields are **equality** (the graph's `price` filter is ambiguous: reported, not guessed). Decimals are JSON numbers (the Frontend types them as `number`).
 - Corrections edit generated files; they are not replayed by `generate`.
 - Python 3.11 compatible (target 3.12+); `requires-python >=3.11`.

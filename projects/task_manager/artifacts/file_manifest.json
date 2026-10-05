@@ -1337,6 +1337,20 @@
     {
       "description": "spec-driven test module (agent template)",
       "kind": "test",
+      "path": "tests/e2e/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/e2e/test_live_server.py",
+      "sha256": "52cd57955a2212b9d73bbc3ef04e1a1652b8b97477974bb5edfeb614e3af684e",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
       "path": "tests/frontend_compat/__init__.py",
       "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
       "source_refs": []
