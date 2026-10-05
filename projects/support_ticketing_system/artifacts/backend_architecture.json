@@ -1,0 +1,197 @@
+{
+  "architecture": {
+    "api_framework": "fastapi",
+    "api_versioning": "none",
+    "api_versioning_note": "paths are served exactly as in api.json; the Frontend dev proxy strips its /api prefix",
+    "authentication": true,
+    "authorization": {
+      "object_level": "engine rules (ownership, row scope, guards)",
+      "role_checks": "dependency per operation"
+    },
+    "database": "postgresql",
+    "database_driver": "psycopg 3 + psycopg_pool",
+    "error_contract": "{error:{code,message,details}, message, errors, request_id}",
+    "repository_pattern": true,
+    "service_layer": true,
+    "style": "clean architecture (api -> application -> domain/infrastructure)",
+    "transactions": "explicit psycopg_pool transaction per operation; row locks (FOR UPDATE) before read-then-write",
+    "validation": "pydantic v2"
+  },
+  "descriptions": {
+    "TicketCommentRepository": "Parameterised SQL access to table ticket_comments.",
+    "TicketCommentService": "Application service for service.ticket_comment: 2 operation(s).",
+    "TicketRepository": "Parameterised SQL access to table tickets.",
+    "TicketService": "Application service for service.ticket: 7 operation(s).",
+    "UserRepository": "Parameterised SQL access to table users.",
+    "UserService": "Application service for service.user: 5 operation(s).",
+    "backend_app.api": "HTTP routes, request/response schemas and dependencies; no business logic.",
+    "backend_app.application": "Application services: one method per graph operation.",
+    "backend_app.auth": "Authentication and role authorization.",
+    "backend_app.domain": "Domain entities mirroring graph entities, and domain exceptions.",
+    "backend_app.engine": "Spec-driven implementation of CRUD, state transitions and object-level rules.",
+    "backend_app.infrastructure": "Repositories over the database contract."
+  },
+  "modules": [
+    {
+      "name": "backend_app.api",
+      "purpose": "HTTP routes, request/response schemas and dependencies; no business logic."
+    },
+    {
+      "name": "backend_app.application",
+      "purpose": "Application services: one method per graph operation."
+    },
+    {
+      "name": "backend_app.domain",
+      "purpose": "Domain entities mirroring graph entities, and domain exceptions."
+    },
+    {
+      "name": "backend_app.infrastructure",
+      "purpose": "Repositories over the database contract."
+    },
+    {
+      "name": "backend_app.engine",
+      "purpose": "Spec-driven implementation of CRUD, state transitions and object-level rules."
+    },
+    {
+      "name": "backend_app.auth",
+      "purpose": "Authentication and role authorization."
+    }
+  ],
+  "repositories": [
+    {
+      "entity": "entity.ticket",
+      "name": "TicketRepository",
+      "table": "tickets"
+    },
+    {
+      "entity": "entity.ticket_comment",
+      "name": "TicketCommentRepository",
+      "table": "ticket_comments"
+    },
+    {
+      "entity": "entity.user",
+      "name": "UserRepository",
+      "table": "users"
+    }
+  ],
+  "routes": [
+    {
+      "endpoint": "api.ticket.assign",
+      "method": "PATCH",
+      "operation": "operation.ticket.assign",
+      "path": "/tickets/{id}/assignee"
+    },
+    {
+      "endpoint": "api.ticket.change_status",
+      "method": "PATCH",
+      "operation": "operation.ticket.change_status",
+      "path": "/tickets/{id}/status"
+    },
+    {
+      "endpoint": "api.ticket.create",
+      "method": "POST",
+      "operation": "operation.ticket.create",
+      "path": "/tickets"
+    },
+    {
+      "endpoint": "api.ticket.list",
+      "method": "GET",
+      "operation": "operation.ticket.list",
+      "path": "/tickets"
+    },
+    {
+      "endpoint": "api.ticket.read",
+      "method": "GET",
+      "operation": "operation.ticket.read",
+      "path": "/tickets/{id}"
+    },
+    {
+      "endpoint": "api.ticket.stats",
+      "method": "GET",
+      "operation": "operation.ticket.stats",
+      "path": "/tickets/stats"
+    },
+    {
+      "endpoint": "api.ticket.update",
+      "method": "PATCH",
+      "operation": "operation.ticket.update",
+      "path": "/tickets/{id}"
+    },
+    {
+      "endpoint": "api.ticket_comment.create",
+      "method": "POST",
+      "operation": "operation.ticket_comment.create",
+      "path": "/ticket-comments"
+    },
+    {
+      "endpoint": "api.ticket_comment.list",
+      "method": "GET",
+      "operation": "operation.ticket_comment.list",
+      "path": "/ticket-comments"
+    },
+    {
+      "endpoint": "api.user.list_agents",
+      "method": "GET",
+      "operation": "operation.user.list_agents",
+      "path": "/users/agents"
+    },
+    {
+      "endpoint": "api.user.login",
+      "method": "POST",
+      "operation": "operation.user.login",
+      "path": "/auth/login"
+    },
+    {
+      "endpoint": "api.user.logout",
+      "method": "POST",
+      "operation": "operation.user.logout",
+      "path": "/auth/logout"
+    },
+    {
+      "endpoint": "api.user.request_password_reset",
+      "method": "POST",
+      "operation": "operation.user.request_password_reset",
+      "path": "/auth/forgot-password"
+    },
+    {
+      "endpoint": "api.user.reset_password",
+      "method": "POST",
+      "operation": "operation.user.reset_password",
+      "path": "/auth/reset-password"
+    }
+  ],
+  "services": [
+    {
+      "id": "service.ticket",
+      "name": "TicketService",
+      "operations": [
+        "operation.ticket.assign",
+        "operation.ticket.change_status",
+        "operation.ticket.create",
+        "operation.ticket.list",
+        "operation.ticket.read",
+        "operation.ticket.stats",
+        "operation.ticket.update"
+      ]
+    },
+    {
+      "id": "service.ticket_comment",
+      "name": "TicketCommentService",
+      "operations": [
+        "operation.ticket_comment.create",
+        "operation.ticket_comment.list"
+      ]
+    },
+    {
+      "id": "service.user",
+      "name": "UserService",
+      "operations": [
+        "operation.user.list_agents",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ]
+    }
+  ]
+}

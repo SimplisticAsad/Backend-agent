@@ -1,0 +1,2774 @@
+{
+  "api": {
+    "base_path": "",
+    "note": "paths are served exactly as in api.json; the Frontend dev proxy strips its /api prefix",
+    "versioning": "none"
+  },
+  "auth": {
+    "entity": "entity.user",
+    "identity_field": "email",
+    "login_response_schema": "schema.user",
+    "operations": {
+      "auth.login": "operation.user.login",
+      "auth.logout": "operation.user.logout",
+      "auth.request_password_reset": "operation.user.request_password_reset",
+      "auth.reset_password": "operation.user.reset_password"
+    },
+    "password_field": "password_hash",
+    "role_field": "role",
+    "role_map": {
+      "employee": "role.employee",
+      "manager": "role.manager"
+    },
+    "table": "users"
+  },
+  "coverage": [
+    {
+      "enforced_by": "rule:row_scope",
+      "operations": [
+        "operation.task.list_assigned"
+      ],
+      "source": "permission.task.list_assigned#0"
+    },
+    {
+      "enforced_by": "rule:ownership",
+      "operations": [
+        "operation.task.update_status"
+      ],
+      "source": "permission.task.update_status#0"
+    },
+    {
+      "enforced_by": "request_schema",
+      "operations": [
+        "operation.department.create"
+      ],
+      "source": "validation.department.required_fields"
+    },
+    {
+      "enforced_by": "request_schema",
+      "operations": [
+        "operation.employee.create"
+      ],
+      "source": "validation.employee.required_fields"
+    },
+    {
+      "enforced_by": "permissions",
+      "operations": [
+        "operation.project.delete"
+      ],
+      "source": "validation.project.only_managers_delete"
+    },
+    {
+      "enforced_by": "request_schema",
+      "operations": [
+        "operation.project.create"
+      ],
+      "source": "validation.project.required_fields"
+    },
+    {
+      "enforced_by": "request_schema",
+      "operations": [
+        "operation.project_member.create"
+      ],
+      "source": "validation.project_member.required_fields"
+    },
+    {
+      "enforced_by": "rule:transition_guard",
+      "operations": [
+        "operation.task.update_status"
+      ],
+      "source": "validation.task.completed_needs_assignee"
+    },
+    {
+      "enforced_by": "rule:ownership",
+      "operations": [
+        "operation.task.update_status"
+      ],
+      "source": "validation.task.employee_updates_own"
+    },
+    {
+      "enforced_by": "request_schema",
+      "operations": [
+        "operation.task.create"
+      ],
+      "source": "validation.task.required_fields"
+    },
+    {
+      "enforced_by": "request_schema",
+      "operations": [
+        "operation.user.login",
+        "operation.user.request_password_reset"
+      ],
+      "source": "validation.user.email_format"
+    },
+    {
+      "enforced_by": "authentication",
+      "operations": [
+        "operation.user.login"
+      ],
+      "source": "validation.user.invalid_login"
+    }
+  ],
+  "entities": {
+    "entity.department": {
+      "class_name": "Department",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "name",
+          "column": "name",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "string",
+          "unique": false
+        },
+        {
+          "attr": "description",
+          "column": "description",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "text",
+          "ref": null,
+          "required": false,
+          "type": "text",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [],
+      "hidden_columns": [],
+      "id": "entity.department",
+      "id_has_default": true,
+      "key": "department",
+      "response_fields": [
+        "id",
+        "name",
+        "description"
+      ],
+      "state_machine": null,
+      "table": "departments",
+      "text_columns": [
+        "name",
+        "description"
+      ],
+      "unique_columns": []
+    },
+    "entity.employee": {
+      "class_name": "Employee",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "user_id",
+          "column": "user_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "department_id",
+          "column": "department_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "uuid",
+          "ref": "entity.department",
+          "required": false,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "job_title",
+          "column": "job_title",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "text",
+          "ref": null,
+          "required": false,
+          "type": "string",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        },
+        {
+          "columns": [
+            "department_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "departments"
+        }
+      ],
+      "hidden_columns": [],
+      "id": "entity.employee",
+      "id_has_default": true,
+      "key": "employee",
+      "response_fields": [
+        "id",
+        "user_id",
+        "department_id",
+        "job_title"
+      ],
+      "state_machine": null,
+      "table": "employees",
+      "text_columns": [
+        "job_title"
+      ],
+      "unique_columns": []
+    },
+    "entity.project": {
+      "class_name": "Project",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "name",
+          "column": "name",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "string",
+          "unique": false
+        },
+        {
+          "attr": "description",
+          "column": "description",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "text",
+          "ref": null,
+          "required": false,
+          "type": "text",
+          "unique": false
+        },
+        {
+          "attr": "status",
+          "column": "status",
+          "enum": [
+            "planned",
+            "active",
+            "completed"
+          ],
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "enum",
+          "unique": false
+        },
+        {
+          "attr": "owner_id",
+          "column": "owner_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "uuid",
+          "ref": "entity.user",
+          "required": false,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "due_date",
+          "column": "due_date",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "date",
+          "ref": null,
+          "required": false,
+          "type": "date",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "owner_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        }
+      ],
+      "hidden_columns": [],
+      "id": "entity.project",
+      "id_has_default": true,
+      "key": "project",
+      "response_fields": [
+        "id",
+        "name",
+        "description",
+        "status",
+        "owner_id",
+        "due_date"
+      ],
+      "state_machine": null,
+      "table": "projects",
+      "text_columns": [
+        "name",
+        "description"
+      ],
+      "unique_columns": []
+    },
+    "entity.project_member": {
+      "class_name": "ProjectMember",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "project_id",
+          "column": "project_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": "entity.project",
+          "required": true,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "user_id",
+          "column": "user_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "project_id"
+          ],
+          "on_delete": "CASCADE",
+          "ref_table": "projects"
+        },
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        }
+      ],
+      "hidden_columns": [],
+      "id": "entity.project_member",
+      "id_has_default": true,
+      "key": "project_member",
+      "response_fields": [
+        "id",
+        "project_id",
+        "user_id"
+      ],
+      "state_machine": null,
+      "table": "project_members",
+      "text_columns": [],
+      "unique_columns": []
+    },
+    "entity.task": {
+      "class_name": "Task",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "title",
+          "column": "title",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "string",
+          "unique": false
+        },
+        {
+          "attr": "description",
+          "column": "description",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "text",
+          "ref": null,
+          "required": false,
+          "type": "text",
+          "unique": false
+        },
+        {
+          "attr": "status",
+          "column": "status",
+          "enum": [
+            "todo",
+            "in_progress",
+            "completed"
+          ],
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "enum",
+          "unique": false
+        },
+        {
+          "attr": "due_date",
+          "column": "due_date",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "date",
+          "ref": null,
+          "required": false,
+          "type": "date",
+          "unique": false
+        },
+        {
+          "attr": "project_id",
+          "column": "project_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": "entity.project",
+          "required": true,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "assignee_id",
+          "column": "assignee_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "uuid",
+          "ref": "entity.user",
+          "required": false,
+          "type": "uuid",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "project_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "projects"
+        },
+        {
+          "columns": [
+            "assignee_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        }
+      ],
+      "hidden_columns": [],
+      "id": "entity.task",
+      "id_has_default": true,
+      "key": "task",
+      "response_fields": [
+        "id",
+        "title",
+        "description",
+        "status",
+        "due_date",
+        "project_id",
+        "assignee_id"
+      ],
+      "state_machine": "state_machine.task",
+      "table": "tasks",
+      "text_columns": [
+        "title",
+        "description"
+      ],
+      "unique_columns": []
+    },
+    "entity.user": {
+      "class_name": "User",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "email",
+          "column": "email",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "email",
+          "unique": true
+        },
+        {
+          "attr": "password_hash",
+          "column": "password_hash",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "string",
+          "unique": false
+        },
+        {
+          "attr": "full_name",
+          "column": "full_name",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "string",
+          "unique": false
+        },
+        {
+          "attr": "role",
+          "column": "role",
+          "enum": [
+            "manager",
+            "employee"
+          ],
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "enum",
+          "unique": false
+        },
+        {
+          "attr": "created_at",
+          "column": "created_at",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "timestamptz",
+          "ref": null,
+          "required": true,
+          "type": "datetime",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [],
+      "hidden_columns": [
+        "password_hash"
+      ],
+      "id": "entity.user",
+      "id_has_default": true,
+      "key": "user",
+      "response_fields": [
+        "id",
+        "email",
+        "full_name",
+        "role",
+        "created_at"
+      ],
+      "state_machine": null,
+      "table": "users",
+      "text_columns": [
+        "full_name"
+      ],
+      "unique_columns": [
+        [
+          "email"
+        ]
+      ]
+    }
+  },
+  "handlers": {
+    "operation.project.progress": {
+      "code": "with self.db.transaction() as conn:\n    rows = conn.execute('SELECT p.*, COALESCE(c.total, 0) AS task_count, COALESCE(c.done, 0) AS completed_task_count FROM \"projects\" p LEFT JOIN (SELECT \"project_id\" AS parent_id, count(*) AS total, count(*) FILTER (WHERE \"status\" = %s) AS done FROM \"tasks\" GROUP BY \"project_id\") c ON c.parent_id = p.id ORDER BY p.id', ('completed',)).fetchall()\nresult = []\nfor row in rows:\n    total, completed = row[\"task_count\"], row[\"completed_task_count\"]\n    row[\"progress_percent\"] = int(round(100 * completed / total)) if total else 0\n    result.append(row)\nreturn result",
+      "meta": {
+        "child": "entity.task",
+        "count_field": "task_count",
+        "done": "completed",
+        "done_field": "completed_task_count",
+        "fk": "project_id",
+        "kind": "progress",
+        "parent": "entity.project",
+        "status_attr": "status"
+      },
+      "notes": [
+        "progress = completed tasks / all tasks per project; the fields are ADDITIVE to the graph schema (the graph defines no aggregate schema)"
+      ],
+      "reason": "",
+      "response_class": "ProjectProgressResponse",
+      "response_extra_fields": [
+        {
+          "name": "task_count",
+          "type": "integer"
+        },
+        {
+          "name": "completed_task_count",
+          "type": "integer"
+        },
+        {
+          "name": "progress_percent",
+          "type": "integer"
+        }
+      ],
+      "source": "llm",
+      "stage": "api_implementation",
+      "status": "implemented"
+    }
+  },
+  "notes": [],
+  "operations": {
+    "operation.department.create": {
+      "access": "restricted",
+      "action": "create",
+      "cardinality": "one",
+      "description": "Create Department.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.department.create",
+        "method": "POST",
+        "path": "/departments",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.department.create",
+        "response_schema": "schema.department",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 201
+      },
+      "entity": "entity.department",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.department.create",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "name",
+          "description"
+        ]
+      },
+      "kind": "create",
+      "name": "Create Department",
+      "not_found_code": "DEPARTMENT_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "owner_fields": [],
+        "server_fields": {}
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.department",
+      "type": "command"
+    },
+    "operation.department.list": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "List Departments.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.department.list",
+        "method": "GET",
+        "path": "/departments",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.department",
+        "roles": [
+          "role.employee",
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.department",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.department.list",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "List Departments",
+      "not_found_code": "DEPARTMENT_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "search": false
+      },
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "service": "service.department",
+      "type": "query"
+    },
+    "operation.department.update": {
+      "access": "restricted",
+      "action": "update",
+      "cardinality": "one",
+      "description": "Update Department.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.department.update",
+        "method": "PATCH",
+        "path": "/departments/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": "schema.department.update",
+        "response_schema": "schema.department",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.department",
+      "errors": [
+        {
+          "code": "DEPARTMENT_NOT_FOUND",
+          "description": "The Department does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.department.update",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [
+          "name",
+          "description"
+        ],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "update",
+      "name": "Update Department",
+      "not_found_code": "DEPARTMENT_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.department",
+      "type": "command"
+    },
+    "operation.employee.create": {
+      "access": "restricted",
+      "action": "create",
+      "cardinality": "one",
+      "description": "Create Employee.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.employee.create",
+        "method": "POST",
+        "path": "/employees",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.employee.create",
+        "response_schema": "schema.employee",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 201
+      },
+      "entity": "entity.employee",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.employee.create",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "user_id",
+          "department_id",
+          "job_title"
+        ]
+      },
+      "kind": "create",
+      "name": "Create Employee",
+      "not_found_code": "EMPLOYEE_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "owner_fields": [],
+        "server_fields": {}
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.employee",
+      "type": "command"
+    },
+    "operation.employee.list": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "List Employees.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.employee.list",
+        "method": "GET",
+        "path": "/employees",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.employee",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.employee",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.employee.list",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "List Employees",
+      "not_found_code": "EMPLOYEE_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "search": false
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.employee",
+      "type": "query"
+    },
+    "operation.employee.read": {
+      "access": "restricted",
+      "action": "read",
+      "cardinality": "one",
+      "description": "View Employee.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.employee.read",
+        "method": "GET",
+        "path": "/employees/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.employee",
+        "roles": [
+          "role.employee",
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.employee",
+      "errors": [
+        {
+          "code": "EMPLOYEE_NOT_FOUND",
+          "description": "The Employee does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.employee.read",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "read",
+      "name": "View Employee",
+      "not_found_code": "EMPLOYEE_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "service": "service.employee",
+      "type": "query"
+    },
+    "operation.employee.update": {
+      "access": "restricted",
+      "action": "update",
+      "cardinality": "one",
+      "description": "Update Employee.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.employee.update",
+        "method": "PATCH",
+        "path": "/employees/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": "schema.employee.update",
+        "response_schema": "schema.employee",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.employee",
+      "errors": [
+        {
+          "code": "EMPLOYEE_NOT_FOUND",
+          "description": "The Employee does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.employee.update",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [
+          "user_id",
+          "department_id",
+          "job_title"
+        ],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "update",
+      "name": "Update Employee",
+      "not_found_code": "EMPLOYEE_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.employee",
+      "type": "command"
+    },
+    "operation.project.create": {
+      "access": "restricted",
+      "action": "create",
+      "cardinality": "one",
+      "description": "Create Project.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.project.create",
+        "method": "POST",
+        "path": "/projects",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.project.create",
+        "response_schema": "schema.project",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 201
+      },
+      "entity": "entity.project",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.project.create",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "name",
+          "description"
+        ]
+      },
+      "kind": "create",
+      "name": "Create Project",
+      "not_found_code": "PROJECT_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "owner_fields": [
+          "owner_id"
+        ],
+        "server_fields": {
+          "owner_id": "principal.id",
+          "status": "first_enum"
+        }
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.project",
+      "type": "command"
+    },
+    "operation.project.delete": {
+      "access": "restricted",
+      "action": "delete",
+      "cardinality": "none",
+      "description": "Delete Project.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.project.delete",
+        "method": "DELETE",
+        "path": "/projects/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": null,
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 204
+      },
+      "entity": "entity.project",
+      "errors": [
+        {
+          "code": "PROJECT_NOT_FOUND",
+          "description": "The Project does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.project.delete",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "delete",
+      "name": "Delete Project",
+      "not_found_code": "PROJECT_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.project",
+      "type": "command"
+    },
+    "operation.project.list": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "List Projects.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.project.list",
+        "method": "GET",
+        "path": "/projects",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.project",
+        "roles": [
+          "role.employee",
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.project",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.project.list",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "List Projects",
+      "not_found_code": "PROJECT_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "search": false
+      },
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "service": "service.project",
+      "type": "query"
+    },
+    "operation.project.progress": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "Task completion per project",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.project.progress",
+        "method": "GET",
+        "path": "/projects/progress",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.project",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.project",
+      "errors": [],
+      "handler": "custom",
+      "id": "operation.project.progress",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "aggregate",
+      "name": "Get project progress",
+      "not_found_code": "PROJECT_NOT_FOUND",
+      "notes": [
+        "aggregate: the response schema is the plain entity list"
+      ],
+      "params": {},
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.project",
+      "type": "query"
+    },
+    "operation.project.read": {
+      "access": "restricted",
+      "action": "read",
+      "cardinality": "one",
+      "description": "View Project.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.project.read",
+        "method": "GET",
+        "path": "/projects/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.project",
+        "roles": [
+          "role.employee",
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.project",
+      "errors": [
+        {
+          "code": "PROJECT_NOT_FOUND",
+          "description": "The Project does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.project.read",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "read",
+      "name": "View Project",
+      "not_found_code": "PROJECT_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "service": "service.project",
+      "type": "query"
+    },
+    "operation.project.update": {
+      "access": "restricted",
+      "action": "update",
+      "cardinality": "one",
+      "description": "Update Project.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.project.update",
+        "method": "PATCH",
+        "path": "/projects/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": "schema.project.update",
+        "response_schema": "schema.project",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.project",
+      "errors": [
+        {
+          "code": "PROJECT_NOT_FOUND",
+          "description": "The Project does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.project.update",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [
+          "name",
+          "description",
+          "status",
+          "due_date"
+        ],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "update",
+      "name": "Update Project",
+      "not_found_code": "PROJECT_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.project",
+      "type": "command"
+    },
+    "operation.project_member.create": {
+      "access": "restricted",
+      "action": "create",
+      "cardinality": "one",
+      "description": "Create Project Member.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.project_member.create",
+        "method": "POST",
+        "path": "/project-members",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.project_member.create",
+        "response_schema": "schema.project_member",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 201
+      },
+      "entity": "entity.project_member",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.project_member.create",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "project_id",
+          "user_id"
+        ]
+      },
+      "kind": "create",
+      "name": "Create Project Member",
+      "not_found_code": "PROJECT_MEMBER_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "owner_fields": [],
+        "server_fields": {}
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.project_member",
+      "type": "command"
+    },
+    "operation.project_member.delete": {
+      "access": "restricted",
+      "action": "delete",
+      "cardinality": "none",
+      "description": "Delete Project Member.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.project_member.delete",
+        "method": "DELETE",
+        "path": "/project-members/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": null,
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 204
+      },
+      "entity": "entity.project_member",
+      "errors": [
+        {
+          "code": "PROJECT_MEMBER_NOT_FOUND",
+          "description": "The Project Member does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.project_member.delete",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "delete",
+      "name": "Delete Project Member",
+      "not_found_code": "PROJECT_MEMBER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.project_member",
+      "type": "command"
+    },
+    "operation.project_member.list": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "List Project Members.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.project_member.list",
+        "method": "GET",
+        "path": "/project-members",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.project_member",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.project_member",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.project_member.list",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "List Project Members",
+      "not_found_code": "PROJECT_MEMBER_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "search": false
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.project_member",
+      "type": "query"
+    },
+    "operation.task.create": {
+      "access": "restricted",
+      "action": "create",
+      "cardinality": "one",
+      "description": "Create Task.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.task.create",
+        "method": "POST",
+        "path": "/tasks",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.task.create",
+        "response_schema": "schema.task",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 201
+      },
+      "entity": "entity.task",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.task.create",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "title",
+          "project_id"
+        ]
+      },
+      "kind": "create",
+      "name": "Create Task",
+      "not_found_code": "TASK_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "owner_fields": [],
+        "server_fields": {
+          "status": "initial_state"
+        }
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.task",
+      "type": "command"
+    },
+    "operation.task.delete": {
+      "access": "restricted",
+      "action": "delete",
+      "cardinality": "none",
+      "description": "Delete Task.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.task.delete",
+        "method": "DELETE",
+        "path": "/tasks/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": null,
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 204
+      },
+      "entity": "entity.task",
+      "errors": [
+        {
+          "code": "TASK_NOT_FOUND",
+          "description": "The Task does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.task.delete",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "delete",
+      "name": "Delete Task",
+      "not_found_code": "TASK_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.task",
+      "type": "command"
+    },
+    "operation.task.list": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "List Tasks.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.task.list",
+        "method": "GET",
+        "path": "/tasks",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.task",
+        "roles": [
+          "role.employee",
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.task",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.task.list",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "List Tasks",
+      "not_found_code": "TASK_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "search": false
+      },
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "service": "service.task",
+      "type": "query"
+    },
+    "operation.task.list_assigned": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "List my assigned tasks.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.task.list_assigned",
+        "method": "GET",
+        "path": "/tasks/assigned",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.task",
+        "roles": [
+          "role.employee"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.task",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.task.list_assigned",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "List my assigned tasks",
+      "not_found_code": "TASK_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "search": false
+      },
+      "roles": [
+        "role.employee"
+      ],
+      "service": "service.task",
+      "type": "query"
+    },
+    "operation.task.read": {
+      "access": "restricted",
+      "action": "read",
+      "cardinality": "one",
+      "description": "View Task.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.task.read",
+        "method": "GET",
+        "path": "/tasks/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.task",
+        "roles": [
+          "role.employee",
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.task",
+      "errors": [
+        {
+          "code": "TASK_NOT_FOUND",
+          "description": "The Task does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.task.read",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "read",
+      "name": "View Task",
+      "not_found_code": "TASK_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "service": "service.task",
+      "type": "query"
+    },
+    "operation.task.update": {
+      "access": "restricted",
+      "action": "update",
+      "cardinality": "one",
+      "description": "Update Task.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.task.update",
+        "method": "PATCH",
+        "path": "/tasks/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": "schema.task.update",
+        "response_schema": "schema.task",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.task",
+      "errors": [
+        {
+          "code": "TASK_NOT_FOUND",
+          "description": "The Task does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.task.update",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [
+          "title",
+          "description",
+          "due_date"
+        ],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "update",
+      "name": "Update Task",
+      "not_found_code": "TASK_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.task",
+      "type": "command"
+    },
+    "operation.task.update_status": {
+      "access": "restricted",
+      "action": "update",
+      "cardinality": "one",
+      "description": "Update task status.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.task.update_status",
+        "method": "PATCH",
+        "path": "/tasks/{id}/status",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": "schema.task.update_status",
+        "response_schema": "schema.task",
+        "roles": [
+          "role.employee",
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.task",
+      "errors": [
+        {
+          "code": "TASK_NOT_FOUND",
+          "description": "The task does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.task.update_status",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id",
+          "status"
+        ]
+      },
+      "kind": "transition",
+      "name": "Update task status",
+      "not_found_code": "TASK_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "field": "status",
+        "state_machine": "state_machine.task"
+      },
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "service": "service.task",
+      "type": "command"
+    },
+    "operation.user.login": {
+      "access": "public",
+      "action": "execute",
+      "cardinality": "one",
+      "description": "Log in.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.user.login",
+        "method": "POST",
+        "path": "/auth/login",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.user.login",
+        "response_schema": "schema.user",
+        "roles": [],
+        "status_code": 200
+      },
+      "entity": "entity.user",
+      "errors": [
+        {
+          "code": "INVALID_CREDENTIALS",
+          "description": "Email or password is wrong"
+        }
+      ],
+      "handler": "auth",
+      "id": "operation.user.login",
+      "input": {
+        "extra_fields": [
+          "password"
+        ],
+        "optional_fields": [],
+        "required_fields": [
+          "email"
+        ]
+      },
+      "kind": "auth.login",
+      "name": "Log in",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.user",
+      "type": "command"
+    },
+    "operation.user.logout": {
+      "access": "authenticated",
+      "action": "execute",
+      "cardinality": "none",
+      "description": "Log out.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.user.logout",
+        "method": "POST",
+        "path": "/auth/logout",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": null,
+        "roles": [],
+        "status_code": 204
+      },
+      "entity": "entity.user",
+      "errors": [],
+      "handler": "auth",
+      "id": "operation.user.logout",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "auth.logout",
+      "name": "Log out",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.user",
+      "type": "command"
+    },
+    "operation.user.request_password_reset": {
+      "access": "public",
+      "action": "execute",
+      "cardinality": "none",
+      "description": "Request password reset.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.user.request_password_reset",
+        "method": "POST",
+        "path": "/auth/forgot-password",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.user.request_password_reset",
+        "response_schema": null,
+        "roles": [],
+        "status_code": 204
+      },
+      "entity": "entity.user",
+      "errors": [],
+      "handler": "auth",
+      "id": "operation.user.request_password_reset",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "email"
+        ]
+      },
+      "kind": "auth.request_password_reset",
+      "name": "Request password reset",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.user",
+      "type": "command"
+    },
+    "operation.user.reset_password": {
+      "access": "public",
+      "action": "execute",
+      "cardinality": "none",
+      "description": "Reset password.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.user.reset_password",
+        "method": "POST",
+        "path": "/auth/reset-password",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.user.reset_password",
+        "response_schema": null,
+        "roles": [],
+        "status_code": 204
+      },
+      "entity": "entity.user",
+      "errors": [
+        {
+          "code": "INVALID_RESET_TOKEN",
+          "description": "The reset token is invalid or expired"
+        }
+      ],
+      "handler": "auth",
+      "id": "operation.user.reset_password",
+      "input": {
+        "extra_fields": [
+          "reset_token",
+          "new_password"
+        ],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "auth.reset_password",
+      "name": "Reset password",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.user",
+      "type": "command"
+    }
+  },
+  "project": {
+    "description": "A SaaS application where managers organise projects and tasks and employees work on assigned tasks.",
+    "id": "project.task_manager",
+    "key": "task_manager",
+    "name": "Task Manager",
+    "package": "backend_app"
+  },
+  "roles": {
+    "role.employee": {
+      "inherits": [],
+      "key": "employee"
+    },
+    "role.manager": {
+      "inherits": [],
+      "key": "manager"
+    }
+  },
+  "rules": [
+    {
+      "entity": "entity.task",
+      "error_code": "TASK_NO_ASSIGNEE",
+      "field": "status",
+      "id": "rule.guard.task.completed_needs_assignee",
+      "message": "A task cannot be completed without an assignee",
+      "operations": [
+        "operation.task.update_status"
+      ],
+      "origin": "validation",
+      "require_fields_set": [
+        "assignee_id"
+      ],
+      "source": "validation.task.completed_needs_assignee",
+      "status": 409,
+      "to": "completed",
+      "type": "transition_guard"
+    },
+    {
+      "entity": "entity.task",
+      "error_code": "TASK_NOT_ASSIGNED_TO_CALLER",
+      "exempt_roles": [
+        "role.manager"
+      ],
+      "field": "assignee_id",
+      "id": "rule.ownership.task.employee_updates_own",
+      "message": "Employees can only update tasks assigned to them",
+      "operations": [
+        "operation.task.update_status"
+      ],
+      "origin": "validation",
+      "source": "validation.task.employee_updates_own",
+      "status": 403,
+      "type": "ownership"
+    },
+    {
+      "entity": "entity.task",
+      "id": "rule.scope.task.list_assigned",
+      "operations": [
+        "operation.task.list_assigned"
+      ],
+      "origin": "permission_condition",
+      "roles": [
+        "role.employee"
+      ],
+      "scope": {
+        "field": "assignee_id"
+      },
+      "source": "permission.task.list_assigned#0",
+      "type": "row_scope"
+    }
+  ],
+  "schemas": {
+    "schema.department": {
+      "class_name": "DepartmentResponse",
+      "entity": "entity.department",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "name",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "description",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "text"
+        }
+      ],
+      "id": "schema.department",
+      "kind": "response",
+      "name": "Department"
+    },
+    "schema.department.create": {
+      "class_name": "DepartmentCreateRequest",
+      "entity": "entity.department",
+      "fields": [
+        {
+          "base": "string",
+          "enum": null,
+          "name": "name",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "string!"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "description",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "text"
+        }
+      ],
+      "id": "schema.department.create",
+      "kind": "request",
+      "name": "Create Department request"
+    },
+    "schema.department.update": {
+      "class_name": "DepartmentUpdateRequest",
+      "entity": "entity.department",
+      "fields": [
+        {
+          "base": "string",
+          "enum": null,
+          "name": "name",
+          "non_empty": true,
+          "ref": null,
+          "required": false,
+          "type": "string!"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "description",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "text"
+        }
+      ],
+      "id": "schema.department.update",
+      "kind": "request",
+      "name": "Update Department request"
+    },
+    "schema.employee": {
+      "class_name": "EmployeeResponse",
+      "entity": "entity.employee",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "user_id",
+          "non_empty": false,
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "department_id",
+          "non_empty": false,
+          "ref": "entity.department",
+          "required": false,
+          "type": "uuid"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "job_title",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "id": "schema.employee",
+      "kind": "response",
+      "name": "Employee"
+    },
+    "schema.employee.create": {
+      "class_name": "EmployeeCreateRequest",
+      "entity": "entity.employee",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "user_id",
+          "non_empty": true,
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid!>user"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "department_id",
+          "non_empty": false,
+          "ref": "entity.department",
+          "required": true,
+          "type": "uuid>department"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "job_title",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "id": "schema.employee.create",
+      "kind": "request",
+      "name": "Create Employee request"
+    },
+    "schema.employee.update": {
+      "class_name": "EmployeeUpdateRequest",
+      "entity": "entity.employee",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "user_id",
+          "non_empty": true,
+          "ref": "entity.user",
+          "required": false,
+          "type": "uuid!>user"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "department_id",
+          "non_empty": false,
+          "ref": "entity.department",
+          "required": false,
+          "type": "uuid>department"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "job_title",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "id": "schema.employee.update",
+      "kind": "request",
+      "name": "Update Employee request"
+    },
+    "schema.project": {
+      "class_name": "ProjectResponse",
+      "entity": "entity.project",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "name",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "description",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "text"
+        },
+        {
+          "base": "enum",
+          "enum": [
+            "planned",
+            "active",
+            "completed"
+          ],
+          "name": "status",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "enum"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "owner_id",
+          "non_empty": false,
+          "ref": "entity.user",
+          "required": false,
+          "type": "uuid"
+        },
+        {
+          "base": "date",
+          "enum": null,
+          "name": "due_date",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "date"
+        }
+      ],
+      "id": "schema.project",
+      "kind": "response",
+      "name": "Project"
+    },
+    "schema.project.create": {
+      "class_name": "ProjectCreateRequest",
+      "entity": "entity.project",
+      "fields": [
+        {
+          "base": "string",
+          "enum": null,
+          "name": "name",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "string!"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "description",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "text"
+        }
+      ],
+      "id": "schema.project.create",
+      "kind": "request",
+      "name": "Create Project request"
+    },
+    "schema.project.update": {
+      "class_name": "ProjectUpdateRequest",
+      "entity": "entity.project",
+      "fields": [
+        {
+          "base": "string",
+          "enum": null,
+          "name": "name",
+          "non_empty": true,
+          "ref": null,
+          "required": false,
+          "type": "string!"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "description",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "text"
+        },
+        {
+          "base": "enum",
+          "enum": [
+            "planned",
+            "active",
+            "completed"
+          ],
+          "name": "status",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "enum"
+        },
+        {
+          "base": "date",
+          "enum": null,
+          "name": "due_date",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "date"
+        }
+      ],
+      "id": "schema.project.update",
+      "kind": "request",
+      "name": "Update Project request"
+    },
+    "schema.project_member": {
+      "class_name": "ProjectMemberResponse",
+      "entity": "entity.project_member",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "project_id",
+          "non_empty": false,
+          "ref": "entity.project",
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "user_id",
+          "non_empty": false,
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid"
+        }
+      ],
+      "id": "schema.project_member",
+      "kind": "response",
+      "name": "Project Member"
+    },
+    "schema.project_member.create": {
+      "class_name": "ProjectMemberCreateRequest",
+      "entity": "entity.project_member",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "project_id",
+          "non_empty": true,
+          "ref": "entity.project",
+          "required": true,
+          "type": "uuid!>project"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "user_id",
+          "non_empty": true,
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid!>user"
+        }
+      ],
+      "id": "schema.project_member.create",
+      "kind": "request",
+      "name": "Create Project Member request"
+    },
+    "schema.task": {
+      "class_name": "TaskResponse",
+      "entity": "entity.task",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "title",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "description",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "text"
+        },
+        {
+          "base": "enum",
+          "enum": [
+            "todo",
+            "in_progress",
+            "completed"
+          ],
+          "name": "status",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "enum"
+        },
+        {
+          "base": "date",
+          "enum": null,
+          "name": "due_date",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "date"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "project_id",
+          "non_empty": false,
+          "ref": "entity.project",
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "assignee_id",
+          "non_empty": false,
+          "ref": "entity.user",
+          "required": false,
+          "type": "uuid"
+        }
+      ],
+      "id": "schema.task",
+      "kind": "response",
+      "name": "Task"
+    },
+    "schema.task.create": {
+      "class_name": "TaskCreateRequest",
+      "entity": "entity.task",
+      "fields": [
+        {
+          "base": "string",
+          "enum": null,
+          "name": "title",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "string!"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "project_id",
+          "non_empty": true,
+          "ref": "entity.project",
+          "required": true,
+          "type": "uuid!>project"
+        }
+      ],
+      "id": "schema.task.create",
+      "kind": "request",
+      "name": "Create Task request"
+    },
+    "schema.task.update": {
+      "class_name": "TaskUpdateRequest",
+      "entity": "entity.task",
+      "fields": [
+        {
+          "base": "string",
+          "enum": null,
+          "name": "title",
+          "non_empty": true,
+          "ref": null,
+          "required": false,
+          "type": "string!"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "description",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "text"
+        },
+        {
+          "base": "date",
+          "enum": null,
+          "name": "due_date",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "date"
+        }
+      ],
+      "id": "schema.task.update",
+      "kind": "request",
+      "name": "Update Task request"
+    },
+    "schema.task.update_status": {
+      "class_name": "TaskUpdateStatusRequest",
+      "entity": "entity.task",
+      "fields": [
+        {
+          "base": "enum",
+          "enum": [
+            "todo",
+            "in_progress",
+            "completed"
+          ],
+          "name": "status",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "enum"
+        }
+      ],
+      "id": "schema.task.update_status",
+      "kind": "request",
+      "name": "Update task status request"
+    },
+    "schema.user": {
+      "class_name": "UserResponse",
+      "entity": "entity.user",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "email",
+          "enum": null,
+          "name": "email",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "email"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "full_name",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        },
+        {
+          "base": "enum",
+          "enum": [
+            "manager",
+            "employee"
+          ],
+          "name": "role",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "enum"
+        },
+        {
+          "base": "datetime",
+          "enum": null,
+          "name": "created_at",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "datetime"
+        }
+      ],
+      "id": "schema.user",
+      "kind": "response",
+      "name": "User"
+    },
+    "schema.user.login": {
+      "class_name": "UserLoginRequest",
+      "entity": "entity.user",
+      "fields": [
+        {
+          "base": "email",
+          "enum": null,
+          "name": "email",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "email!*"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "password",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "id": "schema.user.login",
+      "kind": "request",
+      "name": "Log in request"
+    },
+    "schema.user.request_password_reset": {
+      "class_name": "UserRequestPasswordResetRequest",
+      "entity": "entity.user",
+      "fields": [
+        {
+          "base": "email",
+          "enum": null,
+          "name": "email",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "email!*"
+        }
+      ],
+      "id": "schema.user.request_password_reset",
+      "kind": "request",
+      "name": "Request password reset request"
+    },
+    "schema.user.reset_password": {
+      "class_name": "UserResetPasswordRequest",
+      "entity": "entity.user",
+      "fields": [
+        {
+          "base": "string",
+          "enum": null,
+          "name": "reset_token",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "new_password",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "id": "schema.user.reset_password",
+      "kind": "request",
+      "name": "Reset password request"
+    }
+  },
+  "spec_version": "1",
+  "state_machines": {
+    "state_machine.task": {
+      "entity": "entity.task",
+      "field": "status",
+      "id": "state_machine.task",
+      "initial": "todo",
+      "states": [
+        "todo",
+        "in_progress",
+        "completed"
+      ],
+      "transitions": [
+        {
+          "from": "todo",
+          "operation": "operation.task.update_status",
+          "roles": [
+            "role.employee",
+            "role.manager"
+          ],
+          "to": "in_progress"
+        },
+        {
+          "from": "in_progress",
+          "operation": "operation.task.update_status",
+          "roles": [
+            "role.employee",
+            "role.manager"
+          ],
+          "to": "completed"
+        },
+        {
+          "from": "in_progress",
+          "operation": "operation.task.update_status",
+          "roles": [
+            "role.employee",
+            "role.manager"
+          ],
+          "to": "todo"
+        }
+      ]
+    }
+  }
+}

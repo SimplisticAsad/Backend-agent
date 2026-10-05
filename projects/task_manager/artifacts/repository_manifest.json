@@ -1,0 +1,103 @@
+{
+  "repositories": [
+    {
+      "class": "DepartmentRepository",
+      "entity": "entity.department",
+      "foreign_keys": [],
+      "table": "departments",
+      "unique_columns": []
+    },
+    {
+      "class": "EmployeeRepository",
+      "entity": "entity.employee",
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        },
+        {
+          "columns": [
+            "department_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "departments"
+        }
+      ],
+      "table": "employees",
+      "unique_columns": []
+    },
+    {
+      "class": "ProjectRepository",
+      "entity": "entity.project",
+      "foreign_keys": [
+        {
+          "columns": [
+            "owner_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        }
+      ],
+      "table": "projects",
+      "unique_columns": []
+    },
+    {
+      "class": "ProjectMemberRepository",
+      "entity": "entity.project_member",
+      "foreign_keys": [
+        {
+          "columns": [
+            "project_id"
+          ],
+          "on_delete": "CASCADE",
+          "ref_table": "projects"
+        },
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        }
+      ],
+      "table": "project_members",
+      "unique_columns": []
+    },
+    {
+      "class": "TaskRepository",
+      "entity": "entity.task",
+      "foreign_keys": [
+        {
+          "columns": [
+            "project_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "projects"
+        },
+        {
+          "columns": [
+            "assignee_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        }
+      ],
+      "table": "tasks",
+      "unique_columns": []
+    },
+    {
+      "class": "UserRepository",
+      "entity": "entity.user",
+      "foreign_keys": [],
+      "table": "users",
+      "unique_columns": [
+        [
+          "email"
+        ]
+      ]
+    }
+  ]
+}

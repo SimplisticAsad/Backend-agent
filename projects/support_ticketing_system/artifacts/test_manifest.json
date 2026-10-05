@@ -1,0 +1,124 @@
+{
+  "features": [
+    "tests/bdd/features/ac_auth_login.feature",
+    "tests/bdd/features/ac_auth_logout.feature",
+    "tests/bdd/features/ac_auth_password_reset.feature",
+    "tests/bdd/features/ac_dashboard_support_view.feature",
+    "tests/bdd/features/ac_ticket_assign.feature",
+    "tests/bdd/features/ac_ticket_browse.feature",
+    "tests/bdd/features/ac_ticket_change_status.feature",
+    "tests/bdd/features/ac_ticket_closed_read_only.feature",
+    "tests/bdd/features/ac_ticket_comment_browse.feature",
+    "tests/bdd/features/ac_ticket_comment_create.feature",
+    "tests/bdd/features/ac_ticket_create.feature",
+    "tests/bdd/features/ac_ticket_update.feature",
+    "tests/bdd/features/ac_user_invalid_login.feature"
+  ],
+  "modules": [
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/api/test_auth_flows.py",
+      "sha256": "e1a6f4cf63b6e63d806bf13e8d2a6cff0d7efb8576b13b296e9dab28857313bd",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/api/test_operations.py",
+      "sha256": "61fb13857019148999b6ef367a4727786a5ecbf53be29014e3efa8649bf1357c",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/bdd/test_acceptance.py",
+      "sha256": "e45266a0929c4979acda1afa4e338d4dcb801d1d9124ab2d29045714f5c23703",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/conftest.py",
+      "sha256": "36c6059409f11675f52fe0125aa4b03041613a3e5e1a7913a57724c1e83542bc",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/contract/test_graph_contract.py",
+      "sha256": "45f8d1e98ba1bcf1067f01105dc060b221e67e2076b11210460d5bfa21bcebd0",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/db_failure/test_database_failures.py",
+      "sha256": "65c69eea641a4352eb7391a4e2724bed699b14cb2022260d6713de0f71232a6d",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/repository/test_repositories.py",
+      "sha256": "9c254216cdd0807939f2b9a1b8ea3fdeccf1e6e75e6e506d34e25ed90680a816",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/security/test_security.py",
+      "sha256": "72220db38da3bdef92e7e29367745128336d91de38831cdce0d82c4040e02ac5",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/unit/test_core.py",
+      "sha256": "8ee6c9fc29aff75306c8c4fb6efd712a49833ccfd745c4198d8e86d189eb62a7",
+      "source_refs": []
+    }
+  ],
+  "suites": [
+    {
+      "name": "unit",
+      "needs_database": false,
+      "path": "tests/unit"
+    },
+    {
+      "name": "contract",
+      "needs_database": false,
+      "path": "tests/contract"
+    },
+    {
+      "name": "repository",
+      "needs_database": true,
+      "path": "tests/repository"
+    },
+    {
+      "name": "api",
+      "needs_database": true,
+      "path": "tests/api"
+    },
+    {
+      "name": "security",
+      "needs_database": true,
+      "path": "tests/security"
+    },
+    {
+      "name": "db_failure",
+      "needs_database": true,
+      "path": "tests/db_failure"
+    },
+    {
+      "name": "bdd",
+      "needs_database": true,
+      "path": "tests/bdd"
+    },
+    {
+      "name": "frontend_compat",
+      "needs_database": true,
+      "path": "tests/frontend_compat"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "entities": [
+    {
+      "columns": {
+        "description": "description",
+        "id": "id",
+        "name": "name"
+      },
+      "crud_functions": [
+        "create_department",
+        "delete_department",
+        "get_department",
+        "list_departments",
+        "update_department"
+      ],
+      "database_table": "departments",
+      "domain_model": "Department",
+      "graph_entity": "entity.department",
+      "primary_key": [
+        "id"
+      ]
+    },
+    {
+      "columns": {
+        "department_id": "department_id",
+        "id": "id",
+        "job_title": "job_title",
+        "user_id": "user_id"
+      },
+      "crud_functions": [
+        "create_employee",
+        "delete_employee",
+        "get_employee",
+        "list_employees",
+        "update_employee"
+      ],
+      "database_table": "employees",
+      "domain_model": "Employee",
+      "graph_entity": "entity.employee",
+      "primary_key": [
+        "id"
+      ]
+    },
+    {
+      "columns": {
+        "description": "description",
+        "due_date": "due_date",
+        "id": "id",
+        "name": "name",
+        "owner_id": "owner_id",
+        "status": "status"
+      },
+      "crud_functions": [
+        "create_project",
+        "delete_project",
+        "get_project",
+        "list_projects",
+        "update_project"
+      ],
+      "database_table": "projects",
+      "domain_model": "Project",
+      "graph_entity": "entity.project",
+      "primary_key": [
+        "id"
+      ]
+    },
+    {
+      "columns": {
+        "id": "id",
+        "project_id": "project_id",
+        "user_id": "user_id"
+      },
+      "crud_functions": [
+        "create_project_member",
+        "delete_project_member",
+        "get_project_member",
+        "list_project_members",
+        "update_project_member"
+      ],
+      "database_table": "project_members",
+      "domain_model": "ProjectMember",
+      "graph_entity": "entity.project_member",
+      "primary_key": [
+        "id"
+      ]
+    },
+    {
+      "columns": {
+        "assignee_id": "assignee_id",
+        "description": "description",
+        "due_date": "due_date",
+        "id": "id",
+        "project_id": "project_id",
+        "status": "status",
+        "title": "title"
+      },
+      "crud_functions": [
+        "create_task",
+        "delete_task",
+        "get_task",
+        "list_tasks",
+        "update_task"
+      ],
+      "database_table": "tasks",
+      "domain_model": "Task",
+      "graph_entity": "entity.task",
+      "primary_key": [
+        "id"
+      ]
+    },
+    {
+      "columns": {
+        "created_at": "created_at",
+        "email": "email",
+        "full_name": "full_name",
+        "id": "id",
+        "password_hash": "***",
+        "role": "role"
+      },
+      "crud_functions": [
+        "create_user",
+        "delete_user",
+        "get_user",
+        "list_users",
+        "update_user"
+      ],
+      "database_table": "users",
+      "domain_model": "User",
+      "graph_entity": "entity.user",
+      "primary_key": [
+        "id"
+      ]
+    }
+  ]
+}

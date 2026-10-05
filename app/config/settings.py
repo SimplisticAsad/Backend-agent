@@ -24,7 +24,7 @@ def redact_url(url: str) -> str:
 
 @dataclass(frozen=True)
 class Settings:
-    llm_provider: str = "mock"
+    llm_provider: str = "anthropic"
     llm_model: str = "claude-sonnet-5-5"
     llm_base_url: str | None = None
     llm_api_key: str | None = field(default=None, repr=False)
@@ -40,7 +40,7 @@ class Settings:
         e = os.environ if env is None else env
         fad = e.get("FRONTEND_AGENT_DIR")
         return cls(
-            llm_provider=e.get("LLM_PROVIDER", "mock"),
+            llm_provider=e.get("LLM_PROVIDER", "anthropic"),
             llm_model=e.get("LLM_MODEL", "claude-sonnet-5-5"),
             llm_base_url=e.get("LLM_BASE_URL") or None,
             llm_api_key=e.get("LLM_API_KEY") or e.get("ANTHROPIC_API_KEY") or None,

@@ -1,0 +1,92 @@
+[
+  {
+    "name": "create_user",
+    "table": "users",
+    "operation": "create",
+    "description": "create user"
+  },
+  {
+    "name": "get_user",
+    "table": "users",
+    "operation": "get",
+    "description": "get user"
+  },
+  {
+    "name": "update_user",
+    "table": "users",
+    "operation": "update",
+    "description": "update user"
+  },
+  {
+    "name": "delete_user",
+    "table": "users",
+    "operation": "delete",
+    "description": "delete user"
+  },
+  {
+    "name": "list_users",
+    "table": "users",
+    "operation": "list",
+    "description": "list users"
+  },
+  {
+    "name": "create_ticket",
+    "table": "tickets",
+    "operation": "create",
+    "description": "create ticket"
+  },
+  {
+    "name": "get_ticket",
+    "table": "tickets",
+    "operation": "get",
+    "description": "get ticket"
+  },
+  {
+    "name": "update_ticket",
+    "table": "tickets",
+    "operation": "update",
+    "description": "update ticket"
+  },
+  {
+    "name": "delete_ticket",
+    "table": "tickets",
+    "operation": "delete",
+    "description": "delete ticket"
+  },
+  {
+    "name": "list_tickets",
+    "table": "tickets",
+    "operation": "list",
+    "description": "list tickets"
+  },
+  {
+    "name": "create_ticket_comment",
+    "table": "ticket_comments",
+    "operation": "create",
+    "description": "create ticket_comment"
+  },
+  {
+    "name": "get_ticket_comment",
+    "table": "ticket_comments",
+    "operation": "get",
+    "description": "get ticket_comment"
+  },
+  {
+    "name": "update_ticket_comment",
+    "table": "ticket_comments",
+    "operation": "update",
+    "description": "update ticket_comment"
+  },
+  {
+    "name": "delete_ticket_comment",
+    "table": "ticket_comments",
+    "operation": "delete",
+    "description": "delete ticket_comment"
+  },
+  {
+    "name": "list_ticket_comments",
+    "table": "ticket_comments",
+    "operation": "list",
+    "description": "list ticket_comments"
+  }
+]

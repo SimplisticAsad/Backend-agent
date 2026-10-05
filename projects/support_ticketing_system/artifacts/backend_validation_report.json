@@ -1,0 +1,470 @@
+{
+  "advisory": {
+    "architecture": {
+      "descriptions": {
+        "TicketCommentRepository": "Parameterised SQL access to table ticket_comments.",
+        "TicketCommentService": "Application service for service.ticket_comment: 2 operation(s).",
+        "TicketRepository": "Parameterised SQL access to table tickets.",
+        "TicketService": "Application service for service.ticket: 7 operation(s).",
+        "UserRepository": "Parameterised SQL access to table users.",
+        "UserService": "Application service for service.user: 5 operation(s).",
+        "backend_app.api": "HTTP routes, request/response schemas and dependencies; no business logic.",
+        "backend_app.application": "Application services: one method per graph operation.",
+        "backend_app.auth": "Authentication and role authorization.",
+        "backend_app.domain": "Domain entities mirroring graph entities, and domain exceptions.",
+        "backend_app.engine": "Spec-driven implementation of CRUD, state transitions and object-level rules.",
+        "backend_app.infrastructure": "Repositories over the database contract."
+      }
+    },
+    "authorization": {
+      "findings": [
+        {
+          "finding": "Row privacy was inferred by a secure-default heuristic; the graph does not state it explicitly.",
+          "ref": "rule.scope.implicit.ticket.requester_id",
+          "severity": "info"
+        },
+        {
+          "finding": "Row privacy was inferred by a secure-default heuristic; the graph does not state it explicitly.",
+          "ref": "rule.scope.implicit.ticket_comment.via_ticket_id",
+          "severity": "info"
+        }
+      ]
+    },
+    "database_integration": {
+      "notes": [
+        {
+          "note": "mapped to table tickets; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+          "ref": "entity.ticket"
+        },
+        {
+          "note": "mapped to table ticket_comments; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+          "ref": "entity.ticket_comment"
+        },
+        {
+          "note": "mapped to table users; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+          "ref": "entity.user"
+        }
+      ],
+      "required_database_changes": []
+    },
+    "domain_model": {
+      "entities": [
+        {
+          "entity": "entity.ticket",
+          "invariants": [
+            "rule.frozen.ticket.closed_read_only",
+            "rule.scope.implicit.ticket.requester_id",
+            "Status changes only along the declared transitions of state_machine.ticket.",
+            "id is unique."
+          ]
+        },
+        {
+          "entity": "entity.ticket_comment",
+          "invariants": [
+            "rule.scope.implicit.ticket_comment.via_ticket_id",
+            "id is unique."
+          ]
+        },
+        {
+          "entity": "entity.user",
+          "invariants": [
+            "id is unique.",
+            "email is unique."
+          ]
+        }
+      ]
+    },
+    "final_review": {
+      "open_items": [
+        "conflict: AGGREGATE_WITHOUT_RESULT_SCHEMA",
+        "conflict: NO_RESET_TOKEN_STORE",
+        "conflict: NO_USER_PROVISIONING",
+        "warning: GRAPH_GAP/NO_USER_PROVISIONING: no operation creates entity.user: users can log in but cannot be created through the API",
+        "warning: operation operation.ticket.stats is not implemented (501): aggregate: the response schema is the plain entity list",
+        "warning: known gap in bdd: test_acceptance_criterion[ac.dashboard.support_view]: known gap: operation.ticket.stats is not implemented (aggregate: the response schema is the plain entity list)"
+      ],
+      "summary": "Backend validation status: passed_with_conflicts after 0 correction attempt(s)."
+    },
+    "graph_analysis": {
+      "observations": [
+        "14 operations across 3 entities; 13 implemented by the generic engine, 1 need handlers."
+      ],
+      "risks": [
+        {
+          "ref": "entity.user",
+          "risk": "no operation creates entity.user: users can log in but cannot be created through the API"
+        }
+      ]
+    }
+  },
+  "api_contract": "passed",
+  "api_tests": "passed",
+  "bdd_tests": "passed_with_known_gaps",
+  "contract_tests": "passed",
+  "correction_attempts": 0,
+  "correction_stopped_because": "all checks passed",
+  "database_contract": "passed",
+  "database_tests": "passed",
+  "frontend_compat_tests": "not_available",
+  "frontend_contract": "not_available",
+  "graph_validation": "passed",
+  "integration_conflicts": {
+    "critical": 0,
+    "info": 0,
+    "major": 1,
+    "minor": 2
+  },
+  "integration_tests": "passed_with_known_gaps",
+  "llm_provider": "mock",
+  "project": "project.support_ticketing_system",
+  "security_tests": "passed",
+  "stages": [
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "graphs": "projects/support_ticketing_system/graphs",
+        "project": "projects/support_ticketing_system"
+      },
+      "duration_ms": 0.0,
+      "errors": [],
+      "stage": "repository_inspection",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "graphs": [
+          "acceptance_criteria",
+          "actors",
+          "api",
+          "assumptions",
+          "backend",
+          "capabilities",
+          "dependencies",
+          "entities",
+          "permissions",
+          "project",
+          "questions",
+          "relationships",
+          "requirements",
+          "roles",
+          "state_machines",
+          "validations",
+          "workflows"
+        ],
+        "project_id": "project.support_ticketing_system"
+      },
+      "duration_ms": 2.1,
+      "errors": [],
+      "stage": "graph_loading",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {},
+      "duration_ms": 0.9,
+      "errors": [],
+      "stage": "graph_validation",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "functions": 15,
+        "tables": [
+          "ticket_comments",
+          "tickets",
+          "users"
+        ]
+      },
+      "duration_ms": 0.4,
+      "errors": [],
+      "stage": "database_contract_loading",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "available": false,
+        "endpoints": 0
+      },
+      "duration_ms": 0.0,
+      "errors": [],
+      "stage": "frontend_contract_loading",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [
+        "integration_conflicts.json"
+      ],
+      "correction_attempts": 0,
+      "details": {
+        "critical": 0,
+        "info": 0,
+        "major": 1,
+        "minor": 2
+      },
+      "duration_ms": 1.0,
+      "errors": [],
+      "stage": "integration_analysis",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [
+        "backend_analysis.json",
+        "entity_mapping.json"
+      ],
+      "correction_attempts": 0,
+      "details": {},
+      "duration_ms": 4.9,
+      "errors": [],
+      "stage": "backend_analysis",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {},
+      "duration_ms": 0.4,
+      "errors": [],
+      "stage": "llm_graph_analysis",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "skipped": "every graph condition was mapped by the deterministic baseline"
+      },
+      "duration_ms": 0.0,
+      "errors": [],
+      "stage": "llm_business_rules",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [
+        "handlers.json"
+      ],
+      "correction_attempts": 0,
+      "details": {
+        "implemented": [],
+        "operations": [
+          "operation.ticket.stats"
+        ]
+      },
+      "duration_ms": 0.7,
+      "errors": [],
+      "stage": "llm_api_implementation",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [
+        "backend_architecture.json",
+        "backend_spec.json"
+      ],
+      "correction_attempts": 0,
+      "details": {},
+      "duration_ms": 7.2,
+      "errors": [],
+      "stage": "architecture_generation",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {},
+      "duration_ms": 1.4,
+      "errors": [],
+      "stage": "llm_domain_authorization_database_review",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "files": 58
+      },
+      "duration_ms": 6.7,
+      "errors": [],
+      "stage": "code_generation",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "custom_test_modules": [],
+        "files": 37
+      },
+      "duration_ms": 8.1,
+      "errors": [],
+      "stage": "test_generation",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [
+        "backend_api_contract.json",
+        "openapi.json"
+      ],
+      "correction_attempts": 0,
+      "details": {},
+      "duration_ms": 790.6,
+      "errors": [],
+      "stage": "static_validation",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "stopped_because": "all checks passed"
+      },
+      "duration_ms": 32233.1,
+      "errors": [],
+      "stage": "test_execution",
+      "status": "passed",
+      "warnings": []
+    }
+  ],
+  "static_checks": {
+    "compile": "passed",
+    "import": "passed",
+    "openapi": "passed",
+    "sql_safety": "passed",
+    "unsafe_patterns": "passed"
+  },
+  "status": "passed_with_conflicts",
+  "suites": {
+    "api": {
+      "duration_s": 9.11,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 63,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "bdd": {
+      "duration_s": 2.98,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [
+        "test_acceptance_criterion[ac.dashboard.support_view]: known gap: operation.ticket.stats is not implemented (aggregate: the response schema is the plain entity list)"
+      ],
+      "known_gaps": 1,
+      "passed": 13,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed_with_known_gaps"
+    },
+    "contract": {
+      "duration_s": 1.11,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 76,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "db_failure": {
+      "duration_s": 9.02,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 7,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "frontend_compat": {
+      "duration_s": 0.0,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 0,
+      "skip_reason": "suite not generated for this project",
+      "skipped": 0,
+      "status": "skipped"
+    },
+    "repository": {
+      "duration_s": 1.6,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 20,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "security": {
+      "duration_s": 7.36,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 29,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "unit": {
+      "duration_s": 1.05,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 29,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    }
+  },
+  "type_checks": "passed",
+  "unimplemented_operations": [
+    {
+      "operation": "operation.ticket.stats",
+      "reason": "aggregate: the response schema is the plain entity list"
+    }
+  ],
+  "unit_tests": "passed",
+  "warnings": [
+    "GRAPH_GAP/NO_USER_PROVISIONING: no operation creates entity.user: users can log in but cannot be created through the API",
+    "operation operation.ticket.stats is not implemented (501): aggregate: the response schema is the plain entity list",
+    "known gap in bdd: test_acceptance_criterion[ac.dashboard.support_view]: known gap: operation.ticket.stats is not implemented (aggregate: the response schema is the plain entity list)"
+  ]
+}

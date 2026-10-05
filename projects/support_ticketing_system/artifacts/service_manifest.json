@@ -1,0 +1,120 @@
+{
+  "services": [
+    {
+      "class": "TicketService",
+      "id": "service.ticket",
+      "operations": [
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "update",
+          "method": "assign",
+          "operation": "operation.ticket.assign"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "transition",
+          "method": "change_status",
+          "operation": "operation.ticket.change_status"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "create",
+          "method": "create",
+          "operation": "operation.ticket.create"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "list",
+          "operation": "operation.ticket.list"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "read",
+          "method": "read",
+          "operation": "operation.ticket.read"
+        },
+        {
+          "handler": "custom",
+          "implemented": false,
+          "kind": "aggregate",
+          "method": "stats",
+          "operation": "operation.ticket.stats"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "update",
+          "method": "update",
+          "operation": "operation.ticket.update"
+        }
+      ]
+    },
+    {
+      "class": "TicketCommentService",
+      "id": "service.ticket_comment",
+      "operations": [
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "create",
+          "method": "create",
+          "operation": "operation.ticket_comment.create"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "list",
+          "operation": "operation.ticket_comment.list"
+        }
+      ]
+    },
+    {
+      "class": "UserService",
+      "id": "service.user",
+      "operations": [
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "list_agents",
+          "operation": "operation.user.list_agents"
+        },
+        {
+          "handler": "auth",
+          "implemented": true,
+          "kind": "auth.login",
+          "method": "login",
+          "operation": "operation.user.login"
+        },
+        {
+          "handler": "auth",
+          "implemented": true,
+          "kind": "auth.logout",
+          "method": "logout",
+          "operation": "operation.user.logout"
+        },
+        {
+          "handler": "auth",
+          "implemented": true,
+          "kind": "auth.request_password_reset",
+          "method": "request_password_reset",
+          "operation": "operation.user.request_password_reset"
+        },
+        {
+          "handler": "auth",
+          "implemented": true,
+          "kind": "auth.reset_password",
+          "method": "reset_password",
+          "operation": "operation.user.reset_password"
+        }
+      ]
+    }
+  ]
+}

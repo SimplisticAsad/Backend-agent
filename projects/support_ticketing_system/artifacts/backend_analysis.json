@@ -1,0 +1,939 @@
+{
+  "api_endpoints": [
+    {
+      "authenticated": true,
+      "id": "api.ticket.assign",
+      "method": "PATCH",
+      "operation": "operation.ticket.assign",
+      "path": "/tickets/{id}/assignee",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.ticket.change_status",
+      "method": "PATCH",
+      "operation": "operation.ticket.change_status",
+      "path": "/tickets/{id}/status",
+      "roles": [
+        "role.agent",
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.ticket.create",
+      "method": "POST",
+      "operation": "operation.ticket.create",
+      "path": "/tickets",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.ticket.list",
+      "method": "GET",
+      "operation": "operation.ticket.list",
+      "path": "/tickets",
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.ticket.read",
+      "method": "GET",
+      "operation": "operation.ticket.read",
+      "path": "/tickets/{id}",
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.ticket.stats",
+      "method": "GET",
+      "operation": "operation.ticket.stats",
+      "path": "/tickets/stats",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.ticket.update",
+      "method": "PATCH",
+      "operation": "operation.ticket.update",
+      "path": "/tickets/{id}",
+      "roles": [
+        "role.agent",
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.ticket_comment.create",
+      "method": "POST",
+      "operation": "operation.ticket_comment.create",
+      "path": "/ticket-comments",
+      "roles": [
+        "role.agent",
+        "role.customer"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.ticket_comment.list",
+      "method": "GET",
+      "operation": "operation.ticket_comment.list",
+      "path": "/ticket-comments",
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.user.list_agents",
+      "method": "GET",
+      "operation": "operation.user.list_agents",
+      "path": "/users/agents",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": false,
+      "id": "api.user.login",
+      "method": "POST",
+      "operation": "operation.user.login",
+      "path": "/auth/login",
+      "roles": []
+    },
+    {
+      "authenticated": true,
+      "id": "api.user.logout",
+      "method": "POST",
+      "operation": "operation.user.logout",
+      "path": "/auth/logout",
+      "roles": []
+    },
+    {
+      "authenticated": false,
+      "id": "api.user.request_password_reset",
+      "method": "POST",
+      "operation": "operation.user.request_password_reset",
+      "path": "/auth/forgot-password",
+      "roles": []
+    },
+    {
+      "authenticated": false,
+      "id": "api.user.reset_password",
+      "method": "POST",
+      "operation": "operation.user.reset_password",
+      "path": "/auth/reset-password",
+      "roles": []
+    }
+  ],
+  "api_refs": [
+    "api.ticket.assign",
+    "api.ticket.change_status",
+    "api.ticket.create",
+    "api.ticket.list",
+    "api.ticket.read",
+    "api.ticket.stats",
+    "api.ticket.update",
+    "api.ticket_comment.create",
+    "api.ticket_comment.list",
+    "api.user.list_agents",
+    "api.user.login",
+    "api.user.logout",
+    "api.user.request_password_reset",
+    "api.user.reset_password"
+  ],
+  "authentication": {
+    "entity": "entity.user",
+    "login": "operation.user.login"
+  },
+  "commands": [
+    "operation.ticket.assign",
+    "operation.ticket.change_status",
+    "operation.ticket.create",
+    "operation.ticket.update",
+    "operation.ticket_comment.create",
+    "operation.user.login",
+    "operation.user.logout",
+    "operation.user.request_password_reset",
+    "operation.user.reset_password"
+  ],
+  "dependencies": {
+    "implementation_order": [
+      [
+        "assumption.default_priority",
+        "component.app.navigation",
+        "entity.ticket",
+        "entity.ticket_comment",
+        "entity.user",
+        "question.email_channel",
+        "question.internal_notes",
+        "question.sla",
+        "requirement.authentication",
+        "requirement.nfr.accessibility",
+        "requirement.nfr.performance",
+        "requirement.nfr.responsive",
+        "requirement.nfr.security",
+        "requirement.support_dashboard",
+        "requirement.ticket_assignment",
+        "requirement.ticket_comments",
+        "requirement.ticket_management",
+        "requirement.ticket_status",
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ],
+      [
+        "actor.agent",
+        "actor.customer",
+        "actor.manager",
+        "component.auth.forgot_form",
+        "component.auth.login_form",
+        "component.auth.reset_form",
+        "component.dashboard.ticket_chart",
+        "component.ticket.card",
+        "component.ticket.create_form",
+        "component.ticket.edit_form",
+        "component.ticket.table",
+        "component.ticket_comment.create_form",
+        "component.ticket_comment.table",
+        "relationship.ticket.assignee",
+        "relationship.ticket.requester",
+        "relationship.ticket_comment.author",
+        "relationship.ticket_comment.ticket",
+        "schema.ticket",
+        "schema.ticket.assign",
+        "schema.ticket.change_status",
+        "schema.ticket.create",
+        "schema.ticket.update",
+        "schema.ticket_comment",
+        "schema.ticket_comment.create",
+        "schema.user",
+        "schema.user.login",
+        "schema.user.request_password_reset",
+        "schema.user.reset_password",
+        "service.ticket",
+        "service.ticket_comment",
+        "service.user"
+      ],
+      [
+        "capability.authentication",
+        "capability.support_dashboard",
+        "capability.ticket_assignment",
+        "capability.ticket_comments",
+        "capability.ticket_management",
+        "capability.ticket_status"
+      ],
+      [
+        "operation.ticket.assign",
+        "operation.ticket.change_status",
+        "operation.ticket.create",
+        "operation.ticket.list",
+        "operation.ticket.read",
+        "operation.ticket.stats",
+        "operation.ticket.update",
+        "operation.ticket_comment.create",
+        "operation.ticket_comment.list",
+        "operation.user.list_agents",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password",
+        "screen.auth.forgot_password",
+        "screen.auth.login",
+        "screen.auth.reset_password",
+        "screen.ticket.create",
+        "screen.ticket_comment.create"
+      ],
+      [
+        "ac.auth.login",
+        "ac.auth.logout",
+        "ac.auth.password_reset",
+        "ac.dashboard.support_view",
+        "ac.ticket.assign",
+        "ac.ticket.browse",
+        "ac.ticket.change_status",
+        "ac.ticket.closed_read_only",
+        "ac.ticket.create",
+        "ac.ticket.update",
+        "ac.ticket_comment.browse",
+        "ac.ticket_comment.create",
+        "ac.user.invalid_login",
+        "api.ticket.assign",
+        "api.ticket.change_status",
+        "api.ticket.create",
+        "api.ticket.list",
+        "api.ticket.read",
+        "api.ticket.stats",
+        "api.ticket.update",
+        "api.ticket_comment.create",
+        "api.ticket_comment.list",
+        "api.user.list_agents",
+        "api.user.login",
+        "api.user.logout",
+        "api.user.request_password_reset",
+        "api.user.reset_password",
+        "permission.ticket.assign",
+        "permission.ticket.change_status",
+        "permission.ticket.create",
+        "permission.ticket.list",
+        "permission.ticket.read",
+        "permission.ticket.stats",
+        "permission.ticket.update",
+        "permission.ticket_comment.create",
+        "permission.ticket_comment.list",
+        "permission.user.list_agents",
+        "permission.user.logout",
+        "screen.dashboard.support",
+        "screen.ticket.detail",
+        "screen.ticket.edit",
+        "screen.ticket.list",
+        "screen.ticket_comment.list",
+        "state_machine.ticket",
+        "validation.ticket.closed_read_only",
+        "validation.ticket.required_fields",
+        "validation.ticket_comment.required_fields",
+        "validation.user.email_format",
+        "validation.user.invalid_login",
+        "workflow.auth.login",
+        "workflow.auth.logout",
+        "workflow.auth.password_reset"
+      ],
+      [
+        "workflow.dashboard.support_view",
+        "workflow.ticket.assign",
+        "workflow.ticket.browse",
+        "workflow.ticket.change_status",
+        "workflow.ticket.create",
+        "workflow.ticket.update",
+        "workflow.ticket_comment.browse",
+        "workflow.ticket_comment.create"
+      ]
+    ]
+  },
+  "derived_rules": {
+    "assumptions": [
+      "entity.ticket: rows are private to the user in 'requester_id' for roles ['customer'] (the graph does not state this; inferred because the field is server-assigned on create)",
+      "entity.ticket_comment: rows inherit the privacy of their parent entity.ticket (via ticket_id) for roles ['customer']"
+    ],
+    "coverage": [
+      {
+        "enforced_by": "rule:frozen_state",
+        "operations": [
+          "operation.ticket.update"
+        ],
+        "source": "validation.ticket.closed_read_only"
+      },
+      {
+        "enforced_by": "request_schema",
+        "operations": [
+          "operation.ticket.create"
+        ],
+        "source": "validation.ticket.required_fields"
+      },
+      {
+        "enforced_by": "request_schema",
+        "operations": [
+          "operation.ticket_comment.create"
+        ],
+        "source": "validation.ticket_comment.required_fields"
+      },
+      {
+        "enforced_by": "request_schema",
+        "operations": [
+          "operation.user.login",
+          "operation.user.request_password_reset"
+        ],
+        "source": "validation.user.email_format"
+      },
+      {
+        "enforced_by": "authentication",
+        "operations": [
+          "operation.user.login"
+        ],
+        "source": "validation.user.invalid_login"
+      }
+    ],
+    "rules": [
+      {
+        "entity": "entity.ticket",
+        "error_code": "TICKET_CLOSED",
+        "field": "status",
+        "id": "rule.frozen.ticket.closed_read_only",
+        "message": "Closed tickets cannot be changed",
+        "operations": [
+          "operation.ticket.update"
+        ],
+        "origin": "validation",
+        "source": "validation.ticket.closed_read_only",
+        "states": [
+          "closed"
+        ],
+        "status": 409,
+        "type": "frozen_state"
+      },
+      {
+        "entity": "entity.ticket",
+        "id": "rule.scope.implicit.ticket.requester_id",
+        "operations": [
+          "operation.ticket.list",
+          "operation.ticket.read"
+        ],
+        "origin": "implicit_data_subject",
+        "roles": [
+          "role.customer"
+        ],
+        "scope": {
+          "field": "requester_id"
+        },
+        "source": "heuristic:entity.ticket.requester_id is assigned from the caller on create",
+        "type": "row_scope"
+      },
+      {
+        "entity": "entity.ticket_comment",
+        "id": "rule.scope.implicit.ticket_comment.via_ticket_id",
+        "operations": [
+          "operation.ticket_comment.create",
+          "operation.ticket_comment.list"
+        ],
+        "origin": "implicit_parent_scope",
+        "roles": [
+          "role.customer"
+        ],
+        "scope": {
+          "fk": "ticket_id",
+          "parent_entity": "entity.ticket",
+          "parent_scope": {
+            "field": "requester_id"
+          }
+        },
+        "source": "heuristic:entity.ticket_comment belongs to entity.ticket which is private to its owner",
+        "type": "row_scope"
+      }
+    ],
+    "unmapped": []
+  },
+  "entities": [
+    "entity.ticket",
+    "entity.ticket_comment",
+    "entity.user"
+  ],
+  "external_integrations": [],
+  "integration_conflicts": {
+    "count": 3,
+    "status": "conflicts_reported"
+  },
+  "operation_classification": {
+    "operation.ticket.assign": {
+      "handler": "engine",
+      "kind": "update",
+      "notes": []
+    },
+    "operation.ticket.change_status": {
+      "handler": "engine",
+      "kind": "transition",
+      "notes": []
+    },
+    "operation.ticket.create": {
+      "handler": "engine",
+      "kind": "create",
+      "notes": []
+    },
+    "operation.ticket.list": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.ticket.read": {
+      "handler": "engine",
+      "kind": "read",
+      "notes": []
+    },
+    "operation.ticket.stats": {
+      "handler": "custom",
+      "kind": "aggregate",
+      "notes": [
+        "aggregate: the response schema is the plain entity list"
+      ]
+    },
+    "operation.ticket.update": {
+      "handler": "engine",
+      "kind": "update",
+      "notes": []
+    },
+    "operation.ticket_comment.create": {
+      "handler": "engine",
+      "kind": "create",
+      "notes": []
+    },
+    "operation.ticket_comment.list": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.user.list_agents": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.user.login": {
+      "handler": "auth",
+      "kind": "auth.login",
+      "notes": []
+    },
+    "operation.user.logout": {
+      "handler": "auth",
+      "kind": "auth.logout",
+      "notes": []
+    },
+    "operation.user.request_password_reset": {
+      "handler": "auth",
+      "kind": "auth.request_password_reset",
+      "notes": []
+    },
+    "operation.user.reset_password": {
+      "handler": "auth",
+      "kind": "auth.reset_password",
+      "notes": []
+    }
+  },
+  "operations": [
+    "operation.ticket.assign",
+    "operation.ticket.change_status",
+    "operation.ticket.create",
+    "operation.ticket.list",
+    "operation.ticket.read",
+    "operation.ticket.stats",
+    "operation.ticket.update",
+    "operation.ticket_comment.create",
+    "operation.ticket_comment.list",
+    "operation.user.list_agents",
+    "operation.user.login",
+    "operation.user.logout",
+    "operation.user.request_password_reset",
+    "operation.user.reset_password"
+  ],
+  "permissions": [
+    {
+      "action": "update",
+      "conditions": [],
+      "id": "permission.ticket.assign",
+      "operations": [
+        "operation.ticket.assign"
+      ],
+      "resource": "entity.ticket",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "update",
+      "conditions": [],
+      "id": "permission.ticket.change_status",
+      "operations": [
+        "operation.ticket.change_status"
+      ],
+      "resource": "entity.ticket",
+      "roles": [
+        "role.agent",
+        "role.manager"
+      ]
+    },
+    {
+      "action": "create",
+      "conditions": [],
+      "id": "permission.ticket.create",
+      "operations": [
+        "operation.ticket.create"
+      ],
+      "resource": "entity.ticket",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [],
+      "id": "permission.ticket.list",
+      "operations": [
+        "operation.ticket.list"
+      ],
+      "resource": "entity.ticket",
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ]
+    },
+    {
+      "action": "read",
+      "conditions": [],
+      "id": "permission.ticket.read",
+      "operations": [
+        "operation.ticket.read"
+      ],
+      "resource": "entity.ticket",
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [],
+      "id": "permission.ticket.stats",
+      "operations": [
+        "operation.ticket.stats"
+      ],
+      "resource": "entity.ticket",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "update",
+      "conditions": [],
+      "id": "permission.ticket.update",
+      "operations": [
+        "operation.ticket.update"
+      ],
+      "resource": "entity.ticket",
+      "roles": [
+        "role.agent",
+        "role.manager"
+      ]
+    },
+    {
+      "action": "create",
+      "conditions": [],
+      "id": "permission.ticket_comment.create",
+      "operations": [
+        "operation.ticket_comment.create"
+      ],
+      "resource": "entity.ticket_comment",
+      "roles": [
+        "role.agent",
+        "role.customer"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [],
+      "id": "permission.ticket_comment.list",
+      "operations": [
+        "operation.ticket_comment.list"
+      ],
+      "resource": "entity.ticket_comment",
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [],
+      "id": "permission.user.list_agents",
+      "operations": [
+        "operation.user.list_agents"
+      ],
+      "resource": "entity.user",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "execute",
+      "conditions": [],
+      "id": "permission.user.logout",
+      "operations": [
+        "operation.user.logout"
+      ],
+      "resource": "entity.user",
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ]
+    }
+  ],
+  "project": {
+    "graph_version": "1.0.0",
+    "id": "project.support_ticketing_system",
+    "name": "Support Ticketing System"
+  },
+  "queries": [
+    "operation.ticket.list",
+    "operation.ticket.read",
+    "operation.ticket.stats",
+    "operation.ticket_comment.list",
+    "operation.user.list_agents"
+  ],
+  "relationships": [
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.ticket.assignee",
+      "source": "entity.ticket",
+      "target": "entity.user",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.ticket.requester",
+      "source": "entity.ticket",
+      "target": "entity.user",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.ticket_comment.author",
+      "source": "entity.ticket_comment",
+      "target": "entity.user",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.ticket_comment.ticket",
+      "source": "entity.ticket_comment",
+      "target": "entity.ticket",
+      "type": "belongs_to"
+    }
+  ],
+  "request_schemas": [
+    "schema.ticket.assign",
+    "schema.ticket.change_status",
+    "schema.ticket.create",
+    "schema.ticket.update",
+    "schema.ticket_comment.create",
+    "schema.user.login",
+    "schema.user.request_password_reset",
+    "schema.user.reset_password"
+  ],
+  "response_schemas": [
+    "schema.ticket",
+    "schema.ticket_comment",
+    "schema.user"
+  ],
+  "services": [
+    {
+      "entities": [
+        "entity.ticket"
+      ],
+      "id": "service.ticket",
+      "operations": [
+        "operation.ticket.assign",
+        "operation.ticket.change_status",
+        "operation.ticket.create",
+        "operation.ticket.list",
+        "operation.ticket.read",
+        "operation.ticket.stats",
+        "operation.ticket.update"
+      ]
+    },
+    {
+      "entities": [
+        "entity.ticket_comment"
+      ],
+      "id": "service.ticket_comment",
+      "operations": [
+        "operation.ticket_comment.create",
+        "operation.ticket_comment.list"
+      ]
+    },
+    {
+      "entities": [
+        "entity.user"
+      ],
+      "id": "service.user",
+      "operations": [
+        "operation.user.list_agents",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ]
+    }
+  ],
+  "state_machines": [
+    {
+      "entity": "entity.ticket",
+      "field": "status",
+      "id": "state_machine.ticket",
+      "initial": "open",
+      "states": [
+        "open",
+        "in_progress",
+        "resolved",
+        "closed"
+      ],
+      "transitions": [
+        [
+          "open",
+          "in_progress"
+        ],
+        [
+          "in_progress",
+          "resolved"
+        ],
+        [
+          "resolved",
+          "closed"
+        ],
+        [
+          "resolved",
+          "in_progress"
+        ]
+      ]
+    }
+  ],
+  "validation_rules": [
+    {
+      "condition": "tickets with status closed cannot be edited",
+      "id": "validation.ticket.closed_read_only",
+      "kind": "state",
+      "operations": [
+        "operation.ticket.update"
+      ],
+      "target": {
+        "entity_ref": "entity.ticket",
+        "field": "status"
+      }
+    },
+    {
+      "condition": "title, description, priority must be provided",
+      "id": "validation.ticket.required_fields",
+      "kind": "required",
+      "operations": [
+        "operation.ticket.create"
+      ],
+      "target": {
+        "entity_ref": "entity.ticket",
+        "field": null
+      }
+    },
+    {
+      "condition": "ticket_id, body must be provided",
+      "id": "validation.ticket_comment.required_fields",
+      "kind": "required",
+      "operations": [
+        "operation.ticket_comment.create"
+      ],
+      "target": {
+        "entity_ref": "entity.ticket_comment",
+        "field": null
+      }
+    },
+    {
+      "condition": "email matches a valid email address pattern",
+      "id": "validation.user.email_format",
+      "kind": "format",
+      "operations": [
+        "operation.user.login",
+        "operation.user.request_password_reset"
+      ],
+      "target": {
+        "entity_ref": "entity.user",
+        "field": "email"
+      }
+    },
+    {
+      "condition": "email and password match an existing account",
+      "id": "validation.user.invalid_login",
+      "kind": "authorization",
+      "operations": [
+        "operation.user.login"
+      ],
+      "target": {
+        "entity_ref": "entity.user",
+        "field": null
+      }
+    }
+  ],
+  "workflows": [
+    {
+      "id": "workflow.auth.login",
+      "operations": [
+        "operation.user.login"
+      ]
+    },
+    {
+      "id": "workflow.auth.logout",
+      "operations": [
+        "operation.user.logout"
+      ]
+    },
+    {
+      "id": "workflow.auth.password_reset",
+      "operations": [
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ]
+    },
+    {
+      "id": "workflow.dashboard.support_view",
+      "operations": [
+        "operation.ticket.stats"
+      ]
+    },
+    {
+      "id": "workflow.ticket.assign",
+      "operations": [
+        "operation.ticket.assign",
+        "operation.user.list_agents"
+      ]
+    },
+    {
+      "id": "workflow.ticket.browse",
+      "operations": [
+        "operation.ticket.list",
+        "operation.ticket.read"
+      ]
+    },
+    {
+      "id": "workflow.ticket.change_status",
+      "operations": [
+        "operation.ticket.change_status"
+      ]
+    },
+    {
+      "id": "workflow.ticket.create",
+      "operations": [
+        "operation.ticket.create"
+      ]
+    },
+    {
+      "id": "workflow.ticket.update",
+      "operations": [
+        "operation.ticket.update"
+      ]
+    },
+    {
+      "id": "workflow.ticket_comment.browse",
+      "operations": [
+        "operation.ticket_comment.list"
+      ]
+    },
+    {
+      "id": "workflow.ticket_comment.create",
+      "operations": [
+        "operation.ticket_comment.create"
+      ]
+    }
+  ]
+}

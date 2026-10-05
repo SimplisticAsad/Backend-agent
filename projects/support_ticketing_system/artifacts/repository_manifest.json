@@ -1,0 +1,59 @@
+{
+  "repositories": [
+    {
+      "class": "TicketRepository",
+      "entity": "entity.ticket",
+      "foreign_keys": [
+        {
+          "columns": [
+            "requester_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        },
+        {
+          "columns": [
+            "assignee_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        }
+      ],
+      "table": "tickets",
+      "unique_columns": []
+    },
+    {
+      "class": "TicketCommentRepository",
+      "entity": "entity.ticket_comment",
+      "foreign_keys": [
+        {
+          "columns": [
+            "ticket_id"
+          ],
+          "on_delete": "CASCADE",
+          "ref_table": "tickets"
+        },
+        {
+          "columns": [
+            "author_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        }
+      ],
+      "table": "ticket_comments",
+      "unique_columns": []
+    },
+    {
+      "class": "UserRepository",
+      "entity": "entity.user",
+      "foreign_keys": [],
+      "table": "users",
+      "unique_columns": [
+        [
+          "email"
+        ]
+      ]
+    }
+  ]
+}

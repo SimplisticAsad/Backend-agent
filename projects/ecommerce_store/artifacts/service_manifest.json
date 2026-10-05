@@ -1,0 +1,133 @@
+{
+  "services": [
+    {
+      "class": "CartItemService",
+      "id": "service.cart_item",
+      "operations": [
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "create",
+          "method": "create",
+          "operation": "operation.cart_item.create"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "delete",
+          "method": "delete",
+          "operation": "operation.cart_item.delete"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "list",
+          "operation": "operation.cart_item.list"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "update",
+          "method": "update",
+          "operation": "operation.cart_item.update"
+        }
+      ]
+    },
+    {
+      "class": "OrderService",
+      "id": "service.order",
+      "operations": [
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "list",
+          "operation": "operation.order.list"
+        },
+        {
+          "handler": "custom",
+          "implemented": true,
+          "kind": "custom",
+          "method": "place",
+          "operation": "operation.order.place"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "read",
+          "method": "read",
+          "operation": "operation.order.read"
+        }
+      ]
+    },
+    {
+      "class": "ProductService",
+      "id": "service.product",
+      "operations": [
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "filter",
+          "operation": "operation.product.filter"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "list",
+          "operation": "operation.product.list"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "read",
+          "method": "read",
+          "operation": "operation.product.read"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "search",
+          "operation": "operation.product.search"
+        }
+      ]
+    },
+    {
+      "class": "UserService",
+      "id": "service.user",
+      "operations": [
+        {
+          "handler": "auth",
+          "implemented": true,
+          "kind": "auth.login",
+          "method": "login",
+          "operation": "operation.user.login"
+        },
+        {
+          "handler": "auth",
+          "implemented": true,
+          "kind": "auth.logout",
+          "method": "logout",
+          "operation": "operation.user.logout"
+        },
+        {
+          "handler": "auth",
+          "implemented": true,
+          "kind": "auth.request_password_reset",
+          "method": "request_password_reset",
+          "operation": "operation.user.request_password_reset"
+        },
+        {
+          "handler": "auth",
+          "implemented": true,
+          "kind": "auth.reset_password",
+          "method": "reset_password",
+          "operation": "operation.user.reset_password"
+        }
+      ]
+    }
+  ]
+}

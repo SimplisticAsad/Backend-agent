@@ -1,0 +1,96 @@
+{
+  "repositories": [
+    {
+      "class": "CartItemRepository",
+      "entity": "entity.cart_item",
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        },
+        {
+          "columns": [
+            "product_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "products"
+        }
+      ],
+      "table": "cart_items",
+      "unique_columns": []
+    },
+    {
+      "class": "CategoryRepository",
+      "entity": "entity.category",
+      "foreign_keys": [],
+      "table": "categories",
+      "unique_columns": []
+    },
+    {
+      "class": "OrderRepository",
+      "entity": "entity.order",
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        }
+      ],
+      "table": "orders",
+      "unique_columns": []
+    },
+    {
+      "class": "OrderItemRepository",
+      "entity": "entity.order_item",
+      "foreign_keys": [
+        {
+          "columns": [
+            "order_id"
+          ],
+          "on_delete": "CASCADE",
+          "ref_table": "orders"
+        },
+        {
+          "columns": [
+            "product_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "products"
+        }
+      ],
+      "table": "order_items",
+      "unique_columns": []
+    },
+    {
+      "class": "ProductRepository",
+      "entity": "entity.product",
+      "foreign_keys": [
+        {
+          "columns": [
+            "category_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "categories"
+        }
+      ],
+      "table": "products",
+      "unique_columns": []
+    },
+    {
+      "class": "UserRepository",
+      "entity": "entity.user",
+      "foreign_keys": [],
+      "table": "users",
+      "unique_columns": [
+        [
+          "email"
+        ]
+      ]
+    }
+  ]
+}

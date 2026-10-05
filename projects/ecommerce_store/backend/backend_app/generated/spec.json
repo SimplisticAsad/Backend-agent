@@ -1,0 +1,1819 @@
+{
+  "api": {
+    "base_path": "",
+    "note": "paths are served exactly as in api.json; the Frontend dev proxy strips its /api prefix",
+    "versioning": "none"
+  },
+  "auth": {
+    "entity": "entity.user",
+    "identity_field": "email",
+    "login_response_schema": "schema.user",
+    "operations": {
+      "auth.login": "operation.user.login",
+      "auth.logout": "operation.user.logout",
+      "auth.request_password_reset": "operation.user.request_password_reset",
+      "auth.reset_password": "operation.user.reset_password"
+    },
+    "password_field": "password_hash",
+    "role_field": "role",
+    "role_map": {
+      "customer": "role.customer"
+    },
+    "table": "users"
+  },
+  "coverage": [
+    {
+      "enforced_by": "request_schema",
+      "operations": [
+        "operation.cart_item.create"
+      ],
+      "source": "validation.cart_item.required_fields"
+    },
+    {
+      "enforced_by": "custom_handler",
+      "operations": [
+        "operation.order.place"
+      ],
+      "source": "validation.order.cart_not_empty"
+    },
+    {
+      "enforced_by": "custom_handler",
+      "operations": [
+        "operation.order.place"
+      ],
+      "source": "validation.product.stock_available"
+    },
+    {
+      "enforced_by": "request_schema",
+      "operations": [
+        "operation.user.login",
+        "operation.user.request_password_reset"
+      ],
+      "source": "validation.user.email_format"
+    },
+    {
+      "enforced_by": "authentication",
+      "operations": [
+        "operation.user.login"
+      ],
+      "source": "validation.user.invalid_login"
+    }
+  ],
+  "entities": {
+    "entity.cart_item": {
+      "class_name": "CartItem",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "user_id",
+          "column": "user_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "product_id",
+          "column": "product_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": "entity.product",
+          "required": true,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "quantity",
+          "column": "quantity",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "integer",
+          "ref": null,
+          "required": true,
+          "type": "integer",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        },
+        {
+          "columns": [
+            "product_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "products"
+        }
+      ],
+      "hidden_columns": [],
+      "id": "entity.cart_item",
+      "id_has_default": true,
+      "key": "cart_item",
+      "response_fields": [
+        "id",
+        "user_id",
+        "product_id",
+        "quantity"
+      ],
+      "state_machine": null,
+      "table": "cart_items",
+      "text_columns": [],
+      "unique_columns": []
+    },
+    "entity.category": {
+      "class_name": "Category",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "name",
+          "column": "name",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "string",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [],
+      "hidden_columns": [],
+      "id": "entity.category",
+      "id_has_default": true,
+      "key": "category",
+      "response_fields": [
+        "id",
+        "name"
+      ],
+      "state_machine": null,
+      "table": "categories",
+      "text_columns": [
+        "name"
+      ],
+      "unique_columns": []
+    },
+    "entity.order": {
+      "class_name": "Order",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "user_id",
+          "column": "user_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "status",
+          "column": "status",
+          "enum": [
+            "pending",
+            "paid",
+            "shipped",
+            "delivered",
+            "cancelled"
+          ],
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "enum",
+          "unique": false
+        },
+        {
+          "attr": "total",
+          "column": "total",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "numeric(12,2)",
+          "ref": null,
+          "required": true,
+          "type": "decimal",
+          "unique": false
+        },
+        {
+          "attr": "shipping_address",
+          "column": "shipping_address",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "text",
+          "ref": null,
+          "required": false,
+          "type": "text",
+          "unique": false
+        },
+        {
+          "attr": "placed_at",
+          "column": "placed_at",
+          "enum": null,
+          "has_default": true,
+          "nullable": true,
+          "pg_type": "timestamptz",
+          "ref": null,
+          "required": false,
+          "type": "datetime",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        }
+      ],
+      "hidden_columns": [],
+      "id": "entity.order",
+      "id_has_default": true,
+      "key": "order",
+      "response_fields": [
+        "id",
+        "user_id",
+        "status",
+        "total",
+        "shipping_address",
+        "placed_at"
+      ],
+      "state_machine": "state_machine.order",
+      "table": "orders",
+      "text_columns": [
+        "shipping_address"
+      ],
+      "unique_columns": []
+    },
+    "entity.order_item": {
+      "class_name": "OrderItem",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "order_id",
+          "column": "order_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": "entity.order",
+          "required": true,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "product_id",
+          "column": "product_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": "entity.product",
+          "required": true,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "quantity",
+          "column": "quantity",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "integer",
+          "ref": null,
+          "required": true,
+          "type": "integer",
+          "unique": false
+        },
+        {
+          "attr": "unit_price",
+          "column": "unit_price",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "numeric(12,2)",
+          "ref": null,
+          "required": true,
+          "type": "decimal",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "order_id"
+          ],
+          "on_delete": "CASCADE",
+          "ref_table": "orders"
+        },
+        {
+          "columns": [
+            "product_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "products"
+        }
+      ],
+      "hidden_columns": [],
+      "id": "entity.order_item",
+      "id_has_default": true,
+      "key": "order_item",
+      "response_fields": [
+        "id",
+        "order_id",
+        "product_id",
+        "quantity",
+        "unit_price"
+      ],
+      "state_machine": null,
+      "table": "order_items",
+      "text_columns": [],
+      "unique_columns": []
+    },
+    "entity.product": {
+      "class_name": "Product",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "name",
+          "column": "name",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "string",
+          "unique": false
+        },
+        {
+          "attr": "description",
+          "column": "description",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "text",
+          "ref": null,
+          "required": false,
+          "type": "text",
+          "unique": false
+        },
+        {
+          "attr": "price",
+          "column": "price",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "numeric(12,2)",
+          "ref": null,
+          "required": true,
+          "type": "decimal",
+          "unique": false
+        },
+        {
+          "attr": "stock",
+          "column": "stock",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "integer",
+          "ref": null,
+          "required": true,
+          "type": "integer",
+          "unique": false
+        },
+        {
+          "attr": "category_id",
+          "column": "category_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "uuid",
+          "ref": "entity.category",
+          "required": false,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "image_url",
+          "column": "image_url",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "text",
+          "ref": null,
+          "required": false,
+          "type": "url",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "category_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "categories"
+        }
+      ],
+      "hidden_columns": [],
+      "id": "entity.product",
+      "id_has_default": true,
+      "key": "product",
+      "response_fields": [
+        "id",
+        "name",
+        "description",
+        "price",
+        "stock",
+        "category_id",
+        "image_url"
+      ],
+      "state_machine": null,
+      "table": "products",
+      "text_columns": [
+        "name",
+        "description"
+      ],
+      "unique_columns": []
+    },
+    "entity.user": {
+      "class_name": "User",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "email",
+          "column": "email",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "email",
+          "unique": true
+        },
+        {
+          "attr": "password_hash",
+          "column": "password_hash",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "string",
+          "unique": false
+        },
+        {
+          "attr": "full_name",
+          "column": "full_name",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "string",
+          "unique": false
+        },
+        {
+          "attr": "role",
+          "column": "role",
+          "enum": [
+            "customer"
+          ],
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "enum",
+          "unique": false
+        },
+        {
+          "attr": "created_at",
+          "column": "created_at",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "timestamptz",
+          "ref": null,
+          "required": true,
+          "type": "datetime",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [],
+      "hidden_columns": [
+        "password_hash"
+      ],
+      "id": "entity.user",
+      "id_has_default": true,
+      "key": "user",
+      "response_fields": [
+        "id",
+        "email",
+        "full_name",
+        "role",
+        "created_at"
+      ],
+      "state_machine": null,
+      "table": "users",
+      "text_columns": [
+        "full_name"
+      ],
+      "unique_columns": [
+        [
+          "email"
+        ]
+      ]
+    }
+  },
+  "handlers": {
+    "operation.order.place": {
+      "code": "body = body or {}\nwith self.db.transaction() as conn:\n    cart = conn.execute('SELECT \"product_id\" AS product_id, quantity FROM \"cart_items\" WHERE \"user_id\" = %s ORDER BY \"product_id\" FOR UPDATE', (principal.user_id,)).fetchall()\n    if not cart:\n        raise ConflictError('The cart is empty', code='CART_EMPTY')\n    lines = []\n    total = Decimal(\"0\")\n    for item in cart:\n        product = conn.execute('SELECT id, price, stock FROM \"products\" WHERE id = %s FOR UPDATE', (item[\"product_id\"],)).fetchone()\n        if product is None or item[\"quantity\"] > product[\"stock\"]:\n            raise ConflictError('One or more products are out of stock', code='OUT_OF_STOCK', details={\"product_id\": str(item[\"product_id\"])})\n        lines.append((product[\"id\"], item[\"quantity\"], product[\"price\"]))\n        total += product[\"price\"] * item[\"quantity\"]\n    order = conn.execute('INSERT INTO \"orders\" (\"user_id\", \"status\", \"total\", \"shipping_address\") VALUES (%s, %s, %s, %s) RETURNING *', (principal.user_id, 'pending', total, body.get(\"shipping_address\"))).fetchone()\n    for product_id, quantity, price in lines:\n        conn.execute('INSERT INTO \"order_items\" (\"order_id\", \"product_id\", quantity, unit_price) VALUES (%s, %s, %s, %s)', (order[\"id\"], product_id, quantity, price))\n        conn.execute('UPDATE \"products\" SET stock = stock - %s WHERE id = %s', (quantity, product_id))\n    conn.execute('DELETE FROM \"cart_items\" WHERE \"user_id\" = %s', (principal.user_id,))\nreturn Order.model_validate(order)",
+      "meta": {
+        "cart": "entity.cart_item",
+        "kind": "checkout",
+        "line": "entity.order_item",
+        "order": "entity.order",
+        "product": "entity.product",
+        "total": "total"
+      },
+      "notes": [
+        "payment_method is validated but not processed: the graph defines no payment integration",
+        "rows are locked in a stable order (cart by product id) to avoid deadlocks"
+      ],
+      "reason": "",
+      "response_class": "",
+      "response_extra_fields": [],
+      "source": "llm",
+      "stage": "api_implementation",
+      "status": "implemented"
+    }
+  },
+  "notes": [
+    "entity.cart_item: rows are private to the user in 'user_id' for roles ['customer'] (the graph does not state this; inferred because the field is server-assigned on create)",
+    "entity.order: rows are private to the user in 'user_id' for roles ['customer'] (the graph does not state this; inferred because the field is server-assigned on create)"
+  ],
+  "operations": {
+    "operation.cart_item.create": {
+      "access": "restricted",
+      "action": "create",
+      "cardinality": "one",
+      "description": "Create Cart Item.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.cart_item.create",
+        "method": "POST",
+        "path": "/cart-items",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.cart_item.create",
+        "response_schema": "schema.cart_item",
+        "roles": [
+          "role.customer"
+        ],
+        "status_code": 201
+      },
+      "entity": "entity.cart_item",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.cart_item.create",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "product_id",
+          "quantity"
+        ]
+      },
+      "kind": "create",
+      "name": "Create Cart Item",
+      "not_found_code": "CART_ITEM_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "owner_fields": [
+          "user_id"
+        ],
+        "server_fields": {
+          "user_id": "principal.id"
+        }
+      },
+      "roles": [
+        "role.customer"
+      ],
+      "service": "service.cart_item",
+      "type": "command"
+    },
+    "operation.cart_item.delete": {
+      "access": "restricted",
+      "action": "delete",
+      "cardinality": "none",
+      "description": "Delete Cart Item.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.cart_item.delete",
+        "method": "DELETE",
+        "path": "/cart-items/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": null,
+        "roles": [
+          "role.customer"
+        ],
+        "status_code": 204
+      },
+      "entity": "entity.cart_item",
+      "errors": [
+        {
+          "code": "CART_ITEM_NOT_FOUND",
+          "description": "The Cart Item does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.cart_item.delete",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "delete",
+      "name": "Delete Cart Item",
+      "not_found_code": "CART_ITEM_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.customer"
+      ],
+      "service": "service.cart_item",
+      "type": "command"
+    },
+    "operation.cart_item.list": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "List Cart Items.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.cart_item.list",
+        "method": "GET",
+        "path": "/cart-items",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.cart_item",
+        "roles": [
+          "role.customer"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.cart_item",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.cart_item.list",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "List Cart Items",
+      "not_found_code": "CART_ITEM_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "search": false
+      },
+      "roles": [
+        "role.customer"
+      ],
+      "service": "service.cart_item",
+      "type": "query"
+    },
+    "operation.cart_item.update": {
+      "access": "restricted",
+      "action": "update",
+      "cardinality": "one",
+      "description": "Update Cart Item.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.cart_item.update",
+        "method": "PATCH",
+        "path": "/cart-items/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": "schema.cart_item.update",
+        "response_schema": "schema.cart_item",
+        "roles": [
+          "role.customer"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.cart_item",
+      "errors": [
+        {
+          "code": "CART_ITEM_NOT_FOUND",
+          "description": "The Cart Item does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.cart_item.update",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [
+          "quantity"
+        ],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "update",
+      "name": "Update Cart Item",
+      "not_found_code": "CART_ITEM_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.customer"
+      ],
+      "service": "service.cart_item",
+      "type": "command"
+    },
+    "operation.order.list": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "List Orders.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.order.list",
+        "method": "GET",
+        "path": "/orders",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.order",
+        "roles": [
+          "role.customer"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.order",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.order.list",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "List Orders",
+      "not_found_code": "ORDER_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "search": false
+      },
+      "roles": [
+        "role.customer"
+      ],
+      "service": "service.order",
+      "type": "query"
+    },
+    "operation.order.place": {
+      "access": "restricted",
+      "action": "create",
+      "cardinality": "one",
+      "description": "Place order.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.order.place",
+        "method": "POST",
+        "path": "/orders",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.order.place",
+        "response_schema": "schema.order",
+        "roles": [
+          "role.customer"
+        ],
+        "status_code": 201
+      },
+      "entity": "entity.order",
+      "errors": [
+        {
+          "code": "CART_EMPTY",
+          "description": "The cart has no items"
+        },
+        {
+          "code": "OUT_OF_STOCK",
+          "description": "A product is out of stock"
+        }
+      ],
+      "handler": "custom",
+      "id": "operation.order.place",
+      "input": {
+        "extra_fields": [
+          "shipping_address",
+          "payment_method"
+        ],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "custom",
+      "name": "Place order",
+      "not_found_code": "ORDER_NOT_FOUND",
+      "notes": [
+        "required attributes with no source: ['total']",
+        "takes non-attribute inputs ['shipping_address', 'payment_method']"
+      ],
+      "params": {
+        "unmet": [
+          "total"
+        ]
+      },
+      "roles": [
+        "role.customer"
+      ],
+      "service": "service.order",
+      "type": "command"
+    },
+    "operation.order.read": {
+      "access": "restricted",
+      "action": "read",
+      "cardinality": "one",
+      "description": "View Order.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.order.read",
+        "method": "GET",
+        "path": "/orders/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.order",
+        "roles": [
+          "role.customer"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.order",
+      "errors": [
+        {
+          "code": "ORDER_NOT_FOUND",
+          "description": "The Order does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.order.read",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "read",
+      "name": "View Order",
+      "not_found_code": "ORDER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.customer"
+      ],
+      "service": "service.order",
+      "type": "query"
+    },
+    "operation.product.filter": {
+      "access": "public",
+      "action": "list",
+      "cardinality": "many",
+      "description": "Filter products.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.product.filter",
+        "method": "GET",
+        "path": "/products/filter",
+        "path_params": [],
+        "query_params": [
+          {
+            "enum": null,
+            "kind": "filter",
+            "name": "category_id",
+            "type": "uuid"
+          },
+          {
+            "enum": null,
+            "kind": "filter",
+            "name": "price",
+            "type": "decimal"
+          }
+        ],
+        "request_schema": null,
+        "response_schema": "schema.product",
+        "roles": [],
+        "status_code": 200
+      },
+      "entity": "entity.product",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.product.filter",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [
+          "category_id",
+          "price"
+        ],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "Filter products",
+      "not_found_code": "PRODUCT_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [
+          "category_id",
+          "price"
+        ],
+        "search": false
+      },
+      "roles": [],
+      "service": "service.product",
+      "type": "query"
+    },
+    "operation.product.list": {
+      "access": "public",
+      "action": "list",
+      "cardinality": "many",
+      "description": "List Products.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.product.list",
+        "method": "GET",
+        "path": "/products",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.product",
+        "roles": [],
+        "status_code": 200
+      },
+      "entity": "entity.product",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.product.list",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "List Products",
+      "not_found_code": "PRODUCT_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "search": false
+      },
+      "roles": [],
+      "service": "service.product",
+      "type": "query"
+    },
+    "operation.product.read": {
+      "access": "public",
+      "action": "read",
+      "cardinality": "one",
+      "description": "View Product.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.product.read",
+        "method": "GET",
+        "path": "/products/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.product",
+        "roles": [],
+        "status_code": 200
+      },
+      "entity": "entity.product",
+      "errors": [
+        {
+          "code": "PRODUCT_NOT_FOUND",
+          "description": "The Product does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.product.read",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "read",
+      "name": "View Product",
+      "not_found_code": "PRODUCT_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.product",
+      "type": "query"
+    },
+    "operation.product.search": {
+      "access": "public",
+      "action": "list",
+      "cardinality": "many",
+      "description": "Search products.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.product.search",
+        "method": "GET",
+        "path": "/products/search",
+        "path_params": [],
+        "query_params": [
+          {
+            "enum": null,
+            "kind": "search",
+            "name": "query",
+            "type": "string"
+          }
+        ],
+        "request_schema": null,
+        "response_schema": "schema.product",
+        "roles": [],
+        "status_code": 200
+      },
+      "entity": "entity.product",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.product.search",
+      "input": {
+        "extra_fields": [
+          "query"
+        ],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "Search products",
+      "not_found_code": "PRODUCT_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "search": true
+      },
+      "roles": [],
+      "service": "service.product",
+      "type": "query"
+    },
+    "operation.user.login": {
+      "access": "public",
+      "action": "execute",
+      "cardinality": "one",
+      "description": "Log in.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.user.login",
+        "method": "POST",
+        "path": "/auth/login",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.user.login",
+        "response_schema": "schema.user",
+        "roles": [],
+        "status_code": 200
+      },
+      "entity": "entity.user",
+      "errors": [
+        {
+          "code": "INVALID_CREDENTIALS",
+          "description": "Email or password is wrong"
+        }
+      ],
+      "handler": "auth",
+      "id": "operation.user.login",
+      "input": {
+        "extra_fields": [
+          "password"
+        ],
+        "optional_fields": [],
+        "required_fields": [
+          "email"
+        ]
+      },
+      "kind": "auth.login",
+      "name": "Log in",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.user",
+      "type": "command"
+    },
+    "operation.user.logout": {
+      "access": "authenticated",
+      "action": "execute",
+      "cardinality": "none",
+      "description": "Log out.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.user.logout",
+        "method": "POST",
+        "path": "/auth/logout",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": null,
+        "roles": [],
+        "status_code": 204
+      },
+      "entity": "entity.user",
+      "errors": [],
+      "handler": "auth",
+      "id": "operation.user.logout",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "auth.logout",
+      "name": "Log out",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.user",
+      "type": "command"
+    },
+    "operation.user.request_password_reset": {
+      "access": "public",
+      "action": "execute",
+      "cardinality": "none",
+      "description": "Request password reset.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.user.request_password_reset",
+        "method": "POST",
+        "path": "/auth/forgot-password",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.user.request_password_reset",
+        "response_schema": null,
+        "roles": [],
+        "status_code": 204
+      },
+      "entity": "entity.user",
+      "errors": [],
+      "handler": "auth",
+      "id": "operation.user.request_password_reset",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "email"
+        ]
+      },
+      "kind": "auth.request_password_reset",
+      "name": "Request password reset",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.user",
+      "type": "command"
+    },
+    "operation.user.reset_password": {
+      "access": "public",
+      "action": "execute",
+      "cardinality": "none",
+      "description": "Reset password.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.user.reset_password",
+        "method": "POST",
+        "path": "/auth/reset-password",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.user.reset_password",
+        "response_schema": null,
+        "roles": [],
+        "status_code": 204
+      },
+      "entity": "entity.user",
+      "errors": [
+        {
+          "code": "INVALID_RESET_TOKEN",
+          "description": "The reset token is invalid or expired"
+        }
+      ],
+      "handler": "auth",
+      "id": "operation.user.reset_password",
+      "input": {
+        "extra_fields": [
+          "reset_token",
+          "new_password"
+        ],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "auth.reset_password",
+      "name": "Reset password",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.user",
+      "type": "command"
+    }
+  },
+  "project": {
+    "description": "An online store where users browse products, fill a cart and check out.",
+    "id": "project.ecommerce_store",
+    "key": "ecommerce_store",
+    "name": "Ecommerce Store",
+    "package": "backend_app"
+  },
+  "roles": {
+    "role.customer": {
+      "inherits": [],
+      "key": "customer"
+    }
+  },
+  "rules": [
+    {
+      "entity": "entity.cart_item",
+      "id": "rule.scope.implicit.cart_item.user_id",
+      "operations": [
+        "operation.cart_item.delete",
+        "operation.cart_item.list",
+        "operation.cart_item.update"
+      ],
+      "origin": "implicit_data_subject",
+      "roles": [
+        "role.customer"
+      ],
+      "scope": {
+        "field": "user_id"
+      },
+      "source": "heuristic:entity.cart_item.user_id is assigned from the caller on create",
+      "type": "row_scope"
+    },
+    {
+      "entity": "entity.order",
+      "id": "rule.scope.implicit.order.user_id",
+      "operations": [
+        "operation.order.list",
+        "operation.order.read"
+      ],
+      "origin": "implicit_data_subject",
+      "roles": [
+        "role.customer"
+      ],
+      "scope": {
+        "field": "user_id"
+      },
+      "source": "heuristic:entity.order.user_id is assigned from the caller on create",
+      "type": "row_scope"
+    }
+  ],
+  "schemas": {
+    "schema.cart_item": {
+      "class_name": "CartItemResponse",
+      "entity": "entity.cart_item",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "user_id",
+          "non_empty": false,
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "product_id",
+          "non_empty": false,
+          "ref": "entity.product",
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "integer",
+          "enum": null,
+          "name": "quantity",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "id": "schema.cart_item",
+      "kind": "response",
+      "name": "Cart Item"
+    },
+    "schema.cart_item.create": {
+      "class_name": "CartItemCreateRequest",
+      "entity": "entity.cart_item",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "product_id",
+          "non_empty": true,
+          "ref": "entity.product",
+          "required": true,
+          "type": "uuid!>product"
+        },
+        {
+          "base": "integer",
+          "enum": null,
+          "name": "quantity",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "integer!"
+        }
+      ],
+      "id": "schema.cart_item.create",
+      "kind": "request",
+      "name": "Create Cart Item request"
+    },
+    "schema.cart_item.update": {
+      "class_name": "CartItemUpdateRequest",
+      "entity": "entity.cart_item",
+      "fields": [
+        {
+          "base": "integer",
+          "enum": null,
+          "name": "quantity",
+          "non_empty": true,
+          "ref": null,
+          "required": false,
+          "type": "integer!"
+        }
+      ],
+      "id": "schema.cart_item.update",
+      "kind": "request",
+      "name": "Update Cart Item request"
+    },
+    "schema.order": {
+      "class_name": "OrderResponse",
+      "entity": "entity.order",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "user_id",
+          "non_empty": false,
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "enum",
+          "enum": [
+            "pending",
+            "paid",
+            "shipped",
+            "delivered",
+            "cancelled"
+          ],
+          "name": "status",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "enum"
+        },
+        {
+          "base": "decimal",
+          "enum": null,
+          "name": "total",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "decimal"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "shipping_address",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "text"
+        },
+        {
+          "base": "datetime",
+          "enum": null,
+          "name": "placed_at",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "datetime"
+        }
+      ],
+      "id": "schema.order",
+      "kind": "response",
+      "name": "Order"
+    },
+    "schema.order.place": {
+      "class_name": "OrderPlaceRequest",
+      "entity": "entity.order",
+      "fields": [
+        {
+          "base": "text",
+          "enum": null,
+          "name": "shipping_address",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "text"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "payment_method",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "id": "schema.order.place",
+      "kind": "request",
+      "name": "Place order request"
+    },
+    "schema.product": {
+      "class_name": "ProductResponse",
+      "entity": "entity.product",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "name",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "description",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "text"
+        },
+        {
+          "base": "decimal",
+          "enum": null,
+          "name": "price",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "decimal"
+        },
+        {
+          "base": "integer",
+          "enum": null,
+          "name": "stock",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "category_id",
+          "non_empty": false,
+          "ref": "entity.category",
+          "required": false,
+          "type": "uuid"
+        },
+        {
+          "base": "url",
+          "enum": null,
+          "name": "image_url",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "url"
+        }
+      ],
+      "id": "schema.product",
+      "kind": "response",
+      "name": "Product"
+    },
+    "schema.user": {
+      "class_name": "UserResponse",
+      "entity": "entity.user",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "email",
+          "enum": null,
+          "name": "email",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "email"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "full_name",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        },
+        {
+          "base": "enum",
+          "enum": [
+            "customer"
+          ],
+          "name": "role",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "enum"
+        },
+        {
+          "base": "datetime",
+          "enum": null,
+          "name": "created_at",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "datetime"
+        }
+      ],
+      "id": "schema.user",
+      "kind": "response",
+      "name": "User"
+    },
+    "schema.user.login": {
+      "class_name": "UserLoginRequest",
+      "entity": "entity.user",
+      "fields": [
+        {
+          "base": "email",
+          "enum": null,
+          "name": "email",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "email!*"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "password",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "id": "schema.user.login",
+      "kind": "request",
+      "name": "Log in request"
+    },
+    "schema.user.request_password_reset": {
+      "class_name": "UserRequestPasswordResetRequest",
+      "entity": "entity.user",
+      "fields": [
+        {
+          "base": "email",
+          "enum": null,
+          "name": "email",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "email!*"
+        }
+      ],
+      "id": "schema.user.request_password_reset",
+      "kind": "request",
+      "name": "Request password reset request"
+    },
+    "schema.user.reset_password": {
+      "class_name": "UserResetPasswordRequest",
+      "entity": "entity.user",
+      "fields": [
+        {
+          "base": "string",
+          "enum": null,
+          "name": "reset_token",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "new_password",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "id": "schema.user.reset_password",
+      "kind": "request",
+      "name": "Reset password request"
+    }
+  },
+  "spec_version": "1",
+  "state_machines": {
+    "state_machine.order": {
+      "entity": "entity.order",
+      "field": "status",
+      "id": "state_machine.order",
+      "initial": "pending",
+      "states": [
+        "pending",
+        "paid",
+        "shipped",
+        "delivered",
+        "cancelled"
+      ],
+      "transitions": [
+        {
+          "from": "pending",
+          "operation": null,
+          "roles": [
+            "role.customer"
+          ],
+          "to": "paid"
+        },
+        {
+          "from": "pending",
+          "operation": null,
+          "roles": [
+            "role.customer"
+          ],
+          "to": "cancelled"
+        },
+        {
+          "from": "paid",
+          "operation": null,
+          "roles": [],
+          "to": "shipped"
+        },
+        {
+          "from": "shipped",
+          "operation": null,
+          "roles": [],
+          "to": "delivered"
+        },
+        {
+          "from": "paid",
+          "operation": null,
+          "roles": [],
+          "to": "cancelled"
+        }
+      ]
+    }
+  }
+}

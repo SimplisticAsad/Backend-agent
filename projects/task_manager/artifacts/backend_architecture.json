@@ -1,0 +1,327 @@
+{
+  "architecture": {
+    "api_framework": "fastapi",
+    "api_versioning": "none",
+    "api_versioning_note": "paths are served exactly as in api.json; the Frontend dev proxy strips its /api prefix",
+    "authentication": true,
+    "authorization": {
+      "object_level": "engine rules (ownership, row scope, guards)",
+      "role_checks": "dependency per operation"
+    },
+    "database": "postgresql",
+    "database_driver": "psycopg 3 + psycopg_pool",
+    "error_contract": "{error:{code,message,details}, message, errors, request_id}",
+    "repository_pattern": true,
+    "service_layer": true,
+    "style": "clean architecture (api -> application -> domain/infrastructure)",
+    "transactions": "explicit psycopg_pool transaction per operation; row locks (FOR UPDATE) before read-then-write",
+    "validation": "pydantic v2"
+  },
+  "descriptions": {
+    "DepartmentRepository": "Parameterised SQL access to table departments.",
+    "DepartmentService": "Application service for service.department: 3 operation(s).",
+    "EmployeeRepository": "Parameterised SQL access to table employees.",
+    "EmployeeService": "Application service for service.employee: 4 operation(s).",
+    "ProjectMemberRepository": "Parameterised SQL access to table project_members.",
+    "ProjectMemberService": "Application service for service.project_member: 3 operation(s).",
+    "ProjectRepository": "Parameterised SQL access to table projects.",
+    "ProjectService": "Application service for service.project: 6 operation(s).",
+    "TaskRepository": "Parameterised SQL access to table tasks.",
+    "TaskService": "Application service for service.task: 7 operation(s).",
+    "UserRepository": "Parameterised SQL access to table users.",
+    "UserService": "Application service for service.user: 4 operation(s).",
+    "backend_app.api": "HTTP routes, request/response schemas and dependencies; no business logic.",
+    "backend_app.application": "Application services: one method per graph operation.",
+    "backend_app.auth": "Authentication and role authorization.",
+    "backend_app.domain": "Domain entities mirroring graph entities, and domain exceptions.",
+    "backend_app.engine": "Spec-driven implementation of CRUD, state transitions and object-level rules.",
+    "backend_app.infrastructure": "Repositories over the database contract."
+  },
+  "modules": [
+    {
+      "name": "backend_app.api",
+      "purpose": "HTTP routes, request/response schemas and dependencies; no business logic."
+    },
+    {
+      "name": "backend_app.application",
+      "purpose": "Application services: one method per graph operation."
+    },
+    {
+      "name": "backend_app.domain",
+      "purpose": "Domain entities mirroring graph entities, and domain exceptions."
+    },
+    {
+      "name": "backend_app.infrastructure",
+      "purpose": "Repositories over the database contract."
+    },
+    {
+      "name": "backend_app.engine",
+      "purpose": "Spec-driven implementation of CRUD, state transitions and object-level rules."
+    },
+    {
+      "name": "backend_app.auth",
+      "purpose": "Authentication and role authorization."
+    }
+  ],
+  "repositories": [
+    {
+      "entity": "entity.department",
+      "name": "DepartmentRepository",
+      "table": "departments"
+    },
+    {
+      "entity": "entity.employee",
+      "name": "EmployeeRepository",
+      "table": "employees"
+    },
+    {
+      "entity": "entity.project",
+      "name": "ProjectRepository",
+      "table": "projects"
+    },
+    {
+      "entity": "entity.project_member",
+      "name": "ProjectMemberRepository",
+      "table": "project_members"
+    },
+    {
+      "entity": "entity.task",
+      "name": "TaskRepository",
+      "table": "tasks"
+    },
+    {
+      "entity": "entity.user",
+      "name": "UserRepository",
+      "table": "users"
+    }
+  ],
+  "routes": [
+    {
+      "endpoint": "api.department.create",
+      "method": "POST",
+      "operation": "operation.department.create",
+      "path": "/departments"
+    },
+    {
+      "endpoint": "api.department.list",
+      "method": "GET",
+      "operation": "operation.department.list",
+      "path": "/departments"
+    },
+    {
+      "endpoint": "api.department.update",
+      "method": "PATCH",
+      "operation": "operation.department.update",
+      "path": "/departments/{id}"
+    },
+    {
+      "endpoint": "api.employee.create",
+      "method": "POST",
+      "operation": "operation.employee.create",
+      "path": "/employees"
+    },
+    {
+      "endpoint": "api.employee.list",
+      "method": "GET",
+      "operation": "operation.employee.list",
+      "path": "/employees"
+    },
+    {
+      "endpoint": "api.employee.read",
+      "method": "GET",
+      "operation": "operation.employee.read",
+      "path": "/employees/{id}"
+    },
+    {
+      "endpoint": "api.employee.update",
+      "method": "PATCH",
+      "operation": "operation.employee.update",
+      "path": "/employees/{id}"
+    },
+    {
+      "endpoint": "api.project.create",
+      "method": "POST",
+      "operation": "operation.project.create",
+      "path": "/projects"
+    },
+    {
+      "endpoint": "api.project.delete",
+      "method": "DELETE",
+      "operation": "operation.project.delete",
+      "path": "/projects/{id}"
+    },
+    {
+      "endpoint": "api.project.list",
+      "method": "GET",
+      "operation": "operation.project.list",
+      "path": "/projects"
+    },
+    {
+      "endpoint": "api.project.progress",
+      "method": "GET",
+      "operation": "operation.project.progress",
+      "path": "/projects/progress"
+    },
+    {
+      "endpoint": "api.project.read",
+      "method": "GET",
+      "operation": "operation.project.read",
+      "path": "/projects/{id}"
+    },
+    {
+      "endpoint": "api.project.update",
+      "method": "PATCH",
+      "operation": "operation.project.update",
+      "path": "/projects/{id}"
+    },
+    {
+      "endpoint": "api.project_member.create",
+      "method": "POST",
+      "operation": "operation.project_member.create",
+      "path": "/project-members"
+    },
+    {
+      "endpoint": "api.project_member.delete",
+      "method": "DELETE",
+      "operation": "operation.project_member.delete",
+      "path": "/project-members/{id}"
+    },
+    {
+      "endpoint": "api.project_member.list",
+      "method": "GET",
+      "operation": "operation.project_member.list",
+      "path": "/project-members"
+    },
+    {
+      "endpoint": "api.task.create",
+      "method": "POST",
+      "operation": "operation.task.create",
+      "path": "/tasks"
+    },
+    {
+      "endpoint": "api.task.delete",
+      "method": "DELETE",
+      "operation": "operation.task.delete",
+      "path": "/tasks/{id}"
+    },
+    {
+      "endpoint": "api.task.list",
+      "method": "GET",
+      "operation": "operation.task.list",
+      "path": "/tasks"
+    },
+    {
+      "endpoint": "api.task.list_assigned",
+      "method": "GET",
+      "operation": "operation.task.list_assigned",
+      "path": "/tasks/assigned"
+    },
+    {
+      "endpoint": "api.task.read",
+      "method": "GET",
+      "operation": "operation.task.read",
+      "path": "/tasks/{id}"
+    },
+    {
+      "endpoint": "api.task.update",
+      "method": "PATCH",
+      "operation": "operation.task.update",
+      "path": "/tasks/{id}"
+    },
+    {
+      "endpoint": "api.task.update_status",
+      "method": "PATCH",
+      "operation": "operation.task.update_status",
+      "path": "/tasks/{id}/status"
+    },
+    {
+      "endpoint": "api.user.login",
+      "method": "POST",
+      "operation": "operation.user.login",
+      "path": "/auth/login"
+    },
+    {
+      "endpoint": "api.user.logout",
+      "method": "POST",
+      "operation": "operation.user.logout",
+      "path": "/auth/logout"
+    },
+    {
+      "endpoint": "api.user.request_password_reset",
+      "method": "POST",
+      "operation": "operation.user.request_password_reset",
+      "path": "/auth/forgot-password"
+    },
+    {
+      "endpoint": "api.user.reset_password",
+      "method": "POST",
+      "operation": "operation.user.reset_password",
+      "path": "/auth/reset-password"
+    }
+  ],
+  "services": [
+    {
+      "id": "service.department",
+      "name": "DepartmentService",
+      "operations": [
+        "operation.department.create",
+        "operation.department.list",
+        "operation.department.update"
+      ]
+    },
+    {
+      "id": "service.employee",
+      "name": "EmployeeService",
+      "operations": [
+        "operation.employee.create",
+        "operation.employee.list",
+        "operation.employee.read",
+        "operation.employee.update"
+      ]
+    },
+    {
+      "id": "service.project",
+      "name": "ProjectService",
+      "operations": [
+        "operation.project.create",
+        "operation.project.delete",
+        "operation.project.list",
+        "operation.project.progress",
+        "operation.project.read",
+        "operation.project.update"
+      ]
+    },
+    {
+      "id": "service.project_member",
+      "name": "ProjectMemberService",
+      "operations": [
+        "operation.project_member.create",
+        "operation.project_member.delete",
+        "operation.project_member.list"
+      ]
+    },
+    {
+      "id": "service.task",
+      "name": "TaskService",
+      "operations": [
+        "operation.task.create",
+        "operation.task.delete",
+        "operation.task.list",
+        "operation.task.list_assigned",
+        "operation.task.read",
+        "operation.task.update",
+        "operation.task.update_status"
+      ]
+    },
+    {
+      "id": "service.user",
+      "name": "UserService",
+      "operations": [
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ]
+    }
+  ]
+}

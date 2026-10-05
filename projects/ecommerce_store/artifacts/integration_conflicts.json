@@ -1,0 +1,44 @@
+{
+  "checked": [
+    "graph",
+    "database"
+  ],
+  "conflicts": [
+    {
+      "code": "NO_USER_PROVISIONING",
+      "description": "no operation creates entity.user: users can log in but cannot be created through the API",
+      "impact": "the product cannot onboard its first user via the API",
+      "kind": "INTEGRATION_FAILURE",
+      "recommended_resolution": "add a create-user (or self-registration) operation to the graph",
+      "resolution_applied": "generated backend ships `python -m backend_app.manage create-user` for provisioning",
+      "severity": "major",
+      "sources": [
+        "entity.user"
+      ],
+      "type": "GRAPH_GAP"
+    },
+    {
+      "code": "NO_RESET_TOKEN_STORE",
+      "description": "password reset operations exist but the graph defines no entity for reset tokens or sessions",
+      "impact": "reset tokens/logout cannot be persisted",
+      "kind": "INTEGRATION_FAILURE",
+      "recommended_resolution": "model reset tokens / sessions as an entity if persistence or revocation across instances is required",
+      "resolution_applied": "stateless signed reset tokens bound to the current password hash; in-process token revocation list",
+      "severity": "minor",
+      "sources": [
+        "operation.user.reset_password"
+      ],
+      "type": "GRAPH_GAP"
+    }
+  ],
+  "skipped": {
+    "frontend": "no frontend contract supplied for this project"
+  },
+  "status": "conflicts_reported",
+  "summary": {
+    "critical": 0,
+    "info": 0,
+    "major": 1,
+    "minor": 1
+  }
+}

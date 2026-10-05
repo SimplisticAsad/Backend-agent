@@ -1,0 +1,182 @@
+[
+  {
+    "name": "create_category",
+    "table": "categories",
+    "operation": "create",
+    "description": "create category"
+  },
+  {
+    "name": "get_category",
+    "table": "categories",
+    "operation": "get",
+    "description": "get category"
+  },
+  {
+    "name": "update_category",
+    "table": "categories",
+    "operation": "update",
+    "description": "update category"
+  },
+  {
+    "name": "delete_category",
+    "table": "categories",
+    "operation": "delete",
+    "description": "delete category"
+  },
+  {
+    "name": "list_categories",
+    "table": "categories",
+    "operation": "list",
+    "description": "list categories"
+  },
+  {
+    "name": "create_product",
+    "table": "products",
+    "operation": "create",
+    "description": "create product"
+  },
+  {
+    "name": "get_product",
+    "table": "products",
+    "operation": "get",
+    "description": "get product"
+  },
+  {
+    "name": "update_product",
+    "table": "products",
+    "operation": "update",
+    "description": "update product"
+  },
+  {
+    "name": "delete_product",
+    "table": "products",
+    "operation": "delete",
+    "description": "delete product"
+  },
+  {
+    "name": "list_products",
+    "table": "products",
+    "operation": "list",
+    "description": "list products"
+  },
+  {
+    "name": "create_user",
+    "table": "users",
+    "operation": "create",
+    "description": "create user"
+  },
+  {
+    "name": "get_user",
+    "table": "users",
+    "operation": "get",
+    "description": "get user"
+  },
+  {
+    "name": "update_user",
+    "table": "users",
+    "operation": "update",
+    "description": "update user"
+  },
+  {
+    "name": "delete_user",
+    "table": "users",
+    "operation": "delete",
+    "description": "delete user"
+  },
+  {
+    "name": "list_users",
+    "table": "users",
+    "operation": "list",
+    "description": "list users"
+  },
+  {
+    "name": "create_cart_item",
+    "table": "cart_items",
+    "operation": "create",
+    "description": "create cart_item"
+  },
+  {
+    "name": "get_cart_item",
+    "table": "cart_items",
+    "operation": "get",
+    "description": "get cart_item"
+  },
+  {
+    "name": "update_cart_item",
+    "table": "cart_items",
+    "operation": "update",
+    "description": "update cart_item"
+  },
+  {
+    "name": "delete_cart_item",
+    "table": "cart_items",
+    "operation": "delete",
+    "description": "delete cart_item"
+  },
+  {
+    "name": "list_cart_items",
+    "table": "cart_items",
+    "operation": "list",
+    "description": "list cart_items"
+  },
+  {
+    "name": "create_order",
+    "table": "orders",
+    "operation": "create",
+    "description": "create order"
+  },
+  {
+    "name": "get_order",
+    "table": "orders",
+    "operation": "get",
+    "description": "get order"
+  },
+  {
+    "name": "update_order",
+    "table": "orders",
+    "operation": "update",
+    "description": "update order"
+  },
+  {
+    "name": "delete_order",
+    "table": "orders",
+    "operation": "delete",
+    "description": "delete order"
+  },
+  {
+    "name": "list_orders",
+    "table": "orders",
+    "operation": "list",
+    "description": "list orders"
+  },
+  {
+    "name": "create_order_item",
+    "table": "order_items",
+    "operation": "create",
+    "description": "create order_item"
+  },
+  {
+    "name": "get_order_item",
+    "table": "order_items",
+    "operation": "get",
+    "description": "get order_item"
+  },
+  {
+    "name": "update_order_item",
+    "table": "order_items",
+    "operation": "update",
+    "description": "update order_item"
+  },
+  {
+    "name": "delete_order_item",
+    "table": "order_items",
+    "operation": "delete",
+    "description": "delete order_item"
+  },
+  {
+    "name": "list_order_items",
+    "table": "order_items",
+    "operation": "list",
+    "description": "list order_items"
+  }
+]

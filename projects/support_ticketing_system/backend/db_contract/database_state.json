@@ -1,0 +1,350 @@
+{
+  "schema": "support_ticketing_system",
+  "tables": {
+    "ticket_comments": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "ticket_id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "author_id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "body",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "nullable": true,
+          "column_default": "now()"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "fk_ticket_comments_author_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (author_id) REFERENCES fixture_396c9675b5.users(id) ON DELETE RESTRICT",
+          "columns": [
+            "author_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "fk_ticket_comments_ticket_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (ticket_id) REFERENCES fixture_396c9675b5.tickets(id) ON DELETE CASCADE",
+          "columns": [
+            "ticket_id"
+          ],
+          "ref_table": "tickets",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "pk_ticket_comments",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    },
+    "tickets": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "title",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "description",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "status",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "priority",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "requester_id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "assignee_id",
+          "data_type": "uuid",
+          "nullable": true,
+          "column_default": null
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "nullable": true,
+          "column_default": "now()"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "ck_tickets_priority",
+          "type": "CHECK",
+          "definition": "CHECK ((priority = ANY (ARRAY['low'::text, 'medium'::text, 'high'::text, 'urgent'::text])))",
+          "columns": [
+            "priority"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "ck_tickets_status",
+          "type": "CHECK",
+          "definition": "CHECK ((status = ANY (ARRAY['open'::text, 'in_progress'::text, 'resolved'::text, 'closed'::text])))",
+          "columns": [
+            "status"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "fk_tickets_assignee_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (assignee_id) REFERENCES fixture_396c9675b5.users(id) ON DELETE RESTRICT",
+          "columns": [
+            "assignee_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "fk_tickets_requester_id",
+          "type": "FOREIGN KEY",
+          "definition": "FOREIGN KEY (requester_id) REFERENCES fixture_396c9675b5.users(id) ON DELETE RESTRICT",
+          "columns": [
+            "requester_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ]
+        },
+        {
+          "name": "pk_tickets",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    },
+    "users": {
+      "columns": [
+        {
+          "column_name": "id",
+          "data_type": "uuid",
+          "nullable": false,
+          "column_default": "gen_random_uuid()"
+        },
+        {
+          "column_name": "email",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "password_hash",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "full_name",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "role",
+          "data_type": "text",
+          "nullable": false,
+          "column_default": null
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "nullable": false,
+          "column_default": "now()"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "ck_users_role",
+          "type": "CHECK",
+          "definition": "CHECK ((role = ANY (ARRAY['customer'::text, 'agent'::text, 'manager'::text])))",
+          "columns": [
+            "role"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "pk_users",
+          "type": "PRIMARY KEY",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        },
+        {
+          "name": "uq_users_email",
+          "type": "UNIQUE",
+          "definition": "UNIQUE (email)",
+          "columns": [
+            "email"
+          ],
+          "ref_table": null,
+          "ref_columns": []
+        }
+      ],
+      "indexes": []
+    }
+  },
+  "functions": [
+    {
+      "name": "create_ticket",
+      "arguments": "p_title text, p_description text, p_status text, p_priority text, p_requester_id uuid, p_assignee_id uuid, p_created_at timestamp with time zone",
+      "returns": "fixture_396c9675b5.tickets",
+      "kind": "function"
+    },
+    {
+      "name": "create_ticket_comment",
+      "arguments": "p_ticket_id uuid, p_author_id uuid, p_body text, p_created_at timestamp with time zone",
+      "returns": "fixture_396c9675b5.ticket_comments",
+      "kind": "function"
+    },
+    {
+      "name": "create_user",
+      "arguments": "p_email text, p_password_hash text, p_full_name text, p_role text, p_created_at timestamp with time zone",
+      "returns": "fixture_396c9675b5.users",
+      "kind": "function"
+    },
+    {
+      "name": "delete_ticket",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "delete_ticket_comment",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "delete_user",
+      "arguments": "p_id uuid",
+      "returns": "boolean",
+      "kind": "function"
+    },
+    {
+      "name": "get_ticket",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_396c9675b5.tickets",
+      "kind": "function"
+    },
+    {
+      "name": "get_ticket_comment",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_396c9675b5.ticket_comments",
+      "kind": "function"
+    },
+    {
+      "name": "get_user",
+      "arguments": "p_id uuid",
+      "returns": "SETOF fixture_396c9675b5.users",
+      "kind": "function"
+    },
+    {
+      "name": "list_ticket_comments",
+      "arguments": "",
+      "returns": "SETOF fixture_396c9675b5.ticket_comments",
+      "kind": "function"
+    },
+    {
+      "name": "list_tickets",
+      "arguments": "",
+      "returns": "SETOF fixture_396c9675b5.tickets",
+      "kind": "function"
+    },
+    {
+      "name": "list_users",
+      "arguments": "",
+      "returns": "SETOF fixture_396c9675b5.users",
+      "kind": "function"
+    },
+    {
+      "name": "update_ticket",
+      "arguments": "p_id uuid, p_title text, p_description text, p_status text, p_priority text, p_requester_id uuid, p_assignee_id uuid, p_created_at timestamp with time zone",
+      "returns": "fixture_396c9675b5.tickets",
+      "kind": "function"
+    },
+    {
+      "name": "update_ticket_comment",
+      "arguments": "p_id uuid, p_ticket_id uuid, p_author_id uuid, p_body text, p_created_at timestamp with time zone",
+      "returns": "fixture_396c9675b5.ticket_comments",
+      "kind": "function"
+    },
+    {
+      "name": "update_user",
+      "arguments": "p_id uuid, p_email text, p_password_hash text, p_full_name text, p_role text, p_created_at timestamp with time zone",
+      "returns": "fixture_396c9675b5.users",
+      "kind": "function"
+    }
+  ]
+}

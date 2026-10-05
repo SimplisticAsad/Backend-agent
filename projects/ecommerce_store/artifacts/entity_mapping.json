@@ -1,0 +1,136 @@
+{
+  "entities": [
+    {
+      "columns": {
+        "id": "id",
+        "product_id": "product_id",
+        "quantity": "quantity",
+        "user_id": "user_id"
+      },
+      "crud_functions": [
+        "create_cart_item",
+        "delete_cart_item",
+        "get_cart_item",
+        "list_cart_items",
+        "update_cart_item"
+      ],
+      "database_table": "cart_items",
+      "domain_model": "CartItem",
+      "graph_entity": "entity.cart_item",
+      "primary_key": [
+        "id"
+      ]
+    },
+    {
+      "columns": {
+        "id": "id",
+        "name": "name"
+      },
+      "crud_functions": [
+        "create_category",
+        "delete_category",
+        "get_category",
+        "list_categories",
+        "update_category"
+      ],
+      "database_table": "categories",
+      "domain_model": "Category",
+      "graph_entity": "entity.category",
+      "primary_key": [
+        "id"
+      ]
+    },
+    {
+      "columns": {
+        "id": "id",
+        "placed_at": "placed_at",
+        "shipping_address": "shipping_address",
+        "status": "status",
+        "total": "total",
+        "user_id": "user_id"
+      },
+      "crud_functions": [
+        "create_order",
+        "delete_order",
+        "get_order",
+        "list_orders",
+        "update_order"
+      ],
+      "database_table": "orders",
+      "domain_model": "Order",
+      "graph_entity": "entity.order",
+      "primary_key": [
+        "id"
+      ]
+    },
+    {
+      "columns": {
+        "id": "id",
+        "order_id": "order_id",
+        "product_id": "product_id",
+        "quantity": "quantity",
+        "unit_price": "unit_price"
+      },
+      "crud_functions": [
+        "create_order_item",
+        "delete_order_item",
+        "get_order_item",
+        "list_order_items",
+        "update_order_item"
+      ],
+      "database_table": "order_items",
+      "domain_model": "OrderItem",
+      "graph_entity": "entity.order_item",
+      "primary_key": [
+        "id"
+      ]
+    },
+    {
+      "columns": {
+        "category_id": "category_id",
+        "description": "description",
+        "id": "id",
+        "image_url": "image_url",
+        "name": "name",
+        "price": "price",
+        "stock": "stock"
+      },
+      "crud_functions": [
+        "create_product",
+        "delete_product",
+        "get_product",
+        "list_products",
+        "update_product"
+      ],
+      "database_table": "products",
+      "domain_model": "Product",
+      "graph_entity": "entity.product",
+      "primary_key": [
+        "id"
+      ]
+    },
+    {
+      "columns": {
+        "created_at": "created_at",
+        "email": "email",
+        "full_name": "full_name",
+        "id": "id",
+        "password_hash": "***",
+        "role": "role"
+      },
+      "crud_functions": [
+        "create_user",
+        "delete_user",
+        "get_user",
+        "list_users",
+        "update_user"
+      ],
+      "database_table": "users",
+      "domain_model": "User",
+      "graph_entity": "entity.user",
+      "primary_key": [
+        "id"
+      ]
+    }
+  ]
+}

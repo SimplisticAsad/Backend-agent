@@ -1,0 +1,229 @@
+{
+  "services": [
+    {
+      "class": "DepartmentService",
+      "id": "service.department",
+      "operations": [
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "create",
+          "method": "create",
+          "operation": "operation.department.create"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "list",
+          "operation": "operation.department.list"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "update",
+          "method": "update",
+          "operation": "operation.department.update"
+        }
+      ]
+    },
+    {
+      "class": "EmployeeService",
+      "id": "service.employee",
+      "operations": [
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "create",
+          "method": "create",
+          "operation": "operation.employee.create"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "list",
+          "operation": "operation.employee.list"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "read",
+          "method": "read",
+          "operation": "operation.employee.read"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "update",
+          "method": "update",
+          "operation": "operation.employee.update"
+        }
+      ]
+    },
+    {
+      "class": "ProjectService",
+      "id": "service.project",
+      "operations": [
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "create",
+          "method": "create",
+          "operation": "operation.project.create"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "delete",
+          "method": "delete",
+          "operation": "operation.project.delete"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "list",
+          "operation": "operation.project.list"
+        },
+        {
+          "handler": "custom",
+          "implemented": true,
+          "kind": "aggregate",
+          "method": "progress",
+          "operation": "operation.project.progress"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "read",
+          "method": "read",
+          "operation": "operation.project.read"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "update",
+          "method": "update",
+          "operation": "operation.project.update"
+        }
+      ]
+    },
+    {
+      "class": "ProjectMemberService",
+      "id": "service.project_member",
+      "operations": [
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "create",
+          "method": "create",
+          "operation": "operation.project_member.create"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "delete",
+          "method": "delete",
+          "operation": "operation.project_member.delete"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "list",
+          "operation": "operation.project_member.list"
+        }
+      ]
+    },
+    {
+      "class": "TaskService",
+      "id": "service.task",
+      "operations": [
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "create",
+          "method": "create",
+          "operation": "operation.task.create"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "delete",
+          "method": "delete",
+          "operation": "operation.task.delete"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "list",
+          "operation": "operation.task.list"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "list",
+          "method": "list_assigned",
+          "operation": "operation.task.list_assigned"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "read",
+          "method": "read",
+          "operation": "operation.task.read"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "update",
+          "method": "update",
+          "operation": "operation.task.update"
+        },
+        {
+          "handler": "engine",
+          "implemented": true,
+          "kind": "transition",
+          "method": "update_status",
+          "operation": "operation.task.update_status"
+        }
+      ]
+    },
+    {
+      "class": "UserService",
+      "id": "service.user",
+      "operations": [
+        {
+          "handler": "auth",
+          "implemented": true,
+          "kind": "auth.login",
+          "method": "login",
+          "operation": "operation.user.login"
+        },
+        {
+          "handler": "auth",
+          "implemented": true,
+          "kind": "auth.logout",
+          "method": "logout",
+          "operation": "operation.user.logout"
+        },
+        {
+          "handler": "auth",
+          "implemented": true,
+          "kind": "auth.request_password_reset",
+          "method": "request_password_reset",
+          "operation": "operation.user.request_password_reset"
+        },
+        {
+          "handler": "auth",
+          "implemented": true,
+          "kind": "auth.reset_password",
+          "method": "reset_password",
+          "operation": "operation.user.reset_password"
+        }
+      ]
+    }
+  ]
+}

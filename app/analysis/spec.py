@@ -47,7 +47,8 @@ def build_entity_mapping(pkg: GraphPackage, db: DatabaseContract) -> dict[str, A
 
 
 def build_spec(pkg: GraphPackage, db: DatabaseContract, classes: dict[str, OpClass], rules: list[dict[str, Any]],
-               handlers: dict[str, dict[str, Any]] | None = None, notes: list[str] | None = None) -> dict[str, Any]:
+               handlers: dict[str, dict[str, Any]] | None = None, notes: list[str] | None = None,
+               coverage: list[dict[str, Any]] | None = None) -> dict[str, Any]:
     handlers = handlers or {}
     auth = find_auth_entity(pkg)
     spec: dict[str, Any] = {
@@ -57,7 +58,7 @@ def build_spec(pkg: GraphPackage, db: DatabaseContract, classes: dict[str, OpCla
         "api": {"versioning": "none", "base_path": "", "note": "paths are served exactly as in api.json; the Frontend dev proxy strips its /api prefix"},
         "roles": {rid: {"key": pkg.role_key(rid), "inherits": r.get("inherits", [])} for rid, r in sorted(pkg.roles.items())},
         "auth": None, "entities": {}, "state_machines": {}, "schemas": {}, "operations": {}, "rules": sorted(rules, key=lambda r: r["id"]),
-        "handlers": handlers, "notes": notes or [],
+        "handlers": handlers, "notes": notes or [], "coverage": sorted(coverage or [], key=lambda c: c["source"]),
     }
 
     # ---- entities --------------------------------------------------------------------------------------------------

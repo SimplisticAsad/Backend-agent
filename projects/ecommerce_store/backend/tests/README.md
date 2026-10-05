@@ -1,0 +1,1 @@
+Generated test suite. Run `pytest` (needs PostgreSQL: set TEST_DATABASE_URL to a dedicated database whose name contains 'test', or let the suite start a throw-away local cluster). Do not weaken or delete these tests: they encode the graph contract.

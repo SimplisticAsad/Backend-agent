@@ -1,0 +1,467 @@
+{
+  "tables": [
+    {
+      "name": "departments",
+      "purpose": "An organisational unit of the company.",
+      "source_entities": [
+        "Department"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "nullable": false,
+          "source_field": "name"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "source_field": "description"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [],
+      "unique_constraints": [],
+      "indexes": [],
+      "dependencies": []
+    },
+    {
+      "name": "users",
+      "purpose": "An account that can sign in to the product.",
+      "source_entities": [
+        "User"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "email",
+          "type": "text",
+          "nullable": false,
+          "source_field": "email"
+        },
+        {
+          "name": "password_hash",
+          "type": "text",
+          "nullable": false,
+          "source_field": "password_hash"
+        },
+        {
+          "name": "full_name",
+          "type": "text",
+          "nullable": false,
+          "source_field": "full_name"
+        },
+        {
+          "name": "role",
+          "type": "text",
+          "nullable": false,
+          "source_field": "role"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "source_field": "created_at"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [],
+      "unique_constraints": [
+        [
+          "email"
+        ]
+      ],
+      "indexes": [],
+      "dependencies": []
+    },
+    {
+      "name": "employees",
+      "purpose": "An employee profile.",
+      "source_entities": [
+        "Employee"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "user_id"
+        },
+        {
+          "name": "department_id",
+          "type": "uuid",
+          "nullable": true,
+          "source_field": "department_id"
+        },
+        {
+          "name": "job_title",
+          "type": "text",
+          "nullable": true,
+          "source_field": "job_title"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        },
+        {
+          "columns": [
+            "department_id"
+          ],
+          "ref_table": "departments",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        }
+      ],
+      "unique_constraints": [],
+      "indexes": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on user_id"
+        },
+        {
+          "columns": [
+            "department_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on department_id"
+        }
+      ],
+      "dependencies": [
+        "departments",
+        "users"
+      ]
+    },
+    {
+      "name": "projects",
+      "purpose": "A body of work containing tasks.",
+      "source_entities": [
+        "Project"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "nullable": false,
+          "source_field": "name"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "source_field": "description"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "nullable": false,
+          "source_field": "status"
+        },
+        {
+          "name": "owner_id",
+          "type": "uuid",
+          "nullable": true,
+          "source_field": "owner_id"
+        },
+        {
+          "name": "due_date",
+          "type": "date",
+          "nullable": true,
+          "source_field": "due_date"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "owner_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        }
+      ],
+      "unique_constraints": [],
+      "indexes": [
+        {
+          "columns": [
+            "owner_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on owner_id"
+        }
+      ],
+      "dependencies": [
+        "users"
+      ]
+    },
+    {
+      "name": "project_members",
+      "purpose": "Assignment of an employee to a project.",
+      "source_entities": [
+        "ProjectMember"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "project_id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "project_id"
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "user_id"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "project_id"
+          ],
+          "ref_table": "projects",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        },
+        {
+          "columns": [
+            "user_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        }
+      ],
+      "unique_constraints": [],
+      "indexes": [
+        {
+          "columns": [
+            "project_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on project_id"
+        },
+        {
+          "columns": [
+            "user_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on user_id"
+        }
+      ],
+      "dependencies": [
+        "projects",
+        "users"
+      ]
+    },
+    {
+      "name": "tasks",
+      "purpose": "A unit of work inside a project.",
+      "source_entities": [
+        "Task"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "title",
+          "type": "text",
+          "nullable": false,
+          "source_field": "title"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "source_field": "description"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "nullable": false,
+          "source_field": "status"
+        },
+        {
+          "name": "due_date",
+          "type": "date",
+          "nullable": true,
+          "source_field": "due_date"
+        },
+        {
+          "name": "project_id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "project_id"
+        },
+        {
+          "name": "assignee_id",
+          "type": "uuid",
+          "nullable": true,
+          "source_field": "assignee_id"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "project_id"
+          ],
+          "ref_table": "projects",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        },
+        {
+          "columns": [
+            "assignee_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        }
+      ],
+      "unique_constraints": [],
+      "indexes": [
+        {
+          "columns": [
+            "project_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on project_id"
+        },
+        {
+          "columns": [
+            "assignee_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on assignee_id"
+        }
+      ],
+      "dependencies": [
+        "projects",
+        "users"
+      ]
+    }
+  ],
+  "relationships": [],
+  "creation_order": [
+    "departments",
+    "users",
+    "employees",
+    "projects",
+    "project_members",
+    "tasks"
+  ],
+  "normalization": {
+    "target": "3NF",
+    "analysis": [
+      "fixture generated from entities.json"
+    ],
+    "violations": [],
+    "intentional_denormalizations": []
+  },
+  "normalization_notes": []
+}

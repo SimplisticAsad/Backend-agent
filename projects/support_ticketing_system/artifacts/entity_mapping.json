@@ -1,0 +1,74 @@
+{
+  "entities": [
+    {
+      "columns": {
+        "assignee_id": "assignee_id",
+        "created_at": "created_at",
+        "description": "description",
+        "id": "id",
+        "priority": "priority",
+        "requester_id": "requester_id",
+        "status": "status",
+        "title": "title"
+      },
+      "crud_functions": [
+        "create_ticket",
+        "delete_ticket",
+        "get_ticket",
+        "list_tickets",
+        "update_ticket"
+      ],
+      "database_table": "tickets",
+      "domain_model": "Ticket",
+      "graph_entity": "entity.ticket",
+      "primary_key": [
+        "id"
+      ]
+    },
+    {
+      "columns": {
+        "author_id": "author_id",
+        "body": "body",
+        "created_at": "created_at",
+        "id": "id",
+        "ticket_id": "ticket_id"
+      },
+      "crud_functions": [
+        "create_ticket_comment",
+        "delete_ticket_comment",
+        "get_ticket_comment",
+        "list_ticket_comments",
+        "update_ticket_comment"
+      ],
+      "database_table": "ticket_comments",
+      "domain_model": "TicketComment",
+      "graph_entity": "entity.ticket_comment",
+      "primary_key": [
+        "id"
+      ]
+    },
+    {
+      "columns": {
+        "created_at": "created_at",
+        "email": "email",
+        "full_name": "full_name",
+        "id": "id",
+        "password_hash": "***",
+        "role": "role"
+      },
+      "crud_functions": [
+        "create_user",
+        "delete_user",
+        "get_user",
+        "list_users",
+        "update_user"
+      ],
+      "database_table": "users",
+      "domain_model": "User",
+      "graph_entity": "entity.user",
+      "primary_key": [
+        "id"
+      ]
+    }
+  ]
+}

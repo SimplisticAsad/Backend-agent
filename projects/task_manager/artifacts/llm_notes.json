@@ -1,0 +1,164 @@
+{
+  "architecture": {
+    "descriptions": {
+      "DepartmentRepository": "Parameterised SQL access to table departments.",
+      "DepartmentService": "Application service for service.department: 3 operation(s).",
+      "EmployeeRepository": "Parameterised SQL access to table employees.",
+      "EmployeeService": "Application service for service.employee: 4 operation(s).",
+      "ProjectMemberRepository": "Parameterised SQL access to table project_members.",
+      "ProjectMemberService": "Application service for service.project_member: 3 operation(s).",
+      "ProjectRepository": "Parameterised SQL access to table projects.",
+      "ProjectService": "Application service for service.project: 6 operation(s).",
+      "TaskRepository": "Parameterised SQL access to table tasks.",
+      "TaskService": "Application service for service.task: 7 operation(s).",
+      "UserRepository": "Parameterised SQL access to table users.",
+      "UserService": "Application service for service.user: 4 operation(s).",
+      "backend_app.api": "HTTP routes, request/response schemas and dependencies; no business logic.",
+      "backend_app.application": "Application services: one method per graph operation.",
+      "backend_app.auth": "Authentication and role authorization.",
+      "backend_app.domain": "Domain entities mirroring graph entities, and domain exceptions.",
+      "backend_app.engine": "Spec-driven implementation of CRUD, state transitions and object-level rules.",
+      "backend_app.infrastructure": "Repositories over the database contract."
+    }
+  },
+  "authorization": {
+    "findings": []
+  },
+  "database_integration": {
+    "notes": [
+      {
+        "note": "mapped to table departments; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.department"
+      },
+      {
+        "note": "mapped to table employees; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.employee"
+      },
+      {
+        "note": "mapped to table projects; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.project"
+      },
+      {
+        "note": "mapped to table project_members; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.project_member"
+      },
+      {
+        "note": "mapped to table tasks; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.task"
+      },
+      {
+        "note": "mapped to table users; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.user"
+      }
+    ],
+    "required_database_changes": []
+  },
+  "domain_model": {
+    "entities": [
+      {
+        "entity": "entity.department",
+        "invariants": [
+          "id is unique."
+        ]
+      },
+      {
+        "entity": "entity.employee",
+        "invariants": [
+          "id is unique."
+        ]
+      },
+      {
+        "entity": "entity.project",
+        "invariants": [
+          "id is unique."
+        ]
+      },
+      {
+        "entity": "entity.project_member",
+        "invariants": [
+          "id is unique."
+        ]
+      },
+      {
+        "entity": "entity.task",
+        "invariants": [
+          "rule.guard.task.completed_needs_assignee",
+          "rule.ownership.task.employee_updates_own",
+          "rule.scope.task.list_assigned",
+          "Status changes only along the declared transitions of state_machine.task.",
+          "id is unique."
+        ]
+      },
+      {
+        "entity": "entity.user",
+        "invariants": [
+          "id is unique.",
+          "email is unique."
+        ]
+      }
+    ]
+  },
+  "graph_analysis": {
+    "observations": [
+      "27 operations across 6 entities; 26 implemented by the generic engine, 1 need handlers."
+    ],
+    "risks": [
+      {
+        "ref": "entity.user",
+        "risk": "no operation creates entity.user: users can log in but cannot be created through the API"
+      },
+      {
+        "ref": "validation.task.completed_needs_assignee",
+        "risk": "validation.task.completed_needs_assignee depends on entity.task.assignee_id but no operation in the graph can set it"
+      },
+      {
+        "ref": "api.auth.login",
+        "risk": "frontend login expects {token, user} but api.user.login responds with schema.user which has no token"
+      },
+      {
+        "ref": "api.user.list",
+        "risk": "frontend api.user.list calls GET /users but the graph defines no such endpoint"
+      },
+      {
+        "ref": "api.project.create",
+        "risk": "'description' is required by graph schema schema.project.create but optional in the frontend (api.project.create)"
+      },
+      {
+        "ref": "api.task.list",
+        "risk": "api.task.list sends query parameter 'project_id' that the graph does not define for api.task.list"
+      },
+      {
+        "ref": "api.task.create",
+        "risk": "api.task.create sends 'description' but graph schema schema.task.create does not define it"
+      },
+      {
+        "ref": "api.task.create",
+        "risk": "api.task.create sends 'assignee_id' but graph schema schema.task.create does not define it"
+      },
+      {
+        "ref": "api.task.create",
+        "risk": "api.task.create sends 'due_date' but graph schema schema.task.create does not define it"
+      },
+      {
+        "ref": "frontend:entity.user.name",
+        "risk": "frontend entity.user.name is not in the graph response schema (graph fields: ['created_at', 'email', 'full_name', 'id', 'role'])"
+      },
+      {
+        "ref": "frontend:entity.project.created_at",
+        "risk": "frontend entity.project.created_at is not in the graph response schema (graph fields: ['description', 'due_date', 'id', 'name', 'owner_id', 'status'])"
+      },
+      {
+        "ref": "frontend:entity.task.status",
+        "risk": "entity.task.status: frontend uses ['TODO', 'IN_PROGRESS', 'COMPLETED'] but graph uses ['todo', 'in_progress', 'completed'] (same values, different case)"
+      },
+      {
+        "ref": "frontend:entity.task.created_at",
+        "risk": "frontend entity.task.created_at is not in the graph response schema (graph fields: ['assignee_id', 'description', 'due_date', 'id', 'project_id', 'status', 'title'])"
+      },
+      {
+        "ref": "sm.task.status",
+        "risk": "frontend allows completed -> in_progress for entity.task but state_machine.task does not"
+      }
+    ]
+  }
+}

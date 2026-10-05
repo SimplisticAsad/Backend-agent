@@ -1,0 +1,182 @@
+[
+  {
+    "name": "create_department",
+    "table": "departments",
+    "operation": "create",
+    "description": "create department"
+  },
+  {
+    "name": "get_department",
+    "table": "departments",
+    "operation": "get",
+    "description": "get department"
+  },
+  {
+    "name": "update_department",
+    "table": "departments",
+    "operation": "update",
+    "description": "update department"
+  },
+  {
+    "name": "delete_department",
+    "table": "departments",
+    "operation": "delete",
+    "description": "delete department"
+  },
+  {
+    "name": "list_departments",
+    "table": "departments",
+    "operation": "list",
+    "description": "list departments"
+  },
+  {
+    "name": "create_user",
+    "table": "users",
+    "operation": "create",
+    "description": "create user"
+  },
+  {
+    "name": "get_user",
+    "table": "users",
+    "operation": "get",
+    "description": "get user"
+  },
+  {
+    "name": "update_user",
+    "table": "users",
+    "operation": "update",
+    "description": "update user"
+  },
+  {
+    "name": "delete_user",
+    "table": "users",
+    "operation": "delete",
+    "description": "delete user"
+  },
+  {
+    "name": "list_users",
+    "table": "users",
+    "operation": "list",
+    "description": "list users"
+  },
+  {
+    "name": "create_employee",
+    "table": "employees",
+    "operation": "create",
+    "description": "create employee"
+  },
+  {
+    "name": "get_employee",
+    "table": "employees",
+    "operation": "get",
+    "description": "get employee"
+  },
+  {
+    "name": "update_employee",
+    "table": "employees",
+    "operation": "update",
+    "description": "update employee"
+  },
+  {
+    "name": "delete_employee",
+    "table": "employees",
+    "operation": "delete",
+    "description": "delete employee"
+  },
+  {
+    "name": "list_employees",
+    "table": "employees",
+    "operation": "list",
+    "description": "list employees"
+  },
+  {
+    "name": "create_project",
+    "table": "projects",
+    "operation": "create",
+    "description": "create project"
+  },
+  {
+    "name": "get_project",
+    "table": "projects",
+    "operation": "get",
+    "description": "get project"
+  },
+  {
+    "name": "update_project",
+    "table": "projects",
+    "operation": "update",
+    "description": "update project"
+  },
+  {
+    "name": "delete_project",
+    "table": "projects",
+    "operation": "delete",
+    "description": "delete project"
+  },
+  {
+    "name": "list_projects",
+    "table": "projects",
+    "operation": "list",
+    "description": "list projects"
+  },
+  {
+    "name": "create_project_member",
+    "table": "project_members",
+    "operation": "create",
+    "description": "create project_member"
+  },
+  {
+    "name": "get_project_member",
+    "table": "project_members",
+    "operation": "get",
+    "description": "get project_member"
+  },
+  {
+    "name": "update_project_member",
+    "table": "project_members",
+    "operation": "update",
+    "description": "update project_member"
+  },
+  {
+    "name": "delete_project_member",
+    "table": "project_members",
+    "operation": "delete",
+    "description": "delete project_member"
+  },
+  {
+    "name": "list_project_members",
+    "table": "project_members",
+    "operation": "list",
+    "description": "list project_members"
+  },
+  {
+    "name": "create_task",
+    "table": "tasks",
+    "operation": "create",
+    "description": "create task"
+  },
+  {
+    "name": "get_task",
+    "table": "tasks",
+    "operation": "get",
+    "description": "get task"
+  },
+  {
+    "name": "update_task",
+    "table": "tasks",
+    "operation": "update",
+    "description": "update task"
+  },
+  {
+    "name": "delete_task",
+    "table": "tasks",
+    "operation": "delete",
+    "description": "delete task"
+  },
+  {
+    "name": "list_tasks",
+    "table": "tasks",
+    "operation": "list",
+    "description": "list tasks"
+  }
+]

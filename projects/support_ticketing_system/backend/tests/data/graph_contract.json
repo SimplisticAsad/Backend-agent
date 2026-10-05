@@ -1,0 +1,2897 @@
+{
+ "acceptance_criteria": [
+  {
+   "given": [
+    "the user is not signed in"
+   ],
+   "id": "ac.auth.login",
+   "name": "Log in succeeds",
+   "operation_refs": [
+    "operation.user.login"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.authentication"
+   ],
+   "then": [
+    "The user is authenticated and sees their home screen"
+   ],
+   "when": [
+    "Enter email and password",
+    "Log in"
+   ],
+   "workflow_refs": [
+    "workflow.auth.login"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Customer or Agent or Manager"
+   ],
+   "id": "ac.auth.logout",
+   "name": "Log out succeeds",
+   "operation_refs": [
+    "operation.user.logout"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.authentication"
+   ],
+   "then": [
+    "The session ends and the login screen is shown"
+   ],
+   "when": [
+    "Choose log out",
+    "Log out"
+   ],
+   "workflow_refs": [
+    "workflow.auth.logout"
+   ]
+  },
+  {
+   "given": [
+    "the user is not signed in"
+   ],
+   "id": "ac.auth.password_reset",
+   "name": "Reset password succeeds",
+   "operation_refs": [
+    "operation.user.request_password_reset",
+    "operation.user.reset_password"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.authentication"
+   ],
+   "then": [
+    "The password is changed and the user can log in again"
+   ],
+   "when": [
+    "Enter the account email",
+    "Request password reset",
+    "Enter the new password",
+    "Reset password"
+   ],
+   "workflow_refs": [
+    "workflow.auth.password_reset"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager"
+   ],
+   "id": "ac.dashboard.support_view",
+   "name": "View support dashboard succeeds",
+   "operation_refs": [
+    "operation.ticket.stats"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.support_dashboard, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.support_dashboard"
+   ],
+   "then": [
+    "The manager sees ticket statistics"
+   ],
+   "when": [
+    "Get ticket statistics"
+   ],
+   "workflow_refs": [
+    "workflow.dashboard.support_view"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager",
+    "the record being worked on exists"
+   ],
+   "id": "ac.ticket.assign",
+   "name": "Assign ticket succeeds",
+   "operation_refs": [
+    "operation.user.list_agents",
+    "operation.ticket.assign"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_assignment, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.ticket_assignment"
+   ],
+   "then": [
+    "The ticket shows its new assignee"
+   ],
+   "when": [
+    "List agents",
+    "Pick an agent",
+    "Assign ticket"
+   ],
+   "workflow_refs": [
+    "workflow.ticket.assign"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Customer or Agent or Manager",
+    "the record being worked on exists"
+   ],
+   "id": "ac.ticket.browse",
+   "name": "Browse Tickets succeeds",
+   "operation_refs": [
+    "operation.ticket.list",
+    "operation.ticket.read"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.ticket_management"
+   ],
+   "then": [
+    "The Ticket information is displayed"
+   ],
+   "when": [
+    "List Tickets",
+    "View Ticket"
+   ],
+   "workflow_refs": [
+    "workflow.ticket.browse"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Agent or Manager",
+    "the record being worked on exists"
+   ],
+   "id": "ac.ticket.change_status",
+   "name": "Change ticket status succeeds",
+   "operation_refs": [
+    "operation.ticket.change_status"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_status, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.ticket_status"
+   ],
+   "then": [
+    "The ticket shows its new status"
+   ],
+   "when": [
+    "Choose the new status",
+    "Change ticket status"
+   ],
+   "workflow_refs": [
+    "workflow.ticket.change_status"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in"
+   ],
+   "id": "ac.ticket.closed_read_only",
+   "name": "Closed tickets are read-only (negative case)",
+   "operation_refs": [
+    "operation.ticket.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.ticket_management"
+   ],
+   "then": [
+    "Closed tickets cannot be changed (error TICKET_CLOSED)",
+    "no data is changed"
+   ],
+   "when": [
+    "an agent edits a closed ticket"
+   ],
+   "workflow_refs": []
+  },
+  {
+   "given": [
+    "the user is signed in as Customer"
+   ],
+   "id": "ac.ticket.create",
+   "name": "Create Ticket succeeds",
+   "operation_refs": [
+    "operation.ticket.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.ticket_management"
+   ],
+   "then": [
+    "The Ticket is created and appears in the Ticket list"
+   ],
+   "when": [
+    "Fill in the Ticket form",
+    "Create Ticket"
+   ],
+   "workflow_refs": [
+    "workflow.ticket.create"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Agent or Manager",
+    "the record being worked on exists"
+   ],
+   "id": "ac.ticket.update",
+   "name": "Update Ticket succeeds",
+   "operation_refs": [
+    "operation.ticket.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.ticket_management"
+   ],
+   "then": [
+    "The changes to the Ticket are saved"
+   ],
+   "when": [
+    "Change the Ticket details",
+    "Update Ticket"
+   ],
+   "workflow_refs": [
+    "workflow.ticket.update"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Customer or Agent or Manager"
+   ],
+   "id": "ac.ticket_comment.browse",
+   "name": "Browse Comments succeeds",
+   "operation_refs": [
+    "operation.ticket_comment.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_comments, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.ticket_comments"
+   ],
+   "then": [
+    "The Comment information is displayed"
+   ],
+   "when": [
+    "List Comments"
+   ],
+   "workflow_refs": [
+    "workflow.ticket_comment.browse"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Customer or Agent"
+   ],
+   "id": "ac.ticket_comment.create",
+   "name": "Create Comment succeeds",
+   "operation_refs": [
+    "operation.ticket_comment.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_comments, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.ticket_comments"
+   ],
+   "then": [
+    "The Comment is created and appears in the Comment list"
+   ],
+   "when": [
+    "Fill in the Comment form",
+    "Create Comment"
+   ],
+   "workflow_refs": [
+    "workflow.ticket_comment.create"
+   ]
+  },
+  {
+   "given": [
+    "the user is not signed in"
+   ],
+   "id": "ac.user.invalid_login",
+   "name": "Wrong credentials are rejected (negative case)",
+   "operation_refs": [
+    "operation.user.login"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.authentication"
+   ],
+   "then": [
+    "Email or password is wrong (error INVALID_CREDENTIALS)",
+    "no data is changed"
+   ],
+   "when": [
+    "the user submits a wrong password"
+   ],
+   "workflow_refs": []
+  }
+ ],
+ "api": {
+  "endpoints": [
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.ticket.assign",
+    "method": "PATCH",
+    "operation_ref": "operation.ticket.assign",
+    "path": "/tickets/{id}/assignee",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_assignment, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.ticket.assign",
+    "response_schema_ref": "schema.ticket"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.agent",
+      "role.manager"
+     ]
+    },
+    "id": "api.ticket.change_status",
+    "method": "PATCH",
+    "operation_ref": "operation.ticket.change_status",
+    "path": "/tickets/{id}/status",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_status, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.ticket.change_status",
+    "response_schema_ref": "schema.ticket"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.customer"
+     ]
+    },
+    "id": "api.ticket.create",
+    "method": "POST",
+    "operation_ref": "operation.ticket.create",
+    "path": "/tickets",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.ticket.create",
+    "response_schema_ref": "schema.ticket"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.customer",
+      "role.agent",
+      "role.manager"
+     ]
+    },
+    "id": "api.ticket.list",
+    "method": "GET",
+    "operation_ref": "operation.ticket.list",
+    "path": "/tickets",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.ticket"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.customer",
+      "role.agent",
+      "role.manager"
+     ]
+    },
+    "id": "api.ticket.read",
+    "method": "GET",
+    "operation_ref": "operation.ticket.read",
+    "path": "/tickets/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.ticket"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.ticket.stats",
+    "method": "GET",
+    "operation_ref": "operation.ticket.stats",
+    "path": "/tickets/stats",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.support_dashboard, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.ticket"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.agent",
+      "role.manager"
+     ]
+    },
+    "id": "api.ticket.update",
+    "method": "PATCH",
+    "operation_ref": "operation.ticket.update",
+    "path": "/tickets/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.ticket.update",
+    "response_schema_ref": "schema.ticket"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.customer",
+      "role.agent"
+     ]
+    },
+    "id": "api.ticket_comment.create",
+    "method": "POST",
+    "operation_ref": "operation.ticket_comment.create",
+    "path": "/ticket-comments",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_comments, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.ticket_comment.create",
+    "response_schema_ref": "schema.ticket_comment"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.customer",
+      "role.agent",
+      "role.manager"
+     ]
+    },
+    "id": "api.ticket_comment.list",
+    "method": "GET",
+    "operation_ref": "operation.ticket_comment.list",
+    "path": "/ticket-comments",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_comments, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.ticket_comment"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.user.list_agents",
+    "method": "GET",
+    "operation_ref": "operation.user.list_agents",
+    "path": "/users/agents",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_assignment, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.user"
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.user.login",
+    "method": "POST",
+    "operation_ref": "operation.user.login",
+    "path": "/auth/login",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.user.login",
+    "response_schema_ref": "schema.user"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": []
+    },
+    "id": "api.user.logout",
+    "method": "POST",
+    "operation_ref": "operation.user.logout",
+    "path": "/auth/logout",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": null
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.user.request_password_reset",
+    "method": "POST",
+    "operation_ref": "operation.user.request_password_reset",
+    "path": "/auth/forgot-password",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.user.request_password_reset",
+    "response_schema_ref": null
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.user.reset_password",
+    "method": "POST",
+    "operation_ref": "operation.user.reset_password",
+    "path": "/auth/reset-password",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.user.reset_password",
+    "response_schema_ref": null
+   }
+  ],
+  "project_id": "project.support_ticketing_system",
+  "project_version": "0.1.0",
+  "schema_version": "1.0.0",
+  "schemas": [
+   {
+    "entity_ref": "entity.ticket",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "title",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "description",
+      "required": true,
+      "type": "text"
+     },
+     {
+      "name": "status",
+      "required": true,
+      "type": "enum"
+     },
+     {
+      "name": "priority",
+      "required": true,
+      "type": "enum"
+     },
+     {
+      "name": "requester_id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "assignee_id",
+      "required": false,
+      "type": "uuid"
+     },
+     {
+      "name": "created_at",
+      "required": false,
+      "type": "datetime"
+     }
+    ],
+    "id": "schema.ticket",
+    "name": "Ticket"
+   },
+   {
+    "entity_ref": "entity.ticket",
+    "fields": [
+     {
+      "name": "assignee_id",
+      "required": true,
+      "type": "uuid>user"
+     }
+    ],
+    "id": "schema.ticket.assign",
+    "name": "Assign ticket request"
+   },
+   {
+    "entity_ref": "entity.ticket",
+    "fields": [
+     {
+      "name": "status",
+      "required": true,
+      "type": "enum"
+     }
+    ],
+    "id": "schema.ticket.change_status",
+    "name": "Change ticket status request"
+   },
+   {
+    "entity_ref": "entity.ticket",
+    "fields": [
+     {
+      "name": "title",
+      "required": true,
+      "type": "string!"
+     },
+     {
+      "name": "description",
+      "required": true,
+      "type": "text!"
+     },
+     {
+      "name": "priority",
+      "required": true,
+      "type": "enum"
+     }
+    ],
+    "id": "schema.ticket.create",
+    "name": "Create Ticket request"
+   },
+   {
+    "entity_ref": "entity.ticket",
+    "fields": [
+     {
+      "name": "title",
+      "required": false,
+      "type": "string!"
+     },
+     {
+      "name": "description",
+      "required": false,
+      "type": "text!"
+     },
+     {
+      "name": "priority",
+      "required": false,
+      "type": "enum"
+     }
+    ],
+    "id": "schema.ticket.update",
+    "name": "Update Ticket request"
+   },
+   {
+    "entity_ref": "entity.ticket_comment",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "ticket_id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "author_id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "body",
+      "required": true,
+      "type": "text"
+     },
+     {
+      "name": "created_at",
+      "required": false,
+      "type": "datetime"
+     }
+    ],
+    "id": "schema.ticket_comment",
+    "name": "Ticket Comment"
+   },
+   {
+    "entity_ref": "entity.ticket_comment",
+    "fields": [
+     {
+      "name": "ticket_id",
+      "required": true,
+      "type": "uuid!>ticket"
+     },
+     {
+      "name": "body",
+      "required": true,
+      "type": "text!"
+     }
+    ],
+    "id": "schema.ticket_comment.create",
+    "name": "Create Comment request"
+   },
+   {
+    "entity_ref": "entity.user",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "email",
+      "required": true,
+      "type": "email"
+     },
+     {
+      "name": "full_name",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "role",
+      "required": true,
+      "type": "enum"
+     },
+     {
+      "name": "created_at",
+      "required": true,
+      "type": "datetime"
+     }
+    ],
+    "id": "schema.user",
+    "name": "User"
+   },
+   {
+    "entity_ref": "entity.user",
+    "fields": [
+     {
+      "name": "email",
+      "required": true,
+      "type": "email!*"
+     },
+     {
+      "name": "password",
+      "required": true,
+      "type": "string"
+     }
+    ],
+    "id": "schema.user.login",
+    "name": "Log in request"
+   },
+   {
+    "entity_ref": "entity.user",
+    "fields": [
+     {
+      "name": "email",
+      "required": true,
+      "type": "email!*"
+     }
+    ],
+    "id": "schema.user.request_password_reset",
+    "name": "Request password reset request"
+   },
+   {
+    "entity_ref": "entity.user",
+    "fields": [
+     {
+      "name": "reset_token",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "new_password",
+      "required": true,
+      "type": "string"
+     }
+    ],
+    "id": "schema.user.reset_password",
+    "name": "Reset password request"
+   }
+  ]
+ },
+ "backend": {
+  "operations": [
+   {
+    "access": "restricted",
+    "action": "update",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.ticket_assignment"
+    ],
+    "description": "Assign ticket.",
+    "entity_ref": "entity.ticket",
+    "errors": [
+     {
+      "code": "TICKET_NOT_FOUND",
+      "description": "The ticket does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.ticket.assign",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id",
+      "assignee_id"
+     ]
+    },
+    "name": "Assign ticket",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.ticket"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_assignment, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.ticket",
+    "side_effects": [
+     "The agent is notified"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "update",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.ticket_status"
+    ],
+    "description": "Change ticket status.",
+    "entity_ref": "entity.ticket",
+    "errors": [
+     {
+      "code": "TICKET_NOT_FOUND",
+      "description": "The ticket does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.ticket.change_status",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id",
+      "status"
+     ]
+    },
+    "name": "Change ticket status",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.ticket"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_status, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.agent",
+     "role.manager"
+    ],
+    "service_ref": "service.ticket",
+    "side_effects": [],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "create",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.ticket_management"
+    ],
+    "description": "Create Ticket.",
+    "entity_ref": "entity.ticket",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.ticket.create",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "title",
+      "description",
+      "priority"
+     ]
+    },
+    "name": "Create Ticket",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.ticket"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.customer"
+    ],
+    "service_ref": "service.ticket",
+    "side_effects": [
+     "A new Ticket is persisted"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.ticket_management"
+    ],
+    "description": "List Tickets.",
+    "entity_ref": "entity.ticket",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.ticket.list",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "List Tickets",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.ticket"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.customer",
+     "role.agent",
+     "role.manager"
+    ],
+    "service_ref": "service.ticket",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "read",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.ticket_management"
+    ],
+    "description": "View Ticket.",
+    "entity_ref": "entity.ticket",
+    "errors": [
+     {
+      "code": "TICKET_NOT_FOUND",
+      "description": "The Ticket does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.ticket.read",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "View Ticket",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.ticket"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.customer",
+     "role.agent",
+     "role.manager"
+    ],
+    "service_ref": "service.ticket",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.support_dashboard"
+    ],
+    "description": "Get ticket statistics.",
+    "entity_ref": "entity.ticket",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.ticket.stats",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "Get ticket statistics",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.ticket"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.support_dashboard, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.ticket",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "update",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.ticket_management"
+    ],
+    "description": "Update Ticket.",
+    "entity_ref": "entity.ticket",
+    "errors": [
+     {
+      "code": "TICKET_NOT_FOUND",
+      "description": "The Ticket does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.ticket.update",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [
+      "title",
+      "description",
+      "priority"
+     ],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "Update Ticket",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.ticket"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.agent",
+     "role.manager"
+    ],
+    "service_ref": "service.ticket",
+    "side_effects": [
+     "The Ticket is modified"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "create",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.ticket_comments"
+    ],
+    "description": "Create Comment.",
+    "entity_ref": "entity.ticket_comment",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.ticket_comment.create",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "ticket_id",
+      "body"
+     ]
+    },
+    "name": "Create Comment",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.ticket_comment"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_comments, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.customer",
+     "role.agent"
+    ],
+    "service_ref": "service.ticket_comment",
+    "side_effects": [
+     "A new Comment is persisted"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.ticket_comments"
+    ],
+    "description": "List Comments.",
+    "entity_ref": "entity.ticket_comment",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.ticket_comment.list",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "List Comments",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.ticket_comment"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_comments, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.customer",
+     "role.agent",
+     "role.manager"
+    ],
+    "service_ref": "service.ticket_comment",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.ticket_assignment"
+    ],
+    "description": "List agents.",
+    "entity_ref": "entity.user",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.user.list_agents",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "List agents",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.user"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.ticket_assignment, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.user",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "public",
+    "action": "execute",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.authentication"
+    ],
+    "description": "Log in.",
+    "entity_ref": "entity.user",
+    "errors": [
+     {
+      "code": "INVALID_CREDENTIALS",
+      "description": "Email or password is wrong"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.user.login",
+    "input": {
+     "extra_fields": [
+      "password"
+     ],
+     "optional_fields": [],
+     "required_fields": [
+      "email"
+     ]
+    },
+    "name": "Log in",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.user"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.user",
+    "side_effects": [
+     "A session token is issued"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "authenticated",
+    "action": "execute",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.authentication"
+    ],
+    "description": "Log out.",
+    "entity_ref": "entity.user",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.user.logout",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "Log out",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.user",
+    "side_effects": [
+     "The session token is revoked"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "public",
+    "action": "execute",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.authentication"
+    ],
+    "description": "Request password reset.",
+    "entity_ref": "entity.user",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.user.request_password_reset",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "email"
+     ]
+    },
+    "name": "Request password reset",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.user",
+    "side_effects": [
+     "A reset link is sent to the email address"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "public",
+    "action": "execute",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.authentication"
+    ],
+    "description": "Reset password.",
+    "entity_ref": "entity.user",
+    "errors": [
+     {
+      "code": "INVALID_RESET_TOKEN",
+      "description": "The reset token is invalid or expired"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.user.reset_password",
+    "input": {
+     "extra_fields": [
+      "reset_token",
+      "new_password"
+     ],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "Reset password",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.user",
+    "side_effects": [],
+    "type": "command"
+   }
+  ],
+  "project_id": "project.support_ticketing_system",
+  "project_version": "0.1.0",
+  "schema_version": "1.0.0",
+  "services": [
+   {
+    "description": "Business operations on Ticket.",
+    "entity_refs": [
+     "entity.ticket"
+    ],
+    "id": "service.ticket",
+    "name": "Ticket service"
+   },
+   {
+    "description": "Business operations on Ticket Comment.",
+    "entity_refs": [
+     "entity.ticket_comment"
+    ],
+    "id": "service.ticket_comment",
+    "name": "Ticket Comment service"
+   },
+   {
+    "description": "Business operations on User.",
+    "entity_refs": [
+     "entity.user"
+    ],
+    "id": "service.user",
+    "name": "User service"
+   }
+  ]
+ },
+ "entities": [
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.ticket.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.ticket.title",
+     "name": "title",
+     "reference_to": null,
+     "required": true,
+     "type": "string",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.ticket.description",
+     "name": "description",
+     "reference_to": null,
+     "required": true,
+     "type": "text",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [
+      "open",
+      "in_progress",
+      "resolved",
+      "closed"
+     ],
+     "id": "entity.ticket.status",
+     "name": "status",
+     "reference_to": null,
+     "required": true,
+     "type": "enum",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [
+      "low",
+      "medium",
+      "high",
+      "urgent"
+     ],
+     "id": "entity.ticket.priority",
+     "name": "priority",
+     "reference_to": null,
+     "required": true,
+     "type": "enum",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.ticket.requester_id",
+     "name": "requester_id",
+     "reference_to": "entity.user",
+     "required": true,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.ticket.assignee_id",
+     "name": "assignee_id",
+     "reference_to": "entity.user",
+     "required": false,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.ticket.created_at",
+     "name": "created_at",
+     "reference_to": null,
+     "required": false,
+     "type": "datetime",
+     "unique": false
+    }
+   ],
+   "description": "A support request.",
+   "id": "entity.ticket",
+   "name": "Ticket",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Build a customer support ticketing system.",
+     "type": "user_requirement"
+    }
+   }
+  },
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.ticket_comment.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.ticket_comment.ticket_id",
+     "name": "ticket_id",
+     "reference_to": "entity.ticket",
+     "required": true,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.ticket_comment.author_id",
+     "name": "author_id",
+     "reference_to": "entity.user",
+     "required": true,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.ticket_comment.body",
+     "name": "body",
+     "reference_to": null,
+     "required": true,
+     "type": "text",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.ticket_comment.created_at",
+     "name": "created_at",
+     "reference_to": null,
+     "required": false,
+     "type": "datetime",
+     "unique": false
+    }
+   ],
+   "description": "A message on a ticket.",
+   "id": "entity.ticket_comment",
+   "name": "Ticket Comment",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Customers can open tickets and add comments.",
+     "type": "user_requirement"
+    }
+   }
+  },
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.user.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.user.email",
+     "name": "email",
+     "reference_to": null,
+     "required": true,
+     "type": "email",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.user.password_hash",
+     "name": "password_hash",
+     "reference_to": null,
+     "required": true,
+     "type": "string",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.user.full_name",
+     "name": "full_name",
+     "reference_to": null,
+     "required": true,
+     "type": "string",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [
+      "customer",
+      "agent",
+      "manager"
+     ],
+     "id": "entity.user.role",
+     "name": "role",
+     "reference_to": null,
+     "required": true,
+     "type": "enum",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.user.created_at",
+     "name": "created_at",
+     "reference_to": null,
+     "required": true,
+     "type": "datetime",
+     "unique": false
+    }
+   ],
+   "description": "An account that can sign in to the product.",
+   "id": "entity.user",
+   "name": "User",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Users must log in.",
+     "type": "user_requirement"
+    }
+   }
+  }
+ ],
+ "permissions": [
+  {
+   "action": "update",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.ticket.assign",
+   "operation_refs": [
+    "operation.ticket.assign"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Assign ticket",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.ticket",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "update",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.ticket.change_status",
+   "operation_refs": [
+    "operation.ticket.change_status"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Change ticket status",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.ticket",
+   "roles": [
+    "role.agent",
+    "role.manager"
+   ]
+  },
+  {
+   "action": "create",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.ticket.create",
+   "operation_refs": [
+    "operation.ticket.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Create Ticket",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.ticket",
+   "roles": [
+    "role.customer"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.ticket.list",
+   "operation_refs": [
+    "operation.ticket.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: List Tickets",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.ticket",
+   "roles": [
+    "role.customer",
+    "role.agent",
+    "role.manager"
+   ]
+  },
+  {
+   "action": "read",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.ticket.read",
+   "operation_refs": [
+    "operation.ticket.read"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: View Ticket",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.ticket",
+   "roles": [
+    "role.customer",
+    "role.agent",
+    "role.manager"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.ticket.stats",
+   "operation_refs": [
+    "operation.ticket.stats"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Get ticket statistics",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.ticket",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "update",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.ticket.update",
+   "operation_refs": [
+    "operation.ticket.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Update Ticket",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.ticket",
+   "roles": [
+    "role.agent",
+    "role.manager"
+   ]
+  },
+  {
+   "action": "create",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.ticket_comment.create",
+   "operation_refs": [
+    "operation.ticket_comment.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Create Comment",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.ticket_comment",
+   "roles": [
+    "role.customer",
+    "role.agent"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.ticket_comment.list",
+   "operation_refs": [
+    "operation.ticket_comment.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: List Comments",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.ticket_comment",
+   "roles": [
+    "role.customer",
+    "role.agent",
+    "role.manager"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.user.list_agents",
+   "operation_refs": [
+    "operation.user.list_agents"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: List agents",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.user",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "execute",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.user.logout",
+   "operation_refs": [
+    "operation.user.logout"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Log out",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.user",
+   "roles": [
+    "role.customer",
+    "role.agent",
+    "role.manager"
+   ]
+  }
+ ],
+ "project_id": "project.support_ticketing_system",
+ "roles": [
+  {
+   "description": "Authority held by a Agent.",
+   "id": "role.agent",
+   "inherits": [],
+   "name": "Agent",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Agents respond to tickets and resolve them.",
+     "type": "user_requirement"
+    }
+   }
+  },
+  {
+   "description": "Authority held by a Customer.",
+   "id": "role.customer",
+   "inherits": [],
+   "name": "Customer",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Build a customer support ticketing system.",
+     "type": "user_requirement"
+    }
+   }
+  },
+  {
+   "description": "Authority held by a Manager.",
+   "id": "role.manager",
+   "inherits": [],
+   "name": "Manager",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Managers assign tickets to agents and see a dashboard with ticket statistics.",
+     "type": "user_requirement"
+    }
+   }
+  }
+ ],
+ "state_machines": [
+  {
+   "entity_ref": "entity.ticket",
+   "field": "status",
+   "id": "state_machine.ticket",
+   "initial_state": "open",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_status, which the user stated",
+     "type": "derived"
+    }
+   },
+   "states": [
+    "open",
+    "in_progress",
+    "resolved",
+    "closed"
+   ],
+   "transitions": [
+    {
+     "from": "open",
+     "guard": "",
+     "operation_ref": "operation.ticket.change_status",
+     "role_refs": [
+      "role.agent",
+      "role.manager"
+     ],
+     "to": "in_progress"
+    },
+    {
+     "from": "in_progress",
+     "guard": "",
+     "operation_ref": "operation.ticket.change_status",
+     "role_refs": [
+      "role.agent",
+      "role.manager"
+     ],
+     "to": "resolved"
+    },
+    {
+     "from": "resolved",
+     "guard": "",
+     "operation_ref": "operation.ticket.change_status",
+     "role_refs": [
+      "role.agent",
+      "role.manager"
+     ],
+     "to": "closed"
+    },
+    {
+     "from": "resolved",
+     "guard": "",
+     "operation_ref": "operation.ticket.change_status",
+     "role_refs": [
+      "role.agent",
+      "role.manager"
+     ],
+     "to": "in_progress"
+    }
+   ]
+  }
+ ],
+ "validations": [
+  {
+   "condition": "tickets with status closed cannot be edited",
+   "failure": {
+    "action": "reject",
+    "error_code": "TICKET_CLOSED",
+    "message": "Closed tickets cannot be changed"
+   },
+   "id": "validation.ticket.closed_read_only",
+   "kind": "state",
+   "name": "Closed tickets are read-only",
+   "operation_refs": [
+    "operation.ticket.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.ticket",
+    "field": "status"
+   }
+  },
+  {
+   "condition": "title, description, priority must be provided",
+   "failure": {
+    "action": "reject",
+    "error_code": "TICKET_FIELDS_REQUIRED",
+    "message": "title, description, priority are required"
+   },
+   "id": "validation.ticket.required_fields",
+   "kind": "required",
+   "name": "Ticket required fields",
+   "operation_refs": [
+    "operation.ticket.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.ticket",
+    "field": null
+   }
+  },
+  {
+   "condition": "ticket_id, body must be provided",
+   "failure": {
+    "action": "reject",
+    "error_code": "TICKET_COMMENT_FIELDS_REQUIRED",
+    "message": "ticket_id, body are required"
+   },
+   "id": "validation.ticket_comment.required_fields",
+   "kind": "required",
+   "name": "Ticket Comment required fields",
+   "operation_refs": [
+    "operation.ticket_comment.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_comments, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.ticket_comment",
+    "field": null
+   }
+  },
+  {
+   "condition": "email matches a valid email address pattern",
+   "failure": {
+    "action": "reject",
+    "error_code": "INVALID_EMAIL",
+    "message": "Enter a valid email address"
+   },
+   "id": "validation.user.email_format",
+   "kind": "format",
+   "name": "Email must be well formed",
+   "operation_refs": [
+    "operation.user.login",
+    "operation.user.request_password_reset"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.user",
+    "field": "email"
+   }
+  },
+  {
+   "condition": "email and password match an existing account",
+   "failure": {
+    "action": "reject",
+    "error_code": "INVALID_CREDENTIALS",
+    "message": "Email or password is wrong"
+   },
+   "id": "validation.user.invalid_login",
+   "kind": "authorization",
+   "name": "Wrong credentials are rejected",
+   "operation_refs": [
+    "operation.user.login"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.user",
+    "field": null
+   }
+  }
+ ],
+ "workflows": [
+  {
+   "actor_refs": [
+    "actor.customer",
+    "actor.agent",
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.authentication"
+   ],
+   "description": "Log in workflow of Authentication.",
+   "id": "workflow.auth.login",
+   "name": "Log in",
+   "outcome": "The user is authenticated and sees their home screen",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Login",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.login",
+     "type": "navigation"
+    },
+    {
+     "description": "Enter email and password",
+     "id": "step.02_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Log in",
+     "id": "step.03_act",
+     "next": [],
+     "operation_ref": "operation.user.login",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Redirect the user to their home screen",
+     "id": "step.04_sys",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "system"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer",
+    "actor.agent",
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.authentication"
+   ],
+   "description": "Log out workflow of Authentication.",
+   "id": "workflow.auth.logout",
+   "name": "Log out",
+   "outcome": "The session ends and the login screen is shown",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Choose log out",
+     "id": "step.01_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Log out",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.user.logout",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Login",
+     "id": "step.03_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.login",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer",
+    "actor.agent",
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.authentication"
+   ],
+   "description": "Reset password workflow of Authentication.",
+   "id": "workflow.auth.password_reset",
+   "name": "Reset password",
+   "outcome": "The password is changed and the user can log in again",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Forgot Password",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.forgot_password",
+     "type": "navigation"
+    },
+    {
+     "description": "Enter the account email",
+     "id": "step.02_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Request password reset",
+     "id": "step.03_act",
+     "next": [],
+     "operation_ref": "operation.user.request_password_reset",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Reset Password",
+     "id": "step.04_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.reset_password",
+     "type": "navigation"
+    },
+    {
+     "description": "Enter the new password",
+     "id": "step.05_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Reset password",
+     "id": "step.06_act",
+     "next": [],
+     "operation_ref": "operation.user.reset_password",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Login",
+     "id": "step.07_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.login",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.support_dashboard"
+   ],
+   "description": "View support dashboard workflow of Support dashboard.",
+   "id": "workflow.dashboard.support_view",
+   "name": "View support dashboard",
+   "outcome": "The manager sees ticket statistics",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.support_dashboard, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Support Dashboard",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.dashboard.support",
+     "type": "navigation"
+    },
+    {
+     "description": "Get ticket statistics",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.ticket.stats",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.ticket_assignment"
+   ],
+   "description": "Assign ticket workflow of Ticket assignment.",
+   "id": "workflow.ticket.assign",
+   "name": "Assign ticket",
+   "outcome": "The ticket shows its new assignee",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_assignment, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Ticket Details",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "List agents",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.user.list_agents",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Pick an agent",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Assign ticket",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.ticket.assign",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Ticket Details",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.detail",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer",
+    "actor.agent",
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.ticket_management"
+   ],
+   "description": "Browse Tickets workflow of Ticket management.",
+   "id": "workflow.ticket.browse",
+   "name": "Browse Tickets",
+   "outcome": "The Ticket information is displayed",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Ticket List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.list",
+     "type": "navigation"
+    },
+    {
+     "description": "List Tickets",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.ticket.list",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Ticket Details",
+     "id": "step.03_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "View Ticket",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.ticket.read",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.agent",
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.ticket_status"
+   ],
+   "description": "Change ticket status workflow of Ticket status.",
+   "id": "workflow.ticket.change_status",
+   "name": "Change ticket status",
+   "outcome": "The ticket shows its new status",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_status, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Ticket List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Ticket Details",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "Choose the new status",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Change ticket status",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.ticket.change_status",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Ticket Details",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.detail",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.ticket_management"
+   ],
+   "description": "Create Ticket workflow of Ticket management.",
+   "id": "workflow.ticket.create",
+   "name": "Create Ticket",
+   "outcome": "The Ticket is created and appears in the Ticket list",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Ticket List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Create Ticket",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.create",
+     "type": "navigation"
+    },
+    {
+     "description": "Fill in the Ticket form",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Create Ticket",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.ticket.create",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Ticket List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.agent",
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.ticket_management"
+   ],
+   "description": "Update Ticket workflow of Ticket management.",
+   "id": "workflow.ticket.update",
+   "name": "Update Ticket",
+   "outcome": "The changes to the Ticket are saved",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Ticket Details",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Edit Ticket",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.edit",
+     "type": "navigation"
+    },
+    {
+     "description": "Change the Ticket details",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Update Ticket",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.ticket.update",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Ticket List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer",
+    "actor.agent",
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.ticket_comments"
+   ],
+   "description": "Browse Comments workflow of Ticket comments.",
+   "id": "workflow.ticket_comment.browse",
+   "name": "Browse Comments",
+   "outcome": "The Comment information is displayed",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_comments, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Comment List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket_comment.list",
+     "type": "navigation"
+    },
+    {
+     "description": "List Comments",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.ticket_comment.list",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer",
+    "actor.agent"
+   ],
+   "capability_refs": [
+    "capability.ticket_comments"
+   ],
+   "description": "Create Comment workflow of Ticket comments.",
+   "id": "workflow.ticket_comment.create",
+   "name": "Create Comment",
+   "outcome": "The Comment is created and appears in the Comment list",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.ticket_comments, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Comment List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket_comment.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Create Comment",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket_comment.create",
+     "type": "navigation"
+    },
+    {
+     "description": "Fill in the Comment form",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Create Comment",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.ticket_comment.create",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Comment List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.ticket_comment.list",
+     "type": "navigation"
+    }
+   ]
+  }
+ ]
+}

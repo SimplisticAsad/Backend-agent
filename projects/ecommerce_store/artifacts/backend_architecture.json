@@ -1,0 +1,229 @@
+{
+  "architecture": {
+    "api_framework": "fastapi",
+    "api_versioning": "none",
+    "api_versioning_note": "paths are served exactly as in api.json; the Frontend dev proxy strips its /api prefix",
+    "authentication": true,
+    "authorization": {
+      "object_level": "engine rules (ownership, row scope, guards)",
+      "role_checks": "dependency per operation"
+    },
+    "database": "postgresql",
+    "database_driver": "psycopg 3 + psycopg_pool",
+    "error_contract": "{error:{code,message,details}, message, errors, request_id}",
+    "repository_pattern": true,
+    "service_layer": true,
+    "style": "clean architecture (api -> application -> domain/infrastructure)",
+    "transactions": "explicit psycopg_pool transaction per operation; row locks (FOR UPDATE) before read-then-write",
+    "validation": "pydantic v2"
+  },
+  "descriptions": {
+    "CartItemRepository": "Parameterised SQL access to table cart_items.",
+    "CartItemService": "Application service for service.cart_item: 4 operation(s).",
+    "CategoryRepository": "Parameterised SQL access to table categories.",
+    "OrderItemRepository": "Parameterised SQL access to table order_items.",
+    "OrderRepository": "Parameterised SQL access to table orders.",
+    "OrderService": "Application service for service.order: 3 operation(s).",
+    "ProductRepository": "Parameterised SQL access to table products.",
+    "ProductService": "Application service for service.product: 4 operation(s).",
+    "UserRepository": "Parameterised SQL access to table users.",
+    "UserService": "Application service for service.user: 4 operation(s).",
+    "backend_app.api": "HTTP routes, request/response schemas and dependencies; no business logic.",
+    "backend_app.application": "Application services: one method per graph operation.",
+    "backend_app.auth": "Authentication and role authorization.",
+    "backend_app.domain": "Domain entities mirroring graph entities, and domain exceptions.",
+    "backend_app.engine": "Spec-driven implementation of CRUD, state transitions and object-level rules.",
+    "backend_app.infrastructure": "Repositories over the database contract."
+  },
+  "modules": [
+    {
+      "name": "backend_app.api",
+      "purpose": "HTTP routes, request/response schemas and dependencies; no business logic."
+    },
+    {
+      "name": "backend_app.application",
+      "purpose": "Application services: one method per graph operation."
+    },
+    {
+      "name": "backend_app.domain",
+      "purpose": "Domain entities mirroring graph entities, and domain exceptions."
+    },
+    {
+      "name": "backend_app.infrastructure",
+      "purpose": "Repositories over the database contract."
+    },
+    {
+      "name": "backend_app.engine",
+      "purpose": "Spec-driven implementation of CRUD, state transitions and object-level rules."
+    },
+    {
+      "name": "backend_app.auth",
+      "purpose": "Authentication and role authorization."
+    }
+  ],
+  "repositories": [
+    {
+      "entity": "entity.cart_item",
+      "name": "CartItemRepository",
+      "table": "cart_items"
+    },
+    {
+      "entity": "entity.category",
+      "name": "CategoryRepository",
+      "table": "categories"
+    },
+    {
+      "entity": "entity.order",
+      "name": "OrderRepository",
+      "table": "orders"
+    },
+    {
+      "entity": "entity.order_item",
+      "name": "OrderItemRepository",
+      "table": "order_items"
+    },
+    {
+      "entity": "entity.product",
+      "name": "ProductRepository",
+      "table": "products"
+    },
+    {
+      "entity": "entity.user",
+      "name": "UserRepository",
+      "table": "users"
+    }
+  ],
+  "routes": [
+    {
+      "endpoint": "api.cart_item.create",
+      "method": "POST",
+      "operation": "operation.cart_item.create",
+      "path": "/cart-items"
+    },
+    {
+      "endpoint": "api.cart_item.delete",
+      "method": "DELETE",
+      "operation": "operation.cart_item.delete",
+      "path": "/cart-items/{id}"
+    },
+    {
+      "endpoint": "api.cart_item.list",
+      "method": "GET",
+      "operation": "operation.cart_item.list",
+      "path": "/cart-items"
+    },
+    {
+      "endpoint": "api.cart_item.update",
+      "method": "PATCH",
+      "operation": "operation.cart_item.update",
+      "path": "/cart-items/{id}"
+    },
+    {
+      "endpoint": "api.order.list",
+      "method": "GET",
+      "operation": "operation.order.list",
+      "path": "/orders"
+    },
+    {
+      "endpoint": "api.order.place",
+      "method": "POST",
+      "operation": "operation.order.place",
+      "path": "/orders"
+    },
+    {
+      "endpoint": "api.order.read",
+      "method": "GET",
+      "operation": "operation.order.read",
+      "path": "/orders/{id}"
+    },
+    {
+      "endpoint": "api.product.filter",
+      "method": "GET",
+      "operation": "operation.product.filter",
+      "path": "/products/filter"
+    },
+    {
+      "endpoint": "api.product.list",
+      "method": "GET",
+      "operation": "operation.product.list",
+      "path": "/products"
+    },
+    {
+      "endpoint": "api.product.read",
+      "method": "GET",
+      "operation": "operation.product.read",
+      "path": "/products/{id}"
+    },
+    {
+      "endpoint": "api.product.search",
+      "method": "GET",
+      "operation": "operation.product.search",
+      "path": "/products/search"
+    },
+    {
+      "endpoint": "api.user.login",
+      "method": "POST",
+      "operation": "operation.user.login",
+      "path": "/auth/login"
+    },
+    {
+      "endpoint": "api.user.logout",
+      "method": "POST",
+      "operation": "operation.user.logout",
+      "path": "/auth/logout"
+    },
+    {
+      "endpoint": "api.user.request_password_reset",
+      "method": "POST",
+      "operation": "operation.user.request_password_reset",
+      "path": "/auth/forgot-password"
+    },
+    {
+      "endpoint": "api.user.reset_password",
+      "method": "POST",
+      "operation": "operation.user.reset_password",
+      "path": "/auth/reset-password"
+    }
+  ],
+  "services": [
+    {
+      "id": "service.cart_item",
+      "name": "CartItemService",
+      "operations": [
+        "operation.cart_item.create",
+        "operation.cart_item.delete",
+        "operation.cart_item.list",
+        "operation.cart_item.update"
+      ]
+    },
+    {
+      "id": "service.order",
+      "name": "OrderService",
+      "operations": [
+        "operation.order.list",
+        "operation.order.place",
+        "operation.order.read"
+      ]
+    },
+    {
+      "id": "service.product",
+      "name": "ProductService",
+      "operations": [
+        "operation.product.filter",
+        "operation.product.list",
+        "operation.product.read",
+        "operation.product.search"
+      ]
+    },
+    {
+      "id": "service.user",
+      "name": "UserService",
+      "operations": [
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ]
+    }
+  ]
+}

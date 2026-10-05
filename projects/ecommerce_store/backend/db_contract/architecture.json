@@ -1,0 +1,452 @@
+{
+  "tables": [
+    {
+      "name": "categories",
+      "purpose": "A grouping of products.",
+      "source_entities": [
+        "Category"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "nullable": false,
+          "source_field": "name"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [],
+      "unique_constraints": [],
+      "indexes": [],
+      "dependencies": []
+    },
+    {
+      "name": "products",
+      "purpose": "An item for sale.",
+      "source_entities": [
+        "Product"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "nullable": false,
+          "source_field": "name"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "source_field": "description"
+        },
+        {
+          "name": "price",
+          "type": "numeric(12,2)",
+          "nullable": false,
+          "source_field": "price"
+        },
+        {
+          "name": "stock",
+          "type": "integer",
+          "nullable": false,
+          "source_field": "stock"
+        },
+        {
+          "name": "category_id",
+          "type": "uuid",
+          "nullable": true,
+          "source_field": "category_id"
+        },
+        {
+          "name": "image_url",
+          "type": "text",
+          "nullable": true,
+          "source_field": "image_url"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "category_id"
+          ],
+          "ref_table": "categories",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        }
+      ],
+      "unique_constraints": [],
+      "indexes": [
+        {
+          "columns": [
+            "category_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on category_id"
+        }
+      ],
+      "dependencies": [
+        "categories"
+      ]
+    },
+    {
+      "name": "users",
+      "purpose": "An account that can sign in to the product.",
+      "source_entities": [
+        "User"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "email",
+          "type": "text",
+          "nullable": false,
+          "source_field": "email"
+        },
+        {
+          "name": "password_hash",
+          "type": "text",
+          "nullable": false,
+          "source_field": "password_hash"
+        },
+        {
+          "name": "full_name",
+          "type": "text",
+          "nullable": false,
+          "source_field": "full_name"
+        },
+        {
+          "name": "role",
+          "type": "text",
+          "nullable": false,
+          "source_field": "role"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false,
+          "source_field": "created_at"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [],
+      "unique_constraints": [
+        [
+          "email"
+        ]
+      ],
+      "indexes": [],
+      "dependencies": []
+    },
+    {
+      "name": "cart_items",
+      "purpose": "A product placed in a customer's cart.",
+      "source_entities": [
+        "CartItem"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "user_id"
+        },
+        {
+          "name": "product_id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "product_id"
+        },
+        {
+          "name": "quantity",
+          "type": "integer",
+          "nullable": false,
+          "source_field": "quantity"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        },
+        {
+          "columns": [
+            "product_id"
+          ],
+          "ref_table": "products",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        }
+      ],
+      "unique_constraints": [],
+      "indexes": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on user_id"
+        },
+        {
+          "columns": [
+            "product_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on product_id"
+        }
+      ],
+      "dependencies": [
+        "products",
+        "users"
+      ]
+    },
+    {
+      "name": "orders",
+      "purpose": "A purchase made by a customer.",
+      "source_entities": [
+        "Order"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "user_id"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "nullable": false,
+          "source_field": "status"
+        },
+        {
+          "name": "total",
+          "type": "numeric(12,2)",
+          "nullable": false,
+          "source_field": "total"
+        },
+        {
+          "name": "shipping_address",
+          "type": "text",
+          "nullable": true,
+          "source_field": "shipping_address"
+        },
+        {
+          "name": "placed_at",
+          "type": "timestamptz",
+          "nullable": true,
+          "source_field": "placed_at"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        }
+      ],
+      "unique_constraints": [],
+      "indexes": [
+        {
+          "columns": [
+            "user_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on user_id"
+        }
+      ],
+      "dependencies": [
+        "users"
+      ]
+    },
+    {
+      "name": "order_items",
+      "purpose": "A product line inside an order.",
+      "source_entities": [
+        "OrderItem"
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "id"
+        },
+        {
+          "name": "order_id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "order_id"
+        },
+        {
+          "name": "product_id",
+          "type": "uuid",
+          "nullable": false,
+          "source_field": "product_id"
+        },
+        {
+          "name": "quantity",
+          "type": "integer",
+          "nullable": false,
+          "source_field": "quantity"
+        },
+        {
+          "name": "unit_price",
+          "type": "numeric(12,2)",
+          "nullable": false,
+          "source_field": "unit_price"
+        }
+      ],
+      "primary_key": {
+        "columns": [
+          "id"
+        ]
+      },
+      "foreign_keys": [
+        {
+          "columns": [
+            "order_id"
+          ],
+          "ref_table": "orders",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "CASCADE",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        },
+        {
+          "columns": [
+            "product_id"
+          ],
+          "ref_table": "products",
+          "ref_columns": [
+            "id"
+          ],
+          "on_delete": "RESTRICT",
+          "on_update": "NO ACTION",
+          "deferred": false,
+          "rationale": ""
+        }
+      ],
+      "unique_constraints": [],
+      "indexes": [
+        {
+          "columns": [
+            "order_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on order_id"
+        },
+        {
+          "columns": [
+            "product_id"
+          ],
+          "unique": false,
+          "reason": "join/filter on product_id"
+        }
+      ],
+      "dependencies": [
+        "orders",
+        "products"
+      ]
+    }
+  ],
+  "relationships": [],
+  "creation_order": [
+    "categories",
+    "products",
+    "users",
+    "cart_items",
+    "orders",
+    "order_items"
+  ],
+  "normalization": {
+    "target": "3NF",
+    "analysis": [
+      "fixture generated from entities.json"
+    ],
+    "violations": [],
+    "intentional_denormalizations": []
+  },
+  "normalization_notes": []
+}

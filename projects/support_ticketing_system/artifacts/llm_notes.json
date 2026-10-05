@@ -1,0 +1,87 @@
+{
+  "architecture": {
+    "descriptions": {
+      "TicketCommentRepository": "Parameterised SQL access to table ticket_comments.",
+      "TicketCommentService": "Application service for service.ticket_comment: 2 operation(s).",
+      "TicketRepository": "Parameterised SQL access to table tickets.",
+      "TicketService": "Application service for service.ticket: 7 operation(s).",
+      "UserRepository": "Parameterised SQL access to table users.",
+      "UserService": "Application service for service.user: 5 operation(s).",
+      "backend_app.api": "HTTP routes, request/response schemas and dependencies; no business logic.",
+      "backend_app.application": "Application services: one method per graph operation.",
+      "backend_app.auth": "Authentication and role authorization.",
+      "backend_app.domain": "Domain entities mirroring graph entities, and domain exceptions.",
+      "backend_app.engine": "Spec-driven implementation of CRUD, state transitions and object-level rules.",
+      "backend_app.infrastructure": "Repositories over the database contract."
+    }
+  },
+  "authorization": {
+    "findings": [
+      {
+        "finding": "Row privacy was inferred by a secure-default heuristic; the graph does not state it explicitly.",
+        "ref": "rule.scope.implicit.ticket.requester_id",
+        "severity": "info"
+      },
+      {
+        "finding": "Row privacy was inferred by a secure-default heuristic; the graph does not state it explicitly.",
+        "ref": "rule.scope.implicit.ticket_comment.via_ticket_id",
+        "severity": "info"
+      }
+    ]
+  },
+  "database_integration": {
+    "notes": [
+      {
+        "note": "mapped to table tickets; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.ticket"
+      },
+      {
+        "note": "mapped to table ticket_comments; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.ticket_comment"
+      },
+      {
+        "note": "mapped to table users; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.user"
+      }
+    ],
+    "required_database_changes": []
+  },
+  "domain_model": {
+    "entities": [
+      {
+        "entity": "entity.ticket",
+        "invariants": [
+          "rule.frozen.ticket.closed_read_only",
+          "rule.scope.implicit.ticket.requester_id",
+          "Status changes only along the declared transitions of state_machine.ticket.",
+          "id is unique."
+        ]
+      },
+      {
+        "entity": "entity.ticket_comment",
+        "invariants": [
+          "rule.scope.implicit.ticket_comment.via_ticket_id",
+          "id is unique."
+        ]
+      },
+      {
+        "entity": "entity.user",
+        "invariants": [
+          "id is unique.",
+          "email is unique."
+        ]
+      }
+    ]
+  },
+  "graph_analysis": {
+    "observations": [
+      "14 operations across 3 entities; 13 implemented by the generic engine, 1 need handlers."
+    ],
+    "risks": [
+      {
+        "ref": "entity.user",
+        "risk": "no operation creates entity.user: users can log in but cannot be created through the API"
+      }
+    ]
+  }
+}

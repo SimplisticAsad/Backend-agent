@@ -1,0 +1,5486 @@
+{
+ "acceptance_criteria": [
+  {
+   "given": [
+    "the user is not signed in"
+   ],
+   "id": "ac.auth.login",
+   "name": "Log in succeeds",
+   "operation_refs": [
+    "operation.user.login"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.authentication"
+   ],
+   "then": [
+    "The user is authenticated and sees their home screen"
+   ],
+   "when": [
+    "Enter email and password",
+    "Log in"
+   ],
+   "workflow_refs": [
+    "workflow.auth.login"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager or Employee"
+   ],
+   "id": "ac.auth.logout",
+   "name": "Log out succeeds",
+   "operation_refs": [
+    "operation.user.logout"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.authentication"
+   ],
+   "then": [
+    "The session ends and the login screen is shown"
+   ],
+   "when": [
+    "Choose log out",
+    "Log out"
+   ],
+   "workflow_refs": [
+    "workflow.auth.logout"
+   ]
+  },
+  {
+   "given": [
+    "the user is not signed in"
+   ],
+   "id": "ac.auth.password_reset",
+   "name": "Reset password succeeds",
+   "operation_refs": [
+    "operation.user.request_password_reset",
+    "operation.user.reset_password"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.authentication"
+   ],
+   "then": [
+    "The password is changed and the user can log in again"
+   ],
+   "when": [
+    "Enter the account email",
+    "Request password reset",
+    "Enter the new password",
+    "Reset password"
+   ],
+   "workflow_refs": [
+    "workflow.auth.password_reset"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Employee"
+   ],
+   "id": "ac.dashboard.employee_view",
+   "name": "View my dashboard succeeds",
+   "operation_refs": [
+    "operation.task.list_assigned"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.employee_dashboard, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.employee_dashboard"
+   ],
+   "then": [
+    "The employee sees their assigned tasks"
+   ],
+   "when": [
+    "List my assigned tasks"
+   ],
+   "workflow_refs": [
+    "workflow.dashboard.employee_view"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager"
+   ],
+   "id": "ac.dashboard.manager_progress",
+   "name": "View project progress succeeds",
+   "operation_refs": [
+    "operation.project.progress"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_progress, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.project_progress"
+   ],
+   "then": [
+    "The manager sees progress per project"
+   ],
+   "when": [
+    "Get project progress"
+   ],
+   "workflow_refs": [
+    "workflow.dashboard.manager_progress"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager or Employee"
+   ],
+   "id": "ac.department.browse",
+   "name": "Browse Departments succeeds",
+   "operation_refs": [
+    "operation.department.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.department_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.department_management"
+   ],
+   "then": [
+    "The Department information is displayed"
+   ],
+   "when": [
+    "List Departments"
+   ],
+   "workflow_refs": [
+    "workflow.department.browse"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager"
+   ],
+   "id": "ac.department.create",
+   "name": "Create Department succeeds",
+   "operation_refs": [
+    "operation.department.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.department_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.department_management"
+   ],
+   "then": [
+    "The Department is created and appears in the Department list"
+   ],
+   "when": [
+    "Fill in the Department form",
+    "Create Department"
+   ],
+   "workflow_refs": [
+    "workflow.department.create"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager",
+    "the record being worked on exists"
+   ],
+   "id": "ac.department.update",
+   "name": "Update Department succeeds",
+   "operation_refs": [
+    "operation.department.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.department_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.department_management"
+   ],
+   "then": [
+    "The changes to the Department are saved"
+   ],
+   "when": [
+    "Change the Department details",
+    "Update Department"
+   ],
+   "workflow_refs": [
+    "workflow.department.update"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager",
+    "the record being worked on exists"
+   ],
+   "id": "ac.employee.browse",
+   "name": "Browse Employees succeeds",
+   "operation_refs": [
+    "operation.employee.list",
+    "operation.employee.read"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.employee_directory, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.employee_directory"
+   ],
+   "then": [
+    "The Employee information is displayed"
+   ],
+   "when": [
+    "List Employees",
+    "View Employee"
+   ],
+   "workflow_refs": [
+    "workflow.employee.browse"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager"
+   ],
+   "id": "ac.employee.create",
+   "name": "Create Employee succeeds",
+   "operation_refs": [
+    "operation.employee.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.employee_directory, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.employee_directory"
+   ],
+   "then": [
+    "The Employee is created and appears in the Employee list"
+   ],
+   "when": [
+    "Fill in the Employee form",
+    "Create Employee"
+   ],
+   "workflow_refs": [
+    "workflow.employee.create"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager",
+    "the record being worked on exists"
+   ],
+   "id": "ac.employee.update",
+   "name": "Update Employee succeeds",
+   "operation_refs": [
+    "operation.employee.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.employee_directory, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.employee_directory"
+   ],
+   "then": [
+    "The changes to the Employee are saved"
+   ],
+   "when": [
+    "Change the Employee details",
+    "Update Employee"
+   ],
+   "workflow_refs": [
+    "workflow.employee.update"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager or Employee",
+    "the record being worked on exists"
+   ],
+   "id": "ac.project.browse",
+   "name": "Browse Projects succeeds",
+   "operation_refs": [
+    "operation.project.list",
+    "operation.project.read"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.project_management"
+   ],
+   "then": [
+    "The Project information is displayed"
+   ],
+   "when": [
+    "List Projects",
+    "View Project"
+   ],
+   "workflow_refs": [
+    "workflow.project.browse"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager"
+   ],
+   "id": "ac.project.create",
+   "name": "Create Project succeeds",
+   "operation_refs": [
+    "operation.project.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.project_management"
+   ],
+   "then": [
+    "The Project is created and appears in the Project list"
+   ],
+   "when": [
+    "Fill in the Project form",
+    "Create Project"
+   ],
+   "workflow_refs": [
+    "workflow.project.create"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager",
+    "the record being worked on exists"
+   ],
+   "id": "ac.project.delete",
+   "name": "Delete Project succeeds",
+   "operation_refs": [
+    "operation.project.delete"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.project_management"
+   ],
+   "then": [
+    "The Project is removed from the Project list"
+   ],
+   "when": [
+    "Confirm deleting the Project",
+    "Delete Project"
+   ],
+   "workflow_refs": [
+    "workflow.project.delete"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in"
+   ],
+   "id": "ac.project.only_managers_delete",
+   "name": "Only managers delete projects (negative case)",
+   "operation_refs": [
+    "operation.project.delete"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.project_management"
+   ],
+   "then": [
+    "Only managers can delete projects (error PROJECT_DELETE_FORBIDDEN)",
+    "no data is changed"
+   ],
+   "when": [
+    "an employee tries to delete a project"
+   ],
+   "workflow_refs": []
+  },
+  {
+   "given": [
+    "the user is signed in as Manager",
+    "the record being worked on exists"
+   ],
+   "id": "ac.project.update",
+   "name": "Update Project succeeds",
+   "operation_refs": [
+    "operation.project.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.project_management"
+   ],
+   "then": [
+    "The changes to the Project are saved"
+   ],
+   "when": [
+    "Change the Project details",
+    "Update Project"
+   ],
+   "workflow_refs": [
+    "workflow.project.update"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager"
+   ],
+   "id": "ac.project_member.browse",
+   "name": "Browse Project Members succeeds",
+   "operation_refs": [
+    "operation.project_member.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_assignment, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.project_assignment"
+   ],
+   "then": [
+    "The Project Member information is displayed"
+   ],
+   "when": [
+    "List Project Members"
+   ],
+   "workflow_refs": [
+    "workflow.project_member.browse"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager"
+   ],
+   "id": "ac.project_member.create",
+   "name": "Create Project Member succeeds",
+   "operation_refs": [
+    "operation.project_member.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_assignment, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.project_assignment"
+   ],
+   "then": [
+    "The Project Member is created and appears in the Project Member list"
+   ],
+   "when": [
+    "Fill in the Project Member form",
+    "Create Project Member"
+   ],
+   "workflow_refs": [
+    "workflow.project_member.create"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager",
+    "the record being worked on exists"
+   ],
+   "id": "ac.project_member.delete",
+   "name": "Delete Project Member succeeds",
+   "operation_refs": [
+    "operation.project_member.delete"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_assignment, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.project_assignment"
+   ],
+   "then": [
+    "The Project Member is removed from the Project Member list"
+   ],
+   "when": [
+    "Confirm deleting the Project Member",
+    "Delete Project Member"
+   ],
+   "workflow_refs": [
+    "workflow.project_member.delete"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager or Employee",
+    "the record being worked on exists"
+   ],
+   "id": "ac.task.browse",
+   "name": "Browse Tasks succeeds",
+   "operation_refs": [
+    "operation.task.list",
+    "operation.task.read"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.task_management"
+   ],
+   "then": [
+    "The Task information is displayed"
+   ],
+   "when": [
+    "List Tasks",
+    "View Task"
+   ],
+   "workflow_refs": [
+    "workflow.task.browse"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in"
+   ],
+   "id": "ac.task.completed_needs_assignee",
+   "name": "Completed tasks need an assignee (negative case)",
+   "operation_refs": [
+    "operation.task.update_status"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_status, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.task_status"
+   ],
+   "then": [
+    "A task cannot be completed without an assignee (error TASK_NO_ASSIGNEE)",
+    "no data is changed"
+   ],
+   "when": [
+    "the user marks an unassigned task as completed"
+   ],
+   "workflow_refs": []
+  },
+  {
+   "given": [
+    "the user is signed in as Manager"
+   ],
+   "id": "ac.task.create",
+   "name": "Create Task succeeds",
+   "operation_refs": [
+    "operation.task.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.task_management"
+   ],
+   "then": [
+    "The Task is created and appears in the Task list"
+   ],
+   "when": [
+    "Fill in the Task form",
+    "Create Task"
+   ],
+   "workflow_refs": [
+    "workflow.task.create"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager",
+    "the record being worked on exists"
+   ],
+   "id": "ac.task.delete",
+   "name": "Delete Task succeeds",
+   "operation_refs": [
+    "operation.task.delete"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.task_management"
+   ],
+   "then": [
+    "The Task is removed from the Task list"
+   ],
+   "when": [
+    "Confirm deleting the Task",
+    "Delete Task"
+   ],
+   "workflow_refs": [
+    "workflow.task.delete"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in"
+   ],
+   "id": "ac.task.employee_updates_own",
+   "name": "Employees update only their own tasks (negative case)",
+   "operation_refs": [
+    "operation.task.update_status"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_status, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.task_status"
+   ],
+   "then": [
+    "Employees can only update tasks assigned to them (error TASK_NOT_ASSIGNED_TO_CALLER)",
+    "no data is changed"
+   ],
+   "when": [
+    "an employee updates a task assigned to someone else"
+   ],
+   "workflow_refs": []
+  },
+  {
+   "given": [
+    "the user is signed in as Manager",
+    "the record being worked on exists"
+   ],
+   "id": "ac.task.update",
+   "name": "Update Task succeeds",
+   "operation_refs": [
+    "operation.task.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.task_management"
+   ],
+   "then": [
+    "The changes to the Task are saved"
+   ],
+   "when": [
+    "Change the Task details",
+    "Update Task"
+   ],
+   "workflow_refs": [
+    "workflow.task.update"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Manager or Employee",
+    "the record being worked on exists"
+   ],
+   "id": "ac.task.update_status",
+   "name": "Update task status succeeds",
+   "operation_refs": [
+    "operation.task.update_status"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_status, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.task_status"
+   ],
+   "then": [
+    "The task shows its new status"
+   ],
+   "when": [
+    "Choose the new status",
+    "Update task status"
+   ],
+   "workflow_refs": [
+    "workflow.task.update_status"
+   ]
+  },
+  {
+   "given": [
+    "the user is not signed in"
+   ],
+   "id": "ac.user.invalid_login",
+   "name": "Wrong credentials are rejected (negative case)",
+   "operation_refs": [
+    "operation.user.login"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.authentication"
+   ],
+   "then": [
+    "Email or password is wrong (error INVALID_CREDENTIALS)",
+    "no data is changed"
+   ],
+   "when": [
+    "the user submits a wrong password"
+   ],
+   "workflow_refs": []
+  }
+ ],
+ "api": {
+  "endpoints": [
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.department.create",
+    "method": "POST",
+    "operation_ref": "operation.department.create",
+    "path": "/departments",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.department_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.department.create",
+    "response_schema_ref": "schema.department"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager",
+      "role.employee"
+     ]
+    },
+    "id": "api.department.list",
+    "method": "GET",
+    "operation_ref": "operation.department.list",
+    "path": "/departments",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.department_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.department"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.department.update",
+    "method": "PATCH",
+    "operation_ref": "operation.department.update",
+    "path": "/departments/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.department_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.department.update",
+    "response_schema_ref": "schema.department"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.employee.create",
+    "method": "POST",
+    "operation_ref": "operation.employee.create",
+    "path": "/employees",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.employee_directory, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.employee.create",
+    "response_schema_ref": "schema.employee"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.employee.list",
+    "method": "GET",
+    "operation_ref": "operation.employee.list",
+    "path": "/employees",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.employee_directory, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.employee"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager",
+      "role.employee"
+     ]
+    },
+    "id": "api.employee.read",
+    "method": "GET",
+    "operation_ref": "operation.employee.read",
+    "path": "/employees/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.employee_directory, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.employee"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.employee.update",
+    "method": "PATCH",
+    "operation_ref": "operation.employee.update",
+    "path": "/employees/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.employee_directory, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.employee.update",
+    "response_schema_ref": "schema.employee"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.project.create",
+    "method": "POST",
+    "operation_ref": "operation.project.create",
+    "path": "/projects",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.project.create",
+    "response_schema_ref": "schema.project"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.project.delete",
+    "method": "DELETE",
+    "operation_ref": "operation.project.delete",
+    "path": "/projects/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": null
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager",
+      "role.employee"
+     ]
+    },
+    "id": "api.project.list",
+    "method": "GET",
+    "operation_ref": "operation.project.list",
+    "path": "/projects",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.project"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.project.progress",
+    "method": "GET",
+    "operation_ref": "operation.project.progress",
+    "path": "/projects/progress",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_progress, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.project"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager",
+      "role.employee"
+     ]
+    },
+    "id": "api.project.read",
+    "method": "GET",
+    "operation_ref": "operation.project.read",
+    "path": "/projects/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.project"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.project.update",
+    "method": "PATCH",
+    "operation_ref": "operation.project.update",
+    "path": "/projects/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.project.update",
+    "response_schema_ref": "schema.project"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.project_member.create",
+    "method": "POST",
+    "operation_ref": "operation.project_member.create",
+    "path": "/project-members",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_assignment, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.project_member.create",
+    "response_schema_ref": "schema.project_member"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.project_member.delete",
+    "method": "DELETE",
+    "operation_ref": "operation.project_member.delete",
+    "path": "/project-members/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_assignment, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": null
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.project_member.list",
+    "method": "GET",
+    "operation_ref": "operation.project_member.list",
+    "path": "/project-members",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_assignment, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.project_member"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.task.create",
+    "method": "POST",
+    "operation_ref": "operation.task.create",
+    "path": "/tasks",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.task_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.task.create",
+    "response_schema_ref": "schema.task"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.task.delete",
+    "method": "DELETE",
+    "operation_ref": "operation.task.delete",
+    "path": "/tasks/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.task_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": null
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager",
+      "role.employee"
+     ]
+    },
+    "id": "api.task.list",
+    "method": "GET",
+    "operation_ref": "operation.task.list",
+    "path": "/tasks",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.task_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.task"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.employee"
+     ]
+    },
+    "id": "api.task.list_assigned",
+    "method": "GET",
+    "operation_ref": "operation.task.list_assigned",
+    "path": "/tasks/assigned",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.employee_dashboard, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.task"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager",
+      "role.employee"
+     ]
+    },
+    "id": "api.task.read",
+    "method": "GET",
+    "operation_ref": "operation.task.read",
+    "path": "/tasks/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.task_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.task"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager"
+     ]
+    },
+    "id": "api.task.update",
+    "method": "PATCH",
+    "operation_ref": "operation.task.update",
+    "path": "/tasks/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.task_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.task.update",
+    "response_schema_ref": "schema.task"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.manager",
+      "role.employee"
+     ]
+    },
+    "id": "api.task.update_status",
+    "method": "PATCH",
+    "operation_ref": "operation.task.update_status",
+    "path": "/tasks/{id}/status",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.task_status, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.task.update_status",
+    "response_schema_ref": "schema.task"
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.user.login",
+    "method": "POST",
+    "operation_ref": "operation.user.login",
+    "path": "/auth/login",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.user.login",
+    "response_schema_ref": "schema.user"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": []
+    },
+    "id": "api.user.logout",
+    "method": "POST",
+    "operation_ref": "operation.user.logout",
+    "path": "/auth/logout",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": null
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.user.request_password_reset",
+    "method": "POST",
+    "operation_ref": "operation.user.request_password_reset",
+    "path": "/auth/forgot-password",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.user.request_password_reset",
+    "response_schema_ref": null
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.user.reset_password",
+    "method": "POST",
+    "operation_ref": "operation.user.reset_password",
+    "path": "/auth/reset-password",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.user.reset_password",
+    "response_schema_ref": null
+   }
+  ],
+  "project_id": "project.task_manager",
+  "project_version": "0.1.0",
+  "schema_version": "1.0.0",
+  "schemas": [
+   {
+    "entity_ref": "entity.department",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "name",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "description",
+      "required": false,
+      "type": "text"
+     }
+    ],
+    "id": "schema.department",
+    "name": "Department"
+   },
+   {
+    "entity_ref": "entity.department",
+    "fields": [
+     {
+      "name": "name",
+      "required": true,
+      "type": "string!"
+     },
+     {
+      "name": "description",
+      "required": true,
+      "type": "text"
+     }
+    ],
+    "id": "schema.department.create",
+    "name": "Create Department request"
+   },
+   {
+    "entity_ref": "entity.department",
+    "fields": [
+     {
+      "name": "name",
+      "required": false,
+      "type": "string!"
+     },
+     {
+      "name": "description",
+      "required": false,
+      "type": "text"
+     }
+    ],
+    "id": "schema.department.update",
+    "name": "Update Department request"
+   },
+   {
+    "entity_ref": "entity.employee",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "user_id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "department_id",
+      "required": false,
+      "type": "uuid"
+     },
+     {
+      "name": "job_title",
+      "required": false,
+      "type": "string"
+     }
+    ],
+    "id": "schema.employee",
+    "name": "Employee"
+   },
+   {
+    "entity_ref": "entity.employee",
+    "fields": [
+     {
+      "name": "user_id",
+      "required": true,
+      "type": "uuid!>user"
+     },
+     {
+      "name": "department_id",
+      "required": true,
+      "type": "uuid>department"
+     },
+     {
+      "name": "job_title",
+      "required": true,
+      "type": "string"
+     }
+    ],
+    "id": "schema.employee.create",
+    "name": "Create Employee request"
+   },
+   {
+    "entity_ref": "entity.employee",
+    "fields": [
+     {
+      "name": "user_id",
+      "required": false,
+      "type": "uuid!>user"
+     },
+     {
+      "name": "department_id",
+      "required": false,
+      "type": "uuid>department"
+     },
+     {
+      "name": "job_title",
+      "required": false,
+      "type": "string"
+     }
+    ],
+    "id": "schema.employee.update",
+    "name": "Update Employee request"
+   },
+   {
+    "entity_ref": "entity.project",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "name",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "description",
+      "required": false,
+      "type": "text"
+     },
+     {
+      "name": "status",
+      "required": true,
+      "type": "enum"
+     },
+     {
+      "name": "owner_id",
+      "required": false,
+      "type": "uuid"
+     },
+     {
+      "name": "due_date",
+      "required": false,
+      "type": "date"
+     }
+    ],
+    "id": "schema.project",
+    "name": "Project"
+   },
+   {
+    "entity_ref": "entity.project",
+    "fields": [
+     {
+      "name": "name",
+      "required": true,
+      "type": "string!"
+     },
+     {
+      "name": "description",
+      "required": true,
+      "type": "text"
+     }
+    ],
+    "id": "schema.project.create",
+    "name": "Create Project request"
+   },
+   {
+    "entity_ref": "entity.project",
+    "fields": [
+     {
+      "name": "name",
+      "required": false,
+      "type": "string!"
+     },
+     {
+      "name": "description",
+      "required": false,
+      "type": "text"
+     },
+     {
+      "name": "status",
+      "required": false,
+      "type": "enum"
+     },
+     {
+      "name": "due_date",
+      "required": false,
+      "type": "date"
+     }
+    ],
+    "id": "schema.project.update",
+    "name": "Update Project request"
+   },
+   {
+    "entity_ref": "entity.project_member",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "project_id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "user_id",
+      "required": true,
+      "type": "uuid"
+     }
+    ],
+    "id": "schema.project_member",
+    "name": "Project Member"
+   },
+   {
+    "entity_ref": "entity.project_member",
+    "fields": [
+     {
+      "name": "project_id",
+      "required": true,
+      "type": "uuid!>project"
+     },
+     {
+      "name": "user_id",
+      "required": true,
+      "type": "uuid!>user"
+     }
+    ],
+    "id": "schema.project_member.create",
+    "name": "Create Project Member request"
+   },
+   {
+    "entity_ref": "entity.task",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "title",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "description",
+      "required": false,
+      "type": "text"
+     },
+     {
+      "name": "status",
+      "required": true,
+      "type": "enum"
+     },
+     {
+      "name": "due_date",
+      "required": false,
+      "type": "date"
+     },
+     {
+      "name": "project_id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "assignee_id",
+      "required": false,
+      "type": "uuid"
+     }
+    ],
+    "id": "schema.task",
+    "name": "Task"
+   },
+   {
+    "entity_ref": "entity.task",
+    "fields": [
+     {
+      "name": "title",
+      "required": true,
+      "type": "string!"
+     },
+     {
+      "name": "project_id",
+      "required": true,
+      "type": "uuid!>project"
+     }
+    ],
+    "id": "schema.task.create",
+    "name": "Create Task request"
+   },
+   {
+    "entity_ref": "entity.task",
+    "fields": [
+     {
+      "name": "title",
+      "required": false,
+      "type": "string!"
+     },
+     {
+      "name": "description",
+      "required": false,
+      "type": "text"
+     },
+     {
+      "name": "due_date",
+      "required": false,
+      "type": "date"
+     }
+    ],
+    "id": "schema.task.update",
+    "name": "Update Task request"
+   },
+   {
+    "entity_ref": "entity.task",
+    "fields": [
+     {
+      "name": "status",
+      "required": true,
+      "type": "enum"
+     }
+    ],
+    "id": "schema.task.update_status",
+    "name": "Update task status request"
+   },
+   {
+    "entity_ref": "entity.user",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "email",
+      "required": true,
+      "type": "email"
+     },
+     {
+      "name": "full_name",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "role",
+      "required": true,
+      "type": "enum"
+     },
+     {
+      "name": "created_at",
+      "required": true,
+      "type": "datetime"
+     }
+    ],
+    "id": "schema.user",
+    "name": "User"
+   },
+   {
+    "entity_ref": "entity.user",
+    "fields": [
+     {
+      "name": "email",
+      "required": true,
+      "type": "email!*"
+     },
+     {
+      "name": "password",
+      "required": true,
+      "type": "string"
+     }
+    ],
+    "id": "schema.user.login",
+    "name": "Log in request"
+   },
+   {
+    "entity_ref": "entity.user",
+    "fields": [
+     {
+      "name": "email",
+      "required": true,
+      "type": "email!*"
+     }
+    ],
+    "id": "schema.user.request_password_reset",
+    "name": "Request password reset request"
+   },
+   {
+    "entity_ref": "entity.user",
+    "fields": [
+     {
+      "name": "reset_token",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "new_password",
+      "required": true,
+      "type": "string"
+     }
+    ],
+    "id": "schema.user.reset_password",
+    "name": "Reset password request"
+   }
+  ]
+ },
+ "backend": {
+  "operations": [
+   {
+    "access": "restricted",
+    "action": "create",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.department_management"
+    ],
+    "description": "Create Department.",
+    "entity_ref": "entity.department",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.department.create",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "name",
+      "description"
+     ]
+    },
+    "name": "Create Department",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.department"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.department_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.department",
+    "side_effects": [
+     "A new Department is persisted"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.department_management"
+    ],
+    "description": "List Departments.",
+    "entity_ref": "entity.department",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.department.list",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "List Departments",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.department"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.department_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager",
+     "role.employee"
+    ],
+    "service_ref": "service.department",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "update",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.department_management"
+    ],
+    "description": "Update Department.",
+    "entity_ref": "entity.department",
+    "errors": [
+     {
+      "code": "DEPARTMENT_NOT_FOUND",
+      "description": "The Department does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.department.update",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [
+      "name",
+      "description"
+     ],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "Update Department",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.department"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.department_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.department",
+    "side_effects": [
+     "The Department is modified"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "create",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.employee_directory"
+    ],
+    "description": "Create Employee.",
+    "entity_ref": "entity.employee",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.employee.create",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "user_id",
+      "department_id",
+      "job_title"
+     ]
+    },
+    "name": "Create Employee",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.employee"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.employee_directory, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.employee",
+    "side_effects": [
+     "A new Employee is persisted"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.employee_directory"
+    ],
+    "description": "List Employees.",
+    "entity_ref": "entity.employee",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.employee.list",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "List Employees",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.employee"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.employee_directory, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.employee",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "read",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.employee_directory"
+    ],
+    "description": "View Employee.",
+    "entity_ref": "entity.employee",
+    "errors": [
+     {
+      "code": "EMPLOYEE_NOT_FOUND",
+      "description": "The Employee does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.employee.read",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "View Employee",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.employee"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.employee_directory, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager",
+     "role.employee"
+    ],
+    "service_ref": "service.employee",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "update",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.employee_directory"
+    ],
+    "description": "Update Employee.",
+    "entity_ref": "entity.employee",
+    "errors": [
+     {
+      "code": "EMPLOYEE_NOT_FOUND",
+      "description": "The Employee does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.employee.update",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [
+      "user_id",
+      "department_id",
+      "job_title"
+     ],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "Update Employee",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.employee"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.employee_directory, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.employee",
+    "side_effects": [
+     "The Employee is modified"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "create",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.project_management"
+    ],
+    "description": "Create Project.",
+    "entity_ref": "entity.project",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.project.create",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "name",
+      "description"
+     ]
+    },
+    "name": "Create Project",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.project"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.project",
+    "side_effects": [
+     "A new Project is persisted"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "delete",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.project_management"
+    ],
+    "description": "Delete Project.",
+    "entity_ref": "entity.project",
+    "errors": [
+     {
+      "code": "PROJECT_NOT_FOUND",
+      "description": "The Project does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.project.delete",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "Delete Project",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.project",
+    "side_effects": [
+     "The Project is removed"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.project_management"
+    ],
+    "description": "List Projects.",
+    "entity_ref": "entity.project",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.project.list",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "List Projects",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.project"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager",
+     "role.employee"
+    ],
+    "service_ref": "service.project",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.project_progress"
+    ],
+    "description": "Task completion per project",
+    "entity_ref": "entity.project",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.project.progress",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "Get project progress",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.project"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_progress, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.project",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "read",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.project_management"
+    ],
+    "description": "View Project.",
+    "entity_ref": "entity.project",
+    "errors": [
+     {
+      "code": "PROJECT_NOT_FOUND",
+      "description": "The Project does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.project.read",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "View Project",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.project"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager",
+     "role.employee"
+    ],
+    "service_ref": "service.project",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "update",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.project_management"
+    ],
+    "description": "Update Project.",
+    "entity_ref": "entity.project",
+    "errors": [
+     {
+      "code": "PROJECT_NOT_FOUND",
+      "description": "The Project does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.project.update",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [
+      "name",
+      "description",
+      "status",
+      "due_date"
+     ],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "Update Project",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.project"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.project",
+    "side_effects": [
+     "The Project is modified"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "create",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.project_assignment"
+    ],
+    "description": "Create Project Member.",
+    "entity_ref": "entity.project_member",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.project_member.create",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "project_id",
+      "user_id"
+     ]
+    },
+    "name": "Create Project Member",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.project_member"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_assignment, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.project_member",
+    "side_effects": [
+     "A new Project Member is persisted"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "delete",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.project_assignment"
+    ],
+    "description": "Delete Project Member.",
+    "entity_ref": "entity.project_member",
+    "errors": [
+     {
+      "code": "PROJECT_MEMBER_NOT_FOUND",
+      "description": "The Project Member does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.project_member.delete",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "Delete Project Member",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_assignment, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.project_member",
+    "side_effects": [
+     "The Project Member is removed"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.project_assignment"
+    ],
+    "description": "List Project Members.",
+    "entity_ref": "entity.project_member",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.project_member.list",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "List Project Members",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.project_member"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.project_assignment, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.project_member",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "create",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.task_management"
+    ],
+    "description": "Create Task.",
+    "entity_ref": "entity.task",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.task.create",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "title",
+      "project_id"
+     ]
+    },
+    "name": "Create Task",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.task"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.task_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.task",
+    "side_effects": [
+     "A new Task is persisted"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "delete",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.task_management"
+    ],
+    "description": "Delete Task.",
+    "entity_ref": "entity.task",
+    "errors": [
+     {
+      "code": "TASK_NOT_FOUND",
+      "description": "The Task does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.task.delete",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "Delete Task",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.task_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.task",
+    "side_effects": [
+     "The Task is removed"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.task_management"
+    ],
+    "description": "List Tasks.",
+    "entity_ref": "entity.task",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.task.list",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "List Tasks",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.task"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.task_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager",
+     "role.employee"
+    ],
+    "service_ref": "service.task",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.employee_dashboard"
+    ],
+    "description": "List my assigned tasks.",
+    "entity_ref": "entity.task",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.task.list_assigned",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "List my assigned tasks",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.task"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.employee_dashboard, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.employee"
+    ],
+    "service_ref": "service.task",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "read",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.task_management"
+    ],
+    "description": "View Task.",
+    "entity_ref": "entity.task",
+    "errors": [
+     {
+      "code": "TASK_NOT_FOUND",
+      "description": "The Task does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.task.read",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "View Task",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.task"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.task_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager",
+     "role.employee"
+    ],
+    "service_ref": "service.task",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "update",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.task_management"
+    ],
+    "description": "Update Task.",
+    "entity_ref": "entity.task",
+    "errors": [
+     {
+      "code": "TASK_NOT_FOUND",
+      "description": "The Task does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.task.update",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [
+      "title",
+      "description",
+      "due_date"
+     ],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "Update Task",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.task"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.task_management, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager"
+    ],
+    "service_ref": "service.task",
+    "side_effects": [
+     "The Task is modified"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "update",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.task_status"
+    ],
+    "description": "Update task status.",
+    "entity_ref": "entity.task",
+    "errors": [
+     {
+      "code": "TASK_NOT_FOUND",
+      "description": "The task does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.task.update_status",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id",
+      "status"
+     ]
+    },
+    "name": "Update task status",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.task"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.task_status, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.manager",
+     "role.employee"
+    ],
+    "service_ref": "service.task",
+    "side_effects": [
+     "The task status changes"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "public",
+    "action": "execute",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.authentication"
+    ],
+    "description": "Log in.",
+    "entity_ref": "entity.user",
+    "errors": [
+     {
+      "code": "INVALID_CREDENTIALS",
+      "description": "Email or password is wrong"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.user.login",
+    "input": {
+     "extra_fields": [
+      "password"
+     ],
+     "optional_fields": [],
+     "required_fields": [
+      "email"
+     ]
+    },
+    "name": "Log in",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.user"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.user",
+    "side_effects": [
+     "A session token is issued"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "authenticated",
+    "action": "execute",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.authentication"
+    ],
+    "description": "Log out.",
+    "entity_ref": "entity.user",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.user.logout",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "Log out",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.user",
+    "side_effects": [
+     "The session token is revoked"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "public",
+    "action": "execute",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.authentication"
+    ],
+    "description": "Request password reset.",
+    "entity_ref": "entity.user",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.user.request_password_reset",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "email"
+     ]
+    },
+    "name": "Request password reset",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.user",
+    "side_effects": [
+     "A reset link is sent to the email address"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "public",
+    "action": "execute",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.authentication"
+    ],
+    "description": "Reset password.",
+    "entity_ref": "entity.user",
+    "errors": [
+     {
+      "code": "INVALID_RESET_TOKEN",
+      "description": "The reset token is invalid or expired"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.user.reset_password",
+    "input": {
+     "extra_fields": [
+      "reset_token",
+      "new_password"
+     ],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "Reset password",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.authentication, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.user",
+    "side_effects": [],
+    "type": "command"
+   }
+  ],
+  "project_id": "project.task_manager",
+  "project_version": "0.1.0",
+  "schema_version": "1.0.0",
+  "services": [
+   {
+    "description": "Business operations on Department.",
+    "entity_refs": [
+     "entity.department"
+    ],
+    "id": "service.department",
+    "name": "Department service"
+   },
+   {
+    "description": "Business operations on Employee.",
+    "entity_refs": [
+     "entity.employee"
+    ],
+    "id": "service.employee",
+    "name": "Employee service"
+   },
+   {
+    "description": "Business operations on Project.",
+    "entity_refs": [
+     "entity.project"
+    ],
+    "id": "service.project",
+    "name": "Project service"
+   },
+   {
+    "description": "Business operations on Project Member.",
+    "entity_refs": [
+     "entity.project_member"
+    ],
+    "id": "service.project_member",
+    "name": "Project Member service"
+   },
+   {
+    "description": "Business operations on Task.",
+    "entity_refs": [
+     "entity.task"
+    ],
+    "id": "service.task",
+    "name": "Task service"
+   },
+   {
+    "description": "Business operations on User.",
+    "entity_refs": [
+     "entity.user"
+    ],
+    "id": "service.user",
+    "name": "User service"
+   }
+  ]
+ },
+ "entities": [
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.department.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.department.name",
+     "name": "name",
+     "reference_to": null,
+     "required": true,
+     "type": "string",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.department.description",
+     "name": "description",
+     "reference_to": null,
+     "required": false,
+     "type": "text",
+     "unique": false
+    }
+   ],
+   "description": "An organisational unit of the company.",
+   "id": "entity.department",
+   "name": "Department",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Employees can belong to departments.",
+     "type": "user_requirement"
+    }
+   }
+  },
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.employee.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.employee.user_id",
+     "name": "user_id",
+     "reference_to": "entity.user",
+     "required": true,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.employee.department_id",
+     "name": "department_id",
+     "reference_to": "entity.department",
+     "required": false,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.employee.job_title",
+     "name": "job_title",
+     "reference_to": null,
+     "required": false,
+     "type": "string",
+     "unique": false
+    }
+   ],
+   "description": "An employee profile.",
+   "id": "entity.employee",
+   "name": "Employee",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Build a SaaS application for managing a small company's employees, projects and tasks.",
+     "type": "user_requirement"
+    }
+   }
+  },
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.project.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.project.name",
+     "name": "name",
+     "reference_to": null,
+     "required": true,
+     "type": "string",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.project.description",
+     "name": "description",
+     "reference_to": null,
+     "required": false,
+     "type": "text",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [
+      "planned",
+      "active",
+      "completed"
+     ],
+     "id": "entity.project.status",
+     "name": "status",
+     "reference_to": null,
+     "required": true,
+     "type": "enum",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.project.owner_id",
+     "name": "owner_id",
+     "reference_to": "entity.user",
+     "required": false,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.project.due_date",
+     "name": "due_date",
+     "reference_to": null,
+     "required": false,
+     "type": "date",
+     "unique": false
+    }
+   ],
+   "description": "A body of work containing tasks.",
+   "id": "entity.project",
+   "name": "Project",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Build a SaaS application for managing a small company's employees, projects and tasks.",
+     "type": "user_requirement"
+    }
+   }
+  },
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.project_member.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.project_member.project_id",
+     "name": "project_id",
+     "reference_to": "entity.project",
+     "required": true,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.project_member.user_id",
+     "name": "user_id",
+     "reference_to": "entity.user",
+     "required": true,
+     "type": "uuid",
+     "unique": false
+    }
+   ],
+   "description": "Assignment of an employee to a project.",
+   "id": "entity.project_member",
+   "name": "Project Member",
+   "provenance": {
+    "confidence": 0.7,
+    "source": {
+     "text": "Project Member data is needed by the selected capabilities",
+     "type": "inferred"
+    }
+   }
+  },
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.task.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.task.title",
+     "name": "title",
+     "reference_to": null,
+     "required": true,
+     "type": "string",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.task.description",
+     "name": "description",
+     "reference_to": null,
+     "required": false,
+     "type": "text",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [
+      "todo",
+      "in_progress",
+      "completed"
+     ],
+     "id": "entity.task.status",
+     "name": "status",
+     "reference_to": null,
+     "required": true,
+     "type": "enum",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.task.due_date",
+     "name": "due_date",
+     "reference_to": null,
+     "required": false,
+     "type": "date",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.task.project_id",
+     "name": "project_id",
+     "reference_to": "entity.project",
+     "required": true,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.task.assignee_id",
+     "name": "assignee_id",
+     "reference_to": "entity.user",
+     "required": false,
+     "type": "uuid",
+     "unique": false
+    }
+   ],
+   "description": "A unit of work inside a project.",
+   "id": "entity.task",
+   "name": "Task",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Build a SaaS application for managing a small company's employees, projects and tasks.",
+     "type": "user_requirement"
+    }
+   }
+  },
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.user.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.user.email",
+     "name": "email",
+     "reference_to": null,
+     "required": true,
+     "type": "email",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.user.password_hash",
+     "name": "password_hash",
+     "reference_to": null,
+     "required": true,
+     "type": "string",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.user.full_name",
+     "name": "full_name",
+     "reference_to": null,
+     "required": true,
+     "type": "string",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [
+      "manager",
+      "employee"
+     ],
+     "id": "entity.user.role",
+     "name": "role",
+     "reference_to": null,
+     "required": true,
+     "type": "enum",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.user.created_at",
+     "name": "created_at",
+     "reference_to": null,
+     "required": true,
+     "type": "datetime",
+     "unique": false
+    }
+   ],
+   "description": "An account that can sign in to the product.",
+   "id": "entity.user",
+   "name": "User",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Users must log in.",
+     "type": "user_requirement"
+    }
+   }
+  }
+ ],
+ "permissions": [
+  {
+   "action": "create",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.department.create",
+   "operation_refs": [
+    "operation.department.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Create Department",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.department",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.department.list",
+   "operation_refs": [
+    "operation.department.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: List Departments",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.department",
+   "roles": [
+    "role.manager",
+    "role.employee"
+   ]
+  },
+  {
+   "action": "update",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.department.update",
+   "operation_refs": [
+    "operation.department.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Update Department",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.department",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "create",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.employee.create",
+   "operation_refs": [
+    "operation.employee.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Create Employee",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.employee",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.employee.list",
+   "operation_refs": [
+    "operation.employee.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: List Employees",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.employee",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "read",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.employee.read",
+   "operation_refs": [
+    "operation.employee.read"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: View Employee",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.employee",
+   "roles": [
+    "role.manager",
+    "role.employee"
+   ]
+  },
+  {
+   "action": "update",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.employee.update",
+   "operation_refs": [
+    "operation.employee.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Update Employee",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.employee",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "create",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.project.create",
+   "operation_refs": [
+    "operation.project.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Create Project",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.project",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "delete",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.project.delete",
+   "operation_refs": [
+    "operation.project.delete"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Delete Project",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.project",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.project.list",
+   "operation_refs": [
+    "operation.project.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: List Projects",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.project",
+   "roles": [
+    "role.manager",
+    "role.employee"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.project.progress",
+   "operation_refs": [
+    "operation.project.progress"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Get project progress",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.project",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "read",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.project.read",
+   "operation_refs": [
+    "operation.project.read"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: View Project",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.project",
+   "roles": [
+    "role.manager",
+    "role.employee"
+   ]
+  },
+  {
+   "action": "update",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.project.update",
+   "operation_refs": [
+    "operation.project.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Update Project",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.project",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "create",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.project_member.create",
+   "operation_refs": [
+    "operation.project_member.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Create Project Member",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.project_member",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "delete",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.project_member.delete",
+   "operation_refs": [
+    "operation.project_member.delete"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Delete Project Member",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.project_member",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.project_member.list",
+   "operation_refs": [
+    "operation.project_member.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: List Project Members",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.project_member",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "create",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.task.create",
+   "operation_refs": [
+    "operation.task.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Create Task",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.task",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "delete",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.task.delete",
+   "operation_refs": [
+    "operation.task.delete"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Delete Task",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.task",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.task.list",
+   "operation_refs": [
+    "operation.task.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: List Tasks",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.task",
+   "roles": [
+    "role.manager",
+    "role.employee"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [
+    "Only tasks assigned to the caller"
+   ],
+   "id": "permission.task.list_assigned",
+   "operation_refs": [
+    "operation.task.list_assigned"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: List my assigned tasks",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.task",
+   "roles": [
+    "role.employee"
+   ]
+  },
+  {
+   "action": "read",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.task.read",
+   "operation_refs": [
+    "operation.task.read"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: View Task",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.task",
+   "roles": [
+    "role.manager",
+    "role.employee"
+   ]
+  },
+  {
+   "action": "update",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.task.update",
+   "operation_refs": [
+    "operation.task.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Update Task",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.task",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  {
+   "action": "update",
+   "assumption_refs": [],
+   "conditions": [
+    "Employees may only change tasks assigned to them"
+   ],
+   "id": "permission.task.update_status",
+   "operation_refs": [
+    "operation.task.update_status"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Update task status",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.task",
+   "roles": [
+    "role.manager",
+    "role.employee"
+   ]
+  },
+  {
+   "action": "execute",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.user.logout",
+   "operation_refs": [
+    "operation.user.logout"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Log out",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.user",
+   "roles": [
+    "role.manager",
+    "role.employee"
+   ]
+  }
+ ],
+ "project_id": "project.task_manager",
+ "roles": [
+  {
+   "description": "Authority held by a Employee.",
+   "id": "role.employee",
+   "inherits": [],
+   "name": "Employee",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Build a SaaS application for managing a small company's employees, projects and tasks.",
+     "type": "user_requirement"
+    }
+   }
+  },
+  {
+   "description": "Authority held by a Manager.",
+   "id": "role.manager",
+   "inherits": [],
+   "name": "Manager",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Managers can create projects and assign employees to projects.",
+     "type": "user_requirement"
+    }
+   }
+  }
+ ],
+ "state_machines": [
+  {
+   "entity_ref": "entity.task",
+   "field": "status",
+   "id": "state_machine.task",
+   "initial_state": "todo",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_status, which the user stated",
+     "type": "derived"
+    }
+   },
+   "states": [
+    "todo",
+    "in_progress",
+    "completed"
+   ],
+   "transitions": [
+    {
+     "from": "todo",
+     "guard": "",
+     "operation_ref": "operation.task.update_status",
+     "role_refs": [
+      "role.manager",
+      "role.employee"
+     ],
+     "to": "in_progress"
+    },
+    {
+     "from": "in_progress",
+     "guard": "",
+     "operation_ref": "operation.task.update_status",
+     "role_refs": [
+      "role.manager",
+      "role.employee"
+     ],
+     "to": "completed"
+    },
+    {
+     "from": "in_progress",
+     "guard": "",
+     "operation_ref": "operation.task.update_status",
+     "role_refs": [
+      "role.manager",
+      "role.employee"
+     ],
+     "to": "todo"
+    }
+   ]
+  }
+ ],
+ "validations": [
+  {
+   "condition": "name, description must be provided",
+   "failure": {
+    "action": "reject",
+    "error_code": "DEPARTMENT_FIELDS_REQUIRED",
+    "message": "name, description are required"
+   },
+   "id": "validation.department.required_fields",
+   "kind": "required",
+   "name": "Department required fields",
+   "operation_refs": [
+    "operation.department.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.department_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.department",
+    "field": null
+   }
+  },
+  {
+   "condition": "user_id, department_id, job_title must be provided",
+   "failure": {
+    "action": "reject",
+    "error_code": "EMPLOYEE_FIELDS_REQUIRED",
+    "message": "user_id, department_id, job_title are required"
+   },
+   "id": "validation.employee.required_fields",
+   "kind": "required",
+   "name": "Employee required fields",
+   "operation_refs": [
+    "operation.employee.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.employee_directory, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.employee",
+    "field": null
+   }
+  },
+  {
+   "condition": "caller has role manager",
+   "failure": {
+    "action": "reject",
+    "error_code": "PROJECT_DELETE_FORBIDDEN",
+    "message": "Only managers can delete projects"
+   },
+   "id": "validation.project.only_managers_delete",
+   "kind": "authorization",
+   "name": "Only managers delete projects",
+   "operation_refs": [
+    "operation.project.delete"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.project",
+    "field": null
+   }
+  },
+  {
+   "condition": "name, description must be provided",
+   "failure": {
+    "action": "reject",
+    "error_code": "PROJECT_FIELDS_REQUIRED",
+    "message": "name, description are required"
+   },
+   "id": "validation.project.required_fields",
+   "kind": "required",
+   "name": "Project required fields",
+   "operation_refs": [
+    "operation.project.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.project",
+    "field": null
+   }
+  },
+  {
+   "condition": "project_id, user_id must be provided",
+   "failure": {
+    "action": "reject",
+    "error_code": "PROJECT_MEMBER_FIELDS_REQUIRED",
+    "message": "project_id, user_id are required"
+   },
+   "id": "validation.project_member.required_fields",
+   "kind": "required",
+   "name": "Project Member required fields",
+   "operation_refs": [
+    "operation.project_member.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_assignment, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.project_member",
+    "field": null
+   }
+  },
+  {
+   "condition": "a task may only move to completed when assignee_id is set",
+   "failure": {
+    "action": "block_transition",
+    "error_code": "TASK_NO_ASSIGNEE",
+    "message": "A task cannot be completed without an assignee"
+   },
+   "id": "validation.task.completed_needs_assignee",
+   "kind": "state",
+   "name": "Completed tasks need an assignee",
+   "operation_refs": [
+    "operation.task.update_status"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_status, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.task",
+    "field": "assignee_id"
+   }
+  },
+  {
+   "condition": "caller is the assignee or has role manager",
+   "failure": {
+    "action": "reject",
+    "error_code": "TASK_NOT_ASSIGNED_TO_CALLER",
+    "message": "Employees can only update tasks assigned to them"
+   },
+   "id": "validation.task.employee_updates_own",
+   "kind": "ownership",
+   "name": "Employees update only their own tasks",
+   "operation_refs": [
+    "operation.task.update_status"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_status, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.task",
+    "field": null
+   }
+  },
+  {
+   "condition": "title, project_id must be provided",
+   "failure": {
+    "action": "reject",
+    "error_code": "TASK_FIELDS_REQUIRED",
+    "message": "title, project_id are required"
+   },
+   "id": "validation.task.required_fields",
+   "kind": "required",
+   "name": "Task required fields",
+   "operation_refs": [
+    "operation.task.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.task",
+    "field": null
+   }
+  },
+  {
+   "condition": "email matches a valid email address pattern",
+   "failure": {
+    "action": "reject",
+    "error_code": "INVALID_EMAIL",
+    "message": "Enter a valid email address"
+   },
+   "id": "validation.user.email_format",
+   "kind": "format",
+   "name": "Email must be well formed",
+   "operation_refs": [
+    "operation.user.login",
+    "operation.user.request_password_reset"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.user",
+    "field": "email"
+   }
+  },
+  {
+   "condition": "email and password match an existing account",
+   "failure": {
+    "action": "reject",
+    "error_code": "INVALID_CREDENTIALS",
+    "message": "Email or password is wrong"
+   },
+   "id": "validation.user.invalid_login",
+   "kind": "authorization",
+   "name": "Wrong credentials are rejected",
+   "operation_refs": [
+    "operation.user.login"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.user",
+    "field": null
+   }
+  }
+ ],
+ "workflows": [
+  {
+   "actor_refs": [
+    "actor.manager",
+    "actor.employee"
+   ],
+   "capability_refs": [
+    "capability.authentication"
+   ],
+   "description": "Log in workflow of Authentication.",
+   "id": "workflow.auth.login",
+   "name": "Log in",
+   "outcome": "The user is authenticated and sees their home screen",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Login",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.login",
+     "type": "navigation"
+    },
+    {
+     "description": "Enter email and password",
+     "id": "step.02_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Log in",
+     "id": "step.03_act",
+     "next": [],
+     "operation_ref": "operation.user.login",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Redirect the user to their home screen",
+     "id": "step.04_sys",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "system"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager",
+    "actor.employee"
+   ],
+   "capability_refs": [
+    "capability.authentication"
+   ],
+   "description": "Log out workflow of Authentication.",
+   "id": "workflow.auth.logout",
+   "name": "Log out",
+   "outcome": "The session ends and the login screen is shown",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Choose log out",
+     "id": "step.01_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Log out",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.user.logout",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Login",
+     "id": "step.03_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.login",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager",
+    "actor.employee"
+   ],
+   "capability_refs": [
+    "capability.authentication"
+   ],
+   "description": "Reset password workflow of Authentication.",
+   "id": "workflow.auth.password_reset",
+   "name": "Reset password",
+   "outcome": "The password is changed and the user can log in again",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.authentication, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Forgot Password",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.forgot_password",
+     "type": "navigation"
+    },
+    {
+     "description": "Enter the account email",
+     "id": "step.02_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Request password reset",
+     "id": "step.03_act",
+     "next": [],
+     "operation_ref": "operation.user.request_password_reset",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Reset Password",
+     "id": "step.04_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.reset_password",
+     "type": "navigation"
+    },
+    {
+     "description": "Enter the new password",
+     "id": "step.05_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Reset password",
+     "id": "step.06_act",
+     "next": [],
+     "operation_ref": "operation.user.reset_password",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Login",
+     "id": "step.07_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.login",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.employee"
+   ],
+   "capability_refs": [
+    "capability.employee_dashboard"
+   ],
+   "description": "View my dashboard workflow of Employee dashboard.",
+   "id": "workflow.dashboard.employee_view",
+   "name": "View my dashboard",
+   "outcome": "The employee sees their assigned tasks",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.employee_dashboard, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Employee Dashboard",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.dashboard.employee",
+     "type": "navigation"
+    },
+    {
+     "description": "List my assigned tasks",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.task.list_assigned",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.project_progress"
+   ],
+   "description": "View project progress workflow of Project progress dashboard.",
+   "id": "workflow.dashboard.manager_progress",
+   "name": "View project progress",
+   "outcome": "The manager sees progress per project",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_progress, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Project Progress Dashboard",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.dashboard.manager",
+     "type": "navigation"
+    },
+    {
+     "description": "Get project progress",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.project.progress",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager",
+    "actor.employee"
+   ],
+   "capability_refs": [
+    "capability.department_management"
+   ],
+   "description": "Browse Departments workflow of Department management.",
+   "id": "workflow.department.browse",
+   "name": "Browse Departments",
+   "outcome": "The Department information is displayed",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.department_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Department List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.department.list",
+     "type": "navigation"
+    },
+    {
+     "description": "List Departments",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.department.list",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.department_management"
+   ],
+   "description": "Create Department workflow of Department management.",
+   "id": "workflow.department.create",
+   "name": "Create Department",
+   "outcome": "The Department is created and appears in the Department list",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.department_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Department List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.department.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Create Department",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.department.create",
+     "type": "navigation"
+    },
+    {
+     "description": "Fill in the Department form",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Create Department",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.department.create",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Department List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.department.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.department_management"
+   ],
+   "description": "Update Department workflow of Department management.",
+   "id": "workflow.department.update",
+   "name": "Update Department",
+   "outcome": "The changes to the Department are saved",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.department_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Department List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.department.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Edit Department",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.department.edit",
+     "type": "navigation"
+    },
+    {
+     "description": "Change the Department details",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Update Department",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.department.update",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Department List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.department.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.employee_directory"
+   ],
+   "description": "Browse Employees workflow of Employee directory.",
+   "id": "workflow.employee.browse",
+   "name": "Browse Employees",
+   "outcome": "The Employee information is displayed",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.employee_directory, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Employee List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.employee.list",
+     "type": "navigation"
+    },
+    {
+     "description": "List Employees",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.employee.list",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Employee Details",
+     "id": "step.03_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.employee.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "View Employee",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.employee.read",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.employee_directory"
+   ],
+   "description": "Create Employee workflow of Employee directory.",
+   "id": "workflow.employee.create",
+   "name": "Create Employee",
+   "outcome": "The Employee is created and appears in the Employee list",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.employee_directory, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Employee List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.employee.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Create Employee",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.employee.create",
+     "type": "navigation"
+    },
+    {
+     "description": "Fill in the Employee form",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Create Employee",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.employee.create",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Employee List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.employee.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.employee_directory"
+   ],
+   "description": "Update Employee workflow of Employee directory.",
+   "id": "workflow.employee.update",
+   "name": "Update Employee",
+   "outcome": "The changes to the Employee are saved",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.employee_directory, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Employee Details",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.employee.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Edit Employee",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.employee.edit",
+     "type": "navigation"
+    },
+    {
+     "description": "Change the Employee details",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Update Employee",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.employee.update",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Employee List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.employee.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager",
+    "actor.employee"
+   ],
+   "capability_refs": [
+    "capability.project_management"
+   ],
+   "description": "Browse Projects workflow of Project management.",
+   "id": "workflow.project.browse",
+   "name": "Browse Projects",
+   "outcome": "The Project information is displayed",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Project List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project.list",
+     "type": "navigation"
+    },
+    {
+     "description": "List Projects",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.project.list",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Project Details",
+     "id": "step.03_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "View Project",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.project.read",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.project_management"
+   ],
+   "description": "Create Project workflow of Project management.",
+   "id": "workflow.project.create",
+   "name": "Create Project",
+   "outcome": "The Project is created and appears in the Project list",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Project List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Create Project",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project.create",
+     "type": "navigation"
+    },
+    {
+     "description": "Fill in the Project form",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Create Project",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.project.create",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Project List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.project_management"
+   ],
+   "description": "Delete Project workflow of Project management.",
+   "id": "workflow.project.delete",
+   "name": "Delete Project",
+   "outcome": "The Project is removed from the Project list",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Project List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Confirm deleting the Project",
+     "id": "step.02_decide",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "decision"
+    },
+    {
+     "description": "Delete Project",
+     "id": "step.03_act",
+     "next": [],
+     "operation_ref": "operation.project.delete",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Project List",
+     "id": "step.04_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.project_management"
+   ],
+   "description": "Update Project workflow of Project management.",
+   "id": "workflow.project.update",
+   "name": "Update Project",
+   "outcome": "The changes to the Project are saved",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Project Details",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Edit Project",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project.edit",
+     "type": "navigation"
+    },
+    {
+     "description": "Change the Project details",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Update Project",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.project.update",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Project List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.project_assignment"
+   ],
+   "description": "Browse Project Members workflow of Project assignment.",
+   "id": "workflow.project_member.browse",
+   "name": "Browse Project Members",
+   "outcome": "The Project Member information is displayed",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_assignment, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Project Member List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project_member.list",
+     "type": "navigation"
+    },
+    {
+     "description": "List Project Members",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.project_member.list",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.project_assignment"
+   ],
+   "description": "Create Project Member workflow of Project assignment.",
+   "id": "workflow.project_member.create",
+   "name": "Create Project Member",
+   "outcome": "The Project Member is created and appears in the Project Member list",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_assignment, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Project Member List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project_member.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Create Project Member",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project_member.create",
+     "type": "navigation"
+    },
+    {
+     "description": "Fill in the Project Member form",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Create Project Member",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.project_member.create",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Project Member List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project_member.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.project_assignment"
+   ],
+   "description": "Delete Project Member workflow of Project assignment.",
+   "id": "workflow.project_member.delete",
+   "name": "Delete Project Member",
+   "outcome": "The Project Member is removed from the Project Member list",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.project_assignment, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Project Member List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project_member.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Confirm deleting the Project Member",
+     "id": "step.02_decide",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "decision"
+    },
+    {
+     "description": "Delete Project Member",
+     "id": "step.03_act",
+     "next": [],
+     "operation_ref": "operation.project_member.delete",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Project Member List",
+     "id": "step.04_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.project_member.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager",
+    "actor.employee"
+   ],
+   "capability_refs": [
+    "capability.task_management"
+   ],
+   "description": "Browse Tasks workflow of Task management.",
+   "id": "workflow.task.browse",
+   "name": "Browse Tasks",
+   "outcome": "The Task information is displayed",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Task List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.list",
+     "type": "navigation"
+    },
+    {
+     "description": "List Tasks",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.task.list",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Task Details",
+     "id": "step.03_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "View Task",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.task.read",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.task_management"
+   ],
+   "description": "Create Task workflow of Task management.",
+   "id": "workflow.task.create",
+   "name": "Create Task",
+   "outcome": "The Task is created and appears in the Task list",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Task List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Create Task",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.create",
+     "type": "navigation"
+    },
+    {
+     "description": "Fill in the Task form",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Create Task",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.task.create",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Task List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.task_management"
+   ],
+   "description": "Delete Task workflow of Task management.",
+   "id": "workflow.task.delete",
+   "name": "Delete Task",
+   "outcome": "The Task is removed from the Task list",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Task List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Confirm deleting the Task",
+     "id": "step.02_decide",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "decision"
+    },
+    {
+     "description": "Delete Task",
+     "id": "step.03_act",
+     "next": [],
+     "operation_ref": "operation.task.delete",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Task List",
+     "id": "step.04_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager"
+   ],
+   "capability_refs": [
+    "capability.task_management"
+   ],
+   "description": "Update Task workflow of Task management.",
+   "id": "workflow.task.update",
+   "name": "Update Task",
+   "outcome": "The changes to the Task are saved",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_management, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Task Details",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Edit Task",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.edit",
+     "type": "navigation"
+    },
+    {
+     "description": "Change the Task details",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Update Task",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.task.update",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Task List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.manager",
+    "actor.employee"
+   ],
+   "capability_refs": [
+    "capability.task_status"
+   ],
+   "description": "Update task status workflow of Task status tracking.",
+   "id": "workflow.task.update_status",
+   "name": "Update task status",
+   "outcome": "The task shows its new status",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.task_status, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Task List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Task Details",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "Choose the new status",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Update task status",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.task.update_status",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Task Details",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.task.detail",
+     "type": "navigation"
+    }
+   ]
+  }
+ ]
+}

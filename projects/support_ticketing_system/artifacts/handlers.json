@@ -1,0 +1,10 @@
+{
+  "operation.ticket.stats": {
+    "meta": {},
+    "notes": [],
+    "reason": "aggregate: the response schema is the plain entity list",
+    "source": "llm",
+    "stage": "api_implementation",
+    "status": "not_implemented"
+  }
+}

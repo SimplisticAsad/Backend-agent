@@ -1,0 +1,1642 @@
+{
+  "api": {
+    "base_path": "",
+    "note": "paths are served exactly as in api.json; the Frontend dev proxy strips its /api prefix",
+    "versioning": "none"
+  },
+  "auth": {
+    "entity": "entity.user",
+    "identity_field": "email",
+    "login_response_schema": "schema.user",
+    "operations": {
+      "auth.login": "operation.user.login",
+      "auth.logout": "operation.user.logout",
+      "auth.request_password_reset": "operation.user.request_password_reset",
+      "auth.reset_password": "operation.user.reset_password"
+    },
+    "password_field": "password_hash",
+    "role_field": "role",
+    "role_map": {
+      "agent": "role.agent",
+      "customer": "role.customer",
+      "manager": "role.manager"
+    },
+    "table": "users"
+  },
+  "coverage": [
+    {
+      "enforced_by": "rule:frozen_state",
+      "operations": [
+        "operation.ticket.update"
+      ],
+      "source": "validation.ticket.closed_read_only"
+    },
+    {
+      "enforced_by": "request_schema",
+      "operations": [
+        "operation.ticket.create"
+      ],
+      "source": "validation.ticket.required_fields"
+    },
+    {
+      "enforced_by": "request_schema",
+      "operations": [
+        "operation.ticket_comment.create"
+      ],
+      "source": "validation.ticket_comment.required_fields"
+    },
+    {
+      "enforced_by": "request_schema",
+      "operations": [
+        "operation.user.login",
+        "operation.user.request_password_reset"
+      ],
+      "source": "validation.user.email_format"
+    },
+    {
+      "enforced_by": "authentication",
+      "operations": [
+        "operation.user.login"
+      ],
+      "source": "validation.user.invalid_login"
+    }
+  ],
+  "entities": {
+    "entity.ticket": {
+      "class_name": "Ticket",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "title",
+          "column": "title",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "string",
+          "unique": false
+        },
+        {
+          "attr": "description",
+          "column": "description",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "text",
+          "unique": false
+        },
+        {
+          "attr": "status",
+          "column": "status",
+          "enum": [
+            "open",
+            "in_progress",
+            "resolved",
+            "closed"
+          ],
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "enum",
+          "unique": false
+        },
+        {
+          "attr": "priority",
+          "column": "priority",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "urgent"
+          ],
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "enum",
+          "unique": false
+        },
+        {
+          "attr": "requester_id",
+          "column": "requester_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "assignee_id",
+          "column": "assignee_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": true,
+          "pg_type": "uuid",
+          "ref": "entity.user",
+          "required": false,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "created_at",
+          "column": "created_at",
+          "enum": null,
+          "has_default": true,
+          "nullable": true,
+          "pg_type": "timestamptz",
+          "ref": null,
+          "required": false,
+          "type": "datetime",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "requester_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        },
+        {
+          "columns": [
+            "assignee_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        }
+      ],
+      "hidden_columns": [],
+      "id": "entity.ticket",
+      "id_has_default": true,
+      "key": "ticket",
+      "response_fields": [
+        "id",
+        "title",
+        "description",
+        "status",
+        "priority",
+        "requester_id",
+        "assignee_id",
+        "created_at"
+      ],
+      "state_machine": "state_machine.ticket",
+      "table": "tickets",
+      "text_columns": [
+        "title",
+        "description"
+      ],
+      "unique_columns": []
+    },
+    "entity.ticket_comment": {
+      "class_name": "TicketComment",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "ticket_id",
+          "column": "ticket_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": "entity.ticket",
+          "required": true,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "author_id",
+          "column": "author_id",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid",
+          "unique": false
+        },
+        {
+          "attr": "body",
+          "column": "body",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "text",
+          "unique": false
+        },
+        {
+          "attr": "created_at",
+          "column": "created_at",
+          "enum": null,
+          "has_default": true,
+          "nullable": true,
+          "pg_type": "timestamptz",
+          "ref": null,
+          "required": false,
+          "type": "datetime",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "columns": [
+            "ticket_id"
+          ],
+          "on_delete": "CASCADE",
+          "ref_table": "tickets"
+        },
+        {
+          "columns": [
+            "author_id"
+          ],
+          "on_delete": "RESTRICT",
+          "ref_table": "users"
+        }
+      ],
+      "hidden_columns": [],
+      "id": "entity.ticket_comment",
+      "id_has_default": true,
+      "key": "ticket_comment",
+      "response_fields": [
+        "id",
+        "ticket_id",
+        "author_id",
+        "body",
+        "created_at"
+      ],
+      "state_machine": null,
+      "table": "ticket_comments",
+      "text_columns": [
+        "body"
+      ],
+      "unique_columns": []
+    },
+    "entity.user": {
+      "class_name": "User",
+      "columns": [
+        {
+          "attr": "id",
+          "column": "id",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "uuid",
+          "ref": null,
+          "required": true,
+          "type": "uuid",
+          "unique": true
+        },
+        {
+          "attr": "email",
+          "column": "email",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "email",
+          "unique": true
+        },
+        {
+          "attr": "password_hash",
+          "column": "password_hash",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "string",
+          "unique": false
+        },
+        {
+          "attr": "full_name",
+          "column": "full_name",
+          "enum": null,
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "string",
+          "unique": false
+        },
+        {
+          "attr": "role",
+          "column": "role",
+          "enum": [
+            "customer",
+            "agent",
+            "manager"
+          ],
+          "has_default": false,
+          "nullable": false,
+          "pg_type": "text",
+          "ref": null,
+          "required": true,
+          "type": "enum",
+          "unique": false
+        },
+        {
+          "attr": "created_at",
+          "column": "created_at",
+          "enum": null,
+          "has_default": true,
+          "nullable": false,
+          "pg_type": "timestamptz",
+          "ref": null,
+          "required": true,
+          "type": "datetime",
+          "unique": false
+        }
+      ],
+      "foreign_keys": [],
+      "hidden_columns": [
+        "password_hash"
+      ],
+      "id": "entity.user",
+      "id_has_default": true,
+      "key": "user",
+      "response_fields": [
+        "id",
+        "email",
+        "full_name",
+        "role",
+        "created_at"
+      ],
+      "state_machine": null,
+      "table": "users",
+      "text_columns": [
+        "full_name"
+      ],
+      "unique_columns": [
+        [
+          "email"
+        ]
+      ]
+    }
+  },
+  "handlers": {
+    "operation.ticket.stats": {
+      "meta": {},
+      "notes": [],
+      "reason": "aggregate: the response schema is the plain entity list",
+      "source": "llm",
+      "stage": "api_implementation",
+      "status": "not_implemented"
+    }
+  },
+  "notes": [
+    "entity.ticket: rows are private to the user in 'requester_id' for roles ['customer'] (the graph does not state this; inferred because the field is server-assigned on create)",
+    "entity.ticket_comment: rows inherit the privacy of their parent entity.ticket (via ticket_id) for roles ['customer']"
+  ],
+  "operations": {
+    "operation.ticket.assign": {
+      "access": "restricted",
+      "action": "update",
+      "cardinality": "one",
+      "description": "Assign ticket.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.ticket.assign",
+        "method": "PATCH",
+        "path": "/tickets/{id}/assignee",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": "schema.ticket.assign",
+        "response_schema": "schema.ticket",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.ticket",
+      "errors": [
+        {
+          "code": "TICKET_NOT_FOUND",
+          "description": "The ticket does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.ticket.assign",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id",
+          "assignee_id"
+        ]
+      },
+      "kind": "update",
+      "name": "Assign ticket",
+      "not_found_code": "TICKET_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.ticket",
+      "type": "command"
+    },
+    "operation.ticket.change_status": {
+      "access": "restricted",
+      "action": "update",
+      "cardinality": "one",
+      "description": "Change ticket status.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.ticket.change_status",
+        "method": "PATCH",
+        "path": "/tickets/{id}/status",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": "schema.ticket.change_status",
+        "response_schema": "schema.ticket",
+        "roles": [
+          "role.agent",
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.ticket",
+      "errors": [
+        {
+          "code": "TICKET_NOT_FOUND",
+          "description": "The ticket does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.ticket.change_status",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id",
+          "status"
+        ]
+      },
+      "kind": "transition",
+      "name": "Change ticket status",
+      "not_found_code": "TICKET_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "field": "status",
+        "state_machine": "state_machine.ticket"
+      },
+      "roles": [
+        "role.agent",
+        "role.manager"
+      ],
+      "service": "service.ticket",
+      "type": "command"
+    },
+    "operation.ticket.create": {
+      "access": "restricted",
+      "action": "create",
+      "cardinality": "one",
+      "description": "Create Ticket.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.ticket.create",
+        "method": "POST",
+        "path": "/tickets",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.ticket.create",
+        "response_schema": "schema.ticket",
+        "roles": [
+          "role.customer"
+        ],
+        "status_code": 201
+      },
+      "entity": "entity.ticket",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.ticket.create",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "title",
+          "description",
+          "priority"
+        ]
+      },
+      "kind": "create",
+      "name": "Create Ticket",
+      "not_found_code": "TICKET_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "owner_fields": [
+          "requester_id"
+        ],
+        "server_fields": {
+          "created_at": "db_default_or_now",
+          "requester_id": "principal.id",
+          "status": "initial_state"
+        }
+      },
+      "roles": [
+        "role.customer"
+      ],
+      "service": "service.ticket",
+      "type": "command"
+    },
+    "operation.ticket.list": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "List Tickets.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.ticket.list",
+        "method": "GET",
+        "path": "/tickets",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.ticket",
+        "roles": [
+          "role.agent",
+          "role.customer",
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.ticket",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.ticket.list",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "List Tickets",
+      "not_found_code": "TICKET_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "search": false
+      },
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ],
+      "service": "service.ticket",
+      "type": "query"
+    },
+    "operation.ticket.read": {
+      "access": "restricted",
+      "action": "read",
+      "cardinality": "one",
+      "description": "View Ticket.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.ticket.read",
+        "method": "GET",
+        "path": "/tickets/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.ticket",
+        "roles": [
+          "role.agent",
+          "role.customer",
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.ticket",
+      "errors": [
+        {
+          "code": "TICKET_NOT_FOUND",
+          "description": "The Ticket does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.ticket.read",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "read",
+      "name": "View Ticket",
+      "not_found_code": "TICKET_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ],
+      "service": "service.ticket",
+      "type": "query"
+    },
+    "operation.ticket.stats": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "Get ticket statistics.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.ticket.stats",
+        "method": "GET",
+        "path": "/tickets/stats",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.ticket",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.ticket",
+      "errors": [],
+      "handler": "custom",
+      "id": "operation.ticket.stats",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "aggregate",
+      "name": "Get ticket statistics",
+      "not_found_code": "TICKET_NOT_FOUND",
+      "notes": [
+        "aggregate: the response schema is the plain entity list"
+      ],
+      "params": {},
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.ticket",
+      "type": "query"
+    },
+    "operation.ticket.update": {
+      "access": "restricted",
+      "action": "update",
+      "cardinality": "one",
+      "description": "Update Ticket.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.ticket.update",
+        "method": "PATCH",
+        "path": "/tickets/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_schema": "schema.ticket.update",
+        "response_schema": "schema.ticket",
+        "roles": [
+          "role.agent",
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.ticket",
+      "errors": [
+        {
+          "code": "TICKET_NOT_FOUND",
+          "description": "The Ticket does not exist"
+        }
+      ],
+      "handler": "engine",
+      "id": "operation.ticket.update",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [
+          "title",
+          "description",
+          "priority"
+        ],
+        "required_fields": [
+          "id"
+        ]
+      },
+      "kind": "update",
+      "name": "Update Ticket",
+      "not_found_code": "TICKET_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [
+        "role.agent",
+        "role.manager"
+      ],
+      "service": "service.ticket",
+      "type": "command"
+    },
+    "operation.ticket_comment.create": {
+      "access": "restricted",
+      "action": "create",
+      "cardinality": "one",
+      "description": "Create Comment.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.ticket_comment.create",
+        "method": "POST",
+        "path": "/ticket-comments",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.ticket_comment.create",
+        "response_schema": "schema.ticket_comment",
+        "roles": [
+          "role.agent",
+          "role.customer"
+        ],
+        "status_code": 201
+      },
+      "entity": "entity.ticket_comment",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.ticket_comment.create",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "ticket_id",
+          "body"
+        ]
+      },
+      "kind": "create",
+      "name": "Create Comment",
+      "not_found_code": "TICKET_COMMENT_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "owner_fields": [
+          "author_id"
+        ],
+        "server_fields": {
+          "author_id": "principal.id",
+          "created_at": "db_default_or_now"
+        }
+      },
+      "roles": [
+        "role.agent",
+        "role.customer"
+      ],
+      "service": "service.ticket_comment",
+      "type": "command"
+    },
+    "operation.ticket_comment.list": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "List Comments.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.ticket_comment.list",
+        "method": "GET",
+        "path": "/ticket-comments",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.ticket_comment",
+        "roles": [
+          "role.agent",
+          "role.customer",
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.ticket_comment",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.ticket_comment.list",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "List Comments",
+      "not_found_code": "TICKET_COMMENT_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "search": false
+      },
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ],
+      "service": "service.ticket_comment",
+      "type": "query"
+    },
+    "operation.user.list_agents": {
+      "access": "restricted",
+      "action": "list",
+      "cardinality": "many",
+      "description": "List agents.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.user.list_agents",
+        "method": "GET",
+        "path": "/users/agents",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": "schema.user",
+        "roles": [
+          "role.manager"
+        ],
+        "status_code": 200
+      },
+      "entity": "entity.user",
+      "errors": [],
+      "handler": "engine",
+      "id": "operation.user.list_agents",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "list",
+      "name": "List agents",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {
+        "filters": [],
+        "implicit_filter": {
+          "field": "role",
+          "value": "agent"
+        },
+        "search": false
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "service": "service.user",
+      "type": "query"
+    },
+    "operation.user.login": {
+      "access": "public",
+      "action": "execute",
+      "cardinality": "one",
+      "description": "Log in.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.user.login",
+        "method": "POST",
+        "path": "/auth/login",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.user.login",
+        "response_schema": "schema.user",
+        "roles": [],
+        "status_code": 200
+      },
+      "entity": "entity.user",
+      "errors": [
+        {
+          "code": "INVALID_CREDENTIALS",
+          "description": "Email or password is wrong"
+        }
+      ],
+      "handler": "auth",
+      "id": "operation.user.login",
+      "input": {
+        "extra_fields": [
+          "password"
+        ],
+        "optional_fields": [],
+        "required_fields": [
+          "email"
+        ]
+      },
+      "kind": "auth.login",
+      "name": "Log in",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.user",
+      "type": "command"
+    },
+    "operation.user.logout": {
+      "access": "authenticated",
+      "action": "execute",
+      "cardinality": "none",
+      "description": "Log out.",
+      "endpoint": {
+        "authenticated": true,
+        "id": "api.user.logout",
+        "method": "POST",
+        "path": "/auth/logout",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": null,
+        "response_schema": null,
+        "roles": [],
+        "status_code": 204
+      },
+      "entity": "entity.user",
+      "errors": [],
+      "handler": "auth",
+      "id": "operation.user.logout",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "auth.logout",
+      "name": "Log out",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.user",
+      "type": "command"
+    },
+    "operation.user.request_password_reset": {
+      "access": "public",
+      "action": "execute",
+      "cardinality": "none",
+      "description": "Request password reset.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.user.request_password_reset",
+        "method": "POST",
+        "path": "/auth/forgot-password",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.user.request_password_reset",
+        "response_schema": null,
+        "roles": [],
+        "status_code": 204
+      },
+      "entity": "entity.user",
+      "errors": [],
+      "handler": "auth",
+      "id": "operation.user.request_password_reset",
+      "input": {
+        "extra_fields": [],
+        "optional_fields": [],
+        "required_fields": [
+          "email"
+        ]
+      },
+      "kind": "auth.request_password_reset",
+      "name": "Request password reset",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.user",
+      "type": "command"
+    },
+    "operation.user.reset_password": {
+      "access": "public",
+      "action": "execute",
+      "cardinality": "none",
+      "description": "Reset password.",
+      "endpoint": {
+        "authenticated": false,
+        "id": "api.user.reset_password",
+        "method": "POST",
+        "path": "/auth/reset-password",
+        "path_params": [],
+        "query_params": [],
+        "request_schema": "schema.user.reset_password",
+        "response_schema": null,
+        "roles": [],
+        "status_code": 204
+      },
+      "entity": "entity.user",
+      "errors": [
+        {
+          "code": "INVALID_RESET_TOKEN",
+          "description": "The reset token is invalid or expired"
+        }
+      ],
+      "handler": "auth",
+      "id": "operation.user.reset_password",
+      "input": {
+        "extra_fields": [
+          "reset_token",
+          "new_password"
+        ],
+        "optional_fields": [],
+        "required_fields": []
+      },
+      "kind": "auth.reset_password",
+      "name": "Reset password",
+      "not_found_code": "USER_NOT_FOUND",
+      "notes": [],
+      "params": {},
+      "roles": [],
+      "service": "service.user",
+      "type": "command"
+    }
+  },
+  "project": {
+    "description": "A helpdesk where customers raise tickets and agents resolve them.",
+    "id": "project.support_ticketing_system",
+    "key": "support_ticketing_system",
+    "name": "Support Ticketing System",
+    "package": "backend_app"
+  },
+  "roles": {
+    "role.agent": {
+      "inherits": [],
+      "key": "agent"
+    },
+    "role.customer": {
+      "inherits": [],
+      "key": "customer"
+    },
+    "role.manager": {
+      "inherits": [],
+      "key": "manager"
+    }
+  },
+  "rules": [
+    {
+      "entity": "entity.ticket",
+      "error_code": "TICKET_CLOSED",
+      "field": "status",
+      "id": "rule.frozen.ticket.closed_read_only",
+      "message": "Closed tickets cannot be changed",
+      "operations": [
+        "operation.ticket.update"
+      ],
+      "origin": "validation",
+      "source": "validation.ticket.closed_read_only",
+      "states": [
+        "closed"
+      ],
+      "status": 409,
+      "type": "frozen_state"
+    },
+    {
+      "entity": "entity.ticket",
+      "id": "rule.scope.implicit.ticket.requester_id",
+      "operations": [
+        "operation.ticket.list",
+        "operation.ticket.read"
+      ],
+      "origin": "implicit_data_subject",
+      "roles": [
+        "role.customer"
+      ],
+      "scope": {
+        "field": "requester_id"
+      },
+      "source": "heuristic:entity.ticket.requester_id is assigned from the caller on create",
+      "type": "row_scope"
+    },
+    {
+      "entity": "entity.ticket_comment",
+      "id": "rule.scope.implicit.ticket_comment.via_ticket_id",
+      "operations": [
+        "operation.ticket_comment.create",
+        "operation.ticket_comment.list"
+      ],
+      "origin": "implicit_parent_scope",
+      "roles": [
+        "role.customer"
+      ],
+      "scope": {
+        "fk": "ticket_id",
+        "parent_entity": "entity.ticket",
+        "parent_scope": {
+          "field": "requester_id"
+        }
+      },
+      "source": "heuristic:entity.ticket_comment belongs to entity.ticket which is private to its owner",
+      "type": "row_scope"
+    }
+  ],
+  "schemas": {
+    "schema.ticket": {
+      "class_name": "TicketResponse",
+      "entity": "entity.ticket",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "title",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "description",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "text"
+        },
+        {
+          "base": "enum",
+          "enum": [
+            "open",
+            "in_progress",
+            "resolved",
+            "closed"
+          ],
+          "name": "status",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "enum"
+        },
+        {
+          "base": "enum",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "urgent"
+          ],
+          "name": "priority",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "enum"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "requester_id",
+          "non_empty": false,
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "assignee_id",
+          "non_empty": false,
+          "ref": "entity.user",
+          "required": false,
+          "type": "uuid"
+        },
+        {
+          "base": "datetime",
+          "enum": null,
+          "name": "created_at",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "datetime"
+        }
+      ],
+      "id": "schema.ticket",
+      "kind": "response",
+      "name": "Ticket"
+    },
+    "schema.ticket.assign": {
+      "class_name": "TicketAssignRequest",
+      "entity": "entity.ticket",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "assignee_id",
+          "non_empty": false,
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid>user"
+        }
+      ],
+      "id": "schema.ticket.assign",
+      "kind": "request",
+      "name": "Assign ticket request"
+    },
+    "schema.ticket.change_status": {
+      "class_name": "TicketChangeStatusRequest",
+      "entity": "entity.ticket",
+      "fields": [
+        {
+          "base": "enum",
+          "enum": [
+            "open",
+            "in_progress",
+            "resolved",
+            "closed"
+          ],
+          "name": "status",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "enum"
+        }
+      ],
+      "id": "schema.ticket.change_status",
+      "kind": "request",
+      "name": "Change ticket status request"
+    },
+    "schema.ticket.create": {
+      "class_name": "TicketCreateRequest",
+      "entity": "entity.ticket",
+      "fields": [
+        {
+          "base": "string",
+          "enum": null,
+          "name": "title",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "string!"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "description",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "text!"
+        },
+        {
+          "base": "enum",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "urgent"
+          ],
+          "name": "priority",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "enum"
+        }
+      ],
+      "id": "schema.ticket.create",
+      "kind": "request",
+      "name": "Create Ticket request"
+    },
+    "schema.ticket.update": {
+      "class_name": "TicketUpdateRequest",
+      "entity": "entity.ticket",
+      "fields": [
+        {
+          "base": "string",
+          "enum": null,
+          "name": "title",
+          "non_empty": true,
+          "ref": null,
+          "required": false,
+          "type": "string!"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "description",
+          "non_empty": true,
+          "ref": null,
+          "required": false,
+          "type": "text!"
+        },
+        {
+          "base": "enum",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "urgent"
+          ],
+          "name": "priority",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "enum"
+        }
+      ],
+      "id": "schema.ticket.update",
+      "kind": "request",
+      "name": "Update Ticket request"
+    },
+    "schema.ticket_comment": {
+      "class_name": "TicketCommentResponse",
+      "entity": "entity.ticket_comment",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "ticket_id",
+          "non_empty": false,
+          "ref": "entity.ticket",
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "author_id",
+          "non_empty": false,
+          "ref": "entity.user",
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "body",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "text"
+        },
+        {
+          "base": "datetime",
+          "enum": null,
+          "name": "created_at",
+          "non_empty": false,
+          "ref": null,
+          "required": false,
+          "type": "datetime"
+        }
+      ],
+      "id": "schema.ticket_comment",
+      "kind": "response",
+      "name": "Ticket Comment"
+    },
+    "schema.ticket_comment.create": {
+      "class_name": "TicketCommentCreateRequest",
+      "entity": "entity.ticket_comment",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "ticket_id",
+          "non_empty": true,
+          "ref": "entity.ticket",
+          "required": true,
+          "type": "uuid!>ticket"
+        },
+        {
+          "base": "text",
+          "enum": null,
+          "name": "body",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "text!"
+        }
+      ],
+      "id": "schema.ticket_comment.create",
+      "kind": "request",
+      "name": "Create Comment request"
+    },
+    "schema.user": {
+      "class_name": "UserResponse",
+      "entity": "entity.user",
+      "fields": [
+        {
+          "base": "uuid",
+          "enum": null,
+          "name": "id",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "uuid"
+        },
+        {
+          "base": "email",
+          "enum": null,
+          "name": "email",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "email"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "full_name",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        },
+        {
+          "base": "enum",
+          "enum": [
+            "customer",
+            "agent",
+            "manager"
+          ],
+          "name": "role",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "enum"
+        },
+        {
+          "base": "datetime",
+          "enum": null,
+          "name": "created_at",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "datetime"
+        }
+      ],
+      "id": "schema.user",
+      "kind": "response",
+      "name": "User"
+    },
+    "schema.user.login": {
+      "class_name": "UserLoginRequest",
+      "entity": "entity.user",
+      "fields": [
+        {
+          "base": "email",
+          "enum": null,
+          "name": "email",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "email!*"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "password",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "id": "schema.user.login",
+      "kind": "request",
+      "name": "Log in request"
+    },
+    "schema.user.request_password_reset": {
+      "class_name": "UserRequestPasswordResetRequest",
+      "entity": "entity.user",
+      "fields": [
+        {
+          "base": "email",
+          "enum": null,
+          "name": "email",
+          "non_empty": true,
+          "ref": null,
+          "required": true,
+          "type": "email!*"
+        }
+      ],
+      "id": "schema.user.request_password_reset",
+      "kind": "request",
+      "name": "Request password reset request"
+    },
+    "schema.user.reset_password": {
+      "class_name": "UserResetPasswordRequest",
+      "entity": "entity.user",
+      "fields": [
+        {
+          "base": "string",
+          "enum": null,
+          "name": "reset_token",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        },
+        {
+          "base": "string",
+          "enum": null,
+          "name": "new_password",
+          "non_empty": false,
+          "ref": null,
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "id": "schema.user.reset_password",
+      "kind": "request",
+      "name": "Reset password request"
+    }
+  },
+  "spec_version": "1",
+  "state_machines": {
+    "state_machine.ticket": {
+      "entity": "entity.ticket",
+      "field": "status",
+      "id": "state_machine.ticket",
+      "initial": "open",
+      "states": [
+        "open",
+        "in_progress",
+        "resolved",
+        "closed"
+      ],
+      "transitions": [
+        {
+          "from": "open",
+          "operation": "operation.ticket.change_status",
+          "roles": [
+            "role.agent",
+            "role.manager"
+          ],
+          "to": "in_progress"
+        },
+        {
+          "from": "in_progress",
+          "operation": "operation.ticket.change_status",
+          "roles": [
+            "role.agent",
+            "role.manager"
+          ],
+          "to": "resolved"
+        },
+        {
+          "from": "resolved",
+          "operation": "operation.ticket.change_status",
+          "roles": [
+            "role.agent",
+            "role.manager"
+          ],
+          "to": "closed"
+        },
+        {
+          "from": "resolved",
+          "operation": "operation.ticket.change_status",
+          "roles": [
+            "role.agent",
+            "role.manager"
+          ],
+          "to": "in_progress"
+        }
+      ]
+    }
+  }
+}

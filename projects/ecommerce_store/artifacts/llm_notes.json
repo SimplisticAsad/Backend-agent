@@ -1,0 +1,120 @@
+{
+  "architecture": {
+    "descriptions": {
+      "CartItemRepository": "Parameterised SQL access to table cart_items.",
+      "CartItemService": "Application service for service.cart_item: 4 operation(s).",
+      "CategoryRepository": "Parameterised SQL access to table categories.",
+      "OrderItemRepository": "Parameterised SQL access to table order_items.",
+      "OrderRepository": "Parameterised SQL access to table orders.",
+      "OrderService": "Application service for service.order: 3 operation(s).",
+      "ProductRepository": "Parameterised SQL access to table products.",
+      "ProductService": "Application service for service.product: 4 operation(s).",
+      "UserRepository": "Parameterised SQL access to table users.",
+      "UserService": "Application service for service.user: 4 operation(s).",
+      "backend_app.api": "HTTP routes, request/response schemas and dependencies; no business logic.",
+      "backend_app.application": "Application services: one method per graph operation.",
+      "backend_app.auth": "Authentication and role authorization.",
+      "backend_app.domain": "Domain entities mirroring graph entities, and domain exceptions.",
+      "backend_app.engine": "Spec-driven implementation of CRUD, state transitions and object-level rules.",
+      "backend_app.infrastructure": "Repositories over the database contract."
+    }
+  },
+  "authorization": {
+    "findings": [
+      {
+        "finding": "Row privacy was inferred by a secure-default heuristic; the graph does not state it explicitly.",
+        "ref": "rule.scope.implicit.cart_item.user_id",
+        "severity": "info"
+      },
+      {
+        "finding": "Row privacy was inferred by a secure-default heuristic; the graph does not state it explicitly.",
+        "ref": "rule.scope.implicit.order.user_id",
+        "severity": "info"
+      }
+    ]
+  },
+  "database_integration": {
+    "notes": [
+      {
+        "note": "mapped to table cart_items; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.cart_item"
+      },
+      {
+        "note": "mapped to table categories; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.category"
+      },
+      {
+        "note": "mapped to table orders; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.order"
+      },
+      {
+        "note": "mapped to table order_items; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.order_item"
+      },
+      {
+        "note": "mapped to table products; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.product"
+      },
+      {
+        "note": "mapped to table users; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+        "ref": "entity.user"
+      }
+    ],
+    "required_database_changes": []
+  },
+  "domain_model": {
+    "entities": [
+      {
+        "entity": "entity.cart_item",
+        "invariants": [
+          "rule.scope.implicit.cart_item.user_id",
+          "id is unique."
+        ]
+      },
+      {
+        "entity": "entity.category",
+        "invariants": [
+          "id is unique."
+        ]
+      },
+      {
+        "entity": "entity.order",
+        "invariants": [
+          "rule.scope.implicit.order.user_id",
+          "Status changes only along the declared transitions of state_machine.order.",
+          "id is unique."
+        ]
+      },
+      {
+        "entity": "entity.order_item",
+        "invariants": [
+          "id is unique."
+        ]
+      },
+      {
+        "entity": "entity.product",
+        "invariants": [
+          "id is unique."
+        ]
+      },
+      {
+        "entity": "entity.user",
+        "invariants": [
+          "id is unique.",
+          "email is unique."
+        ]
+      }
+    ]
+  },
+  "graph_analysis": {
+    "observations": [
+      "15 operations across 6 entities; 14 implemented by the generic engine, 1 need handlers."
+    ],
+    "risks": [
+      {
+        "ref": "entity.user",
+        "risk": "no operation creates entity.user: users can log in but cannot be created through the API"
+      }
+    ]
+  }
+}

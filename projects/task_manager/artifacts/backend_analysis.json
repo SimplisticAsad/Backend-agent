@@ -1,0 +1,1685 @@
+{
+  "api_endpoints": [
+    {
+      "authenticated": true,
+      "id": "api.department.create",
+      "method": "POST",
+      "operation": "operation.department.create",
+      "path": "/departments",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.department.list",
+      "method": "GET",
+      "operation": "operation.department.list",
+      "path": "/departments",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.department.update",
+      "method": "PATCH",
+      "operation": "operation.department.update",
+      "path": "/departments/{id}",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.employee.create",
+      "method": "POST",
+      "operation": "operation.employee.create",
+      "path": "/employees",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.employee.list",
+      "method": "GET",
+      "operation": "operation.employee.list",
+      "path": "/employees",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.employee.read",
+      "method": "GET",
+      "operation": "operation.employee.read",
+      "path": "/employees/{id}",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.employee.update",
+      "method": "PATCH",
+      "operation": "operation.employee.update",
+      "path": "/employees/{id}",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.project.create",
+      "method": "POST",
+      "operation": "operation.project.create",
+      "path": "/projects",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.project.delete",
+      "method": "DELETE",
+      "operation": "operation.project.delete",
+      "path": "/projects/{id}",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.project.list",
+      "method": "GET",
+      "operation": "operation.project.list",
+      "path": "/projects",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.project.progress",
+      "method": "GET",
+      "operation": "operation.project.progress",
+      "path": "/projects/progress",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.project.read",
+      "method": "GET",
+      "operation": "operation.project.read",
+      "path": "/projects/{id}",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.project.update",
+      "method": "PATCH",
+      "operation": "operation.project.update",
+      "path": "/projects/{id}",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.project_member.create",
+      "method": "POST",
+      "operation": "operation.project_member.create",
+      "path": "/project-members",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.project_member.delete",
+      "method": "DELETE",
+      "operation": "operation.project_member.delete",
+      "path": "/project-members/{id}",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.project_member.list",
+      "method": "GET",
+      "operation": "operation.project_member.list",
+      "path": "/project-members",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.task.create",
+      "method": "POST",
+      "operation": "operation.task.create",
+      "path": "/tasks",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.task.delete",
+      "method": "DELETE",
+      "operation": "operation.task.delete",
+      "path": "/tasks/{id}",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.task.list",
+      "method": "GET",
+      "operation": "operation.task.list",
+      "path": "/tasks",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.task.list_assigned",
+      "method": "GET",
+      "operation": "operation.task.list_assigned",
+      "path": "/tasks/assigned",
+      "roles": [
+        "role.employee"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.task.read",
+      "method": "GET",
+      "operation": "operation.task.read",
+      "path": "/tasks/{id}",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.task.update",
+      "method": "PATCH",
+      "operation": "operation.task.update",
+      "path": "/tasks/{id}",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.task.update_status",
+      "method": "PATCH",
+      "operation": "operation.task.update_status",
+      "path": "/tasks/{id}/status",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "authenticated": false,
+      "id": "api.user.login",
+      "method": "POST",
+      "operation": "operation.user.login",
+      "path": "/auth/login",
+      "roles": []
+    },
+    {
+      "authenticated": true,
+      "id": "api.user.logout",
+      "method": "POST",
+      "operation": "operation.user.logout",
+      "path": "/auth/logout",
+      "roles": []
+    },
+    {
+      "authenticated": false,
+      "id": "api.user.request_password_reset",
+      "method": "POST",
+      "operation": "operation.user.request_password_reset",
+      "path": "/auth/forgot-password",
+      "roles": []
+    },
+    {
+      "authenticated": false,
+      "id": "api.user.reset_password",
+      "method": "POST",
+      "operation": "operation.user.reset_password",
+      "path": "/auth/reset-password",
+      "roles": []
+    }
+  ],
+  "api_refs": [
+    "api.department.create",
+    "api.department.list",
+    "api.department.update",
+    "api.employee.create",
+    "api.employee.list",
+    "api.employee.read",
+    "api.employee.update",
+    "api.project.create",
+    "api.project.delete",
+    "api.project.list",
+    "api.project.progress",
+    "api.project.read",
+    "api.project.update",
+    "api.project_member.create",
+    "api.project_member.delete",
+    "api.project_member.list",
+    "api.task.create",
+    "api.task.delete",
+    "api.task.list",
+    "api.task.list_assigned",
+    "api.task.read",
+    "api.task.update",
+    "api.task.update_status",
+    "api.user.login",
+    "api.user.logout",
+    "api.user.request_password_reset",
+    "api.user.reset_password"
+  ],
+  "authentication": {
+    "entity": "entity.user",
+    "login": "operation.user.login"
+  },
+  "commands": [
+    "operation.department.create",
+    "operation.department.update",
+    "operation.employee.create",
+    "operation.employee.update",
+    "operation.project.create",
+    "operation.project.delete",
+    "operation.project.update",
+    "operation.project_member.create",
+    "operation.project_member.delete",
+    "operation.task.create",
+    "operation.task.delete",
+    "operation.task.update",
+    "operation.task.update_status",
+    "operation.user.login",
+    "operation.user.logout",
+    "operation.user.request_password_reset",
+    "operation.user.reset_password"
+  ],
+  "dependencies": {
+    "implementation_order": [
+      [
+        "assumption.project_visibility",
+        "component.app.navigation",
+        "entity.department",
+        "entity.employee",
+        "entity.project",
+        "entity.project_member",
+        "entity.task",
+        "entity.user",
+        "question.multiple_departments",
+        "question.project_visibility",
+        "question.who_assigns_tasks",
+        "requirement.authentication",
+        "requirement.department_management",
+        "requirement.employee_dashboard",
+        "requirement.employee_directory",
+        "requirement.nfr.accessibility",
+        "requirement.nfr.performance",
+        "requirement.nfr.responsive",
+        "requirement.nfr.security",
+        "requirement.project_assignment",
+        "requirement.project_management",
+        "requirement.project_progress",
+        "requirement.task_management",
+        "requirement.task_status",
+        "role.employee",
+        "role.manager"
+      ],
+      [
+        "actor.employee",
+        "actor.manager",
+        "component.auth.forgot_form",
+        "component.auth.login_form",
+        "component.auth.reset_form",
+        "component.dashboard.employee_tasks",
+        "component.dashboard.progress_chart",
+        "component.department.create_form",
+        "component.department.edit_form",
+        "component.department.table",
+        "component.employee.card",
+        "component.employee.create_form",
+        "component.employee.edit_form",
+        "component.employee.table",
+        "component.project.card",
+        "component.project.create_form",
+        "component.project.delete_confirm",
+        "component.project.edit_form",
+        "component.project.table",
+        "component.project_member.create_form",
+        "component.project_member.delete_confirm",
+        "component.project_member.table",
+        "component.task.card",
+        "component.task.create_form",
+        "component.task.delete_confirm",
+        "component.task.edit_form",
+        "component.task.table",
+        "relationship.employee.department",
+        "relationship.employee.user",
+        "relationship.project.owner",
+        "relationship.project_member.project",
+        "relationship.project_member.user",
+        "relationship.task.assignee",
+        "relationship.task.project",
+        "schema.department",
+        "schema.department.create",
+        "schema.department.update",
+        "schema.employee",
+        "schema.employee.create",
+        "schema.employee.update",
+        "schema.project",
+        "schema.project.create",
+        "schema.project.update",
+        "schema.project_member",
+        "schema.project_member.create",
+        "schema.task",
+        "schema.task.create",
+        "schema.task.update",
+        "schema.task.update_status",
+        "schema.user",
+        "schema.user.login",
+        "schema.user.request_password_reset",
+        "schema.user.reset_password",
+        "service.department",
+        "service.employee",
+        "service.project",
+        "service.project_member",
+        "service.task",
+        "service.user"
+      ],
+      [
+        "capability.authentication",
+        "capability.department_management",
+        "capability.employee_dashboard",
+        "capability.employee_directory",
+        "capability.project_assignment",
+        "capability.project_management",
+        "capability.project_progress",
+        "capability.task_management",
+        "capability.task_status"
+      ],
+      [
+        "operation.department.create",
+        "operation.department.list",
+        "operation.department.update",
+        "operation.employee.create",
+        "operation.employee.list",
+        "operation.employee.read",
+        "operation.employee.update",
+        "operation.project.create",
+        "operation.project.delete",
+        "operation.project.list",
+        "operation.project.progress",
+        "operation.project.read",
+        "operation.project.update",
+        "operation.project_member.create",
+        "operation.project_member.delete",
+        "operation.project_member.list",
+        "operation.task.create",
+        "operation.task.delete",
+        "operation.task.list",
+        "operation.task.list_assigned",
+        "operation.task.read",
+        "operation.task.update",
+        "operation.task.update_status",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password",
+        "screen.auth.forgot_password",
+        "screen.auth.login",
+        "screen.auth.reset_password",
+        "screen.department.create",
+        "screen.department.edit",
+        "screen.employee.create",
+        "screen.project.create",
+        "screen.project_member.create",
+        "screen.task.create"
+      ],
+      [
+        "ac.auth.login",
+        "ac.auth.logout",
+        "ac.auth.password_reset",
+        "ac.dashboard.employee_view",
+        "ac.dashboard.manager_progress",
+        "ac.department.browse",
+        "ac.department.create",
+        "ac.department.update",
+        "ac.employee.browse",
+        "ac.employee.create",
+        "ac.employee.update",
+        "ac.project.browse",
+        "ac.project.create",
+        "ac.project.delete",
+        "ac.project.only_managers_delete",
+        "ac.project.update",
+        "ac.project_member.browse",
+        "ac.project_member.create",
+        "ac.project_member.delete",
+        "ac.task.browse",
+        "ac.task.completed_needs_assignee",
+        "ac.task.create",
+        "ac.task.delete",
+        "ac.task.employee_updates_own",
+        "ac.task.update",
+        "ac.task.update_status",
+        "ac.user.invalid_login",
+        "api.department.create",
+        "api.department.list",
+        "api.department.update",
+        "api.employee.create",
+        "api.employee.list",
+        "api.employee.read",
+        "api.employee.update",
+        "api.project.create",
+        "api.project.delete",
+        "api.project.list",
+        "api.project.progress",
+        "api.project.read",
+        "api.project.update",
+        "api.project_member.create",
+        "api.project_member.delete",
+        "api.project_member.list",
+        "api.task.create",
+        "api.task.delete",
+        "api.task.list",
+        "api.task.list_assigned",
+        "api.task.read",
+        "api.task.update",
+        "api.task.update_status",
+        "api.user.login",
+        "api.user.logout",
+        "api.user.request_password_reset",
+        "api.user.reset_password",
+        "permission.department.create",
+        "permission.department.list",
+        "permission.department.update",
+        "permission.employee.create",
+        "permission.employee.list",
+        "permission.employee.read",
+        "permission.employee.update",
+        "permission.project.create",
+        "permission.project.delete",
+        "permission.project.list",
+        "permission.project.progress",
+        "permission.project.read",
+        "permission.project.update",
+        "permission.project_member.create",
+        "permission.project_member.delete",
+        "permission.project_member.list",
+        "permission.task.create",
+        "permission.task.delete",
+        "permission.task.list",
+        "permission.task.list_assigned",
+        "permission.task.read",
+        "permission.task.update",
+        "permission.task.update_status",
+        "permission.user.logout",
+        "screen.dashboard.employee",
+        "screen.dashboard.manager",
+        "screen.department.list",
+        "screen.employee.detail",
+        "screen.employee.edit",
+        "screen.employee.list",
+        "screen.project.detail",
+        "screen.project.edit",
+        "screen.project.list",
+        "screen.project_member.list",
+        "screen.task.detail",
+        "screen.task.edit",
+        "screen.task.list",
+        "state_machine.task",
+        "validation.department.required_fields",
+        "validation.employee.required_fields",
+        "validation.project.only_managers_delete",
+        "validation.project.required_fields",
+        "validation.project_member.required_fields",
+        "validation.task.completed_needs_assignee",
+        "validation.task.employee_updates_own",
+        "validation.task.required_fields",
+        "validation.user.email_format",
+        "validation.user.invalid_login",
+        "workflow.auth.login",
+        "workflow.auth.logout",
+        "workflow.auth.password_reset"
+      ],
+      [
+        "workflow.dashboard.employee_view",
+        "workflow.dashboard.manager_progress",
+        "workflow.department.browse",
+        "workflow.department.create",
+        "workflow.department.update",
+        "workflow.employee.browse",
+        "workflow.employee.create",
+        "workflow.employee.update",
+        "workflow.project.browse",
+        "workflow.project.create",
+        "workflow.project.delete",
+        "workflow.project.update",
+        "workflow.project_member.browse",
+        "workflow.project_member.create",
+        "workflow.project_member.delete",
+        "workflow.task.browse",
+        "workflow.task.create",
+        "workflow.task.delete",
+        "workflow.task.update",
+        "workflow.task.update_status"
+      ]
+    ]
+  },
+  "derived_rules": {
+    "assumptions": [],
+    "coverage": [
+      {
+        "enforced_by": "rule:row_scope",
+        "operations": [
+          "operation.task.list_assigned"
+        ],
+        "source": "permission.task.list_assigned#0"
+      },
+      {
+        "enforced_by": "rule:ownership",
+        "operations": [
+          "operation.task.update_status"
+        ],
+        "source": "permission.task.update_status#0"
+      },
+      {
+        "enforced_by": "request_schema",
+        "operations": [
+          "operation.department.create"
+        ],
+        "source": "validation.department.required_fields"
+      },
+      {
+        "enforced_by": "request_schema",
+        "operations": [
+          "operation.employee.create"
+        ],
+        "source": "validation.employee.required_fields"
+      },
+      {
+        "enforced_by": "permissions",
+        "operations": [
+          "operation.project.delete"
+        ],
+        "source": "validation.project.only_managers_delete"
+      },
+      {
+        "enforced_by": "request_schema",
+        "operations": [
+          "operation.project.create"
+        ],
+        "source": "validation.project.required_fields"
+      },
+      {
+        "enforced_by": "request_schema",
+        "operations": [
+          "operation.project_member.create"
+        ],
+        "source": "validation.project_member.required_fields"
+      },
+      {
+        "enforced_by": "rule:transition_guard",
+        "operations": [
+          "operation.task.update_status"
+        ],
+        "source": "validation.task.completed_needs_assignee"
+      },
+      {
+        "enforced_by": "rule:ownership",
+        "operations": [
+          "operation.task.update_status"
+        ],
+        "source": "validation.task.employee_updates_own"
+      },
+      {
+        "enforced_by": "request_schema",
+        "operations": [
+          "operation.task.create"
+        ],
+        "source": "validation.task.required_fields"
+      },
+      {
+        "enforced_by": "request_schema",
+        "operations": [
+          "operation.user.login",
+          "operation.user.request_password_reset"
+        ],
+        "source": "validation.user.email_format"
+      },
+      {
+        "enforced_by": "authentication",
+        "operations": [
+          "operation.user.login"
+        ],
+        "source": "validation.user.invalid_login"
+      }
+    ],
+    "rules": [
+      {
+        "entity": "entity.task",
+        "error_code": "TASK_NO_ASSIGNEE",
+        "field": "status",
+        "id": "rule.guard.task.completed_needs_assignee",
+        "message": "A task cannot be completed without an assignee",
+        "operations": [
+          "operation.task.update_status"
+        ],
+        "origin": "validation",
+        "require_fields_set": [
+          "assignee_id"
+        ],
+        "source": "validation.task.completed_needs_assignee",
+        "status": 409,
+        "to": "completed",
+        "type": "transition_guard"
+      },
+      {
+        "entity": "entity.task",
+        "error_code": "TASK_NOT_ASSIGNED_TO_CALLER",
+        "exempt_roles": [
+          "role.manager"
+        ],
+        "field": "assignee_id",
+        "id": "rule.ownership.task.employee_updates_own",
+        "message": "Employees can only update tasks assigned to them",
+        "operations": [
+          "operation.task.update_status"
+        ],
+        "origin": "validation",
+        "source": "validation.task.employee_updates_own",
+        "status": 403,
+        "type": "ownership"
+      },
+      {
+        "entity": "entity.task",
+        "id": "rule.scope.task.list_assigned",
+        "operations": [
+          "operation.task.list_assigned"
+        ],
+        "origin": "permission_condition",
+        "roles": [
+          "role.employee"
+        ],
+        "scope": {
+          "field": "assignee_id"
+        },
+        "source": "permission.task.list_assigned#0",
+        "type": "row_scope"
+      }
+    ],
+    "unmapped": []
+  },
+  "entities": [
+    "entity.department",
+    "entity.employee",
+    "entity.project",
+    "entity.project_member",
+    "entity.task",
+    "entity.user"
+  ],
+  "external_integrations": [],
+  "integration_conflicts": {
+    "count": 17,
+    "status": "conflicts_reported"
+  },
+  "operation_classification": {
+    "operation.department.create": {
+      "handler": "engine",
+      "kind": "create",
+      "notes": []
+    },
+    "operation.department.list": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.department.update": {
+      "handler": "engine",
+      "kind": "update",
+      "notes": []
+    },
+    "operation.employee.create": {
+      "handler": "engine",
+      "kind": "create",
+      "notes": []
+    },
+    "operation.employee.list": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.employee.read": {
+      "handler": "engine",
+      "kind": "read",
+      "notes": []
+    },
+    "operation.employee.update": {
+      "handler": "engine",
+      "kind": "update",
+      "notes": []
+    },
+    "operation.project.create": {
+      "handler": "engine",
+      "kind": "create",
+      "notes": []
+    },
+    "operation.project.delete": {
+      "handler": "engine",
+      "kind": "delete",
+      "notes": []
+    },
+    "operation.project.list": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.project.progress": {
+      "handler": "custom",
+      "kind": "aggregate",
+      "notes": [
+        "aggregate: the response schema is the plain entity list"
+      ]
+    },
+    "operation.project.read": {
+      "handler": "engine",
+      "kind": "read",
+      "notes": []
+    },
+    "operation.project.update": {
+      "handler": "engine",
+      "kind": "update",
+      "notes": []
+    },
+    "operation.project_member.create": {
+      "handler": "engine",
+      "kind": "create",
+      "notes": []
+    },
+    "operation.project_member.delete": {
+      "handler": "engine",
+      "kind": "delete",
+      "notes": []
+    },
+    "operation.project_member.list": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.task.create": {
+      "handler": "engine",
+      "kind": "create",
+      "notes": []
+    },
+    "operation.task.delete": {
+      "handler": "engine",
+      "kind": "delete",
+      "notes": []
+    },
+    "operation.task.list": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.task.list_assigned": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.task.read": {
+      "handler": "engine",
+      "kind": "read",
+      "notes": []
+    },
+    "operation.task.update": {
+      "handler": "engine",
+      "kind": "update",
+      "notes": []
+    },
+    "operation.task.update_status": {
+      "handler": "engine",
+      "kind": "transition",
+      "notes": []
+    },
+    "operation.user.login": {
+      "handler": "auth",
+      "kind": "auth.login",
+      "notes": []
+    },
+    "operation.user.logout": {
+      "handler": "auth",
+      "kind": "auth.logout",
+      "notes": []
+    },
+    "operation.user.request_password_reset": {
+      "handler": "auth",
+      "kind": "auth.request_password_reset",
+      "notes": []
+    },
+    "operation.user.reset_password": {
+      "handler": "auth",
+      "kind": "auth.reset_password",
+      "notes": []
+    }
+  },
+  "operations": [
+    "operation.department.create",
+    "operation.department.list",
+    "operation.department.update",
+    "operation.employee.create",
+    "operation.employee.list",
+    "operation.employee.read",
+    "operation.employee.update",
+    "operation.project.create",
+    "operation.project.delete",
+    "operation.project.list",
+    "operation.project.progress",
+    "operation.project.read",
+    "operation.project.update",
+    "operation.project_member.create",
+    "operation.project_member.delete",
+    "operation.project_member.list",
+    "operation.task.create",
+    "operation.task.delete",
+    "operation.task.list",
+    "operation.task.list_assigned",
+    "operation.task.read",
+    "operation.task.update",
+    "operation.task.update_status",
+    "operation.user.login",
+    "operation.user.logout",
+    "operation.user.request_password_reset",
+    "operation.user.reset_password"
+  ],
+  "permissions": [
+    {
+      "action": "create",
+      "conditions": [],
+      "id": "permission.department.create",
+      "operations": [
+        "operation.department.create"
+      ],
+      "resource": "entity.department",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [],
+      "id": "permission.department.list",
+      "operations": [
+        "operation.department.list"
+      ],
+      "resource": "entity.department",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "action": "update",
+      "conditions": [],
+      "id": "permission.department.update",
+      "operations": [
+        "operation.department.update"
+      ],
+      "resource": "entity.department",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "create",
+      "conditions": [],
+      "id": "permission.employee.create",
+      "operations": [
+        "operation.employee.create"
+      ],
+      "resource": "entity.employee",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [],
+      "id": "permission.employee.list",
+      "operations": [
+        "operation.employee.list"
+      ],
+      "resource": "entity.employee",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "read",
+      "conditions": [],
+      "id": "permission.employee.read",
+      "operations": [
+        "operation.employee.read"
+      ],
+      "resource": "entity.employee",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "action": "update",
+      "conditions": [],
+      "id": "permission.employee.update",
+      "operations": [
+        "operation.employee.update"
+      ],
+      "resource": "entity.employee",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "create",
+      "conditions": [],
+      "id": "permission.project.create",
+      "operations": [
+        "operation.project.create"
+      ],
+      "resource": "entity.project",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "delete",
+      "conditions": [],
+      "id": "permission.project.delete",
+      "operations": [
+        "operation.project.delete"
+      ],
+      "resource": "entity.project",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [],
+      "id": "permission.project.list",
+      "operations": [
+        "operation.project.list"
+      ],
+      "resource": "entity.project",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [],
+      "id": "permission.project.progress",
+      "operations": [
+        "operation.project.progress"
+      ],
+      "resource": "entity.project",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "read",
+      "conditions": [],
+      "id": "permission.project.read",
+      "operations": [
+        "operation.project.read"
+      ],
+      "resource": "entity.project",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "action": "update",
+      "conditions": [],
+      "id": "permission.project.update",
+      "operations": [
+        "operation.project.update"
+      ],
+      "resource": "entity.project",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "create",
+      "conditions": [],
+      "id": "permission.project_member.create",
+      "operations": [
+        "operation.project_member.create"
+      ],
+      "resource": "entity.project_member",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "delete",
+      "conditions": [],
+      "id": "permission.project_member.delete",
+      "operations": [
+        "operation.project_member.delete"
+      ],
+      "resource": "entity.project_member",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [],
+      "id": "permission.project_member.list",
+      "operations": [
+        "operation.project_member.list"
+      ],
+      "resource": "entity.project_member",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "create",
+      "conditions": [],
+      "id": "permission.task.create",
+      "operations": [
+        "operation.task.create"
+      ],
+      "resource": "entity.task",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "delete",
+      "conditions": [],
+      "id": "permission.task.delete",
+      "operations": [
+        "operation.task.delete"
+      ],
+      "resource": "entity.task",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [],
+      "id": "permission.task.list",
+      "operations": [
+        "operation.task.list"
+      ],
+      "resource": "entity.task",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [
+        "Only tasks assigned to the caller"
+      ],
+      "id": "permission.task.list_assigned",
+      "operations": [
+        "operation.task.list_assigned"
+      ],
+      "resource": "entity.task",
+      "roles": [
+        "role.employee"
+      ]
+    },
+    {
+      "action": "read",
+      "conditions": [],
+      "id": "permission.task.read",
+      "operations": [
+        "operation.task.read"
+      ],
+      "resource": "entity.task",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "action": "update",
+      "conditions": [],
+      "id": "permission.task.update",
+      "operations": [
+        "operation.task.update"
+      ],
+      "resource": "entity.task",
+      "roles": [
+        "role.manager"
+      ]
+    },
+    {
+      "action": "update",
+      "conditions": [
+        "Employees may only change tasks assigned to them"
+      ],
+      "id": "permission.task.update_status",
+      "operations": [
+        "operation.task.update_status"
+      ],
+      "resource": "entity.task",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    },
+    {
+      "action": "execute",
+      "conditions": [],
+      "id": "permission.user.logout",
+      "operations": [
+        "operation.user.logout"
+      ],
+      "resource": "entity.user",
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ]
+    }
+  ],
+  "project": {
+    "graph_version": "1.0.0",
+    "id": "project.task_manager",
+    "name": "Task Manager"
+  },
+  "queries": [
+    "operation.department.list",
+    "operation.employee.list",
+    "operation.employee.read",
+    "operation.project.list",
+    "operation.project.progress",
+    "operation.project.read",
+    "operation.project_member.list",
+    "operation.task.list",
+    "operation.task.list_assigned",
+    "operation.task.read"
+  ],
+  "relationships": [
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.employee.department",
+      "source": "entity.employee",
+      "target": "entity.department",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.employee.user",
+      "source": "entity.employee",
+      "target": "entity.user",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.project.owner",
+      "source": "entity.project",
+      "target": "entity.user",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.project_member.project",
+      "source": "entity.project_member",
+      "target": "entity.project",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.project_member.user",
+      "source": "entity.project_member",
+      "target": "entity.user",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.task.assignee",
+      "source": "entity.task",
+      "target": "entity.user",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.task.project",
+      "source": "entity.task",
+      "target": "entity.project",
+      "type": "belongs_to"
+    }
+  ],
+  "request_schemas": [
+    "schema.department.create",
+    "schema.department.update",
+    "schema.employee.create",
+    "schema.employee.update",
+    "schema.project.create",
+    "schema.project.update",
+    "schema.project_member.create",
+    "schema.task.create",
+    "schema.task.update",
+    "schema.task.update_status",
+    "schema.user.login",
+    "schema.user.request_password_reset",
+    "schema.user.reset_password"
+  ],
+  "response_schemas": [
+    "schema.department",
+    "schema.employee",
+    "schema.project",
+    "schema.project_member",
+    "schema.task",
+    "schema.user"
+  ],
+  "services": [
+    {
+      "entities": [
+        "entity.department"
+      ],
+      "id": "service.department",
+      "operations": [
+        "operation.department.create",
+        "operation.department.list",
+        "operation.department.update"
+      ]
+    },
+    {
+      "entities": [
+        "entity.employee"
+      ],
+      "id": "service.employee",
+      "operations": [
+        "operation.employee.create",
+        "operation.employee.list",
+        "operation.employee.read",
+        "operation.employee.update"
+      ]
+    },
+    {
+      "entities": [
+        "entity.project"
+      ],
+      "id": "service.project",
+      "operations": [
+        "operation.project.create",
+        "operation.project.delete",
+        "operation.project.list",
+        "operation.project.progress",
+        "operation.project.read",
+        "operation.project.update"
+      ]
+    },
+    {
+      "entities": [
+        "entity.project_member"
+      ],
+      "id": "service.project_member",
+      "operations": [
+        "operation.project_member.create",
+        "operation.project_member.delete",
+        "operation.project_member.list"
+      ]
+    },
+    {
+      "entities": [
+        "entity.task"
+      ],
+      "id": "service.task",
+      "operations": [
+        "operation.task.create",
+        "operation.task.delete",
+        "operation.task.list",
+        "operation.task.list_assigned",
+        "operation.task.read",
+        "operation.task.update",
+        "operation.task.update_status"
+      ]
+    },
+    {
+      "entities": [
+        "entity.user"
+      ],
+      "id": "service.user",
+      "operations": [
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ]
+    }
+  ],
+  "state_machines": [
+    {
+      "entity": "entity.task",
+      "field": "status",
+      "id": "state_machine.task",
+      "initial": "todo",
+      "states": [
+        "todo",
+        "in_progress",
+        "completed"
+      ],
+      "transitions": [
+        [
+          "todo",
+          "in_progress"
+        ],
+        [
+          "in_progress",
+          "completed"
+        ],
+        [
+          "in_progress",
+          "todo"
+        ]
+      ]
+    }
+  ],
+  "validation_rules": [
+    {
+      "condition": "name, description must be provided",
+      "id": "validation.department.required_fields",
+      "kind": "required",
+      "operations": [
+        "operation.department.create"
+      ],
+      "target": {
+        "entity_ref": "entity.department",
+        "field": null
+      }
+    },
+    {
+      "condition": "user_id, department_id, job_title must be provided",
+      "id": "validation.employee.required_fields",
+      "kind": "required",
+      "operations": [
+        "operation.employee.create"
+      ],
+      "target": {
+        "entity_ref": "entity.employee",
+        "field": null
+      }
+    },
+    {
+      "condition": "caller has role manager",
+      "id": "validation.project.only_managers_delete",
+      "kind": "authorization",
+      "operations": [
+        "operation.project.delete"
+      ],
+      "target": {
+        "entity_ref": "entity.project",
+        "field": null
+      }
+    },
+    {
+      "condition": "name, description must be provided",
+      "id": "validation.project.required_fields",
+      "kind": "required",
+      "operations": [
+        "operation.project.create"
+      ],
+      "target": {
+        "entity_ref": "entity.project",
+        "field": null
+      }
+    },
+    {
+      "condition": "project_id, user_id must be provided",
+      "id": "validation.project_member.required_fields",
+      "kind": "required",
+      "operations": [
+        "operation.project_member.create"
+      ],
+      "target": {
+        "entity_ref": "entity.project_member",
+        "field": null
+      }
+    },
+    {
+      "condition": "a task may only move to completed when assignee_id is set",
+      "id": "validation.task.completed_needs_assignee",
+      "kind": "state",
+      "operations": [
+        "operation.task.update_status"
+      ],
+      "target": {
+        "entity_ref": "entity.task",
+        "field": "assignee_id"
+      }
+    },
+    {
+      "condition": "caller is the assignee or has role manager",
+      "id": "validation.task.employee_updates_own",
+      "kind": "ownership",
+      "operations": [
+        "operation.task.update_status"
+      ],
+      "target": {
+        "entity_ref": "entity.task",
+        "field": null
+      }
+    },
+    {
+      "condition": "title, project_id must be provided",
+      "id": "validation.task.required_fields",
+      "kind": "required",
+      "operations": [
+        "operation.task.create"
+      ],
+      "target": {
+        "entity_ref": "entity.task",
+        "field": null
+      }
+    },
+    {
+      "condition": "email matches a valid email address pattern",
+      "id": "validation.user.email_format",
+      "kind": "format",
+      "operations": [
+        "operation.user.login",
+        "operation.user.request_password_reset"
+      ],
+      "target": {
+        "entity_ref": "entity.user",
+        "field": "email"
+      }
+    },
+    {
+      "condition": "email and password match an existing account",
+      "id": "validation.user.invalid_login",
+      "kind": "authorization",
+      "operations": [
+        "operation.user.login"
+      ],
+      "target": {
+        "entity_ref": "entity.user",
+        "field": null
+      }
+    }
+  ],
+  "workflows": [
+    {
+      "id": "workflow.auth.login",
+      "operations": [
+        "operation.user.login"
+      ]
+    },
+    {
+      "id": "workflow.auth.logout",
+      "operations": [
+        "operation.user.logout"
+      ]
+    },
+    {
+      "id": "workflow.auth.password_reset",
+      "operations": [
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ]
+    },
+    {
+      "id": "workflow.dashboard.employee_view",
+      "operations": [
+        "operation.task.list_assigned"
+      ]
+    },
+    {
+      "id": "workflow.dashboard.manager_progress",
+      "operations": [
+        "operation.project.progress"
+      ]
+    },
+    {
+      "id": "workflow.department.browse",
+      "operations": [
+        "operation.department.list"
+      ]
+    },
+    {
+      "id": "workflow.department.create",
+      "operations": [
+        "operation.department.create"
+      ]
+    },
+    {
+      "id": "workflow.department.update",
+      "operations": [
+        "operation.department.update"
+      ]
+    },
+    {
+      "id": "workflow.employee.browse",
+      "operations": [
+        "operation.employee.list",
+        "operation.employee.read"
+      ]
+    },
+    {
+      "id": "workflow.employee.create",
+      "operations": [
+        "operation.employee.create"
+      ]
+    },
+    {
+      "id": "workflow.employee.update",
+      "operations": [
+        "operation.employee.update"
+      ]
+    },
+    {
+      "id": "workflow.project.browse",
+      "operations": [
+        "operation.project.list",
+        "operation.project.read"
+      ]
+    },
+    {
+      "id": "workflow.project.create",
+      "operations": [
+        "operation.project.create"
+      ]
+    },
+    {
+      "id": "workflow.project.delete",
+      "operations": [
+        "operation.project.delete"
+      ]
+    },
+    {
+      "id": "workflow.project.update",
+      "operations": [
+        "operation.project.update"
+      ]
+    },
+    {
+      "id": "workflow.project_member.browse",
+      "operations": [
+        "operation.project_member.list"
+      ]
+    },
+    {
+      "id": "workflow.project_member.create",
+      "operations": [
+        "operation.project_member.create"
+      ]
+    },
+    {
+      "id": "workflow.project_member.delete",
+      "operations": [
+        "operation.project_member.delete"
+      ]
+    },
+    {
+      "id": "workflow.task.browse",
+      "operations": [
+        "operation.task.list",
+        "operation.task.read"
+      ]
+    },
+    {
+      "id": "workflow.task.create",
+      "operations": [
+        "operation.task.create"
+      ]
+    },
+    {
+      "id": "workflow.task.delete",
+      "operations": [
+        "operation.task.delete"
+      ]
+    },
+    {
+      "id": "workflow.task.update",
+      "operations": [
+        "operation.task.update"
+      ]
+    },
+    {
+      "id": "workflow.task.update_status",
+      "operations": [
+        "operation.task.update_status"
+      ]
+    }
+  ]
+}

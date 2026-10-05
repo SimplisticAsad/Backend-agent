@@ -1,0 +1,5 @@
+{
+ "ac.order.cart_not_empty": "tests/api/test_custom_place_order.py::test_ac_ac_order_cart_not_empty",
+ "ac.order.checkout": "tests/api/test_custom_place_order.py::test_ac_ac_order_checkout",
+ "ac.product.stock_available": "tests/api/test_custom_place_order.py::test_ac_ac_product_stock_available"
+}

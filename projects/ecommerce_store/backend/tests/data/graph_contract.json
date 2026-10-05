@@ -1,0 +1,3060 @@
+{
+ "acceptance_criteria": [
+  {
+   "given": [
+    "the user is not signed in"
+   ],
+   "id": "ac.auth.login",
+   "name": "Log in succeeds",
+   "operation_refs": [
+    "operation.user.login"
+   ],
+   "provenance": {
+    "confidence": 0.6,
+    "source": {
+     "text": "Realises requirement.authentication, which the user did not state but the product needs",
+     "type": "inferred"
+    }
+   },
+   "requirement_refs": [
+    "requirement.authentication"
+   ],
+   "then": [
+    "The user is authenticated and sees their home screen"
+   ],
+   "when": [
+    "Enter email and password",
+    "Log in"
+   ],
+   "workflow_refs": [
+    "workflow.auth.login"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Customer"
+   ],
+   "id": "ac.auth.logout",
+   "name": "Log out succeeds",
+   "operation_refs": [
+    "operation.user.logout"
+   ],
+   "provenance": {
+    "confidence": 0.6,
+    "source": {
+     "text": "Realises requirement.authentication, which the user did not state but the product needs",
+     "type": "inferred"
+    }
+   },
+   "requirement_refs": [
+    "requirement.authentication"
+   ],
+   "then": [
+    "The session ends and the login screen is shown"
+   ],
+   "when": [
+    "Choose log out",
+    "Log out"
+   ],
+   "workflow_refs": [
+    "workflow.auth.logout"
+   ]
+  },
+  {
+   "given": [
+    "the user is not signed in"
+   ],
+   "id": "ac.auth.password_reset",
+   "name": "Reset password succeeds",
+   "operation_refs": [
+    "operation.user.request_password_reset",
+    "operation.user.reset_password"
+   ],
+   "provenance": {
+    "confidence": 0.6,
+    "source": {
+     "text": "Realises requirement.authentication, which the user did not state but the product needs",
+     "type": "inferred"
+    }
+   },
+   "requirement_refs": [
+    "requirement.authentication"
+   ],
+   "then": [
+    "The password is changed and the user can log in again"
+   ],
+   "when": [
+    "Enter the account email",
+    "Request password reset",
+    "Enter the new password",
+    "Reset password"
+   ],
+   "workflow_refs": [
+    "workflow.auth.password_reset"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Customer"
+   ],
+   "id": "ac.cart_item.browse",
+   "name": "Browse Cart Items succeeds",
+   "operation_refs": [
+    "operation.cart_item.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.shopping_cart, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.shopping_cart"
+   ],
+   "then": [
+    "The Cart Item information is displayed"
+   ],
+   "when": [
+    "List Cart Items"
+   ],
+   "workflow_refs": [
+    "workflow.cart_item.browse"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Customer"
+   ],
+   "id": "ac.cart_item.create",
+   "name": "Create Cart Item succeeds",
+   "operation_refs": [
+    "operation.cart_item.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.shopping_cart, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.shopping_cart"
+   ],
+   "then": [
+    "The Cart Item is created and appears in the Cart Item list"
+   ],
+   "when": [
+    "Fill in the Cart Item form",
+    "Create Cart Item"
+   ],
+   "workflow_refs": [
+    "workflow.cart_item.create"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Customer",
+    "the record being worked on exists"
+   ],
+   "id": "ac.cart_item.delete",
+   "name": "Delete Cart Item succeeds",
+   "operation_refs": [
+    "operation.cart_item.delete"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.shopping_cart, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.shopping_cart"
+   ],
+   "then": [
+    "The Cart Item is removed from the Cart Item list"
+   ],
+   "when": [
+    "Confirm deleting the Cart Item",
+    "Delete Cart Item"
+   ],
+   "workflow_refs": [
+    "workflow.cart_item.delete"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Customer",
+    "the record being worked on exists"
+   ],
+   "id": "ac.cart_item.update",
+   "name": "Update Cart Item succeeds",
+   "operation_refs": [
+    "operation.cart_item.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.shopping_cart, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.shopping_cart"
+   ],
+   "then": [
+    "The changes to the Cart Item are saved"
+   ],
+   "when": [
+    "Change the Cart Item details",
+    "Update Cart Item"
+   ],
+   "workflow_refs": [
+    "workflow.cart_item.update"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in as Customer",
+    "the record being worked on exists"
+   ],
+   "id": "ac.order.browse",
+   "name": "Browse Orders succeeds",
+   "operation_refs": [
+    "operation.order.list",
+    "operation.order.read"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.checkout, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.checkout"
+   ],
+   "then": [
+    "The Order information is displayed"
+   ],
+   "when": [
+    "List Orders",
+    "View Order"
+   ],
+   "workflow_refs": [
+    "workflow.order.browse"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in"
+   ],
+   "id": "ac.order.cart_not_empty",
+   "name": "Cart must not be empty (negative case)",
+   "operation_refs": [
+    "operation.order.place"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.checkout, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.checkout"
+   ],
+   "then": [
+    "The cart is empty (error CART_EMPTY)",
+    "no data is changed"
+   ],
+   "when": [
+    "the customer checks out with an empty cart"
+   ],
+   "workflow_refs": []
+  },
+  {
+   "given": [
+    "the user is signed in as Customer"
+   ],
+   "id": "ac.order.checkout",
+   "name": "Check out succeeds",
+   "operation_refs": [
+    "operation.order.place"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.checkout, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.checkout"
+   ],
+   "then": [
+    "The order is placed and its details are shown"
+   ],
+   "when": [
+    "Enter shipping address and payment method",
+    "Place order"
+   ],
+   "workflow_refs": [
+    "workflow.order.checkout"
+   ]
+  },
+  {
+   "given": [
+    "the user is not signed in",
+    "the record being worked on exists"
+   ],
+   "id": "ac.product.browse",
+   "name": "Browse Products succeeds",
+   "operation_refs": [
+    "operation.product.list",
+    "operation.product.read"
+   ],
+   "provenance": {
+    "confidence": 0.6,
+    "source": {
+     "text": "Realises requirement.product_catalog, which the user did not state but the product needs",
+     "type": "inferred"
+    }
+   },
+   "requirement_refs": [
+    "requirement.product_catalog"
+   ],
+   "then": [
+    "The Product information is displayed"
+   ],
+   "when": [
+    "List Products",
+    "View Product"
+   ],
+   "workflow_refs": [
+    "workflow.product.browse"
+   ]
+  },
+  {
+   "given": [
+    "the user is not signed in"
+   ],
+   "id": "ac.product.filter",
+   "name": "Filter products succeeds",
+   "operation_refs": [
+    "operation.product.filter"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.product_filter, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.product_filter"
+   ],
+   "then": [
+    "Only matching products are listed"
+   ],
+   "when": [
+    "Choose category and price range",
+    "Filter products"
+   ],
+   "workflow_refs": [
+    "workflow.product.filter"
+   ]
+  },
+  {
+   "given": [
+    "the user is not signed in"
+   ],
+   "id": "ac.product.search",
+   "name": "Search products succeeds",
+   "operation_refs": [
+    "operation.product.search"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.product_search, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.product_search"
+   ],
+   "then": [
+    "Matching products are listed"
+   ],
+   "when": [
+    "Enter search words",
+    "Search products"
+   ],
+   "workflow_refs": [
+    "workflow.product.search"
+   ]
+  },
+  {
+   "given": [
+    "the user is signed in"
+   ],
+   "id": "ac.product.stock_available",
+   "name": "Stock must cover the quantity (negative case)",
+   "operation_refs": [
+    "operation.order.place"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.checkout, which the user stated",
+     "type": "derived"
+    }
+   },
+   "requirement_refs": [
+    "requirement.checkout"
+   ],
+   "then": [
+    "One or more products are out of stock (error OUT_OF_STOCK)",
+    "no data is changed"
+   ],
+   "when": [
+    "the customer orders more units than are in stock"
+   ],
+   "workflow_refs": []
+  },
+  {
+   "given": [
+    "the user is not signed in"
+   ],
+   "id": "ac.user.invalid_login",
+   "name": "Wrong credentials are rejected (negative case)",
+   "operation_refs": [
+    "operation.user.login"
+   ],
+   "provenance": {
+    "confidence": 0.6,
+    "source": {
+     "text": "Realises requirement.authentication, which the user did not state but the product needs",
+     "type": "inferred"
+    }
+   },
+   "requirement_refs": [
+    "requirement.authentication"
+   ],
+   "then": [
+    "Email or password is wrong (error INVALID_CREDENTIALS)",
+    "no data is changed"
+   ],
+   "when": [
+    "the user submits a wrong password"
+   ],
+   "workflow_refs": []
+  }
+ ],
+ "api": {
+  "endpoints": [
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.customer"
+     ]
+    },
+    "id": "api.cart_item.create",
+    "method": "POST",
+    "operation_ref": "operation.cart_item.create",
+    "path": "/cart-items",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.shopping_cart, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.cart_item.create",
+    "response_schema_ref": "schema.cart_item"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.customer"
+     ]
+    },
+    "id": "api.cart_item.delete",
+    "method": "DELETE",
+    "operation_ref": "operation.cart_item.delete",
+    "path": "/cart-items/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.shopping_cart, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": null
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.customer"
+     ]
+    },
+    "id": "api.cart_item.list",
+    "method": "GET",
+    "operation_ref": "operation.cart_item.list",
+    "path": "/cart-items",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.shopping_cart, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.cart_item"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.customer"
+     ]
+    },
+    "id": "api.cart_item.update",
+    "method": "PATCH",
+    "operation_ref": "operation.cart_item.update",
+    "path": "/cart-items/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.shopping_cart, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.cart_item.update",
+    "response_schema_ref": "schema.cart_item"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.customer"
+     ]
+    },
+    "id": "api.order.list",
+    "method": "GET",
+    "operation_ref": "operation.order.list",
+    "path": "/orders",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.checkout, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.order"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.customer"
+     ]
+    },
+    "id": "api.order.place",
+    "method": "POST",
+    "operation_ref": "operation.order.place",
+    "path": "/orders",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.checkout, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": "schema.order.place",
+    "response_schema_ref": "schema.order"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": [
+      "role.customer"
+     ]
+    },
+    "id": "api.order.read",
+    "method": "GET",
+    "operation_ref": "operation.order.read",
+    "path": "/orders/{id}",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.checkout, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.order"
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.product.filter",
+    "method": "GET",
+    "operation_ref": "operation.product.filter",
+    "path": "/products/filter",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.product_filter, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.product"
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.product.list",
+    "method": "GET",
+    "operation_ref": "operation.product.list",
+    "path": "/products",
+    "provenance": {
+     "confidence": 0.6,
+     "source": {
+      "text": "Realises requirement.product_catalog, which the user did not state but the product needs",
+      "type": "inferred"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.product"
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.product.read",
+    "method": "GET",
+    "operation_ref": "operation.product.read",
+    "path": "/products/{id}",
+    "provenance": {
+     "confidence": 0.6,
+     "source": {
+      "text": "Realises requirement.product_catalog, which the user did not state but the product needs",
+      "type": "inferred"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.product"
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.product.search",
+    "method": "GET",
+    "operation_ref": "operation.product.search",
+    "path": "/products/search",
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.product_search, which the user stated",
+      "type": "derived"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": "schema.product"
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.user.login",
+    "method": "POST",
+    "operation_ref": "operation.user.login",
+    "path": "/auth/login",
+    "provenance": {
+     "confidence": 0.6,
+     "source": {
+      "text": "Realises requirement.authentication, which the user did not state but the product needs",
+      "type": "inferred"
+     }
+    },
+    "request_schema_ref": "schema.user.login",
+    "response_schema_ref": "schema.user"
+   },
+   {
+    "authorization": {
+     "authenticated": true,
+     "roles": []
+    },
+    "id": "api.user.logout",
+    "method": "POST",
+    "operation_ref": "operation.user.logout",
+    "path": "/auth/logout",
+    "provenance": {
+     "confidence": 0.6,
+     "source": {
+      "text": "Realises requirement.authentication, which the user did not state but the product needs",
+      "type": "inferred"
+     }
+    },
+    "request_schema_ref": null,
+    "response_schema_ref": null
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.user.request_password_reset",
+    "method": "POST",
+    "operation_ref": "operation.user.request_password_reset",
+    "path": "/auth/forgot-password",
+    "provenance": {
+     "confidence": 0.6,
+     "source": {
+      "text": "Realises requirement.authentication, which the user did not state but the product needs",
+      "type": "inferred"
+     }
+    },
+    "request_schema_ref": "schema.user.request_password_reset",
+    "response_schema_ref": null
+   },
+   {
+    "authorization": {
+     "authenticated": false,
+     "roles": []
+    },
+    "id": "api.user.reset_password",
+    "method": "POST",
+    "operation_ref": "operation.user.reset_password",
+    "path": "/auth/reset-password",
+    "provenance": {
+     "confidence": 0.6,
+     "source": {
+      "text": "Realises requirement.authentication, which the user did not state but the product needs",
+      "type": "inferred"
+     }
+    },
+    "request_schema_ref": "schema.user.reset_password",
+    "response_schema_ref": null
+   }
+  ],
+  "project_id": "project.ecommerce_store",
+  "project_version": "0.1.0",
+  "schema_version": "1.0.0",
+  "schemas": [
+   {
+    "entity_ref": "entity.cart_item",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "user_id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "product_id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "quantity",
+      "required": true,
+      "type": "integer"
+     }
+    ],
+    "id": "schema.cart_item",
+    "name": "Cart Item"
+   },
+   {
+    "entity_ref": "entity.cart_item",
+    "fields": [
+     {
+      "name": "product_id",
+      "required": true,
+      "type": "uuid!>product"
+     },
+     {
+      "name": "quantity",
+      "required": true,
+      "type": "integer!"
+     }
+    ],
+    "id": "schema.cart_item.create",
+    "name": "Create Cart Item request"
+   },
+   {
+    "entity_ref": "entity.cart_item",
+    "fields": [
+     {
+      "name": "quantity",
+      "required": false,
+      "type": "integer!"
+     }
+    ],
+    "id": "schema.cart_item.update",
+    "name": "Update Cart Item request"
+   },
+   {
+    "entity_ref": "entity.order",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "user_id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "status",
+      "required": true,
+      "type": "enum"
+     },
+     {
+      "name": "total",
+      "required": true,
+      "type": "decimal"
+     },
+     {
+      "name": "shipping_address",
+      "required": false,
+      "type": "text"
+     },
+     {
+      "name": "placed_at",
+      "required": false,
+      "type": "datetime"
+     }
+    ],
+    "id": "schema.order",
+    "name": "Order"
+   },
+   {
+    "entity_ref": "entity.order",
+    "fields": [
+     {
+      "name": "shipping_address",
+      "required": true,
+      "type": "text"
+     },
+     {
+      "name": "payment_method",
+      "required": true,
+      "type": "string"
+     }
+    ],
+    "id": "schema.order.place",
+    "name": "Place order request"
+   },
+   {
+    "entity_ref": "entity.product",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "name",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "description",
+      "required": false,
+      "type": "text"
+     },
+     {
+      "name": "price",
+      "required": true,
+      "type": "decimal"
+     },
+     {
+      "name": "stock",
+      "required": true,
+      "type": "integer"
+     },
+     {
+      "name": "category_id",
+      "required": false,
+      "type": "uuid"
+     },
+     {
+      "name": "image_url",
+      "required": false,
+      "type": "url"
+     }
+    ],
+    "id": "schema.product",
+    "name": "Product"
+   },
+   {
+    "entity_ref": "entity.user",
+    "fields": [
+     {
+      "name": "id",
+      "required": true,
+      "type": "uuid"
+     },
+     {
+      "name": "email",
+      "required": true,
+      "type": "email"
+     },
+     {
+      "name": "full_name",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "role",
+      "required": true,
+      "type": "enum"
+     },
+     {
+      "name": "created_at",
+      "required": true,
+      "type": "datetime"
+     }
+    ],
+    "id": "schema.user",
+    "name": "User"
+   },
+   {
+    "entity_ref": "entity.user",
+    "fields": [
+     {
+      "name": "email",
+      "required": true,
+      "type": "email!*"
+     },
+     {
+      "name": "password",
+      "required": true,
+      "type": "string"
+     }
+    ],
+    "id": "schema.user.login",
+    "name": "Log in request"
+   },
+   {
+    "entity_ref": "entity.user",
+    "fields": [
+     {
+      "name": "email",
+      "required": true,
+      "type": "email!*"
+     }
+    ],
+    "id": "schema.user.request_password_reset",
+    "name": "Request password reset request"
+   },
+   {
+    "entity_ref": "entity.user",
+    "fields": [
+     {
+      "name": "reset_token",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "name": "new_password",
+      "required": true,
+      "type": "string"
+     }
+    ],
+    "id": "schema.user.reset_password",
+    "name": "Reset password request"
+   }
+  ]
+ },
+ "backend": {
+  "operations": [
+   {
+    "access": "restricted",
+    "action": "create",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.shopping_cart"
+    ],
+    "description": "Create Cart Item.",
+    "entity_ref": "entity.cart_item",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.cart_item.create",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "product_id",
+      "quantity"
+     ]
+    },
+    "name": "Create Cart Item",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.cart_item"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.shopping_cart, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.customer"
+    ],
+    "service_ref": "service.cart_item",
+    "side_effects": [
+     "A new Cart Item is persisted"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "delete",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.shopping_cart"
+    ],
+    "description": "Delete Cart Item.",
+    "entity_ref": "entity.cart_item",
+    "errors": [
+     {
+      "code": "CART_ITEM_NOT_FOUND",
+      "description": "The Cart Item does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.cart_item.delete",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "Delete Cart Item",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.shopping_cart, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.customer"
+    ],
+    "service_ref": "service.cart_item",
+    "side_effects": [
+     "The Cart Item is removed"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.shopping_cart"
+    ],
+    "description": "List Cart Items.",
+    "entity_ref": "entity.cart_item",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.cart_item.list",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "List Cart Items",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.cart_item"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.shopping_cart, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.customer"
+    ],
+    "service_ref": "service.cart_item",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "update",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.shopping_cart"
+    ],
+    "description": "Update Cart Item.",
+    "entity_ref": "entity.cart_item",
+    "errors": [
+     {
+      "code": "CART_ITEM_NOT_FOUND",
+      "description": "The Cart Item does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.cart_item.update",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [
+      "quantity"
+     ],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "Update Cart Item",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.cart_item"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.shopping_cart, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.customer"
+    ],
+    "service_ref": "service.cart_item",
+    "side_effects": [
+     "The Cart Item is modified"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.checkout"
+    ],
+    "description": "List Orders.",
+    "entity_ref": "entity.order",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.order.list",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "List Orders",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.order"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.checkout, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.customer"
+    ],
+    "service_ref": "service.order",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "restricted",
+    "action": "create",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.checkout"
+    ],
+    "description": "Place order.",
+    "entity_ref": "entity.order",
+    "errors": [
+     {
+      "code": "CART_EMPTY",
+      "description": "The cart has no items"
+     },
+     {
+      "code": "OUT_OF_STOCK",
+      "description": "A product is out of stock"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.order.place",
+    "input": {
+     "extra_fields": [
+      "shipping_address",
+      "payment_method"
+     ],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "Place order",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.order"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.checkout, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.customer"
+    ],
+    "service_ref": "service.order",
+    "side_effects": [
+     "An order is created from the cart",
+     "The cart is emptied",
+     "Product stock is reduced"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "restricted",
+    "action": "read",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.checkout"
+    ],
+    "description": "View Order.",
+    "entity_ref": "entity.order",
+    "errors": [
+     {
+      "code": "ORDER_NOT_FOUND",
+      "description": "The Order does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.order.read",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "View Order",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.order"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.checkout, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [
+     "role.customer"
+    ],
+    "service_ref": "service.order",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "public",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.product_filter"
+    ],
+    "description": "Filter products.",
+    "entity_ref": "entity.product",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.product.filter",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [
+      "category_id",
+      "price"
+     ],
+     "required_fields": []
+    },
+    "name": "Filter products",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.product"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.product_filter, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.product",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "public",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.product_catalog"
+    ],
+    "description": "List Products.",
+    "entity_ref": "entity.product",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.product.list",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "List Products",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.product"
+    },
+    "provenance": {
+     "confidence": 0.6,
+     "source": {
+      "text": "Realises requirement.product_catalog, which the user did not state but the product needs",
+      "type": "inferred"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.product",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "public",
+    "action": "read",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.product_catalog"
+    ],
+    "description": "View Product.",
+    "entity_ref": "entity.product",
+    "errors": [
+     {
+      "code": "PRODUCT_NOT_FOUND",
+      "description": "The Product does not exist"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.product.read",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "id"
+     ]
+    },
+    "name": "View Product",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.product"
+    },
+    "provenance": {
+     "confidence": 0.6,
+     "source": {
+      "text": "Realises requirement.product_catalog, which the user did not state but the product needs",
+      "type": "inferred"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.product",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "public",
+    "action": "list",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.product_search"
+    ],
+    "description": "Search products.",
+    "entity_ref": "entity.product",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.product.search",
+    "input": {
+     "extra_fields": [
+      "query"
+     ],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "Search products",
+    "output": {
+     "cardinality": "many",
+     "entity_ref": "entity.product"
+    },
+    "provenance": {
+     "confidence": 0.9,
+     "source": {
+      "text": "Realises requirement.product_search, which the user stated",
+      "type": "derived"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.product",
+    "side_effects": [],
+    "type": "query"
+   },
+   {
+    "access": "public",
+    "action": "execute",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.authentication"
+    ],
+    "description": "Log in.",
+    "entity_ref": "entity.user",
+    "errors": [
+     {
+      "code": "INVALID_CREDENTIALS",
+      "description": "Email or password is wrong"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.user.login",
+    "input": {
+     "extra_fields": [
+      "password"
+     ],
+     "optional_fields": [],
+     "required_fields": [
+      "email"
+     ]
+    },
+    "name": "Log in",
+    "output": {
+     "cardinality": "one",
+     "entity_ref": "entity.user"
+    },
+    "provenance": {
+     "confidence": 0.6,
+     "source": {
+      "text": "Realises requirement.authentication, which the user did not state but the product needs",
+      "type": "inferred"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.user",
+    "side_effects": [
+     "A session token is issued"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "authenticated",
+    "action": "execute",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.authentication"
+    ],
+    "description": "Log out.",
+    "entity_ref": "entity.user",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.user.logout",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "Log out",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.6,
+     "source": {
+      "text": "Realises requirement.authentication, which the user did not state but the product needs",
+      "type": "inferred"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.user",
+    "side_effects": [
+     "The session token is revoked"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "public",
+    "action": "execute",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.authentication"
+    ],
+    "description": "Request password reset.",
+    "entity_ref": "entity.user",
+    "errors": [],
+    "exposed": true,
+    "id": "operation.user.request_password_reset",
+    "input": {
+     "extra_fields": [],
+     "optional_fields": [],
+     "required_fields": [
+      "email"
+     ]
+    },
+    "name": "Request password reset",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.6,
+     "source": {
+      "text": "Realises requirement.authentication, which the user did not state but the product needs",
+      "type": "inferred"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.user",
+    "side_effects": [
+     "A reset link is sent to the email address"
+    ],
+    "type": "command"
+   },
+   {
+    "access": "public",
+    "action": "execute",
+    "assumption_refs": [],
+    "capability_refs": [
+     "capability.authentication"
+    ],
+    "description": "Reset password.",
+    "entity_ref": "entity.user",
+    "errors": [
+     {
+      "code": "INVALID_RESET_TOKEN",
+      "description": "The reset token is invalid or expired"
+     }
+    ],
+    "exposed": true,
+    "id": "operation.user.reset_password",
+    "input": {
+     "extra_fields": [
+      "reset_token",
+      "new_password"
+     ],
+     "optional_fields": [],
+     "required_fields": []
+    },
+    "name": "Reset password",
+    "output": {
+     "cardinality": "none",
+     "entity_ref": null
+    },
+    "provenance": {
+     "confidence": 0.6,
+     "source": {
+      "text": "Realises requirement.authentication, which the user did not state but the product needs",
+      "type": "inferred"
+     }
+    },
+    "required_roles": [],
+    "service_ref": "service.user",
+    "side_effects": [],
+    "type": "command"
+   }
+  ],
+  "project_id": "project.ecommerce_store",
+  "project_version": "0.1.0",
+  "schema_version": "1.0.0",
+  "services": [
+   {
+    "description": "Business operations on Cart Item.",
+    "entity_refs": [
+     "entity.cart_item"
+    ],
+    "id": "service.cart_item",
+    "name": "Cart Item service"
+   },
+   {
+    "description": "Business operations on Order.",
+    "entity_refs": [
+     "entity.order"
+    ],
+    "id": "service.order",
+    "name": "Order service"
+   },
+   {
+    "description": "Business operations on Product.",
+    "entity_refs": [
+     "entity.product"
+    ],
+    "id": "service.product",
+    "name": "Product service"
+   },
+   {
+    "description": "Business operations on User.",
+    "entity_refs": [
+     "entity.user"
+    ],
+    "id": "service.user",
+    "name": "User service"
+   }
+  ]
+ },
+ "entities": [
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.cart_item.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.cart_item.user_id",
+     "name": "user_id",
+     "reference_to": "entity.user",
+     "required": true,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.cart_item.product_id",
+     "name": "product_id",
+     "reference_to": "entity.product",
+     "required": true,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.cart_item.quantity",
+     "name": "quantity",
+     "reference_to": null,
+     "required": true,
+     "type": "integer",
+     "unique": false
+    }
+   ],
+   "description": "A product placed in a customer's cart.",
+   "id": "entity.cart_item",
+   "name": "Cart Item",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Users can add products to cart.",
+     "type": "user_requirement"
+    }
+   }
+  },
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.category.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.category.name",
+     "name": "name",
+     "reference_to": null,
+     "required": true,
+     "type": "string",
+     "unique": false
+    }
+   ],
+   "description": "A grouping of products.",
+   "id": "entity.category",
+   "name": "Category",
+   "provenance": {
+    "confidence": 0.7,
+    "source": {
+     "text": "Category data is needed by the selected capabilities",
+     "type": "inferred"
+    }
+   }
+  },
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.order.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.order.user_id",
+     "name": "user_id",
+     "reference_to": "entity.user",
+     "required": true,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [
+      "pending",
+      "paid",
+      "shipped",
+      "delivered",
+      "cancelled"
+     ],
+     "id": "entity.order.status",
+     "name": "status",
+     "reference_to": null,
+     "required": true,
+     "type": "enum",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.order.total",
+     "name": "total",
+     "reference_to": null,
+     "required": true,
+     "type": "decimal",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.order.shipping_address",
+     "name": "shipping_address",
+     "reference_to": null,
+     "required": false,
+     "type": "text",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.order.placed_at",
+     "name": "placed_at",
+     "reference_to": null,
+     "required": false,
+     "type": "datetime",
+     "unique": false
+    }
+   ],
+   "description": "A purchase made by a customer.",
+   "id": "entity.order",
+   "name": "Order",
+   "provenance": {
+    "confidence": 0.7,
+    "source": {
+     "text": "Order data is needed by the selected capabilities",
+     "type": "inferred"
+    }
+   }
+  },
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.order_item.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.order_item.order_id",
+     "name": "order_id",
+     "reference_to": "entity.order",
+     "required": true,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.order_item.product_id",
+     "name": "product_id",
+     "reference_to": "entity.product",
+     "required": true,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.order_item.quantity",
+     "name": "quantity",
+     "reference_to": null,
+     "required": true,
+     "type": "integer",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.order_item.unit_price",
+     "name": "unit_price",
+     "reference_to": null,
+     "required": true,
+     "type": "decimal",
+     "unique": false
+    }
+   ],
+   "description": "A product line inside an order.",
+   "id": "entity.order_item",
+   "name": "Order Item",
+   "provenance": {
+    "confidence": 0.7,
+    "source": {
+     "text": "Order Item data is needed by the selected capabilities",
+     "type": "inferred"
+    }
+   }
+  },
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.product.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.product.name",
+     "name": "name",
+     "reference_to": null,
+     "required": true,
+     "type": "string",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.product.description",
+     "name": "description",
+     "reference_to": null,
+     "required": false,
+     "type": "text",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.product.price",
+     "name": "price",
+     "reference_to": null,
+     "required": true,
+     "type": "decimal",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.product.stock",
+     "name": "stock",
+     "reference_to": null,
+     "required": true,
+     "type": "integer",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.product.category_id",
+     "name": "category_id",
+     "reference_to": "entity.category",
+     "required": false,
+     "type": "uuid",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.product.image_url",
+     "name": "image_url",
+     "reference_to": null,
+     "required": false,
+     "type": "url",
+     "unique": false
+    }
+   ],
+   "description": "An item for sale.",
+   "id": "entity.product",
+   "name": "Product",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Users can search products.",
+     "type": "user_requirement"
+    }
+   }
+  },
+  {
+   "attributes": [
+    {
+     "description": "Stable identifier",
+     "enum_values": [],
+     "id": "entity.user.id",
+     "name": "id",
+     "reference_to": null,
+     "required": true,
+     "type": "uuid",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.user.email",
+     "name": "email",
+     "reference_to": null,
+     "required": true,
+     "type": "email",
+     "unique": true
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.user.password_hash",
+     "name": "password_hash",
+     "reference_to": null,
+     "required": true,
+     "type": "string",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.user.full_name",
+     "name": "full_name",
+     "reference_to": null,
+     "required": true,
+     "type": "string",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [
+      "customer"
+     ],
+     "id": "entity.user.role",
+     "name": "role",
+     "reference_to": null,
+     "required": true,
+     "type": "enum",
+     "unique": false
+    },
+    {
+     "description": "",
+     "enum_values": [],
+     "id": "entity.user.created_at",
+     "name": "created_at",
+     "reference_to": null,
+     "required": true,
+     "type": "datetime",
+     "unique": false
+    }
+   ],
+   "description": "An account that can sign in to the product.",
+   "id": "entity.user",
+   "name": "User",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Users can search products.",
+     "type": "user_requirement"
+    }
+   }
+  }
+ ],
+ "permissions": [
+  {
+   "action": "create",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.cart_item.create",
+   "operation_refs": [
+    "operation.cart_item.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Create Cart Item",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.cart_item",
+   "roles": [
+    "role.customer"
+   ]
+  },
+  {
+   "action": "delete",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.cart_item.delete",
+   "operation_refs": [
+    "operation.cart_item.delete"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Delete Cart Item",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.cart_item",
+   "roles": [
+    "role.customer"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.cart_item.list",
+   "operation_refs": [
+    "operation.cart_item.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: List Cart Items",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.cart_item",
+   "roles": [
+    "role.customer"
+   ]
+  },
+  {
+   "action": "update",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.cart_item.update",
+   "operation_refs": [
+    "operation.cart_item.update"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Update Cart Item",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.cart_item",
+   "roles": [
+    "role.customer"
+   ]
+  },
+  {
+   "action": "list",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.order.list",
+   "operation_refs": [
+    "operation.order.list"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: List Orders",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.order",
+   "roles": [
+    "role.customer"
+   ]
+  },
+  {
+   "action": "create",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.order.place",
+   "operation_refs": [
+    "operation.order.place"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: Place order",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.order",
+   "roles": [
+    "role.customer"
+   ]
+  },
+  {
+   "action": "read",
+   "assumption_refs": [],
+   "conditions": [],
+   "id": "permission.order.read",
+   "operation_refs": [
+    "operation.order.read"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Roles stated by the user for: View Order",
+     "type": "derived"
+    }
+   },
+   "resource": "entity.order",
+   "roles": [
+    "role.customer"
+   ]
+  },
+  {
+   "action": "execute",
+   "assumption_refs": [
+    "assumption.inferred.authentication"
+   ],
+   "conditions": [],
+   "id": "permission.user.logout",
+   "operation_refs": [
+    "operation.user.logout"
+   ],
+   "provenance": {
+    "confidence": 0.5,
+    "source": {
+     "text": "Who may log out was not stated; roles are assumed",
+     "type": "assumption"
+    }
+   },
+   "resource": "entity.user",
+   "roles": [
+    "role.customer"
+   ]
+  }
+ ],
+ "project_id": "project.ecommerce_store",
+ "roles": [
+  {
+   "description": "Authority held by a Customer.",
+   "id": "role.customer",
+   "inherits": [],
+   "name": "Customer",
+   "provenance": {
+    "confidence": 0.65,
+    "source": {
+     "text": "The Customer role is implied by the capabilities",
+     "type": "inferred"
+    }
+   }
+  }
+ ],
+ "state_machines": [
+  {
+   "entity_ref": "entity.order",
+   "field": "status",
+   "id": "state_machine.order",
+   "initial_state": "pending",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.checkout, which the user stated",
+     "type": "derived"
+    }
+   },
+   "states": [
+    "pending",
+    "paid",
+    "shipped",
+    "delivered",
+    "cancelled"
+   ],
+   "transitions": [
+    {
+     "from": "pending",
+     "guard": "",
+     "operation_ref": null,
+     "role_refs": [
+      "role.customer"
+     ],
+     "to": "paid"
+    },
+    {
+     "from": "pending",
+     "guard": "",
+     "operation_ref": null,
+     "role_refs": [
+      "role.customer"
+     ],
+     "to": "cancelled"
+    },
+    {
+     "from": "paid",
+     "guard": "",
+     "operation_ref": null,
+     "role_refs": [],
+     "to": "shipped"
+    },
+    {
+     "from": "shipped",
+     "guard": "",
+     "operation_ref": null,
+     "role_refs": [],
+     "to": "delivered"
+    },
+    {
+     "from": "paid",
+     "guard": "",
+     "operation_ref": null,
+     "role_refs": [],
+     "to": "cancelled"
+    }
+   ]
+  }
+ ],
+ "validations": [
+  {
+   "condition": "product_id, quantity must be provided",
+   "failure": {
+    "action": "reject",
+    "error_code": "CART_ITEM_FIELDS_REQUIRED",
+    "message": "product_id, quantity are required"
+   },
+   "id": "validation.cart_item.required_fields",
+   "kind": "required",
+   "name": "Cart Item required fields",
+   "operation_refs": [
+    "operation.cart_item.create"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.shopping_cart, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.cart_item",
+    "field": null
+   }
+  },
+  {
+   "condition": "the customer's cart has at least one item",
+   "failure": {
+    "action": "reject",
+    "error_code": "CART_EMPTY",
+    "message": "The cart is empty"
+   },
+   "id": "validation.order.cart_not_empty",
+   "kind": "state",
+   "name": "Cart must not be empty",
+   "operation_refs": [
+    "operation.order.place"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.checkout, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.order",
+    "field": null
+   }
+  },
+  {
+   "condition": "requested quantity is less than or equal to product stock",
+   "failure": {
+    "action": "reject",
+    "error_code": "OUT_OF_STOCK",
+    "message": "One or more products are out of stock"
+   },
+   "id": "validation.product.stock_available",
+   "kind": "range",
+   "name": "Stock must cover the quantity",
+   "operation_refs": [
+    "operation.order.place"
+   ],
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.checkout, which the user stated",
+     "type": "derived"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.product",
+    "field": "stock"
+   }
+  },
+  {
+   "condition": "email matches a valid email address pattern",
+   "failure": {
+    "action": "reject",
+    "error_code": "INVALID_EMAIL",
+    "message": "Enter a valid email address"
+   },
+   "id": "validation.user.email_format",
+   "kind": "format",
+   "name": "Email must be well formed",
+   "operation_refs": [
+    "operation.user.login",
+    "operation.user.request_password_reset"
+   ],
+   "provenance": {
+    "confidence": 0.6,
+    "source": {
+     "text": "Realises requirement.authentication, which the user did not state but the product needs",
+     "type": "inferred"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.user",
+    "field": "email"
+   }
+  },
+  {
+   "condition": "email and password match an existing account",
+   "failure": {
+    "action": "reject",
+    "error_code": "INVALID_CREDENTIALS",
+    "message": "Email or password is wrong"
+   },
+   "id": "validation.user.invalid_login",
+   "kind": "authorization",
+   "name": "Wrong credentials are rejected",
+   "operation_refs": [
+    "operation.user.login"
+   ],
+   "provenance": {
+    "confidence": 0.6,
+    "source": {
+     "text": "Realises requirement.authentication, which the user did not state but the product needs",
+     "type": "inferred"
+    }
+   },
+   "severity": "error",
+   "target": {
+    "entity_ref": "entity.user",
+    "field": null
+   }
+  }
+ ],
+ "workflows": [
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.authentication"
+   ],
+   "description": "Log in workflow of Authentication.",
+   "id": "workflow.auth.login",
+   "name": "Log in",
+   "outcome": "The user is authenticated and sees their home screen",
+   "provenance": {
+    "confidence": 0.6,
+    "source": {
+     "text": "Realises requirement.authentication, which the user did not state but the product needs",
+     "type": "inferred"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Login",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.login",
+     "type": "navigation"
+    },
+    {
+     "description": "Enter email and password",
+     "id": "step.02_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Log in",
+     "id": "step.03_act",
+     "next": [],
+     "operation_ref": "operation.user.login",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Redirect the user to their home screen",
+     "id": "step.04_sys",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "system"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.authentication"
+   ],
+   "description": "Log out workflow of Authentication.",
+   "id": "workflow.auth.logout",
+   "name": "Log out",
+   "outcome": "The session ends and the login screen is shown",
+   "provenance": {
+    "confidence": 0.6,
+    "source": {
+     "text": "Realises requirement.authentication, which the user did not state but the product needs",
+     "type": "inferred"
+    }
+   },
+   "steps": [
+    {
+     "description": "Choose log out",
+     "id": "step.01_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Log out",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.user.logout",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Login",
+     "id": "step.03_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.login",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.authentication"
+   ],
+   "description": "Reset password workflow of Authentication.",
+   "id": "workflow.auth.password_reset",
+   "name": "Reset password",
+   "outcome": "The password is changed and the user can log in again",
+   "provenance": {
+    "confidence": 0.6,
+    "source": {
+     "text": "Realises requirement.authentication, which the user did not state but the product needs",
+     "type": "inferred"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Forgot Password",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.forgot_password",
+     "type": "navigation"
+    },
+    {
+     "description": "Enter the account email",
+     "id": "step.02_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Request password reset",
+     "id": "step.03_act",
+     "next": [],
+     "operation_ref": "operation.user.request_password_reset",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Reset Password",
+     "id": "step.04_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.reset_password",
+     "type": "navigation"
+    },
+    {
+     "description": "Enter the new password",
+     "id": "step.05_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Reset password",
+     "id": "step.06_act",
+     "next": [],
+     "operation_ref": "operation.user.reset_password",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Login",
+     "id": "step.07_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.auth.login",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.shopping_cart"
+   ],
+   "description": "Browse Cart Items workflow of Shopping cart.",
+   "id": "workflow.cart_item.browse",
+   "name": "Browse Cart Items",
+   "outcome": "The Cart Item information is displayed",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.shopping_cart, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Cart Item List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.cart_item.list",
+     "type": "navigation"
+    },
+    {
+     "description": "List Cart Items",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.cart_item.list",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.shopping_cart"
+   ],
+   "description": "Create Cart Item workflow of Shopping cart.",
+   "id": "workflow.cart_item.create",
+   "name": "Create Cart Item",
+   "outcome": "The Cart Item is created and appears in the Cart Item list",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.shopping_cart, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Cart Item List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.cart_item.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Create Cart Item",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.cart_item.create",
+     "type": "navigation"
+    },
+    {
+     "description": "Fill in the Cart Item form",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Create Cart Item",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.cart_item.create",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Cart Item List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.cart_item.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.shopping_cart"
+   ],
+   "description": "Delete Cart Item workflow of Shopping cart.",
+   "id": "workflow.cart_item.delete",
+   "name": "Delete Cart Item",
+   "outcome": "The Cart Item is removed from the Cart Item list",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.shopping_cart, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Cart Item List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.cart_item.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Confirm deleting the Cart Item",
+     "id": "step.02_decide",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "decision"
+    },
+    {
+     "description": "Delete Cart Item",
+     "id": "step.03_act",
+     "next": [],
+     "operation_ref": "operation.cart_item.delete",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Cart Item List",
+     "id": "step.04_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.cart_item.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.shopping_cart"
+   ],
+   "description": "Update Cart Item workflow of Shopping cart.",
+   "id": "workflow.cart_item.update",
+   "name": "Update Cart Item",
+   "outcome": "The changes to the Cart Item are saved",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.shopping_cart, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Cart Item List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.cart_item.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Edit Cart Item",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.cart_item.edit",
+     "type": "navigation"
+    },
+    {
+     "description": "Change the Cart Item details",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Update Cart Item",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.cart_item.update",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Cart Item List",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.cart_item.list",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.checkout"
+   ],
+   "description": "Browse Orders workflow of Checkout and orders.",
+   "id": "workflow.order.browse",
+   "name": "Browse Orders",
+   "outcome": "The Order information is displayed",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.checkout, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Order List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.order.list",
+     "type": "navigation"
+    },
+    {
+     "description": "List Orders",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.order.list",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Order Details",
+     "id": "step.03_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.order.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "View Order",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.order.read",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.checkout"
+   ],
+   "description": "Check out workflow of Checkout and orders.",
+   "id": "workflow.order.checkout",
+   "name": "Check out",
+   "outcome": "The order is placed and its details are shown",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.checkout, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Cart Item List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.cart_item.list",
+     "type": "navigation"
+    },
+    {
+     "description": "Open Checkout",
+     "id": "step.02_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.order.checkout",
+     "type": "navigation"
+    },
+    {
+     "description": "Enter shipping address and payment method",
+     "id": "step.03_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Place order",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.order.place",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Order Details",
+     "id": "step.05_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.order.detail",
+     "type": "navigation"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.product_catalog"
+   ],
+   "description": "Browse Products workflow of Product catalog.",
+   "id": "workflow.product.browse",
+   "name": "Browse Products",
+   "outcome": "The Product information is displayed",
+   "provenance": {
+    "confidence": 0.6,
+    "source": {
+     "text": "Realises requirement.product_catalog, which the user did not state but the product needs",
+     "type": "inferred"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Product List",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.product.list",
+     "type": "navigation"
+    },
+    {
+     "description": "List Products",
+     "id": "step.02_act",
+     "next": [],
+     "operation_ref": "operation.product.list",
+     "target": null,
+     "type": "action"
+    },
+    {
+     "description": "Open Product Details",
+     "id": "step.03_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.product.detail",
+     "type": "navigation"
+    },
+    {
+     "description": "View Product",
+     "id": "step.04_act",
+     "next": [],
+     "operation_ref": "operation.product.read",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.product_filter"
+   ],
+   "description": "Filter products workflow of Product filtering.",
+   "id": "workflow.product.filter",
+   "name": "Filter products",
+   "outcome": "Only matching products are listed",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.product_filter, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Filter Products",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.product.filter",
+     "type": "navigation"
+    },
+    {
+     "description": "Choose category and price range",
+     "id": "step.02_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Filter products",
+     "id": "step.03_act",
+     "next": [],
+     "operation_ref": "operation.product.filter",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  },
+  {
+   "actor_refs": [
+    "actor.customer"
+   ],
+   "capability_refs": [
+    "capability.product_search"
+   ],
+   "description": "Search products workflow of Product search.",
+   "id": "workflow.product.search",
+   "name": "Search products",
+   "outcome": "Matching products are listed",
+   "provenance": {
+    "confidence": 0.9,
+    "source": {
+     "text": "Realises requirement.product_search, which the user stated",
+     "type": "derived"
+    }
+   },
+   "steps": [
+    {
+     "description": "Open Product Search",
+     "id": "step.01_nav",
+     "next": [],
+     "operation_ref": null,
+     "target": "screen.product.search",
+     "type": "navigation"
+    },
+    {
+     "description": "Enter search words",
+     "id": "step.02_in",
+     "next": [],
+     "operation_ref": null,
+     "target": null,
+     "type": "input"
+    },
+    {
+     "description": "Search products",
+     "id": "step.03_act",
+     "next": [],
+     "operation_ref": "operation.product.search",
+     "target": null,
+     "type": "action"
+    }
+   ]
+  }
+ ]
+}

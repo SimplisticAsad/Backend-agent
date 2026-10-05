@@ -1,0 +1,23 @@
+{
+  "operation.order.place": {
+    "code": "body = body or {}\nwith self.db.transaction() as conn:\n    cart = conn.execute('SELECT \"product_id\" AS product_id, quantity FROM \"cart_items\" WHERE \"user_id\" = %s ORDER BY \"product_id\" FOR UPDATE', (principal.user_id,)).fetchall()\n    if not cart:\n        raise ConflictError('The cart is empty', code='CART_EMPTY')\n    lines = []\n    total = Decimal(\"0\")\n    for item in cart:\n        product = conn.execute('SELECT id, price, stock FROM \"products\" WHERE id = %s FOR UPDATE', (item[\"product_id\"],)).fetchone()\n        if product is None or item[\"quantity\"] > product[\"stock\"]:\n            raise ConflictError('One or more products are out of stock', code='OUT_OF_STOCK', details={\"product_id\": str(item[\"product_id\"])})\n        lines.append((product[\"id\"], item[\"quantity\"], product[\"price\"]))\n        total += product[\"price\"] * item[\"quantity\"]\n    order = conn.execute('INSERT INTO \"orders\" (\"user_id\", \"status\", \"total\", \"shipping_address\") VALUES (%s, %s, %s, %s) RETURNING *', (principal.user_id, 'pending', total, body.get(\"shipping_address\"))).fetchone()\n    for product_id, quantity, price in lines:\n        conn.execute('INSERT INTO \"order_items\" (\"order_id\", \"product_id\", quantity, unit_price) VALUES (%s, %s, %s, %s)', (order[\"id\"], product_id, quantity, price))\n        conn.execute('UPDATE \"products\" SET stock = stock - %s WHERE id = %s', (quantity, product_id))\n    conn.execute('DELETE FROM \"cart_items\" WHERE \"user_id\" = %s', (principal.user_id,))\nreturn Order.model_validate(order)",
+    "meta": {
+      "cart": "entity.cart_item",
+      "kind": "checkout",
+      "line": "entity.order_item",
+      "order": "entity.order",
+      "product": "entity.product",
+      "total": "total"
+    },
+    "notes": [
+      "payment_method is validated but not processed: the graph defines no payment integration",
+      "rows are locked in a stable order (cart by product id) to avoid deadlocks"
+    ],
+    "reason": "",
+    "response_class": "",
+    "response_extra_fields": [],
+    "source": "llm",
+    "stage": "api_implementation",
+    "status": "implemented"
+  }
+}

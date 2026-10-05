@@ -1,0 +1,929 @@
+{
+  "api_endpoints": [
+    {
+      "authenticated": true,
+      "id": "api.cart_item.create",
+      "method": "POST",
+      "operation": "operation.cart_item.create",
+      "path": "/cart-items",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.cart_item.delete",
+      "method": "DELETE",
+      "operation": "operation.cart_item.delete",
+      "path": "/cart-items/{id}",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.cart_item.list",
+      "method": "GET",
+      "operation": "operation.cart_item.list",
+      "path": "/cart-items",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.cart_item.update",
+      "method": "PATCH",
+      "operation": "operation.cart_item.update",
+      "path": "/cart-items/{id}",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.order.list",
+      "method": "GET",
+      "operation": "operation.order.list",
+      "path": "/orders",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.order.place",
+      "method": "POST",
+      "operation": "operation.order.place",
+      "path": "/orders",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "authenticated": true,
+      "id": "api.order.read",
+      "method": "GET",
+      "operation": "operation.order.read",
+      "path": "/orders/{id}",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "authenticated": false,
+      "id": "api.product.filter",
+      "method": "GET",
+      "operation": "operation.product.filter",
+      "path": "/products/filter",
+      "roles": []
+    },
+    {
+      "authenticated": false,
+      "id": "api.product.list",
+      "method": "GET",
+      "operation": "operation.product.list",
+      "path": "/products",
+      "roles": []
+    },
+    {
+      "authenticated": false,
+      "id": "api.product.read",
+      "method": "GET",
+      "operation": "operation.product.read",
+      "path": "/products/{id}",
+      "roles": []
+    },
+    {
+      "authenticated": false,
+      "id": "api.product.search",
+      "method": "GET",
+      "operation": "operation.product.search",
+      "path": "/products/search",
+      "roles": []
+    },
+    {
+      "authenticated": false,
+      "id": "api.user.login",
+      "method": "POST",
+      "operation": "operation.user.login",
+      "path": "/auth/login",
+      "roles": []
+    },
+    {
+      "authenticated": true,
+      "id": "api.user.logout",
+      "method": "POST",
+      "operation": "operation.user.logout",
+      "path": "/auth/logout",
+      "roles": []
+    },
+    {
+      "authenticated": false,
+      "id": "api.user.request_password_reset",
+      "method": "POST",
+      "operation": "operation.user.request_password_reset",
+      "path": "/auth/forgot-password",
+      "roles": []
+    },
+    {
+      "authenticated": false,
+      "id": "api.user.reset_password",
+      "method": "POST",
+      "operation": "operation.user.reset_password",
+      "path": "/auth/reset-password",
+      "roles": []
+    }
+  ],
+  "api_refs": [
+    "api.cart_item.create",
+    "api.cart_item.delete",
+    "api.cart_item.list",
+    "api.cart_item.update",
+    "api.order.list",
+    "api.order.place",
+    "api.order.read",
+    "api.product.filter",
+    "api.product.list",
+    "api.product.read",
+    "api.product.search",
+    "api.user.login",
+    "api.user.logout",
+    "api.user.request_password_reset",
+    "api.user.reset_password"
+  ],
+  "authentication": {
+    "entity": "entity.user",
+    "login": "operation.user.login"
+  },
+  "commands": [
+    "operation.cart_item.create",
+    "operation.cart_item.delete",
+    "operation.cart_item.update",
+    "operation.order.place",
+    "operation.user.login",
+    "operation.user.logout",
+    "operation.user.request_password_reset",
+    "operation.user.reset_password"
+  ],
+  "dependencies": {
+    "implementation_order": [
+      [
+        "assumption.authentication",
+        "assumption.checkout_requires_login",
+        "assumption.guest_browse",
+        "assumption.inferred.authentication",
+        "assumption.inferred.product_catalog",
+        "assumption.single_currency",
+        "component.app.navigation",
+        "entity.cart_item",
+        "entity.category",
+        "entity.order",
+        "entity.order_item",
+        "entity.product",
+        "entity.user",
+        "question.guest_checkout",
+        "question.payment_provider",
+        "question.stock_reservation",
+        "requirement.authentication",
+        "requirement.checkout",
+        "requirement.nfr.accessibility",
+        "requirement.nfr.performance",
+        "requirement.nfr.responsive",
+        "requirement.nfr.security",
+        "requirement.product_catalog",
+        "requirement.product_filter",
+        "requirement.product_search",
+        "requirement.shopping_cart",
+        "role.customer"
+      ],
+      [
+        "actor.customer",
+        "component.auth.forgot_form",
+        "component.auth.login_form",
+        "component.auth.reset_form",
+        "component.cart_item.create_form",
+        "component.cart_item.delete_confirm",
+        "component.cart_item.edit_form",
+        "component.cart_item.table",
+        "component.order.card",
+        "component.order.checkout_form",
+        "component.order.table",
+        "component.product.card",
+        "component.product.filter_panel",
+        "component.product.filter_results",
+        "component.product.search_box",
+        "component.product.search_results",
+        "component.product.table",
+        "relationship.cart_item.product",
+        "relationship.cart_item.user",
+        "relationship.order.user",
+        "relationship.order_item.order",
+        "relationship.order_item.product",
+        "relationship.product.category",
+        "schema.cart_item",
+        "schema.cart_item.create",
+        "schema.cart_item.update",
+        "schema.order",
+        "schema.order.place",
+        "schema.product",
+        "schema.user",
+        "schema.user.login",
+        "schema.user.request_password_reset",
+        "schema.user.reset_password",
+        "service.cart_item",
+        "service.order",
+        "service.product",
+        "service.user",
+        "state_machine.order"
+      ],
+      [
+        "capability.authentication",
+        "capability.checkout",
+        "capability.product_catalog",
+        "capability.product_filter",
+        "capability.product_search",
+        "capability.shopping_cart"
+      ],
+      [
+        "operation.cart_item.create",
+        "operation.cart_item.delete",
+        "operation.cart_item.list",
+        "operation.cart_item.update",
+        "operation.order.list",
+        "operation.order.place",
+        "operation.order.read",
+        "operation.product.filter",
+        "operation.product.list",
+        "operation.product.read",
+        "operation.product.search",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password",
+        "screen.auth.forgot_password",
+        "screen.auth.login",
+        "screen.auth.reset_password",
+        "screen.cart_item.create",
+        "screen.cart_item.edit"
+      ],
+      [
+        "ac.auth.login",
+        "ac.auth.logout",
+        "ac.auth.password_reset",
+        "ac.cart_item.browse",
+        "ac.cart_item.create",
+        "ac.cart_item.delete",
+        "ac.cart_item.update",
+        "ac.order.browse",
+        "ac.order.cart_not_empty",
+        "ac.order.checkout",
+        "ac.product.browse",
+        "ac.product.filter",
+        "ac.product.search",
+        "ac.product.stock_available",
+        "ac.user.invalid_login",
+        "api.cart_item.create",
+        "api.cart_item.delete",
+        "api.cart_item.list",
+        "api.cart_item.update",
+        "api.order.list",
+        "api.order.place",
+        "api.order.read",
+        "api.product.filter",
+        "api.product.list",
+        "api.product.read",
+        "api.product.search",
+        "api.user.login",
+        "api.user.logout",
+        "api.user.request_password_reset",
+        "api.user.reset_password",
+        "permission.cart_item.create",
+        "permission.cart_item.delete",
+        "permission.cart_item.list",
+        "permission.cart_item.update",
+        "permission.order.list",
+        "permission.order.place",
+        "permission.order.read",
+        "permission.user.logout",
+        "screen.cart_item.list",
+        "screen.order.checkout",
+        "screen.order.detail",
+        "screen.order.list",
+        "screen.product.detail",
+        "screen.product.filter",
+        "screen.product.list",
+        "screen.product.search",
+        "validation.cart_item.required_fields",
+        "validation.order.cart_not_empty",
+        "validation.product.stock_available",
+        "validation.user.email_format",
+        "validation.user.invalid_login",
+        "workflow.auth.login",
+        "workflow.auth.logout",
+        "workflow.auth.password_reset"
+      ],
+      [
+        "workflow.cart_item.browse",
+        "workflow.cart_item.create",
+        "workflow.cart_item.delete",
+        "workflow.cart_item.update",
+        "workflow.order.browse",
+        "workflow.order.checkout",
+        "workflow.product.browse",
+        "workflow.product.filter",
+        "workflow.product.search"
+      ]
+    ]
+  },
+  "derived_rules": {
+    "assumptions": [
+      "entity.cart_item: rows are private to the user in 'user_id' for roles ['customer'] (the graph does not state this; inferred because the field is server-assigned on create)",
+      "entity.order: rows are private to the user in 'user_id' for roles ['customer'] (the graph does not state this; inferred because the field is server-assigned on create)"
+    ],
+    "coverage": [
+      {
+        "enforced_by": "request_schema",
+        "operations": [
+          "operation.cart_item.create"
+        ],
+        "source": "validation.cart_item.required_fields"
+      },
+      {
+        "enforced_by": "custom_handler",
+        "operations": [
+          "operation.order.place"
+        ],
+        "source": "validation.order.cart_not_empty"
+      },
+      {
+        "enforced_by": "custom_handler",
+        "operations": [
+          "operation.order.place"
+        ],
+        "source": "validation.product.stock_available"
+      },
+      {
+        "enforced_by": "request_schema",
+        "operations": [
+          "operation.user.login",
+          "operation.user.request_password_reset"
+        ],
+        "source": "validation.user.email_format"
+      },
+      {
+        "enforced_by": "authentication",
+        "operations": [
+          "operation.user.login"
+        ],
+        "source": "validation.user.invalid_login"
+      }
+    ],
+    "rules": [
+      {
+        "entity": "entity.cart_item",
+        "id": "rule.scope.implicit.cart_item.user_id",
+        "operations": [
+          "operation.cart_item.delete",
+          "operation.cart_item.list",
+          "operation.cart_item.update"
+        ],
+        "origin": "implicit_data_subject",
+        "roles": [
+          "role.customer"
+        ],
+        "scope": {
+          "field": "user_id"
+        },
+        "source": "heuristic:entity.cart_item.user_id is assigned from the caller on create",
+        "type": "row_scope"
+      },
+      {
+        "entity": "entity.order",
+        "id": "rule.scope.implicit.order.user_id",
+        "operations": [
+          "operation.order.list",
+          "operation.order.read"
+        ],
+        "origin": "implicit_data_subject",
+        "roles": [
+          "role.customer"
+        ],
+        "scope": {
+          "field": "user_id"
+        },
+        "source": "heuristic:entity.order.user_id is assigned from the caller on create",
+        "type": "row_scope"
+      }
+    ],
+    "unmapped": []
+  },
+  "entities": [
+    "entity.cart_item",
+    "entity.category",
+    "entity.order",
+    "entity.order_item",
+    "entity.product",
+    "entity.user"
+  ],
+  "external_integrations": [
+    "Payment gateway (provider not decided)"
+  ],
+  "integration_conflicts": {
+    "count": 2,
+    "status": "conflicts_reported"
+  },
+  "operation_classification": {
+    "operation.cart_item.create": {
+      "handler": "engine",
+      "kind": "create",
+      "notes": []
+    },
+    "operation.cart_item.delete": {
+      "handler": "engine",
+      "kind": "delete",
+      "notes": []
+    },
+    "operation.cart_item.list": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.cart_item.update": {
+      "handler": "engine",
+      "kind": "update",
+      "notes": []
+    },
+    "operation.order.list": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.order.place": {
+      "handler": "custom",
+      "kind": "custom",
+      "notes": [
+        "required attributes with no source: ['total']",
+        "takes non-attribute inputs ['shipping_address', 'payment_method']"
+      ]
+    },
+    "operation.order.read": {
+      "handler": "engine",
+      "kind": "read",
+      "notes": []
+    },
+    "operation.product.filter": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.product.list": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.product.read": {
+      "handler": "engine",
+      "kind": "read",
+      "notes": []
+    },
+    "operation.product.search": {
+      "handler": "engine",
+      "kind": "list",
+      "notes": []
+    },
+    "operation.user.login": {
+      "handler": "auth",
+      "kind": "auth.login",
+      "notes": []
+    },
+    "operation.user.logout": {
+      "handler": "auth",
+      "kind": "auth.logout",
+      "notes": []
+    },
+    "operation.user.request_password_reset": {
+      "handler": "auth",
+      "kind": "auth.request_password_reset",
+      "notes": []
+    },
+    "operation.user.reset_password": {
+      "handler": "auth",
+      "kind": "auth.reset_password",
+      "notes": []
+    }
+  },
+  "operations": [
+    "operation.cart_item.create",
+    "operation.cart_item.delete",
+    "operation.cart_item.list",
+    "operation.cart_item.update",
+    "operation.order.list",
+    "operation.order.place",
+    "operation.order.read",
+    "operation.product.filter",
+    "operation.product.list",
+    "operation.product.read",
+    "operation.product.search",
+    "operation.user.login",
+    "operation.user.logout",
+    "operation.user.request_password_reset",
+    "operation.user.reset_password"
+  ],
+  "permissions": [
+    {
+      "action": "create",
+      "conditions": [],
+      "id": "permission.cart_item.create",
+      "operations": [
+        "operation.cart_item.create"
+      ],
+      "resource": "entity.cart_item",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "action": "delete",
+      "conditions": [],
+      "id": "permission.cart_item.delete",
+      "operations": [
+        "operation.cart_item.delete"
+      ],
+      "resource": "entity.cart_item",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [],
+      "id": "permission.cart_item.list",
+      "operations": [
+        "operation.cart_item.list"
+      ],
+      "resource": "entity.cart_item",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "action": "update",
+      "conditions": [],
+      "id": "permission.cart_item.update",
+      "operations": [
+        "operation.cart_item.update"
+      ],
+      "resource": "entity.cart_item",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "action": "list",
+      "conditions": [],
+      "id": "permission.order.list",
+      "operations": [
+        "operation.order.list"
+      ],
+      "resource": "entity.order",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "action": "create",
+      "conditions": [],
+      "id": "permission.order.place",
+      "operations": [
+        "operation.order.place"
+      ],
+      "resource": "entity.order",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "action": "read",
+      "conditions": [],
+      "id": "permission.order.read",
+      "operations": [
+        "operation.order.read"
+      ],
+      "resource": "entity.order",
+      "roles": [
+        "role.customer"
+      ]
+    },
+    {
+      "action": "execute",
+      "conditions": [],
+      "id": "permission.user.logout",
+      "operations": [
+        "operation.user.logout"
+      ],
+      "resource": "entity.user",
+      "roles": [
+        "role.customer"
+      ]
+    }
+  ],
+  "project": {
+    "graph_version": "1.0.0",
+    "id": "project.ecommerce_store",
+    "name": "Ecommerce Store"
+  },
+  "queries": [
+    "operation.cart_item.list",
+    "operation.order.list",
+    "operation.order.read",
+    "operation.product.filter",
+    "operation.product.list",
+    "operation.product.read",
+    "operation.product.search"
+  ],
+  "relationships": [
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.cart_item.product",
+      "source": "entity.cart_item",
+      "target": "entity.product",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.cart_item.user",
+      "source": "entity.cart_item",
+      "target": "entity.user",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.order.user",
+      "source": "entity.order",
+      "target": "entity.user",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.order_item.order",
+      "source": "entity.order_item",
+      "target": "entity.order",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.order_item.product",
+      "source": "entity.order_item",
+      "target": "entity.product",
+      "type": "belongs_to"
+    },
+    {
+      "cardinality": "many_to_one",
+      "id": "relationship.product.category",
+      "source": "entity.product",
+      "target": "entity.category",
+      "type": "belongs_to"
+    }
+  ],
+  "request_schemas": [
+    "schema.cart_item.create",
+    "schema.cart_item.update",
+    "schema.order.place",
+    "schema.user.login",
+    "schema.user.request_password_reset",
+    "schema.user.reset_password"
+  ],
+  "response_schemas": [
+    "schema.cart_item",
+    "schema.order",
+    "schema.product",
+    "schema.user"
+  ],
+  "services": [
+    {
+      "entities": [
+        "entity.cart_item"
+      ],
+      "id": "service.cart_item",
+      "operations": [
+        "operation.cart_item.create",
+        "operation.cart_item.delete",
+        "operation.cart_item.list",
+        "operation.cart_item.update"
+      ]
+    },
+    {
+      "entities": [
+        "entity.order"
+      ],
+      "id": "service.order",
+      "operations": [
+        "operation.order.list",
+        "operation.order.place",
+        "operation.order.read"
+      ]
+    },
+    {
+      "entities": [
+        "entity.product"
+      ],
+      "id": "service.product",
+      "operations": [
+        "operation.product.filter",
+        "operation.product.list",
+        "operation.product.read",
+        "operation.product.search"
+      ]
+    },
+    {
+      "entities": [
+        "entity.user"
+      ],
+      "id": "service.user",
+      "operations": [
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ]
+    }
+  ],
+  "state_machines": [
+    {
+      "entity": "entity.order",
+      "field": "status",
+      "id": "state_machine.order",
+      "initial": "pending",
+      "states": [
+        "pending",
+        "paid",
+        "shipped",
+        "delivered",
+        "cancelled"
+      ],
+      "transitions": [
+        [
+          "pending",
+          "paid"
+        ],
+        [
+          "pending",
+          "cancelled"
+        ],
+        [
+          "paid",
+          "shipped"
+        ],
+        [
+          "shipped",
+          "delivered"
+        ],
+        [
+          "paid",
+          "cancelled"
+        ]
+      ]
+    }
+  ],
+  "validation_rules": [
+    {
+      "condition": "product_id, quantity must be provided",
+      "id": "validation.cart_item.required_fields",
+      "kind": "required",
+      "operations": [
+        "operation.cart_item.create"
+      ],
+      "target": {
+        "entity_ref": "entity.cart_item",
+        "field": null
+      }
+    },
+    {
+      "condition": "the customer's cart has at least one item",
+      "id": "validation.order.cart_not_empty",
+      "kind": "state",
+      "operations": [
+        "operation.order.place"
+      ],
+      "target": {
+        "entity_ref": "entity.order",
+        "field": null
+      }
+    },
+    {
+      "condition": "requested quantity is less than or equal to product stock",
+      "id": "validation.product.stock_available",
+      "kind": "range",
+      "operations": [
+        "operation.order.place"
+      ],
+      "target": {
+        "entity_ref": "entity.product",
+        "field": "stock"
+      }
+    },
+    {
+      "condition": "email matches a valid email address pattern",
+      "id": "validation.user.email_format",
+      "kind": "format",
+      "operations": [
+        "operation.user.login",
+        "operation.user.request_password_reset"
+      ],
+      "target": {
+        "entity_ref": "entity.user",
+        "field": "email"
+      }
+    },
+    {
+      "condition": "email and password match an existing account",
+      "id": "validation.user.invalid_login",
+      "kind": "authorization",
+      "operations": [
+        "operation.user.login"
+      ],
+      "target": {
+        "entity_ref": "entity.user",
+        "field": null
+      }
+    }
+  ],
+  "workflows": [
+    {
+      "id": "workflow.auth.login",
+      "operations": [
+        "operation.user.login"
+      ]
+    },
+    {
+      "id": "workflow.auth.logout",
+      "operations": [
+        "operation.user.logout"
+      ]
+    },
+    {
+      "id": "workflow.auth.password_reset",
+      "operations": [
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ]
+    },
+    {
+      "id": "workflow.cart_item.browse",
+      "operations": [
+        "operation.cart_item.list"
+      ]
+    },
+    {
+      "id": "workflow.cart_item.create",
+      "operations": [
+        "operation.cart_item.create"
+      ]
+    },
+    {
+      "id": "workflow.cart_item.delete",
+      "operations": [
+        "operation.cart_item.delete"
+      ]
+    },
+    {
+      "id": "workflow.cart_item.update",
+      "operations": [
+        "operation.cart_item.update"
+      ]
+    },
+    {
+      "id": "workflow.order.browse",
+      "operations": [
+        "operation.order.list",
+        "operation.order.read"
+      ]
+    },
+    {
+      "id": "workflow.order.checkout",
+      "operations": [
+        "operation.order.place"
+      ]
+    },
+    {
+      "id": "workflow.product.browse",
+      "operations": [
+        "operation.product.list",
+        "operation.product.read"
+      ]
+    },
+    {
+      "id": "workflow.product.filter",
+      "operations": [
+        "operation.product.filter"
+      ]
+    },
+    {
+      "id": "workflow.product.search",
+      "operations": [
+        "operation.product.search"
+      ]
+    }
+  ]
+}

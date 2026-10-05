@@ -1,0 +1,252 @@
+{
+  "checked": [
+    "graph",
+    "database",
+    "frontend"
+  ],
+  "conflicts": [
+    {
+      "code": "ENDPOINT_NOT_IN_GRAPH",
+      "description": "frontend api.user.list calls GET /users but the graph defines no such endpoint",
+      "impact": "the frontend feature using this call will receive 404/405 from the backend",
+      "kind": "FRONTEND_CONTRACT_ERROR",
+      "recommended_resolution": "add the operation + endpoint to the Graph (preferred) or change the frontend call; the backend does not invent endpoints",
+      "resolution_applied": null,
+      "severity": "major",
+      "sources": [
+        "api.user.list",
+        "graph:api.json"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "ENUM_CASE_DIFFERS",
+      "description": "entity.task.status: frontend uses ['TODO', 'IN_PROGRESS', 'COMPLETED'] but graph uses ['todo', 'in_progress', 'completed'] (same values, different case)",
+      "impact": "every write of this enum from the frontend is rejected (422); every read is displayed with the wrong case",
+      "kind": "FRONTEND_CONTRACT_ERROR",
+      "recommended_resolution": "normalise enum casing in one place (the graph is the source of truth)",
+      "resolution_applied": null,
+      "severity": "major",
+      "sources": [
+        "frontend:entity.task.status",
+        "entity.task.status"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "FRONTEND_FIELD_MISSING_IN_RESPONSE",
+      "description": "frontend entity.project.created_at is not in the graph response schema (graph fields: ['description', 'due_date', 'id', 'name', 'owner_id', 'status'])",
+      "impact": "the UI will show an empty/undefined 'created_at'",
+      "kind": "FRONTEND_CONTRACT_ERROR",
+      "recommended_resolution": "rename in the frontend or add 'created_at' to the graph entity/response",
+      "resolution_applied": null,
+      "severity": "major",
+      "sources": [
+        "frontend:entity.project.created_at",
+        "graph:schema.project"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "FRONTEND_FIELD_MISSING_IN_RESPONSE",
+      "description": "frontend entity.task.created_at is not in the graph response schema (graph fields: ['assignee_id', 'description', 'due_date', 'id', 'project_id', 'status', 'title'])",
+      "impact": "the UI will show an empty/undefined 'created_at'",
+      "kind": "FRONTEND_CONTRACT_ERROR",
+      "recommended_resolution": "rename in the frontend or add 'created_at' to the graph entity/response",
+      "resolution_applied": null,
+      "severity": "major",
+      "sources": [
+        "frontend:entity.task.created_at",
+        "graph:schema.task"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "FRONTEND_FIELD_MISSING_IN_RESPONSE",
+      "description": "frontend entity.user.name is not in the graph response schema (graph fields: ['created_at', 'email', 'full_name', 'id', 'role'])",
+      "impact": "the UI will show an empty/undefined 'name'",
+      "kind": "FRONTEND_CONTRACT_ERROR",
+      "recommended_resolution": "rename in the frontend or add 'name' to the graph entity/response",
+      "resolution_applied": null,
+      "severity": "major",
+      "sources": [
+        "frontend:entity.user.name",
+        "graph:schema.user"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "FRONTEND_FIELD_NOT_IN_GRAPH",
+      "description": "api.task.create sends 'assignee_id' but graph schema schema.task.create does not define it",
+      "impact": "the backend rejects unknown fields (mass-assignment protection): requests carrying 'assignee_id' get 422",
+      "kind": "FRONTEND_CONTRACT_ERROR",
+      "recommended_resolution": "add 'assignee_id' to the graph's request schema/operation input, or stop sending it",
+      "resolution_applied": null,
+      "severity": "major",
+      "sources": [
+        "api.task.create",
+        "api.task.create"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "FRONTEND_FIELD_NOT_IN_GRAPH",
+      "description": "api.task.create sends 'description' but graph schema schema.task.create does not define it",
+      "impact": "the backend rejects unknown fields (mass-assignment protection): requests carrying 'description' get 422",
+      "kind": "FRONTEND_CONTRACT_ERROR",
+      "recommended_resolution": "add 'description' to the graph's request schema/operation input, or stop sending it",
+      "resolution_applied": null,
+      "severity": "major",
+      "sources": [
+        "api.task.create",
+        "api.task.create"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "FRONTEND_FIELD_NOT_IN_GRAPH",
+      "description": "api.task.create sends 'due_date' but graph schema schema.task.create does not define it",
+      "impact": "the backend rejects unknown fields (mass-assignment protection): requests carrying 'due_date' get 422",
+      "kind": "FRONTEND_CONTRACT_ERROR",
+      "recommended_resolution": "add 'due_date' to the graph's request schema/operation input, or stop sending it",
+      "resolution_applied": null,
+      "severity": "major",
+      "sources": [
+        "api.task.create",
+        "api.task.create"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "FRONTEND_QUERY_NOT_IN_GRAPH",
+      "description": "api.task.list sends query parameter 'project_id' that the graph does not define for api.task.list",
+      "impact": "the filter is ignored/rejected by the backend",
+      "kind": "FRONTEND_CONTRACT_ERROR",
+      "recommended_resolution": "define the filter in the graph operation",
+      "resolution_applied": null,
+      "severity": "major",
+      "sources": [
+        "api.task.list",
+        "api.task.list"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "REQUIREDNESS_DIFFERS",
+      "description": "'description' is required by graph schema schema.project.create but optional in the frontend (api.project.create)",
+      "impact": "the frontend may omit it and receive 422",
+      "kind": "FRONTEND_CONTRACT_ERROR",
+      "recommended_resolution": "make 'description' optional in the graph or required in the frontend form",
+      "resolution_applied": null,
+      "severity": "major",
+      "sources": [
+        "api.project.create",
+        "api.project.create"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "SESSION_RESPONSE_NOT_IN_GRAPH",
+      "description": "frontend login expects {token, user} but api.user.login responds with schema.user which has no token",
+      "impact": "without a token the frontend cannot authenticate any later request",
+      "kind": "FRONTEND_CONTRACT_ERROR",
+      "recommended_resolution": "add a session response schema (token + user) to api.json",
+      "resolution_applied": "login returns the session envelope {token, token_type, expires_in, user} and ALSO the user fields at top level, so both the graph schema and the frontend Session type are satisfied",
+      "severity": "major",
+      "sources": [
+        "api.auth.login",
+        "api.user.login"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "TRANSITION_NOT_IN_GRAPH",
+      "description": "frontend allows completed -> in_progress for entity.task but state_machine.task does not",
+      "impact": "the UI offers a transition the backend refuses with 409 (the backend never allows undeclared transitions)",
+      "kind": "STATE_TRANSITION_ERROR",
+      "recommended_resolution": "add the transition to the graph state machine or remove it from the frontend",
+      "resolution_applied": null,
+      "severity": "major",
+      "sources": [
+        "sm.task.status",
+        "state_machine.task"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "NO_USER_PROVISIONING",
+      "description": "no operation creates entity.user: users can log in but cannot be created through the API",
+      "impact": "the product cannot onboard its first user via the API",
+      "kind": "INTEGRATION_FAILURE",
+      "recommended_resolution": "add a create-user (or self-registration) operation to the graph",
+      "resolution_applied": "generated backend ships `python -m backend_app.manage create-user` for provisioning",
+      "severity": "major",
+      "sources": [
+        "entity.user"
+      ],
+      "type": "GRAPH_GAP"
+    },
+    {
+      "code": "RULE_FIELD_NEVER_SETTABLE",
+      "description": "validation.task.completed_needs_assignee depends on entity.task.assignee_id but no operation in the graph can set it",
+      "impact": "the rule can never be satisfied/exercised through the API (e.g. tasks can never get an assignee)",
+      "kind": "INTEGRATION_FAILURE",
+      "recommended_resolution": "add 'assignee_id' to an operation's input (e.g. on create/update or a dedicated assign operation)",
+      "resolution_applied": null,
+      "severity": "major",
+      "sources": [
+        "validation.task.completed_needs_assignee",
+        "entity.task"
+      ],
+      "type": "GRAPH_GAP"
+    },
+    {
+      "code": "ERROR_ENVELOPE_SHAPE",
+      "description": "the backend error contract is {error:{code,message,details}} while the frontend client reads top-level {message, errors}",
+      "impact": "without a shim the frontend would show only generic messages and no field errors",
+      "kind": "API_CONTRACT_ERROR",
+      "recommended_resolution": "keep one canonical shape in the Frontend client",
+      "resolution_applied": "every error body carries BOTH: {error:{code,message,details}, message, errors, request_id}",
+      "severity": "minor",
+      "sources": [
+        "backend error contract",
+        "frontend:src/lib/api/client.ts"
+      ],
+      "type": "FRONTEND_API_CONFLICT"
+    },
+    {
+      "code": "AGGREGATE_WITHOUT_RESULT_SCHEMA",
+      "description": "operation.project.progress is an aggregate but its response schema is the plain entity list (schema.project)",
+      "impact": "aggregate numbers have no contractual place in the response",
+      "kind": "INTEGRATION_FAILURE",
+      "recommended_resolution": "add a dedicated aggregate response schema in api.json",
+      "resolution_applied": null,
+      "severity": "minor",
+      "sources": [
+        "operation.project.progress"
+      ],
+      "type": "GRAPH_GAP"
+    },
+    {
+      "code": "NO_RESET_TOKEN_STORE",
+      "description": "password reset operations exist but the graph defines no entity for reset tokens or sessions",
+      "impact": "reset tokens/logout cannot be persisted",
+      "kind": "INTEGRATION_FAILURE",
+      "recommended_resolution": "model reset tokens / sessions as an entity if persistence or revocation across instances is required",
+      "resolution_applied": "stateless signed reset tokens bound to the current password hash; in-process token revocation list",
+      "severity": "minor",
+      "sources": [
+        "operation.user.reset_password"
+      ],
+      "type": "GRAPH_GAP"
+    }
+  ],
+  "skipped": {},
+  "status": "conflicts_reported",
+  "summary": {
+    "critical": 0,
+    "info": 0,
+    "major": 14,
+    "minor": 3
+  }
+}

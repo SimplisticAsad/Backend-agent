@@ -1,0 +1,634 @@
+{
+ "endpoints": [
+  {
+   "auth": false,
+   "errors": [
+    400,
+    401,
+    422,
+    429,
+    500
+   ],
+   "fields": [
+    {
+     "name": "email",
+     "required": true,
+     "source": "form",
+     "type": "email"
+    },
+    {
+     "name": "password",
+     "required": true,
+     "source": "form",
+     "type": "password"
+    }
+   ],
+   "id": "api.auth.login",
+   "method": "POST",
+   "path": "/auth/login",
+   "permission": null,
+   "response_entity": null,
+   "response_shape": "session",
+   "roles": []
+  },
+  {
+   "auth": true,
+   "errors": [
+    401,
+    403,
+    500
+   ],
+   "fields": [],
+   "id": "api.user.list",
+   "method": "GET",
+   "path": "/users",
+   "permission": "permission.task.view",
+   "response_entity": "entity.user",
+   "response_shape": "list",
+   "roles": [
+    "employee",
+    "manager"
+   ]
+  },
+  {
+   "auth": true,
+   "errors": [
+    401,
+    403,
+    500
+   ],
+   "fields": [],
+   "id": "api.project.list",
+   "method": "GET",
+   "path": "/projects",
+   "permission": "permission.project.view",
+   "response_entity": "entity.project",
+   "response_shape": "list",
+   "roles": [
+    "employee",
+    "manager"
+   ]
+  },
+  {
+   "auth": true,
+   "errors": [
+    401,
+    403,
+    404,
+    500
+   ],
+   "fields": [
+    {
+     "name": "id",
+     "required": true,
+     "source": "path",
+     "type": "string"
+    }
+   ],
+   "id": "api.project.get",
+   "method": "GET",
+   "path": "/projects/{id}",
+   "permission": "permission.project.view",
+   "response_entity": "entity.project",
+   "response_shape": "single",
+   "roles": [
+    "employee",
+    "manager"
+   ]
+  },
+  {
+   "auth": true,
+   "errors": [
+    400,
+    401,
+    403,
+    409,
+    422,
+    500
+   ],
+   "fields": [
+    {
+     "name": "name",
+     "required": true,
+     "source": "form",
+     "type": "string"
+    },
+    {
+     "name": "description",
+     "required": false,
+     "source": "form",
+     "type": "text"
+    },
+    {
+     "name": "owner_id",
+     "required": true,
+     "source": "session.user_id",
+     "type": "ref"
+    }
+   ],
+   "id": "api.project.create",
+   "method": "POST",
+   "path": "/projects",
+   "permission": "permission.project.create",
+   "response_entity": "entity.project",
+   "response_shape": "single",
+   "roles": [
+    "manager"
+   ]
+  },
+  {
+   "auth": true,
+   "errors": [
+    401,
+    403,
+    404,
+    409,
+    500
+   ],
+   "fields": [
+    {
+     "name": "id",
+     "required": true,
+     "source": "path",
+     "type": "string"
+    }
+   ],
+   "id": "api.project.delete",
+   "method": "DELETE",
+   "path": "/projects/{id}",
+   "permission": "permission.project.delete",
+   "response_entity": null,
+   "response_shape": "none",
+   "roles": [
+    "manager"
+   ]
+  },
+  {
+   "auth": true,
+   "errors": [
+    401,
+    403,
+    500
+   ],
+   "fields": [
+    {
+     "name": "project_id",
+     "required": false,
+     "source": "query",
+     "type": "string"
+    }
+   ],
+   "id": "api.task.list",
+   "method": "GET",
+   "path": "/tasks",
+   "permission": "permission.task.view",
+   "response_entity": "entity.task",
+   "response_shape": "list",
+   "roles": [
+    "employee",
+    "manager"
+   ]
+  },
+  {
+   "auth": true,
+   "errors": [
+    401,
+    403,
+    404,
+    500
+   ],
+   "fields": [
+    {
+     "name": "id",
+     "required": true,
+     "source": "path",
+     "type": "string"
+    }
+   ],
+   "id": "api.task.get",
+   "method": "GET",
+   "path": "/tasks/{id}",
+   "permission": "permission.task.view",
+   "response_entity": "entity.task",
+   "response_shape": "single",
+   "roles": [
+    "employee",
+    "manager"
+   ]
+  },
+  {
+   "auth": true,
+   "errors": [
+    400,
+    401,
+    403,
+    404,
+    422,
+    500
+   ],
+   "fields": [
+    {
+     "name": "title",
+     "required": true,
+     "source": "form",
+     "type": "string"
+    },
+    {
+     "name": "description",
+     "required": false,
+     "source": "form",
+     "type": "text"
+    },
+    {
+     "name": "project_id",
+     "required": true,
+     "source": "form",
+     "type": "ref"
+    },
+    {
+     "name": "assignee_id",
+     "required": false,
+     "source": "form",
+     "type": "ref"
+    },
+    {
+     "name": "due_date",
+     "required": false,
+     "source": "form",
+     "type": "date"
+    }
+   ],
+   "id": "api.task.create",
+   "method": "POST",
+   "path": "/tasks",
+   "permission": "permission.task.create",
+   "response_entity": "entity.task",
+   "response_shape": "single",
+   "roles": [
+    "manager"
+   ]
+  },
+  {
+   "auth": true,
+   "errors": [
+    400,
+    401,
+    403,
+    404,
+    409,
+    422,
+    500
+   ],
+   "fields": [
+    {
+     "name": "id",
+     "required": true,
+     "source": "path",
+     "type": "string"
+    },
+    {
+     "name": "status",
+     "required": true,
+     "source": "input",
+     "type": "enum"
+    }
+   ],
+   "id": "api.task.update_status",
+   "method": "PATCH",
+   "path": "/tasks/{id}/status",
+   "permission": "permission.task.update_status",
+   "response_entity": "entity.task",
+   "response_shape": "single",
+   "roles": [
+    "employee",
+    "manager"
+   ]
+  }
+ ],
+ "entities": {
+  "entity.credentials": {
+   "fields": [
+    {
+     "name": "email",
+     "required": true,
+     "type": "email"
+    },
+    {
+     "name": "password",
+     "required": true,
+     "type": "password"
+    }
+   ],
+   "id": "entity.credentials",
+   "name": "Credentials",
+   "transient": true
+  },
+  "entity.project": {
+   "display_field": "name",
+   "fields": [
+    {
+     "name": "id",
+     "readonly": true,
+     "required": true,
+     "type": "string"
+    },
+    {
+     "name": "name",
+     "required": true,
+     "type": "string"
+    },
+    {
+     "name": "description",
+     "required": false,
+     "type": "text"
+    },
+    {
+     "name": "owner_id",
+     "readonly": true,
+     "ref": "entity.user",
+     "required": true,
+     "type": "ref"
+    },
+    {
+     "name": "created_at",
+     "readonly": true,
+     "required": true,
+     "type": "datetime"
+    }
+   ],
+   "id": "entity.project",
+   "list_fields": [
+    "name",
+    "description"
+   ],
+   "name": "Project"
+  },
+  "entity.task": {
+   "display_field": "title",
+   "fields": [
+    {
+     "name": "id",
+     "readonly": true,
+     "required": true,
+     "type": "string"
+    },
+    {
+     "name": "title",
+     "required": true,
+     "type": "string"
+    },
+    {
+     "name": "description",
+     "required": false,
+     "type": "text"
+    },
+    {
+     "name": "project_id",
+     "ref": "entity.project",
+     "required": true,
+     "type": "ref"
+    },
+    {
+     "name": "assignee_id",
+     "ref": "entity.user",
+     "required": false,
+     "type": "ref"
+    },
+    {
+     "name": "status",
+     "readonly": true,
+     "required": true,
+     "type": "enum",
+     "values": [
+      "TODO",
+      "IN_PROGRESS",
+      "COMPLETED"
+     ]
+    },
+    {
+     "name": "due_date",
+     "required": false,
+     "type": "date"
+    },
+    {
+     "name": "created_at",
+     "readonly": true,
+     "required": true,
+     "type": "datetime"
+    }
+   ],
+   "id": "entity.task",
+   "list_fields": [
+    "title",
+    "project_id",
+    "assignee_id",
+    "status",
+    "due_date"
+   ],
+   "name": "Task",
+   "state_machine": "sm.task.status"
+  },
+  "entity.user": {
+   "display_field": "name",
+   "fields": [
+    {
+     "name": "id",
+     "readonly": true,
+     "required": true,
+     "type": "string"
+    },
+    {
+     "name": "name",
+     "required": true,
+     "type": "string"
+    },
+    {
+     "name": "email",
+     "required": true,
+     "type": "email"
+    },
+    {
+     "name": "role",
+     "required": true,
+     "type": "enum",
+     "values": [
+      "manager",
+      "employee"
+     ]
+    }
+   ],
+   "id": "entity.user",
+   "name": "User"
+  }
+ },
+ "expectations": {
+  "auth_header": "Authorization: Bearer <token>",
+  "base_path": "/api",
+  "dev_origin": "http://localhost:5173",
+  "error_body_keys": {
+   "errors": "{field: string | string[]}",
+   "message": "string (<=200 chars, single line)"
+  },
+  "handled_statuses": [
+   400,
+   401,
+   403,
+   404,
+   409,
+   422,
+   429,
+   500
+  ],
+  "list_shape": "bare JSON array (no pagination envelope)",
+  "no_content_status": 204,
+  "session_shape": {
+   "token": "string",
+   "user": "AuthUser"
+  },
+  "validation_statuses": [
+   400,
+   422
+  ]
+ },
+ "permissions": {
+  "permission.dashboard.view": {
+   "action": "view",
+   "id": "permission.dashboard.view",
+   "resource": "dashboard",
+   "roles": [
+    "role.manager",
+    "role.employee"
+   ]
+  },
+  "permission.project.create": {
+   "action": "create",
+   "id": "permission.project.create",
+   "resource": "project",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  "permission.project.delete": {
+   "action": "delete",
+   "id": "permission.project.delete",
+   "resource": "project",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  "permission.project.view": {
+   "action": "view",
+   "id": "permission.project.view",
+   "resource": "project",
+   "roles": [
+    "role.manager",
+    "role.employee"
+   ]
+  },
+  "permission.task.create": {
+   "action": "create",
+   "id": "permission.task.create",
+   "resource": "task",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  "permission.task.reopen": {
+   "action": "reopen",
+   "id": "permission.task.reopen",
+   "resource": "task",
+   "roles": [
+    "role.manager"
+   ]
+  },
+  "permission.task.update_status": {
+   "action": "update_status",
+   "conditions": {
+    "role.employee": {
+     "field": "assignee_id",
+     "scope": "assigned"
+    }
+   },
+   "id": "permission.task.update_status",
+   "resource": "task",
+   "roles": [
+    "role.manager",
+    "role.employee"
+   ]
+  },
+  "permission.task.view": {
+   "action": "view",
+   "id": "permission.task.view",
+   "resource": "task",
+   "roles": [
+    "role.manager",
+    "role.employee"
+   ]
+  }
+ },
+ "roles": {
+  "role.employee": {
+   "actor": "actor.person",
+   "id": "role.employee",
+   "key": "employee",
+   "name": "Employee",
+   "permissions": [
+    "permission.dashboard.view",
+    "permission.project.view",
+    "permission.task.view",
+    "permission.task.update_status"
+   ]
+  },
+  "role.manager": {
+   "actor": "actor.person",
+   "id": "role.manager",
+   "key": "manager",
+   "name": "Manager",
+   "permissions": [
+    "permission.dashboard.view",
+    "permission.project.view",
+    "permission.project.create",
+    "permission.project.delete",
+    "permission.task.view",
+    "permission.task.create",
+    "permission.task.update_status",
+    "permission.task.reopen"
+   ]
+  }
+ },
+ "state_machines": {
+  "sm.task.status": {
+   "entity": "entity.task",
+   "field": "status",
+   "id": "sm.task.status",
+   "initial": "TODO",
+   "states": [
+    "TODO",
+    "IN_PROGRESS",
+    "COMPLETED"
+   ],
+   "transitions": [
+    {
+     "from": "TODO",
+     "permission": "permission.task.update_status",
+     "to": "IN_PROGRESS"
+    },
+    {
+     "from": "IN_PROGRESS",
+     "permission": "permission.task.update_status",
+     "to": "COMPLETED"
+    },
+    {
+     "from": "IN_PROGRESS",
+     "permission": "permission.task.update_status",
+     "to": "TODO"
+    },
+    {
+     "from": "COMPLETED",
+     "permission": "permission.task.reopen",
+     "to": "IN_PROGRESS"
+    }
+   ]
+  }
+ }
+}

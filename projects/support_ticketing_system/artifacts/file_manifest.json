@@ -1,0 +1,920 @@
+{
+  "files": [
+    {
+      "description": "environment variable template",
+      "kind": "config",
+      "path": ".env.example",
+      "sha256": "900709346accce24ba8fe13304740d9d1fcfb02f13c6d4b87d4f342bac1339f3",
+      "source_refs": []
+    },
+    {
+      "description": "",
+      "kind": "config",
+      "path": ".gitignore",
+      "sha256": "7e8b33b5e9e224833d7894816c0cb92acfd27a6b956577d09ea13ec2b3874a40",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/__init__.py",
+      "sha256": "2a6b89797395b134d24aa3007312c580ff4ea0623c56af3326ce68252a3759af",
+      "source_refs": []
+    },
+    {
+      "description": "package marker",
+      "kind": "generated",
+      "path": "backend_app/api/__init__.py",
+      "sha256": "5e93f1df2bf56b6327f8ee9c08f4beac30d6685c995df83eb3fe386884bfb4ae",
+      "source_refs": []
+    },
+    {
+      "description": "service dependency",
+      "kind": "runtime",
+      "path": "backend_app/api/deps.py",
+      "sha256": "b8f7e61d350092bc6bd1a87a8625cf92d8f1af604c30f44e6939b6524ab872c2",
+      "source_refs": []
+    },
+    {
+      "description": "route registry (ordered)",
+      "kind": "generated",
+      "path": "backend_app/api/routes/__init__.py",
+      "sha256": "f77f4b62bd47835fc6aa1e3b274c178e1e6845967523a361f100496971a26630",
+      "source_refs": [
+        "operation.ticket.assign",
+        "operation.ticket.change_status",
+        "operation.ticket.create",
+        "operation.ticket.list",
+        "operation.ticket.read",
+        "operation.ticket.stats",
+        "operation.ticket.update",
+        "operation.ticket_comment.create",
+        "operation.ticket_comment.list",
+        "operation.user.list_agents",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ]
+    },
+    {
+      "description": "HTTP routes for service.ticket",
+      "kind": "generated",
+      "path": "backend_app/api/routes/ticket.py",
+      "sha256": "c3b3e8b184b504641b67277ac92ca68a7a76820956ad3dfa5ca44d485ac6aedf",
+      "source_refs": [
+        "api.ticket.assign",
+        "api.ticket.change_status",
+        "api.ticket.create",
+        "api.ticket.list",
+        "api.ticket.read",
+        "api.ticket.stats",
+        "api.ticket.update",
+        "operation.ticket.assign",
+        "operation.ticket.change_status",
+        "operation.ticket.create",
+        "operation.ticket.list",
+        "operation.ticket.read",
+        "operation.ticket.stats",
+        "operation.ticket.update",
+        "rule.frozen.ticket.closed_read_only",
+        "rule.scope.implicit.ticket.requester_id",
+        "schema.ticket",
+        "schema.ticket.assign",
+        "schema.ticket.change_status",
+        "schema.ticket.create",
+        "schema.ticket.update",
+        "service.ticket"
+      ]
+    },
+    {
+      "description": "HTTP routes for service.ticket_comment",
+      "kind": "generated",
+      "path": "backend_app/api/routes/ticket_comment.py",
+      "sha256": "93eddb58c23981b77988a46e6972c134b8b2d8e953daf9115db264cffe45cc61",
+      "source_refs": [
+        "api.ticket_comment.create",
+        "api.ticket_comment.list",
+        "operation.ticket_comment.create",
+        "operation.ticket_comment.list",
+        "rule.scope.implicit.ticket_comment.via_ticket_id",
+        "schema.ticket_comment",
+        "schema.ticket_comment.create",
+        "service.ticket_comment"
+      ]
+    },
+    {
+      "description": "HTTP routes for service.user",
+      "kind": "generated",
+      "path": "backend_app/api/routes/user.py",
+      "sha256": "cad6c901e456cc75f701c0fc2f308c44ac7ce674a9e995185dfd05ab9f242dbf",
+      "source_refs": [
+        "api.user.list_agents",
+        "api.user.login",
+        "api.user.logout",
+        "api.user.request_password_reset",
+        "api.user.reset_password",
+        "operation.user.list_agents",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password",
+        "schema.user",
+        "schema.user.login",
+        "schema.user.request_password_reset",
+        "schema.user.reset_password",
+        "service.user"
+      ]
+    },
+    {
+      "description": "package marker",
+      "kind": "generated",
+      "path": "backend_app/api/schemas/__init__.py",
+      "sha256": "5e93f1df2bf56b6327f8ee9c08f4beac30d6685c995df83eb3fe386884bfb4ae",
+      "source_refs": []
+    },
+    {
+      "description": "request/response models for entity.ticket",
+      "kind": "generated",
+      "path": "backend_app/api/schemas/ticket.py",
+      "sha256": "e6c4033a03f1e376e212fa0b92910ba5adcb599083ebea2682ef4eefbc6a2234",
+      "source_refs": [
+        "entity.ticket",
+        "schema.ticket",
+        "schema.ticket.assign",
+        "schema.ticket.change_status",
+        "schema.ticket.create",
+        "schema.ticket.update"
+      ]
+    },
+    {
+      "description": "request/response models for entity.ticket_comment",
+      "kind": "generated",
+      "path": "backend_app/api/schemas/ticket_comment.py",
+      "sha256": "3c933502c26e1f9d3faf7e1b5f767ac809ad264e70a701109ea45de33c88c2c0",
+      "source_refs": [
+        "entity.ticket_comment",
+        "schema.ticket_comment",
+        "schema.ticket_comment.create"
+      ]
+    },
+    {
+      "description": "request/response models for entity.user",
+      "kind": "generated",
+      "path": "backend_app/api/schemas/user.py",
+      "sha256": "947720ca55838510bb4b5d97256c9bf578e13efa89fdfe27c2e231df7f0522f9",
+      "source_refs": [
+        "entity.user",
+        "schema.user",
+        "schema.user.login",
+        "schema.user.request_password_reset",
+        "schema.user.reset_password"
+      ]
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/api_common.py",
+      "sha256": "3ab6049e78b34731f14edbd5205f751534adfb61efe8e1ca61715c5f6da98d2b",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/app_factory.py",
+      "sha256": "1436e35c0d0bad74336adcefee297e00ac75440db3dea3f4d328a7e27d7876fd",
+      "source_refs": []
+    },
+    {
+      "description": "package marker",
+      "kind": "generated",
+      "path": "backend_app/application/__init__.py",
+      "sha256": "5e93f1df2bf56b6327f8ee9c08f4beac30d6685c995df83eb3fe386884bfb4ae",
+      "source_refs": []
+    },
+    {
+      "description": "services container",
+      "kind": "generated",
+      "path": "backend_app/application/services/__init__.py",
+      "sha256": "4044032e9e07af077c32eb009af147d85eaf9ef190699ecf936883a7871b70e5",
+      "source_refs": [
+        "service.ticket",
+        "service.ticket_comment",
+        "service.user"
+      ]
+    },
+    {
+      "description": "application service service.ticket_comment",
+      "kind": "generated",
+      "path": "backend_app/application/services/ticket_comment_service.py",
+      "sha256": "a5abe0baca9a605bbdbc627ebe114d95e7a823c0882dd94a06f826da64a0be37",
+      "source_refs": [
+        "api.ticket_comment.create",
+        "api.ticket_comment.list",
+        "operation.ticket_comment.create",
+        "operation.ticket_comment.list",
+        "rule.scope.implicit.ticket_comment.via_ticket_id",
+        "service.ticket_comment"
+      ]
+    },
+    {
+      "description": "application service service.ticket",
+      "kind": "generated",
+      "path": "backend_app/application/services/ticket_service.py",
+      "sha256": "5a00b17af54f3ec8b10562f8420fd99321a20d920d131b15500f5c138366560a",
+      "source_refs": [
+        "api.ticket.assign",
+        "api.ticket.change_status",
+        "api.ticket.create",
+        "api.ticket.list",
+        "api.ticket.read",
+        "api.ticket.stats",
+        "api.ticket.update",
+        "operation.ticket.assign",
+        "operation.ticket.change_status",
+        "operation.ticket.create",
+        "operation.ticket.list",
+        "operation.ticket.read",
+        "operation.ticket.stats",
+        "operation.ticket.update",
+        "rule.frozen.ticket.closed_read_only",
+        "rule.scope.implicit.ticket.requester_id",
+        "service.ticket"
+      ]
+    },
+    {
+      "description": "application service service.user",
+      "kind": "generated",
+      "path": "backend_app/application/services/user_service.py",
+      "sha256": "15c411c72e784d4a746ff0359d04f170a4125a204a7e21921ad4f83b9536907c",
+      "source_refs": [
+        "api.user.list_agents",
+        "api.user.login",
+        "api.user.logout",
+        "api.user.request_password_reset",
+        "api.user.reset_password",
+        "operation.user.list_agents",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password",
+        "service.user"
+      ]
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/auth.py",
+      "sha256": "411badb014b1b3114a0598ee33231ad94f3e582b206ef16c939e8c5617664e4c",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/auth_service.py",
+      "sha256": "5009f919d0aa3a31af85c36ce652c38121bf966c1767e591de16a909c7e1fe62",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/config.py",
+      "sha256": "2b76f744294c1b3eab8d4c4dd84899eeb1820c5c8aef9c3d8442e82b10caecd8",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/container.py",
+      "sha256": "1ff3c872a01a78b1545845b1ee1273ceb43a45d29eaaf7f639b0028b8ca34d46",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/db.py",
+      "sha256": "8769dfc9b2c561f69290149d8d05d499f3674f8d4c30e2134e0da8ea52daa3ce",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/domain/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "package marker",
+      "kind": "generated",
+      "path": "backend_app/domain/entities/__init__.py",
+      "sha256": "5e93f1df2bf56b6327f8ee9c08f4beac30d6685c995df83eb3fe386884bfb4ae",
+      "source_refs": []
+    },
+    {
+      "description": "domain entity Ticket",
+      "kind": "generated",
+      "path": "backend_app/domain/entities/ticket.py",
+      "sha256": "047f831c4b30586ea7035395a06c0c0821f49c84a4670641823ee2cb3f9dcbde",
+      "source_refs": [
+        "entity.ticket",
+        "table:tickets"
+      ]
+    },
+    {
+      "description": "domain entity TicketComment",
+      "kind": "generated",
+      "path": "backend_app/domain/entities/ticket_comment.py",
+      "sha256": "80e9e6466f80ec6eb1559335f403ced2b669bb857825f6da244100b52b7dfd6e",
+      "source_refs": [
+        "entity.ticket_comment",
+        "table:ticket_comments"
+      ]
+    },
+    {
+      "description": "domain entity User",
+      "kind": "generated",
+      "path": "backend_app/domain/entities/user.py",
+      "sha256": "9447430851daab5cae37256409189c5fc80a99dca3eda9787f8f89bd685f93c6",
+      "source_refs": [
+        "entity.user",
+        "table:users"
+      ]
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/domain/exceptions.py",
+      "sha256": "9041f3f05f0c5f74116709daf4ff254f258d328dcd47809f104a44811239da25",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/emailer.py",
+      "sha256": "30e35c8f3df87bc5058f37bcbe81efeb37a034917f2e6b889d639adb45d7cc56",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/engine.py",
+      "sha256": "e9ad1568271138ecc019d52c2a3e10f468a074a578c5ac3fffd774c303e6811a",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/errors.py",
+      "sha256": "de417c52f35de97786bccafaa27fb349cf361d7043e67e63c27c36ccdfe79f5f",
+      "source_refs": []
+    },
+    {
+      "description": "package marker",
+      "kind": "generated",
+      "path": "backend_app/generated/__init__.py",
+      "sha256": "5e93f1df2bf56b6327f8ee9c08f4beac30d6685c995df83eb3fe386884bfb4ae",
+      "source_refs": []
+    },
+    {
+      "description": "the resolved BackendSpec interpreted by the runtime",
+      "kind": "generated",
+      "path": "backend_app/generated/spec.json",
+      "sha256": "7a6edacf311a2266e81506245925458d57e8bd75d038a0fa31c56cfee19663ad",
+      "source_refs": [
+        "entity.ticket",
+        "entity.ticket_comment",
+        "entity.user",
+        "operation.ticket.assign",
+        "operation.ticket.change_status",
+        "operation.ticket.create",
+        "operation.ticket.list",
+        "operation.ticket.read",
+        "operation.ticket.stats",
+        "operation.ticket.update",
+        "operation.ticket_comment.create",
+        "operation.ticket_comment.list",
+        "operation.user.list_agents",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password",
+        "project.support_ticketing_system"
+      ]
+    },
+    {
+      "description": "package marker",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/__init__.py",
+      "sha256": "5e93f1df2bf56b6327f8ee9c08f4beac30d6685c995df83eb3fe386884bfb4ae",
+      "source_refs": []
+    },
+    {
+      "description": "repository registry",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/repositories/__init__.py",
+      "sha256": "cd575e58fd9df30e17b4d0c8e25e4a5991b0f83c93ca1ec016612afc12ce7323",
+      "source_refs": [
+        "entity.ticket",
+        "entity.ticket_comment",
+        "entity.user"
+      ]
+    },
+    {
+      "description": "repository for entity.ticket_comment",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/repositories/ticket_comment_repository.py",
+      "sha256": "37a5523e169306928d7b7f1fd719dfaaea9596d94f4a81766b366a965a750df4",
+      "source_refs": [
+        "entity.ticket_comment",
+        "table:ticket_comments"
+      ]
+    },
+    {
+      "description": "repository for entity.ticket",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/repositories/ticket_repository.py",
+      "sha256": "bf90c816e845dacd508373f8032fa9aa711adb01c7e8ae9d0adf490b6c007a44",
+      "source_refs": [
+        "entity.ticket",
+        "table:tickets"
+      ]
+    },
+    {
+      "description": "repository for entity.user",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/repositories/user_repository.py",
+      "sha256": "b3f9a66557846cce07646c018ee7ec600dbabc519be8177f70f564e316107ee8",
+      "source_refs": [
+        "entity.user",
+        "table:users"
+      ]
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/logging_setup.py",
+      "sha256": "c1666e89f9d3e8a645ec26639ea0acc4684ee3eab9887fc2684b7028b3fdd748",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/main.py",
+      "sha256": "d0bc2a63a8be62853aad6fc2f87b636ba7d0801a499cff758640d1423a48e1d3",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/manage.py",
+      "sha256": "7a7b4d9772ecc048bb02002fc8124611a4f9128f39f0b5fefc74ed50b6ada7ba",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/middleware.py",
+      "sha256": "39fc132d6cd0cbfb9476a62950b1fe817442317a1c49a08f634469bb59268735",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/ratelimit.py",
+      "sha256": "0d5a46b43392e4d2767fd34f3bac794ee36c4506d6c1ac5228abe72ce2642b79",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/repository.py",
+      "sha256": "8a240a2741b90dfc5356263e37ed62b717f0e812a4a5dcf55f6c17ada6cc67e8",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/rules.py",
+      "sha256": "838c71251ec9a89d149f154cfa7275436a50e09d4a589506131ce46088efc1bf",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/security.py",
+      "sha256": "3df733a8f1d9dff6cebbfd9527f64ec68af3890e9dbf384a734913ddb8cd0355",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/service_base.py",
+      "sha256": "749bb3f9b314ea21adc97f77ebfd888d3977b15df01f9e6e1dbe0d4847843476",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/spec.py",
+      "sha256": "a5ca2f70c8093fdeeae6efe9ebd4b82d8f1cb6a41dfa7d0940ab31f2be3b4830",
+      "source_refs": []
+    },
+    {
+      "description": "copy of the Database Agent contract the backend was built against",
+      "kind": "contract",
+      "path": "db_contract/SOURCE.md",
+      "sha256": "d857af7aed32a6749107362ae725809686b8210c7b3aa0776f25d8a7bbf0bad1",
+      "source_refs": [
+        "database:SOURCE.md"
+      ]
+    },
+    {
+      "description": "copy of the Database Agent contract the backend was built against",
+      "kind": "contract",
+      "path": "db_contract/architecture.json",
+      "sha256": "ad2fc366a4ebd6c092bfcf394201d6a236ed938092890f33489c18937741724d",
+      "source_refs": [
+        "database:architecture.json"
+      ]
+    },
+    {
+      "description": "copy of the Database Agent contract the backend was built against",
+      "kind": "contract",
+      "path": "db_contract/crud.sql",
+      "sha256": "3a1e4752ccf51d762da48c81131ee3ff4f0e3d8d71eda9c708b6ee84f58c0361",
+      "source_refs": [
+        "database:crud.sql"
+      ]
+    },
+    {
+      "description": "copy of the Database Agent contract the backend was built against",
+      "kind": "contract",
+      "path": "db_contract/crud_functions.json",
+      "sha256": "b3e2068d46c7141ac848364a878144387be51d35b7106df4662be7652d0f27d6",
+      "source_refs": [
+        "database:crud_functions.json"
+      ]
+    },
+    {
+      "description": "copy of the Database Agent contract the backend was built against",
+      "kind": "contract",
+      "path": "db_contract/database_state.json",
+      "sha256": "1fd5229f59f77df4a2b352fd8a84b178eef82bce461ae08272729d0b9ca6af68",
+      "source_refs": [
+        "database:database_state.json"
+      ]
+    },
+    {
+      "description": "copy of the Database Agent contract the backend was built against",
+      "kind": "contract",
+      "path": "db_contract/schema.sql",
+      "sha256": "6047e869c3c149d525a79bee84020565fab2fa64079e8a0fbf46f50c65e2efe4",
+      "source_refs": [
+        "database:schema.sql"
+      ]
+    },
+    {
+      "description": "project metadata and dependencies",
+      "kind": "config",
+      "path": "pyproject.toml",
+      "sha256": "c99e18fd72717ad63533d625e789e77b8bb1cb9adbef490ae036a8e484e5f633",
+      "source_refs": [
+        "project.support_ticketing_system"
+      ]
+    },
+    {
+      "description": "",
+      "kind": "test",
+      "path": "tests/README.md",
+      "sha256": "51cb328a41f8e5d473bdd24b97dd39a61ed8a6ec5fb592611a716cda6f6041be",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/api/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/api/test_auth_flows.py",
+      "sha256": "e1a6f4cf63b6e63d806bf13e8d2a6cff0d7efb8576b13b296e9dab28857313bd",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/api/test_operations.py",
+      "sha256": "61fb13857019148999b6ef367a4727786a5ecbf53be29014e3efa8649bf1357c",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/bdd/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_auth_login.feature",
+      "sha256": "e512e75d74ed0e6cb846bc322eaf204ed4664e08298d8cb98e7fd4a5a460528d",
+      "source_refs": [
+        "ac.auth.login",
+        "operation.user.login",
+        "requirement.authentication",
+        "workflow.auth.login"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_auth_logout.feature",
+      "sha256": "2815c6578b1098f75c8d45a433c84303369d5059d304b4f2e847a73ddec3f411",
+      "source_refs": [
+        "ac.auth.logout",
+        "operation.user.logout",
+        "requirement.authentication",
+        "workflow.auth.logout"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_auth_password_reset.feature",
+      "sha256": "3fabb0add89cf44e4ac0772544eef5c5747e248b414770491e143f59a6a7db6f",
+      "source_refs": [
+        "ac.auth.password_reset",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password",
+        "requirement.authentication",
+        "workflow.auth.password_reset"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_dashboard_support_view.feature",
+      "sha256": "fa0efbb5e04339af9aa70916fe60249438b335f281e441dc4f9093c1d4f34b0b",
+      "source_refs": [
+        "ac.dashboard.support_view",
+        "operation.ticket.stats",
+        "requirement.support_dashboard",
+        "workflow.dashboard.support_view"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_ticket_assign.feature",
+      "sha256": "9ea932fd0491a1dddde548729412679cab180728286a0b8cb982f5fe6f1c4bf2",
+      "source_refs": [
+        "ac.ticket.assign",
+        "operation.ticket.assign",
+        "operation.user.list_agents",
+        "requirement.ticket_assignment",
+        "workflow.ticket.assign"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_ticket_browse.feature",
+      "sha256": "d7bdd2d597b5546383c16d31a2f9c02917b2098dca003d7544f408f81a57e430",
+      "source_refs": [
+        "ac.ticket.browse",
+        "operation.ticket.list",
+        "operation.ticket.read",
+        "requirement.ticket_management",
+        "workflow.ticket.browse"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_ticket_change_status.feature",
+      "sha256": "e7834b24eee8e2d7fa4ab2bad8a80d509d5b35c3fcdafb26eedacfd02afeafb0",
+      "source_refs": [
+        "ac.ticket.change_status",
+        "operation.ticket.change_status",
+        "requirement.ticket_status",
+        "workflow.ticket.change_status"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_ticket_closed_read_only.feature",
+      "sha256": "fde328b2cf3f0c94714aa78c137261e00841440465679ad7e2d99bfcd3a4e4c9",
+      "source_refs": [
+        "ac.ticket.closed_read_only",
+        "operation.ticket.update",
+        "requirement.ticket_management"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_ticket_comment_browse.feature",
+      "sha256": "d0f90a6e5bd77e3a04ec44d313e0a48efb0960d87ffe8d8df3dff48f0f10fc3a",
+      "source_refs": [
+        "ac.ticket_comment.browse",
+        "operation.ticket_comment.list",
+        "requirement.ticket_comments",
+        "workflow.ticket_comment.browse"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_ticket_comment_create.feature",
+      "sha256": "675d7710fde084d3667391846210a30dfd619962eb4f4ef7fd551b792eccf5f7",
+      "source_refs": [
+        "ac.ticket_comment.create",
+        "operation.ticket_comment.create",
+        "requirement.ticket_comments",
+        "workflow.ticket_comment.create"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_ticket_create.feature",
+      "sha256": "9aa077b7ba99efc8966c40c24649547c0fcbb2d413e625094ab5e1ee8d48cbbe",
+      "source_refs": [
+        "ac.ticket.create",
+        "operation.ticket.create",
+        "requirement.ticket_management",
+        "workflow.ticket.create"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_ticket_update.feature",
+      "sha256": "58b44fdb9acf2bb1b200f2d2029a4766a1306a792aa04ce434a63df8b10f7955",
+      "source_refs": [
+        "ac.ticket.update",
+        "operation.ticket.update",
+        "requirement.ticket_management",
+        "workflow.ticket.update"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_user_invalid_login.feature",
+      "sha256": "ee63810916813312959ed0dbceafd6eb19be4cf71dcf129c6ba9b67883e4a30b",
+      "source_refs": [
+        "ac.user.invalid_login",
+        "operation.user.login",
+        "requirement.authentication"
+      ]
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/bdd/test_acceptance.py",
+      "sha256": "e45266a0929c4979acda1afa4e338d4dcb801d1d9124ab2d29045714f5c23703",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/conftest.py",
+      "sha256": "36c6059409f11675f52fe0125aa4b03041613a3e5e1a7913a57724c1e83542bc",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/contract/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/contract/test_graph_contract.py",
+      "sha256": "45f8d1e98ba1bcf1067f01105dc060b221e67e2076b11210460d5bfa21bcebd0",
+      "source_refs": []
+    },
+    {
+      "description": "raw graph slices used by contract tests",
+      "kind": "test",
+      "path": "tests/data/graph_contract.json",
+      "sha256": "e26d7329f46b4f78003a945d6f7db949efb9b495b16f1c1873e655da3ce3c782",
+      "source_refs": [
+        "project.support_ticketing_system"
+      ]
+    },
+    {
+      "description": "documented conflict codes",
+      "kind": "test",
+      "path": "tests/data/known_conflicts.json",
+      "sha256": "4d45787845c114d8190f837c5d02f832ff2cd9e7ac146b574316aeceb0fb988c",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/db_failure/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/db_failure/test_database_failures.py",
+      "sha256": "65c69eea641a4352eb7391a4e2724bed699b14cb2022260d6713de0f71232a6d",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/repository/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/repository/test_repositories.py",
+      "sha256": "9c254216cdd0807939f2b9a1b8ea3fdeccf1e6e75e6e506d34e25ed90680a816",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/security/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/security/test_security.py",
+      "sha256": "72220db38da3bdef92e7e29367745128336d91de38831cdce0d82c4040e02ac5",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/support/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/support/data.py",
+      "sha256": "9f363155a9cdc13a67bb28a5465277e7cebd16ec7d38fbd130948b956d1a248f",
+      "source_refs": []
+    },
+    {
+      "description": "dedicated-PostgreSQL helper (copy of app/testing/pg_cluster.py)",
+      "kind": "test",
+      "path": "tests/support/pg.py",
+      "sha256": "f1b3d064f59191731548615112a121c08b26f6e051e83a856d941176b3ee3411",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/support/world.py",
+      "sha256": "548230066a88c22832d29098f620068efd03cb8c880bd139f6645ae93734800a",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/unit/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/unit/test_core.py",
+      "sha256": "8ee6c9fc29aff75306c8c4fb6efd712a49833ccfd745c4198d8e86d189eb62a7",
+      "source_refs": []
+    }
+  ],
+  "ownership": {
+    "config": "project metadata",
+    "contract": "copy of the Database Agent artifacts",
+    "generated": "regenerated from graphs on every run; do not edit",
+    "runtime": "agent infrastructure copied verbatim",
+    "test": "generated, spec-driven; must not be weakened"
+  }
+}

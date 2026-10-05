@@ -1,0 +1,37 @@
+{
+  "operation.project.progress": {
+    "code": "with self.db.transaction() as conn:\n    rows = conn.execute('SELECT p.*, COALESCE(c.total, 0) AS task_count, COALESCE(c.done, 0) AS completed_task_count FROM \"projects\" p LEFT JOIN (SELECT \"project_id\" AS parent_id, count(*) AS total, count(*) FILTER (WHERE \"status\" = %s) AS done FROM \"tasks\" GROUP BY \"project_id\") c ON c.parent_id = p.id ORDER BY p.id', ('completed',)).fetchall()\nresult = []\nfor row in rows:\n    total, completed = row[\"task_count\"], row[\"completed_task_count\"]\n    row[\"progress_percent\"] = int(round(100 * completed / total)) if total else 0\n    result.append(row)\nreturn result",
+    "meta": {
+      "child": "entity.task",
+      "count_field": "task_count",
+      "done": "completed",
+      "done_field": "completed_task_count",
+      "fk": "project_id",
+      "kind": "progress",
+      "parent": "entity.project",
+      "status_attr": "status"
+    },
+    "notes": [
+      "progress = completed tasks / all tasks per project; the fields are ADDITIVE to the graph schema (the graph defines no aggregate schema)"
+    ],
+    "reason": "",
+    "response_class": "ProjectProgressResponse",
+    "response_extra_fields": [
+      {
+        "name": "task_count",
+        "type": "integer"
+      },
+      {
+        "name": "completed_task_count",
+        "type": "integer"
+      },
+      {
+        "name": "progress_percent",
+        "type": "integer"
+      }
+    ],
+    "source": "llm",
+    "stage": "api_implementation",
+    "status": "implemented"
+  }
+}

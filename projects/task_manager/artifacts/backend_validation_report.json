@@ -1,0 +1,579 @@
+{
+  "advisory": {
+    "architecture": {
+      "descriptions": {
+        "DepartmentRepository": "Parameterised SQL access to table departments.",
+        "DepartmentService": "Application service for service.department: 3 operation(s).",
+        "EmployeeRepository": "Parameterised SQL access to table employees.",
+        "EmployeeService": "Application service for service.employee: 4 operation(s).",
+        "ProjectMemberRepository": "Parameterised SQL access to table project_members.",
+        "ProjectMemberService": "Application service for service.project_member: 3 operation(s).",
+        "ProjectRepository": "Parameterised SQL access to table projects.",
+        "ProjectService": "Application service for service.project: 6 operation(s).",
+        "TaskRepository": "Parameterised SQL access to table tasks.",
+        "TaskService": "Application service for service.task: 7 operation(s).",
+        "UserRepository": "Parameterised SQL access to table users.",
+        "UserService": "Application service for service.user: 4 operation(s).",
+        "backend_app.api": "HTTP routes, request/response schemas and dependencies; no business logic.",
+        "backend_app.application": "Application services: one method per graph operation.",
+        "backend_app.auth": "Authentication and role authorization.",
+        "backend_app.domain": "Domain entities mirroring graph entities, and domain exceptions.",
+        "backend_app.engine": "Spec-driven implementation of CRUD, state transitions and object-level rules.",
+        "backend_app.infrastructure": "Repositories over the database contract."
+      }
+    },
+    "authorization": {
+      "findings": []
+    },
+    "database_integration": {
+      "notes": [
+        {
+          "note": "mapped to table departments; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+          "ref": "entity.department"
+        },
+        {
+          "note": "mapped to table employees; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+          "ref": "entity.employee"
+        },
+        {
+          "note": "mapped to table projects; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+          "ref": "entity.project"
+        },
+        {
+          "note": "mapped to table project_members; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+          "ref": "entity.project_member"
+        },
+        {
+          "note": "mapped to table tasks; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+          "ref": "entity.task"
+        },
+        {
+          "note": "mapped to table users; 5 CRUD function(s) inventoried, direct parameterised SQL is used for PATCH/filter semantics.",
+          "ref": "entity.user"
+        }
+      ],
+      "required_database_changes": []
+    },
+    "domain_model": {
+      "entities": [
+        {
+          "entity": "entity.department",
+          "invariants": [
+            "id is unique."
+          ]
+        },
+        {
+          "entity": "entity.employee",
+          "invariants": [
+            "id is unique."
+          ]
+        },
+        {
+          "entity": "entity.project",
+          "invariants": [
+            "id is unique."
+          ]
+        },
+        {
+          "entity": "entity.project_member",
+          "invariants": [
+            "id is unique."
+          ]
+        },
+        {
+          "entity": "entity.task",
+          "invariants": [
+            "rule.guard.task.completed_needs_assignee",
+            "rule.ownership.task.employee_updates_own",
+            "rule.scope.task.list_assigned",
+            "Status changes only along the declared transitions of state_machine.task.",
+            "id is unique."
+          ]
+        },
+        {
+          "entity": "entity.user",
+          "invariants": [
+            "id is unique.",
+            "email is unique."
+          ]
+        }
+      ]
+    },
+    "final_review": {
+      "open_items": [
+        "conflict: AGGREGATE_WITHOUT_RESULT_SCHEMA",
+        "conflict: ENDPOINT_NOT_IN_GRAPH",
+        "conflict: ENUM_CASE_DIFFERS",
+        "conflict: ERROR_ENVELOPE_SHAPE",
+        "conflict: FRONTEND_FIELD_MISSING_IN_RESPONSE",
+        "conflict: FRONTEND_FIELD_NOT_IN_GRAPH",
+        "conflict: FRONTEND_QUERY_NOT_IN_GRAPH",
+        "conflict: NO_RESET_TOKEN_STORE",
+        "conflict: NO_USER_PROVISIONING",
+        "conflict: REQUIREDNESS_DIFFERS",
+        "conflict: RULE_FIELD_NEVER_SETTABLE",
+        "conflict: SESSION_RESPONSE_NOT_IN_GRAPH",
+        "conflict: TRANSITION_NOT_IN_GRAPH",
+        "warning: GRAPH_GAP/NO_USER_PROVISIONING: no operation creates entity.user: users can log in but cannot be created through the API",
+        "warning: GRAPH_GAP/RULE_FIELD_NEVER_SETTABLE: validation.task.completed_needs_assignee depends on entity.task.assignee_id but no operation in the graph can set it",
+        "warning: FRONTEND_API_CONFLICT/SESSION_RESPONSE_NOT_IN_GRAPH: frontend login expects {token, user} but api.user.login responds with schema.user which has no token",
+        "warning: FRONTEND_API_CONFLICT/ENDPOINT_NOT_IN_GRAPH: frontend api.user.list calls GET /users but the graph defines no such endpoint",
+        "warning: FRONTEND_API_CONFLICT/REQUIREDNESS_DIFFERS: 'description' is required by graph schema schema.project.create but optional in the frontend (api.project.create)",
+        "warning: FRONTEND_API_CONFLICT/FRONTEND_QUERY_NOT_IN_GRAPH: api.task.list sends query parameter 'project_id' that the graph does not define for api.task.list",
+        "warning: FRONTEND_API_CONFLICT/FRONTEND_FIELD_NOT_IN_GRAPH: api.task.create sends 'description' but graph schema schema.task.create does not define it",
+        "warning: FRONTEND_API_CONFLICT/FRONTEND_FIELD_NOT_IN_GRAPH: api.task.create sends 'assignee_id' but graph schema schema.task.create does not define it",
+        "warning: FRONTEND_API_CONFLICT/FRONTEND_FIELD_NOT_IN_GRAPH: api.task.create sends 'due_date' but graph schema schema.task.create does not define it",
+        "warning: FRONTEND_API_CONFLICT/FRONTEND_FIELD_MISSING_IN_RESPONSE: frontend entity.user.name is not in the graph response schema (graph fields: ['created_at', 'email', 'full_name', 'id', 'role'])",
+        "warning: FRONTEND_API_CONFLICT/FRONTEND_FIELD_MISSING_IN_RESPONSE: frontend entity.project.created_at is not in the graph response schema (graph fields: ['description', 'due_date', 'id', 'name', 'owner_id', 'status'])",
+        "warning: FRONTEND_API_CONFLICT/ENUM_CASE_DIFFERS: entity.task.status: frontend uses ['TODO', 'IN_PROGRESS', 'COMPLETED'] but graph uses ['todo', 'in_progress', 'completed'] (same values, different case)",
+        "warning: FRONTEND_API_CONFLICT/FRONTEND_FIELD_MISSING_IN_RESPONSE: frontend entity.task.created_at is not in the graph response schema (graph fields: ['assignee_id', 'description', 'due_date', 'id', 'project_id', 'status', 'title'])",
+        "warning: FRONTEND_API_CONFLICT/TRANSITION_NOT_IN_GRAPH: frontend allows completed -> in_progress for entity.task but state_machine.task does not"
+      ],
+      "summary": "Backend validation status: passed_with_conflicts after 0 correction attempt(s)."
+    },
+    "graph_analysis": {
+      "observations": [
+        "27 operations across 6 entities; 26 implemented by the generic engine, 1 need handlers."
+      ],
+      "risks": [
+        {
+          "ref": "entity.user",
+          "risk": "no operation creates entity.user: users can log in but cannot be created through the API"
+        },
+        {
+          "ref": "validation.task.completed_needs_assignee",
+          "risk": "validation.task.completed_needs_assignee depends on entity.task.assignee_id but no operation in the graph can set it"
+        },
+        {
+          "ref": "api.auth.login",
+          "risk": "frontend login expects {token, user} but api.user.login responds with schema.user which has no token"
+        },
+        {
+          "ref": "api.user.list",
+          "risk": "frontend api.user.list calls GET /users but the graph defines no such endpoint"
+        },
+        {
+          "ref": "api.project.create",
+          "risk": "'description' is required by graph schema schema.project.create but optional in the frontend (api.project.create)"
+        },
+        {
+          "ref": "api.task.list",
+          "risk": "api.task.list sends query parameter 'project_id' that the graph does not define for api.task.list"
+        },
+        {
+          "ref": "api.task.create",
+          "risk": "api.task.create sends 'description' but graph schema schema.task.create does not define it"
+        },
+        {
+          "ref": "api.task.create",
+          "risk": "api.task.create sends 'assignee_id' but graph schema schema.task.create does not define it"
+        },
+        {
+          "ref": "api.task.create",
+          "risk": "api.task.create sends 'due_date' but graph schema schema.task.create does not define it"
+        },
+        {
+          "ref": "frontend:entity.user.name",
+          "risk": "frontend entity.user.name is not in the graph response schema (graph fields: ['created_at', 'email', 'full_name', 'id', 'role'])"
+        },
+        {
+          "ref": "frontend:entity.project.created_at",
+          "risk": "frontend entity.project.created_at is not in the graph response schema (graph fields: ['description', 'due_date', 'id', 'name', 'owner_id', 'status'])"
+        },
+        {
+          "ref": "frontend:entity.task.status",
+          "risk": "entity.task.status: frontend uses ['TODO', 'IN_PROGRESS', 'COMPLETED'] but graph uses ['todo', 'in_progress', 'completed'] (same values, different case)"
+        },
+        {
+          "ref": "frontend:entity.task.created_at",
+          "risk": "frontend entity.task.created_at is not in the graph response schema (graph fields: ['assignee_id', 'description', 'due_date', 'id', 'project_id', 'status', 'title'])"
+        },
+        {
+          "ref": "sm.task.status",
+          "risk": "frontend allows completed -> in_progress for entity.task but state_machine.task does not"
+        }
+      ]
+    }
+  },
+  "api_contract": "passed",
+  "api_tests": "passed",
+  "bdd_tests": "passed",
+  "contract_tests": "passed",
+  "correction_attempts": 0,
+  "correction_stopped_because": "all checks passed",
+  "database_contract": "passed",
+  "database_tests": "passed",
+  "frontend_compat_tests": "passed",
+  "frontend_contract": "passed_with_conflicts",
+  "graph_validation": "passed",
+  "integration_conflicts": {
+    "critical": 0,
+    "info": 0,
+    "major": 14,
+    "minor": 3
+  },
+  "integration_tests": "passed",
+  "llm_provider": "mock",
+  "project": "project.task_manager",
+  "security_tests": "passed",
+  "stages": [
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "graphs": "projects/task_manager/graphs",
+        "project": "projects/task_manager"
+      },
+      "duration_ms": 0.0,
+      "errors": [],
+      "stage": "repository_inspection",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "graphs": [
+          "acceptance_criteria",
+          "actors",
+          "api",
+          "assumptions",
+          "backend",
+          "capabilities",
+          "dependencies",
+          "entities",
+          "permissions",
+          "project",
+          "questions",
+          "relationships",
+          "requirements",
+          "roles",
+          "state_machines",
+          "validations",
+          "workflows"
+        ],
+        "project_id": "project.task_manager"
+      },
+      "duration_ms": 3.1,
+      "errors": [],
+      "stage": "graph_loading",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {},
+      "duration_ms": 1.5,
+      "errors": [],
+      "stage": "graph_validation",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "functions": 30,
+        "tables": [
+          "departments",
+          "employees",
+          "project_members",
+          "projects",
+          "tasks",
+          "users"
+        ]
+      },
+      "duration_ms": 0.5,
+      "errors": [],
+      "stage": "database_contract_loading",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "available": true,
+        "endpoints": 10
+      },
+      "duration_ms": 0.3,
+      "errors": [],
+      "stage": "frontend_contract_loading",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [
+        "integration_conflicts.json"
+      ],
+      "correction_attempts": 0,
+      "details": {
+        "critical": 0,
+        "info": 0,
+        "major": 14,
+        "minor": 3
+      },
+      "duration_ms": 3.4,
+      "errors": [],
+      "stage": "integration_analysis",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [
+        "backend_analysis.json",
+        "entity_mapping.json"
+      ],
+      "correction_attempts": 0,
+      "details": {},
+      "duration_ms": 8.9,
+      "errors": [],
+      "stage": "backend_analysis",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {},
+      "duration_ms": 0.9,
+      "errors": [],
+      "stage": "llm_graph_analysis",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "skipped": "every graph condition was mapped by the deterministic baseline"
+      },
+      "duration_ms": 0.0,
+      "errors": [],
+      "stage": "llm_business_rules",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [
+        "handlers.json"
+      ],
+      "correction_attempts": 0,
+      "details": {
+        "implemented": [
+          "operation.project.progress"
+        ],
+        "operations": [
+          "operation.project.progress"
+        ]
+      },
+      "duration_ms": 2.4,
+      "errors": [],
+      "stage": "llm_api_implementation",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [
+        "backend_architecture.json",
+        "backend_spec.json"
+      ],
+      "correction_attempts": 0,
+      "details": {},
+      "duration_ms": 12.5,
+      "errors": [],
+      "stage": "architecture_generation",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {},
+      "duration_ms": 2.2,
+      "errors": [],
+      "stage": "llm_domain_authorization_database_review",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "files": 73
+      },
+      "duration_ms": 12.8,
+      "errors": [],
+      "stage": "code_generation",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "custom_test_modules": [
+          "progress"
+        ],
+        "files": 55
+      },
+      "duration_ms": 12.5,
+      "errors": [],
+      "stage": "test_generation",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [
+        "backend_api_contract.json",
+        "openapi.json"
+      ],
+      "correction_attempts": 0,
+      "details": {},
+      "duration_ms": 936.1,
+      "errors": [],
+      "stage": "static_validation",
+      "status": "passed",
+      "warnings": []
+    },
+    {
+      "artifacts": [],
+      "correction_attempts": 0,
+      "details": {
+        "stopped_because": "all checks passed"
+      },
+      "duration_ms": 63120.4,
+      "errors": [],
+      "stage": "test_execution",
+      "status": "passed",
+      "warnings": []
+    }
+  ],
+  "static_checks": {
+    "compile": "passed",
+    "import": "passed",
+    "openapi": "passed",
+    "sql_safety": "passed",
+    "unsafe_patterns": "passed"
+  },
+  "status": "passed_with_conflicts",
+  "suites": {
+    "api": {
+      "duration_s": 19.23,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 111,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "bdd": {
+      "duration_s": 5.75,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 28,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "contract": {
+      "duration_s": 1.26,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 141,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "db_failure": {
+      "duration_s": 16.17,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 10,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "frontend_compat": {
+      "duration_s": 5.53,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 35,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "repository": {
+      "duration_s": 1.95,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 35,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "security": {
+      "duration_s": 12.16,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 40,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    },
+    "unit": {
+      "duration_s": 1.06,
+      "errors": 0,
+      "failed": 0,
+      "failures": [],
+      "known_gap_tests": [],
+      "known_gaps": 0,
+      "passed": 28,
+      "skip_reason": "",
+      "skipped": 0,
+      "status": "passed"
+    }
+  },
+  "type_checks": "passed",
+  "unimplemented_operations": [],
+  "unit_tests": "passed",
+  "warnings": [
+    "GRAPH_GAP/NO_USER_PROVISIONING: no operation creates entity.user: users can log in but cannot be created through the API",
+    "GRAPH_GAP/RULE_FIELD_NEVER_SETTABLE: validation.task.completed_needs_assignee depends on entity.task.assignee_id but no operation in the graph can set it",
+    "FRONTEND_API_CONFLICT/SESSION_RESPONSE_NOT_IN_GRAPH: frontend login expects {token, user} but api.user.login responds with schema.user which has no token",
+    "FRONTEND_API_CONFLICT/ENDPOINT_NOT_IN_GRAPH: frontend api.user.list calls GET /users but the graph defines no such endpoint",
+    "FRONTEND_API_CONFLICT/REQUIREDNESS_DIFFERS: 'description' is required by graph schema schema.project.create but optional in the frontend (api.project.create)",
+    "FRONTEND_API_CONFLICT/FRONTEND_QUERY_NOT_IN_GRAPH: api.task.list sends query parameter 'project_id' that the graph does not define for api.task.list",
+    "FRONTEND_API_CONFLICT/FRONTEND_FIELD_NOT_IN_GRAPH: api.task.create sends 'description' but graph schema schema.task.create does not define it",
+    "FRONTEND_API_CONFLICT/FRONTEND_FIELD_NOT_IN_GRAPH: api.task.create sends 'assignee_id' but graph schema schema.task.create does not define it",
+    "FRONTEND_API_CONFLICT/FRONTEND_FIELD_NOT_IN_GRAPH: api.task.create sends 'due_date' but graph schema schema.task.create does not define it",
+    "FRONTEND_API_CONFLICT/FRONTEND_FIELD_MISSING_IN_RESPONSE: frontend entity.user.name is not in the graph response schema (graph fields: ['created_at', 'email', 'full_name', 'id', 'role'])",
+    "FRONTEND_API_CONFLICT/FRONTEND_FIELD_MISSING_IN_RESPONSE: frontend entity.project.created_at is not in the graph response schema (graph fields: ['description', 'due_date', 'id', 'name', 'owner_id', 'status'])",
+    "FRONTEND_API_CONFLICT/ENUM_CASE_DIFFERS: entity.task.status: frontend uses ['TODO', 'IN_PROGRESS', 'COMPLETED'] but graph uses ['todo', 'in_progress', 'completed'] (same values, different case)",
+    "FRONTEND_API_CONFLICT/FRONTEND_FIELD_MISSING_IN_RESPONSE: frontend entity.task.created_at is not in the graph response schema (graph fields: ['assignee_id', 'description', 'due_date', 'id', 'project_id', 'status', 'title'])",
+    "FRONTEND_API_CONFLICT/TRANSITION_NOT_IN_GRAPH: frontend allows completed -> in_progress for entity.task but state_machine.task does not"
+  ]
+}

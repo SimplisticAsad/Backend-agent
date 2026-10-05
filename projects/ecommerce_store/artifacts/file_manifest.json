@@ -1,0 +1,1077 @@
+{
+  "files": [
+    {
+      "description": "environment variable template",
+      "kind": "config",
+      "path": ".env.example",
+      "sha256": "a621a27e73957e8fa3568a1254a122e4f2f6ee65663c4abc35289e82c7652c79",
+      "source_refs": []
+    },
+    {
+      "description": "",
+      "kind": "config",
+      "path": ".gitignore",
+      "sha256": "7e8b33b5e9e224833d7894816c0cb92acfd27a6b956577d09ea13ec2b3874a40",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/__init__.py",
+      "sha256": "2a6b89797395b134d24aa3007312c580ff4ea0623c56af3326ce68252a3759af",
+      "source_refs": []
+    },
+    {
+      "description": "package marker",
+      "kind": "generated",
+      "path": "backend_app/api/__init__.py",
+      "sha256": "5e93f1df2bf56b6327f8ee9c08f4beac30d6685c995df83eb3fe386884bfb4ae",
+      "source_refs": []
+    },
+    {
+      "description": "service dependency",
+      "kind": "runtime",
+      "path": "backend_app/api/deps.py",
+      "sha256": "b8f7e61d350092bc6bd1a87a8625cf92d8f1af604c30f44e6939b6524ab872c2",
+      "source_refs": []
+    },
+    {
+      "description": "route registry (ordered)",
+      "kind": "generated",
+      "path": "backend_app/api/routes/__init__.py",
+      "sha256": "184cfbdb4a647971bcc6ffd7a8df5525dd72d242677b7c9a3b917225c104042f",
+      "source_refs": [
+        "operation.cart_item.create",
+        "operation.cart_item.delete",
+        "operation.cart_item.list",
+        "operation.cart_item.update",
+        "operation.order.list",
+        "operation.order.place",
+        "operation.order.read",
+        "operation.product.filter",
+        "operation.product.list",
+        "operation.product.read",
+        "operation.product.search",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password"
+      ]
+    },
+    {
+      "description": "HTTP routes for service.cart_item",
+      "kind": "generated",
+      "path": "backend_app/api/routes/cart_item.py",
+      "sha256": "9f0191e76e06fabe877ee8bf264c629aec02b4434c3aca9147df08fd1a19a8c8",
+      "source_refs": [
+        "api.cart_item.create",
+        "api.cart_item.delete",
+        "api.cart_item.list",
+        "api.cart_item.update",
+        "operation.cart_item.create",
+        "operation.cart_item.delete",
+        "operation.cart_item.list",
+        "operation.cart_item.update",
+        "rule.scope.implicit.cart_item.user_id",
+        "schema.cart_item",
+        "schema.cart_item.create",
+        "schema.cart_item.update",
+        "service.cart_item"
+      ]
+    },
+    {
+      "description": "HTTP routes for service.order",
+      "kind": "generated",
+      "path": "backend_app/api/routes/order.py",
+      "sha256": "45c0bdc75a39ccda33970b27a845ff6a8331800b587c1fce67da8a018ef788d4",
+      "source_refs": [
+        "api.order.list",
+        "api.order.place",
+        "api.order.read",
+        "operation.order.list",
+        "operation.order.place",
+        "operation.order.read",
+        "rule.scope.implicit.order.user_id",
+        "schema.order",
+        "schema.order.place",
+        "service.order"
+      ]
+    },
+    {
+      "description": "HTTP routes for service.product",
+      "kind": "generated",
+      "path": "backend_app/api/routes/product.py",
+      "sha256": "71836a78f78d75e77d6dfd641b7d30d5350cfe7d9f7ae0b29245fe4418a9bbc6",
+      "source_refs": [
+        "api.product.filter",
+        "api.product.list",
+        "api.product.read",
+        "api.product.search",
+        "operation.product.filter",
+        "operation.product.list",
+        "operation.product.read",
+        "operation.product.search",
+        "schema.product",
+        "service.product"
+      ]
+    },
+    {
+      "description": "HTTP routes for service.user",
+      "kind": "generated",
+      "path": "backend_app/api/routes/user.py",
+      "sha256": "b5076b82e97c40fde97a82f1505d7e244a3f0a9e65ad0d3b37187777a98c9f31",
+      "source_refs": [
+        "api.user.login",
+        "api.user.logout",
+        "api.user.request_password_reset",
+        "api.user.reset_password",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password",
+        "schema.user",
+        "schema.user.login",
+        "schema.user.request_password_reset",
+        "schema.user.reset_password",
+        "service.user"
+      ]
+    },
+    {
+      "description": "package marker",
+      "kind": "generated",
+      "path": "backend_app/api/schemas/__init__.py",
+      "sha256": "5e93f1df2bf56b6327f8ee9c08f4beac30d6685c995df83eb3fe386884bfb4ae",
+      "source_refs": []
+    },
+    {
+      "description": "request/response models for entity.cart_item",
+      "kind": "generated",
+      "path": "backend_app/api/schemas/cart_item.py",
+      "sha256": "8805587e005a52611d9dc948890ed828ec1195a66e4da0ee41a7a94a4266e520",
+      "source_refs": [
+        "entity.cart_item",
+        "schema.cart_item",
+        "schema.cart_item.create",
+        "schema.cart_item.update"
+      ]
+    },
+    {
+      "description": "request/response models for entity.category",
+      "kind": "generated",
+      "path": "backend_app/api/schemas/category.py",
+      "sha256": "309a87ea4434b8cc6216b30d13d8ebaa23b93317aa95d5ab8e5545a1d7fe5560",
+      "source_refs": [
+        "entity.category"
+      ]
+    },
+    {
+      "description": "request/response models for entity.order",
+      "kind": "generated",
+      "path": "backend_app/api/schemas/order.py",
+      "sha256": "e3800e2df991c747ab95675f5323a460c80ab4532fcf29eb399b07219144011f",
+      "source_refs": [
+        "entity.order",
+        "schema.order",
+        "schema.order.place"
+      ]
+    },
+    {
+      "description": "request/response models for entity.order_item",
+      "kind": "generated",
+      "path": "backend_app/api/schemas/order_item.py",
+      "sha256": "e54475aea9ad064b01073fc2d4c390ded8363ae65a5fd45cc36dd8baba672043",
+      "source_refs": [
+        "entity.order_item"
+      ]
+    },
+    {
+      "description": "request/response models for entity.product",
+      "kind": "generated",
+      "path": "backend_app/api/schemas/product.py",
+      "sha256": "9895b1471cd218a6cd79f590c21d6f6459ad026af6f4f5953265bcb0ea2c7671",
+      "source_refs": [
+        "entity.product",
+        "schema.product"
+      ]
+    },
+    {
+      "description": "request/response models for entity.user",
+      "kind": "generated",
+      "path": "backend_app/api/schemas/user.py",
+      "sha256": "cb65fbdb5e324fd833c86cf57e7a08da5aa374a0e4cb6addaee80035486dd664",
+      "source_refs": [
+        "entity.user",
+        "schema.user",
+        "schema.user.login",
+        "schema.user.request_password_reset",
+        "schema.user.reset_password"
+      ]
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/api_common.py",
+      "sha256": "3ab6049e78b34731f14edbd5205f751534adfb61efe8e1ca61715c5f6da98d2b",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/app_factory.py",
+      "sha256": "1436e35c0d0bad74336adcefee297e00ac75440db3dea3f4d328a7e27d7876fd",
+      "source_refs": []
+    },
+    {
+      "description": "package marker",
+      "kind": "generated",
+      "path": "backend_app/application/__init__.py",
+      "sha256": "5e93f1df2bf56b6327f8ee9c08f4beac30d6685c995df83eb3fe386884bfb4ae",
+      "source_refs": []
+    },
+    {
+      "description": "services container",
+      "kind": "generated",
+      "path": "backend_app/application/services/__init__.py",
+      "sha256": "56f3c69f0c2dedfaffe89c2f11fca5a2651e5ea336ae90aa3d0865a1410bb97c",
+      "source_refs": [
+        "service.cart_item",
+        "service.order",
+        "service.product",
+        "service.user"
+      ]
+    },
+    {
+      "description": "application service service.cart_item",
+      "kind": "generated",
+      "path": "backend_app/application/services/cart_item_service.py",
+      "sha256": "9aa7f11240c4a548655fa5b5239434852f59f41ff199cb76a1a43873894a3dd7",
+      "source_refs": [
+        "api.cart_item.create",
+        "api.cart_item.delete",
+        "api.cart_item.list",
+        "api.cart_item.update",
+        "operation.cart_item.create",
+        "operation.cart_item.delete",
+        "operation.cart_item.list",
+        "operation.cart_item.update",
+        "rule.scope.implicit.cart_item.user_id",
+        "service.cart_item"
+      ]
+    },
+    {
+      "description": "application service service.order",
+      "kind": "generated",
+      "path": "backend_app/application/services/order_service.py",
+      "sha256": "50cae4a7329106fa7aae5a1f2f3a4448c4482fbb2c893026cd16e0e509613286",
+      "source_refs": [
+        "api.order.list",
+        "api.order.place",
+        "api.order.read",
+        "operation.order.list",
+        "operation.order.place",
+        "operation.order.read",
+        "rule.scope.implicit.order.user_id",
+        "service.order"
+      ]
+    },
+    {
+      "description": "application service service.product",
+      "kind": "generated",
+      "path": "backend_app/application/services/product_service.py",
+      "sha256": "c2201529712fef213f4a0309f1eb9628b4a081d9c9436fe445788f672c19a16e",
+      "source_refs": [
+        "api.product.filter",
+        "api.product.list",
+        "api.product.read",
+        "api.product.search",
+        "operation.product.filter",
+        "operation.product.list",
+        "operation.product.read",
+        "operation.product.search",
+        "service.product"
+      ]
+    },
+    {
+      "description": "application service service.user",
+      "kind": "generated",
+      "path": "backend_app/application/services/user_service.py",
+      "sha256": "a2b8fc6493c97402beb35033752d040f3380623423c3a94f041aa1db0c697f87",
+      "source_refs": [
+        "api.user.login",
+        "api.user.logout",
+        "api.user.request_password_reset",
+        "api.user.reset_password",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password",
+        "service.user"
+      ]
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/auth.py",
+      "sha256": "411badb014b1b3114a0598ee33231ad94f3e582b206ef16c939e8c5617664e4c",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/auth_service.py",
+      "sha256": "5009f919d0aa3a31af85c36ce652c38121bf966c1767e591de16a909c7e1fe62",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/config.py",
+      "sha256": "2b76f744294c1b3eab8d4c4dd84899eeb1820c5c8aef9c3d8442e82b10caecd8",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/container.py",
+      "sha256": "1ff3c872a01a78b1545845b1ee1273ceb43a45d29eaaf7f639b0028b8ca34d46",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/db.py",
+      "sha256": "8769dfc9b2c561f69290149d8d05d499f3674f8d4c30e2134e0da8ea52daa3ce",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/domain/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "package marker",
+      "kind": "generated",
+      "path": "backend_app/domain/entities/__init__.py",
+      "sha256": "5e93f1df2bf56b6327f8ee9c08f4beac30d6685c995df83eb3fe386884bfb4ae",
+      "source_refs": []
+    },
+    {
+      "description": "domain entity CartItem",
+      "kind": "generated",
+      "path": "backend_app/domain/entities/cart_item.py",
+      "sha256": "3b772d2b0d73ee23fe45f93b2918cd100faa879efbe565e8ac53a95dbb35e796",
+      "source_refs": [
+        "entity.cart_item",
+        "table:cart_items"
+      ]
+    },
+    {
+      "description": "domain entity Category",
+      "kind": "generated",
+      "path": "backend_app/domain/entities/category.py",
+      "sha256": "a27730c842e6852c845c1a231a1abf7735757389c8753bbc878e44a7d012f9d5",
+      "source_refs": [
+        "entity.category",
+        "table:categories"
+      ]
+    },
+    {
+      "description": "domain entity Order",
+      "kind": "generated",
+      "path": "backend_app/domain/entities/order.py",
+      "sha256": "d4b421de79dc6da576286c237e4aca7d88619a3f178640dc5de0c503de048570",
+      "source_refs": [
+        "entity.order",
+        "table:orders"
+      ]
+    },
+    {
+      "description": "domain entity OrderItem",
+      "kind": "generated",
+      "path": "backend_app/domain/entities/order_item.py",
+      "sha256": "742c8a0493a6cf593f4cc86711da6f8e7bfba914f2c9e4317a1231e98d8cce1b",
+      "source_refs": [
+        "entity.order_item",
+        "table:order_items"
+      ]
+    },
+    {
+      "description": "domain entity Product",
+      "kind": "generated",
+      "path": "backend_app/domain/entities/product.py",
+      "sha256": "deacc1c80dfdf99466b28d59eb78fa2b99a0bf4398c8d2383bcd0fbbed105488",
+      "source_refs": [
+        "entity.product",
+        "table:products"
+      ]
+    },
+    {
+      "description": "domain entity User",
+      "kind": "generated",
+      "path": "backend_app/domain/entities/user.py",
+      "sha256": "4d278776ef7147b0911aedc138e6dc4c1ad5b49ca5bb2d29efdf2cb0e3f73d3d",
+      "source_refs": [
+        "entity.user",
+        "table:users"
+      ]
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/domain/exceptions.py",
+      "sha256": "9041f3f05f0c5f74116709daf4ff254f258d328dcd47809f104a44811239da25",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/emailer.py",
+      "sha256": "30e35c8f3df87bc5058f37bcbe81efeb37a034917f2e6b889d639adb45d7cc56",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/engine.py",
+      "sha256": "e9ad1568271138ecc019d52c2a3e10f468a074a578c5ac3fffd774c303e6811a",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/errors.py",
+      "sha256": "de417c52f35de97786bccafaa27fb349cf361d7043e67e63c27c36ccdfe79f5f",
+      "source_refs": []
+    },
+    {
+      "description": "package marker",
+      "kind": "generated",
+      "path": "backend_app/generated/__init__.py",
+      "sha256": "5e93f1df2bf56b6327f8ee9c08f4beac30d6685c995df83eb3fe386884bfb4ae",
+      "source_refs": []
+    },
+    {
+      "description": "the resolved BackendSpec interpreted by the runtime",
+      "kind": "generated",
+      "path": "backend_app/generated/spec.json",
+      "sha256": "bbfbed763281ae575344824e0a2e02e5a66394ef63acf480bac45bcfb7230c71",
+      "source_refs": [
+        "entity.cart_item",
+        "entity.category",
+        "entity.order",
+        "entity.order_item",
+        "entity.product",
+        "entity.user",
+        "operation.cart_item.create",
+        "operation.cart_item.delete",
+        "operation.cart_item.list",
+        "operation.cart_item.update",
+        "operation.order.list",
+        "operation.order.place",
+        "operation.order.read",
+        "operation.product.filter",
+        "operation.product.list",
+        "operation.product.read",
+        "operation.product.search",
+        "operation.user.login",
+        "operation.user.logout",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password",
+        "project.ecommerce_store"
+      ]
+    },
+    {
+      "description": "package marker",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/__init__.py",
+      "sha256": "5e93f1df2bf56b6327f8ee9c08f4beac30d6685c995df83eb3fe386884bfb4ae",
+      "source_refs": []
+    },
+    {
+      "description": "repository registry",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/repositories/__init__.py",
+      "sha256": "16093cd6147c0fdcfe4235a0fa63169efa3e218fc3f04df8d4aa331bc3d42d8b",
+      "source_refs": [
+        "entity.cart_item",
+        "entity.category",
+        "entity.order",
+        "entity.order_item",
+        "entity.product",
+        "entity.user"
+      ]
+    },
+    {
+      "description": "repository for entity.cart_item",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/repositories/cart_item_repository.py",
+      "sha256": "6c30c69b673c83c13f0a10842c054c3e9fe36871898eac3ea3b6cd44110d0b6b",
+      "source_refs": [
+        "entity.cart_item",
+        "table:cart_items"
+      ]
+    },
+    {
+      "description": "repository for entity.category",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/repositories/category_repository.py",
+      "sha256": "602b690a0987f6f45cb98fa5a47e611ae420f31156a76e079bb8f66b6ef11e30",
+      "source_refs": [
+        "entity.category",
+        "table:categories"
+      ]
+    },
+    {
+      "description": "repository for entity.order_item",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/repositories/order_item_repository.py",
+      "sha256": "05dbc6fade8a3562bb9b02a9e33d540f883f6cc3b46961ca6a89b62c2d78b954",
+      "source_refs": [
+        "entity.order_item",
+        "table:order_items"
+      ]
+    },
+    {
+      "description": "repository for entity.order",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/repositories/order_repository.py",
+      "sha256": "e9e5a9d584ca2386325cb4bf65d38b19366e46dbdb6208bfbbe928de84b49e93",
+      "source_refs": [
+        "entity.order",
+        "table:orders"
+      ]
+    },
+    {
+      "description": "repository for entity.product",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/repositories/product_repository.py",
+      "sha256": "84e101346f28772501c0db7147af2e2c205e540b4343cbbd84ed0038cccf8bb4",
+      "source_refs": [
+        "entity.product",
+        "table:products"
+      ]
+    },
+    {
+      "description": "repository for entity.user",
+      "kind": "generated",
+      "path": "backend_app/infrastructure/repositories/user_repository.py",
+      "sha256": "b3f9a66557846cce07646c018ee7ec600dbabc519be8177f70f564e316107ee8",
+      "source_refs": [
+        "entity.user",
+        "table:users"
+      ]
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/logging_setup.py",
+      "sha256": "c1666e89f9d3e8a645ec26639ea0acc4684ee3eab9887fc2684b7028b3fdd748",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/main.py",
+      "sha256": "d0bc2a63a8be62853aad6fc2f87b636ba7d0801a499cff758640d1423a48e1d3",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/manage.py",
+      "sha256": "7a7b4d9772ecc048bb02002fc8124611a4f9128f39f0b5fefc74ed50b6ada7ba",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/middleware.py",
+      "sha256": "39fc132d6cd0cbfb9476a62950b1fe817442317a1c49a08f634469bb59268735",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/ratelimit.py",
+      "sha256": "0d5a46b43392e4d2767fd34f3bac794ee36c4506d6c1ac5228abe72ce2642b79",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/repository.py",
+      "sha256": "8a240a2741b90dfc5356263e37ed62b717f0e812a4a5dcf55f6c17ada6cc67e8",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/rules.py",
+      "sha256": "838c71251ec9a89d149f154cfa7275436a50e09d4a589506131ce46088efc1bf",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/security.py",
+      "sha256": "3df733a8f1d9dff6cebbfd9527f64ec68af3890e9dbf384a734913ddb8cd0355",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/service_base.py",
+      "sha256": "749bb3f9b314ea21adc97f77ebfd888d3977b15df01f9e6e1dbe0d4847843476",
+      "source_refs": []
+    },
+    {
+      "description": "static runtime (agent infrastructure)",
+      "kind": "runtime",
+      "path": "backend_app/spec.py",
+      "sha256": "a5ca2f70c8093fdeeae6efe9ebd4b82d8f1cb6a41dfa7d0940ab31f2be3b4830",
+      "source_refs": []
+    },
+    {
+      "description": "copy of the Database Agent contract the backend was built against",
+      "kind": "contract",
+      "path": "db_contract/SOURCE.md",
+      "sha256": "d857af7aed32a6749107362ae725809686b8210c7b3aa0776f25d8a7bbf0bad1",
+      "source_refs": [
+        "database:SOURCE.md"
+      ]
+    },
+    {
+      "description": "copy of the Database Agent contract the backend was built against",
+      "kind": "contract",
+      "path": "db_contract/architecture.json",
+      "sha256": "55f8a96a8edb30f6f43c6c78afe44b407d7ae970cb22c7dddddae9c70144a033",
+      "source_refs": [
+        "database:architecture.json"
+      ]
+    },
+    {
+      "description": "copy of the Database Agent contract the backend was built against",
+      "kind": "contract",
+      "path": "db_contract/crud.sql",
+      "sha256": "8f686cf10c786275c426460a69fe2d13c50a75067d63bc4ccfc3c48c0a9ca4b0",
+      "source_refs": [
+        "database:crud.sql"
+      ]
+    },
+    {
+      "description": "copy of the Database Agent contract the backend was built against",
+      "kind": "contract",
+      "path": "db_contract/crud_functions.json",
+      "sha256": "39d99d886490d81d540bdb2045eb7dea9e8e28644ec623f10c276df41b3ee7cd",
+      "source_refs": [
+        "database:crud_functions.json"
+      ]
+    },
+    {
+      "description": "copy of the Database Agent contract the backend was built against",
+      "kind": "contract",
+      "path": "db_contract/database_state.json",
+      "sha256": "d77b433e015531e5e6ec36fc20b1ec9898d9d638d16b662a9514ca5493d057a9",
+      "source_refs": [
+        "database:database_state.json"
+      ]
+    },
+    {
+      "description": "copy of the Database Agent contract the backend was built against",
+      "kind": "contract",
+      "path": "db_contract/schema.sql",
+      "sha256": "2822eeb06dcaecf9e43622f2ff41292a671b8560c28e09d9fc5a33d4a28aac60",
+      "source_refs": [
+        "database:schema.sql"
+      ]
+    },
+    {
+      "description": "project metadata and dependencies",
+      "kind": "config",
+      "path": "pyproject.toml",
+      "sha256": "694f842dc54b1294f26f3d581afd8809ae04a53e599737eea7ec96a536bb98ca",
+      "source_refs": [
+        "project.ecommerce_store"
+      ]
+    },
+    {
+      "description": "",
+      "kind": "test",
+      "path": "tests/README.md",
+      "sha256": "51cb328a41f8e5d473bdd24b97dd39a61ed8a6ec5fb592611a716cda6f6041be",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/api/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/api/test_auth_flows.py",
+      "sha256": "e1a6f4cf63b6e63d806bf13e8d2a6cff0d7efb8576b13b296e9dab28857313bd",
+      "source_refs": []
+    },
+    {
+      "description": "tests for an LLM-implemented operation",
+      "kind": "test",
+      "path": "tests/api/test_custom_place_order.py",
+      "sha256": "82a3f18dd87ec4b922765ad3a053ffc123dcd0d53ff352909f399e543f58e9b3",
+      "source_refs": [
+        "place_order"
+      ]
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/api/test_operations.py",
+      "sha256": "61fb13857019148999b6ef367a4727786a5ecbf53be29014e3efa8649bf1357c",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/bdd/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_auth_login.feature",
+      "sha256": "e512e75d74ed0e6cb846bc322eaf204ed4664e08298d8cb98e7fd4a5a460528d",
+      "source_refs": [
+        "ac.auth.login",
+        "operation.user.login",
+        "requirement.authentication",
+        "workflow.auth.login"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_auth_logout.feature",
+      "sha256": "5b2b4be412b8032c123de6d659a44c5759969c77222dddadabf872cae78e5cae",
+      "source_refs": [
+        "ac.auth.logout",
+        "operation.user.logout",
+        "requirement.authentication",
+        "workflow.auth.logout"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_auth_password_reset.feature",
+      "sha256": "3fabb0add89cf44e4ac0772544eef5c5747e248b414770491e143f59a6a7db6f",
+      "source_refs": [
+        "ac.auth.password_reset",
+        "operation.user.request_password_reset",
+        "operation.user.reset_password",
+        "requirement.authentication",
+        "workflow.auth.password_reset"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_cart_item_browse.feature",
+      "sha256": "c0a5607409399e6f45629d5f47121b2d8ddb442a033188cfd8841d67659c7242",
+      "source_refs": [
+        "ac.cart_item.browse",
+        "operation.cart_item.list",
+        "requirement.shopping_cart",
+        "workflow.cart_item.browse"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_cart_item_create.feature",
+      "sha256": "d902ea9f8a294e794ec3a58c810cf7bfffbb02edc5003c981d00296fb7fac5b3",
+      "source_refs": [
+        "ac.cart_item.create",
+        "operation.cart_item.create",
+        "requirement.shopping_cart",
+        "workflow.cart_item.create"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_cart_item_delete.feature",
+      "sha256": "2caf8d31f68cf7224992196d4601567ef5550da9bde55d49f16aeadd5fad1d80",
+      "source_refs": [
+        "ac.cart_item.delete",
+        "operation.cart_item.delete",
+        "requirement.shopping_cart",
+        "workflow.cart_item.delete"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_cart_item_update.feature",
+      "sha256": "5a59aba3d17e046f8831f408e77b29ae161962f2d434e1fcf59b987e3ebe2235",
+      "source_refs": [
+        "ac.cart_item.update",
+        "operation.cart_item.update",
+        "requirement.shopping_cart",
+        "workflow.cart_item.update"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_order_browse.feature",
+      "sha256": "9ec92e873d3b96e307e435c7fe2ea6f10060caf502438a79e45930a8204ad0dd",
+      "source_refs": [
+        "ac.order.browse",
+        "operation.order.list",
+        "operation.order.read",
+        "requirement.checkout",
+        "workflow.order.browse"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_order_cart_not_empty.feature",
+      "sha256": "9aa73a64d34da3dae6593fc73f97c317b1690845f0b237f259a17fa80132d41b",
+      "source_refs": [
+        "ac.order.cart_not_empty",
+        "operation.order.place",
+        "requirement.checkout"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_order_checkout.feature",
+      "sha256": "9889f91b265beb9d18d2fa09894c78de3620a2bb6bb7bcdf37d6eebf9ee5bba1",
+      "source_refs": [
+        "ac.order.checkout",
+        "operation.order.place",
+        "requirement.checkout",
+        "workflow.order.checkout"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_product_browse.feature",
+      "sha256": "760851bba2786d98e587f687b9bf96ac01614e5ef27a815a14c742a6e60431cb",
+      "source_refs": [
+        "ac.product.browse",
+        "operation.product.list",
+        "operation.product.read",
+        "requirement.product_catalog",
+        "workflow.product.browse"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_product_filter.feature",
+      "sha256": "07ca9d6acf65ce7efcca1d376d1eb76270c4895dd0135a6ee13ab769fea18f13",
+      "source_refs": [
+        "ac.product.filter",
+        "operation.product.filter",
+        "requirement.product_filter",
+        "workflow.product.filter"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_product_search.feature",
+      "sha256": "9794bdcd5fc80aa6e9ece2155ae3a649595d6df789846c8c6e26ec780551bf6c",
+      "source_refs": [
+        "ac.product.search",
+        "operation.product.search",
+        "requirement.product_search",
+        "workflow.product.search"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_product_stock_available.feature",
+      "sha256": "910addfd25c0e02617f798752ff5ff79fa4bb332a3b41c370191a41ce53b9f1f",
+      "source_refs": [
+        "ac.product.stock_available",
+        "operation.order.place",
+        "requirement.checkout"
+      ]
+    },
+    {
+      "description": "BDD scenario from acceptance_criteria.json",
+      "kind": "test",
+      "path": "tests/bdd/features/ac_user_invalid_login.feature",
+      "sha256": "ee63810916813312959ed0dbceafd6eb19be4cf71dcf129c6ba9b67883e4a30b",
+      "source_refs": [
+        "ac.user.invalid_login",
+        "operation.user.login",
+        "requirement.authentication"
+      ]
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/bdd/test_acceptance.py",
+      "sha256": "ac39b266d82a186b9eb4629c81f6c1f8cbe60926d01aecea493fd486be79c220",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/conftest.py",
+      "sha256": "36c6059409f11675f52fe0125aa4b03041613a3e5e1a7913a57724c1e83542bc",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/contract/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/contract/test_graph_contract.py",
+      "sha256": "45f8d1e98ba1bcf1067f01105dc060b221e67e2076b11210460d5bfa21bcebd0",
+      "source_refs": []
+    },
+    {
+      "description": "acceptance criteria covered by dedicated custom tests",
+      "kind": "test",
+      "path": "tests/data/custom_ac_coverage.json",
+      "sha256": "92fcf0192bea4119481e191655280ebc701d30c28392322f8328ddca6b71b96b",
+      "source_refs": [
+        "ac.order.cart_not_empty",
+        "ac.order.checkout",
+        "ac.product.stock_available"
+      ]
+    },
+    {
+      "description": "raw graph slices used by contract tests",
+      "kind": "test",
+      "path": "tests/data/graph_contract.json",
+      "sha256": "a29ff5cc6122c457367580fbc6ae4396e1f00f1a874881cc598cbaa0535f1721",
+      "source_refs": [
+        "project.ecommerce_store"
+      ]
+    },
+    {
+      "description": "documented conflict codes",
+      "kind": "test",
+      "path": "tests/data/known_conflicts.json",
+      "sha256": "d009364d91b1d1c40bceb6d96179551f8bef378884512e4a1b456b518db7f28b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/db_failure/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/db_failure/test_database_failures.py",
+      "sha256": "65c69eea641a4352eb7391a4e2724bed699b14cb2022260d6713de0f71232a6d",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/repository/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/repository/test_repositories.py",
+      "sha256": "9c254216cdd0807939f2b9a1b8ea3fdeccf1e6e75e6e506d34e25ed90680a816",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/security/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/security/test_security.py",
+      "sha256": "72220db38da3bdef92e7e29367745128336d91de38831cdce0d82c4040e02ac5",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/support/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/support/data.py",
+      "sha256": "9f363155a9cdc13a67bb28a5465277e7cebd16ec7d38fbd130948b956d1a248f",
+      "source_refs": []
+    },
+    {
+      "description": "dedicated-PostgreSQL helper (copy of app/testing/pg_cluster.py)",
+      "kind": "test",
+      "path": "tests/support/pg.py",
+      "sha256": "f1b3d064f59191731548615112a121c08b26f6e051e83a856d941176b3ee3411",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/support/world.py",
+      "sha256": "548230066a88c22832d29098f620068efd03cb8c880bd139f6645ae93734800a",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/unit/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "source_refs": []
+    },
+    {
+      "description": "spec-driven test module (agent template)",
+      "kind": "test",
+      "path": "tests/unit/test_core.py",
+      "sha256": "8ee6c9fc29aff75306c8c4fb6efd712a49833ccfd745c4198d8e86d189eb62a7",
+      "source_refs": []
+    }
+  ],
+  "ownership": {
+    "config": "project metadata",
+    "contract": "copy of the Database Agent artifacts",
+    "generated": "regenerated from graphs on every run; do not edit",
+    "runtime": "agent infrastructure copied verbatim",
+    "test": "generated, spec-driven; must not be weakened"
+  }
+}

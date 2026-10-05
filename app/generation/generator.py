@@ -173,6 +173,16 @@ def method_name(op: dict[str, Any], taken: set[str]) -> str:
     return name
 
 
+def compute_method_names(spec: dict[str, Any]) -> dict[str, str]:
+    """operation id -> service method name (unique within its service)."""
+    names: dict[str, str] = {}
+    for _, ops in _group_by_service(spec).items():
+        taken: set[str] = set()
+        for o in ops:
+            names[o["id"]] = method_name(o, taken)
+    return names
+
+
 def service_key(service_id: str) -> str:
     return service_id.split(".", 1)[1]
 
@@ -420,11 +430,7 @@ def generate_backend(spec: dict[str, Any], out_dir: Path, *, db_contract_dir: Pa
              [spec["project"]["id"]] + sorted(spec["operations"]) + sorted(spec["entities"]), "the resolved BackendSpec interpreted by the runtime")
 
     groups = _group_by_service(spec)
-    names: dict[str, str] = {}
-    for sid, ops in groups.items():
-        taken: set[str] = set()
-        for o in ops:
-            names[o["id"]] = method_name(o, taken)
+    names = compute_method_names(spec)
 
     for eid, ent in sorted(spec["entities"].items()):
         k = ent["key"]
