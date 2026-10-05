@@ -54,7 +54,8 @@ def main(argv: list[str]) -> int:
 
     spec = json.loads((src / "backend_app" / "generated" / "spec.json").read_text())
     rule_types = {r["type"] for r in spec["rules"]} | ({"row_scope_parent"} if any(r["type"] == "row_scope" and "fk" in r["scope"] for r in spec["rules"]) else set()) \
-        | ({"transition"} if spec["state_machines"] else set())
+        | ({"transition"} if spec["state_machines"] else set()) \
+        | ({"row_scope_rowop"} if any(r["type"] == "row_scope" and any(spec["operations"][o]["kind"] in ("read", "update", "transition", "delete") for o in r["operations"]) for r in spec["rules"]) else set())
     killed = survived = skipped = 0
     for name, rel, old, new, suites, note, requires in MUTANTS:
         if requires and requires not in rule_types:
