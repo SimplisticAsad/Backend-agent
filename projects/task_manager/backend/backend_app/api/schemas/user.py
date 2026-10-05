@@ -2,15 +2,11 @@
 """API request/response models for entity.user (from api.json schemas)."""
 from __future__ import annotations
 
-from datetime import date, datetime
-from decimal import Decimal
-from typing import Any, Literal
+from datetime import datetime
+from typing import Literal
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
-
-from ...api_common import JsonDecimal
-
 
 
 class UserResponse(BaseModel):
@@ -28,7 +24,7 @@ class UserLoginRequest(BaseModel):
     """schema.user.login: Log in request"""
 
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
-    email: EmailStr = Field(..., max_length=254)
+    email: EmailStr = Field(..., max_length=254, min_length=1)
     password: str = Field(..., max_length=128, min_length=1)
 
 
@@ -36,7 +32,7 @@ class UserRequestPasswordResetRequest(BaseModel):
     """schema.user.request_password_reset: Request password reset request"""
 
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
-    email: EmailStr = Field(..., max_length=254)
+    email: EmailStr = Field(..., max_length=254, min_length=1)
 
 
 class UserResetPasswordRequest(BaseModel):

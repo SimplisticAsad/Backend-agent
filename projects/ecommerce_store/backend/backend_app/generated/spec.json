@@ -686,6 +686,9 @@
           "user_id": "principal.id"
         }
       },
+      "permissions": [
+        "permission.cart_item.create"
+      ],
       "roles": [
         "role.customer"
       ],
@@ -734,6 +737,9 @@
       "not_found_code": "CART_ITEM_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.cart_item.delete"
+      ],
       "roles": [
         "role.customer"
       ],
@@ -776,6 +782,9 @@
         "filters": [],
         "search": false
       },
+      "permissions": [
+        "permission.cart_item.list"
+      ],
       "roles": [
         "role.customer"
       ],
@@ -826,6 +835,9 @@
       "not_found_code": "CART_ITEM_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.cart_item.update"
+      ],
       "roles": [
         "role.customer"
       ],
@@ -868,6 +880,9 @@
         "filters": [],
         "search": false
       },
+      "permissions": [
+        "permission.order.list"
+      ],
       "roles": [
         "role.customer"
       ],
@@ -926,6 +941,9 @@
           "total"
         ]
       },
+      "permissions": [
+        "permission.order.place"
+      ],
       "roles": [
         "role.customer"
       ],
@@ -974,6 +992,9 @@
       "not_found_code": "ORDER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.order.read"
+      ],
       "roles": [
         "role.customer"
       ],
@@ -1033,6 +1054,7 @@
         ],
         "search": false
       },
+      "permissions": [],
       "roles": [],
       "service": "service.product",
       "type": "query"
@@ -1071,6 +1093,7 @@
         "filters": [],
         "search": false
       },
+      "permissions": [],
       "roles": [],
       "service": "service.product",
       "type": "query"
@@ -1115,6 +1138,7 @@
       "not_found_code": "PRODUCT_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [],
       "roles": [],
       "service": "service.product",
       "type": "query"
@@ -1162,6 +1186,7 @@
         "filters": [],
         "search": true
       },
+      "permissions": [],
       "roles": [],
       "service": "service.product",
       "type": "query"
@@ -1206,6 +1231,7 @@
       "not_found_code": "USER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [],
       "roles": [],
       "service": "service.user",
       "type": "command"
@@ -1241,6 +1267,9 @@
       "not_found_code": "USER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.user.logout"
+      ],
       "roles": [],
       "service": "service.user",
       "type": "command"
@@ -1278,6 +1307,7 @@
       "not_found_code": "USER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [],
       "roles": [],
       "service": "service.user",
       "type": "command"
@@ -1321,6 +1351,7 @@
       "not_found_code": "USER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [],
       "roles": [],
       "service": "service.user",
       "type": "command"

@@ -114,7 +114,7 @@ def cmd_inspect(args: argparse.Namespace) -> int:
 def cmd_validate(args: argparse.Namespace) -> int:
     pkg, v, db, fe, project_dir = _load(args)
     report = detect_all(pkg, db, fe)
-    problems = [str(i) for i in report.blocking and [type("I", (), {"__str__": lambda s, c=c: f"{c.type.value}/{c.code}: {c.description}"})() for c in report.blocking] or []]
+    problems = [f"{c.type.value}/{c.code}: {c.description}" for c in report.blocking]
     backend = project_dir / "backend"
     static = None
     if (backend / "backend_app").exists():

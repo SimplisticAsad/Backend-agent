@@ -1,0 +1,1184 @@
+{
+  "additive_query_parameters": [
+    "limit",
+    "offset",
+    "sort",
+    "order"
+  ],
+  "api_versioning": {
+    "base_path": "",
+    "note": "paths are served exactly as in api.json; the Frontend dev proxy strips its /api prefix",
+    "versioning": "none"
+  },
+  "compatibility_shims": [
+    {
+      "description": "Login returns the Frontend Session {token, user} AND the graph user fields at top level.",
+      "id": "login_session_envelope"
+    },
+    {
+      "description": "Errors carry {error:{code,message,details}} plus top-level message/errors for the Frontend client.",
+      "id": "error_envelope"
+    },
+    {
+      "description": "Lists are bare arrays (Frontend contract); pagination via limit/offset query parameters, total in X-Total-Count.",
+      "id": "list_headers"
+    }
+  ],
+  "endpoints": [
+    {
+      "documented_errors": [
+        "400",
+        "409",
+        "422",
+        "429",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.user.request_password_reset",
+      "method": "POST",
+      "operation": "operation.user.request_password_reset",
+      "path": "/auth/forgot-password",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "email"
+        ],
+        "required": [
+          "email"
+        ]
+      },
+      "response": null,
+      "roles": [],
+      "security": [],
+      "success_status": 204
+    },
+    {
+      "documented_errors": [
+        "400",
+        "409",
+        "422",
+        "429",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.user.login",
+      "method": "POST",
+      "operation": "operation.user.login",
+      "path": "/auth/login",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "email",
+          "password"
+        ],
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "response": {
+        "fields": [
+          "created_at",
+          "email",
+          "expires_in",
+          "full_name",
+          "id",
+          "role",
+          "token",
+          "token_type",
+          "user"
+        ],
+        "required": [
+          "created_at",
+          "email",
+          "expires_in",
+          "full_name",
+          "id",
+          "role",
+          "token",
+          "user"
+        ]
+      },
+      "roles": [],
+      "security": [],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.user.logout",
+      "method": "POST",
+      "operation": "operation.user.logout",
+      "path": "/auth/logout",
+      "query_parameters": [],
+      "request": null,
+      "response": null,
+      "roles": [],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 204
+    },
+    {
+      "documented_errors": [
+        "400",
+        "409",
+        "422",
+        "429",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.user.reset_password",
+      "method": "POST",
+      "operation": "operation.user.reset_password",
+      "path": "/auth/reset-password",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "new_password",
+          "reset_token"
+        ],
+        "required": [
+          "new_password",
+          "reset_token"
+        ]
+      },
+      "response": null,
+      "roles": [],
+      "security": [],
+      "success_status": 204
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.department.list",
+      "method": "GET",
+      "operation": "operation.department.list",
+      "path": "/departments",
+      "query_parameters": [
+        "limit",
+        "offset",
+        "order",
+        "sort"
+      ],
+      "request": null,
+      "response": {
+        "fields": [
+          "description",
+          "id",
+          "name"
+        ],
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.department.create",
+      "method": "POST",
+      "operation": "operation.department.create",
+      "path": "/departments",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "description",
+          "name"
+        ],
+        "required": [
+          "description",
+          "name"
+        ]
+      },
+      "response": {
+        "fields": [
+          "description",
+          "id",
+          "name"
+        ],
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 201
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.department.update",
+      "method": "PATCH",
+      "operation": "operation.department.update",
+      "path": "/departments/{id}",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "description",
+          "name"
+        ],
+        "required": []
+      },
+      "response": {
+        "fields": [
+          "description",
+          "id",
+          "name"
+        ],
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.employee.list",
+      "method": "GET",
+      "operation": "operation.employee.list",
+      "path": "/employees",
+      "query_parameters": [
+        "limit",
+        "offset",
+        "order",
+        "sort"
+      ],
+      "request": null,
+      "response": {
+        "fields": [
+          "department_id",
+          "id",
+          "job_title",
+          "user_id"
+        ],
+        "required": [
+          "id",
+          "user_id"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.employee.create",
+      "method": "POST",
+      "operation": "operation.employee.create",
+      "path": "/employees",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "department_id",
+          "job_title",
+          "user_id"
+        ],
+        "required": [
+          "department_id",
+          "job_title",
+          "user_id"
+        ]
+      },
+      "response": {
+        "fields": [
+          "department_id",
+          "id",
+          "job_title",
+          "user_id"
+        ],
+        "required": [
+          "id",
+          "user_id"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 201
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.employee.read",
+      "method": "GET",
+      "operation": "operation.employee.read",
+      "path": "/employees/{id}",
+      "query_parameters": [],
+      "request": null,
+      "response": {
+        "fields": [
+          "department_id",
+          "id",
+          "job_title",
+          "user_id"
+        ],
+        "required": [
+          "id",
+          "user_id"
+        ]
+      },
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.employee.update",
+      "method": "PATCH",
+      "operation": "operation.employee.update",
+      "path": "/employees/{id}",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "department_id",
+          "job_title",
+          "user_id"
+        ],
+        "required": []
+      },
+      "response": {
+        "fields": [
+          "department_id",
+          "id",
+          "job_title",
+          "user_id"
+        ],
+        "required": [
+          "id",
+          "user_id"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.project_member.list",
+      "method": "GET",
+      "operation": "operation.project_member.list",
+      "path": "/project-members",
+      "query_parameters": [
+        "limit",
+        "offset",
+        "order",
+        "sort"
+      ],
+      "request": null,
+      "response": {
+        "fields": [
+          "id",
+          "project_id",
+          "user_id"
+        ],
+        "required": [
+          "id",
+          "project_id",
+          "user_id"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.project_member.create",
+      "method": "POST",
+      "operation": "operation.project_member.create",
+      "path": "/project-members",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "project_id",
+          "user_id"
+        ],
+        "required": [
+          "project_id",
+          "user_id"
+        ]
+      },
+      "response": {
+        "fields": [
+          "id",
+          "project_id",
+          "user_id"
+        ],
+        "required": [
+          "id",
+          "project_id",
+          "user_id"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 201
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.project_member.delete",
+      "method": "DELETE",
+      "operation": "operation.project_member.delete",
+      "path": "/project-members/{id}",
+      "query_parameters": [],
+      "request": null,
+      "response": null,
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 204
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.project.list",
+      "method": "GET",
+      "operation": "operation.project.list",
+      "path": "/projects",
+      "query_parameters": [
+        "limit",
+        "offset",
+        "order",
+        "sort"
+      ],
+      "request": null,
+      "response": {
+        "fields": [
+          "description",
+          "due_date",
+          "id",
+          "name",
+          "owner_id",
+          "status"
+        ],
+        "required": [
+          "id",
+          "name",
+          "status"
+        ]
+      },
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.project.create",
+      "method": "POST",
+      "operation": "operation.project.create",
+      "path": "/projects",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "description",
+          "name",
+          "owner_id"
+        ],
+        "required": [
+          "description",
+          "name"
+        ]
+      },
+      "response": {
+        "fields": [
+          "description",
+          "due_date",
+          "id",
+          "name",
+          "owner_id",
+          "status"
+        ],
+        "required": [
+          "id",
+          "name",
+          "status"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 201
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.project.progress",
+      "method": "GET",
+      "operation": "operation.project.progress",
+      "path": "/projects/progress",
+      "query_parameters": [
+        "limit",
+        "offset",
+        "order",
+        "sort"
+      ],
+      "request": null,
+      "response": {
+        "fields": [
+          "completed_task_count",
+          "description",
+          "due_date",
+          "id",
+          "name",
+          "owner_id",
+          "progress_percent",
+          "status",
+          "task_count"
+        ],
+        "required": [
+          "id",
+          "name",
+          "status"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.project.delete",
+      "method": "DELETE",
+      "operation": "operation.project.delete",
+      "path": "/projects/{id}",
+      "query_parameters": [],
+      "request": null,
+      "response": null,
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 204
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.project.read",
+      "method": "GET",
+      "operation": "operation.project.read",
+      "path": "/projects/{id}",
+      "query_parameters": [],
+      "request": null,
+      "response": {
+        "fields": [
+          "description",
+          "due_date",
+          "id",
+          "name",
+          "owner_id",
+          "status"
+        ],
+        "required": [
+          "id",
+          "name",
+          "status"
+        ]
+      },
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.project.update",
+      "method": "PATCH",
+      "operation": "operation.project.update",
+      "path": "/projects/{id}",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "description",
+          "due_date",
+          "name",
+          "status"
+        ],
+        "required": []
+      },
+      "response": {
+        "fields": [
+          "description",
+          "due_date",
+          "id",
+          "name",
+          "owner_id",
+          "status"
+        ],
+        "required": [
+          "id",
+          "name",
+          "status"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.task.list",
+      "method": "GET",
+      "operation": "operation.task.list",
+      "path": "/tasks",
+      "query_parameters": [
+        "limit",
+        "offset",
+        "order",
+        "sort"
+      ],
+      "request": null,
+      "response": {
+        "fields": [
+          "assignee_id",
+          "description",
+          "due_date",
+          "id",
+          "project_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "id",
+          "project_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.task.create",
+      "method": "POST",
+      "operation": "operation.task.create",
+      "path": "/tasks",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "project_id",
+          "title"
+        ],
+        "required": [
+          "project_id",
+          "title"
+        ]
+      },
+      "response": {
+        "fields": [
+          "assignee_id",
+          "description",
+          "due_date",
+          "id",
+          "project_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "id",
+          "project_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 201
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.task.list_assigned",
+      "method": "GET",
+      "operation": "operation.task.list_assigned",
+      "path": "/tasks/assigned",
+      "query_parameters": [
+        "limit",
+        "offset",
+        "order",
+        "sort"
+      ],
+      "request": null,
+      "response": {
+        "fields": [
+          "assignee_id",
+          "description",
+          "due_date",
+          "id",
+          "project_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "id",
+          "project_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.employee"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.task.delete",
+      "method": "DELETE",
+      "operation": "operation.task.delete",
+      "path": "/tasks/{id}",
+      "query_parameters": [],
+      "request": null,
+      "response": null,
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 204
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.task.read",
+      "method": "GET",
+      "operation": "operation.task.read",
+      "path": "/tasks/{id}",
+      "query_parameters": [],
+      "request": null,
+      "response": {
+        "fields": [
+          "assignee_id",
+          "description",
+          "due_date",
+          "id",
+          "project_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "id",
+          "project_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.task.update",
+      "method": "PATCH",
+      "operation": "operation.task.update",
+      "path": "/tasks/{id}",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "description",
+          "due_date",
+          "title"
+        ],
+        "required": []
+      },
+      "response": {
+        "fields": [
+          "assignee_id",
+          "description",
+          "due_date",
+          "id",
+          "project_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "id",
+          "project_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.task.update_status",
+      "method": "PATCH",
+      "operation": "operation.task.update_status",
+      "path": "/tasks/{id}/status",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "status"
+        ],
+        "required": [
+          "status"
+        ]
+      },
+      "response": {
+        "fields": [
+          "assignee_id",
+          "description",
+          "due_date",
+          "id",
+          "project_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "id",
+          "project_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.employee",
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    }
+  ],
+  "infrastructure_endpoints": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "purpose": "liveness"
+    },
+    {
+      "method": "GET",
+      "path": "/ready",
+      "purpose": "readiness (database reachable)"
+    }
+  ]
+}

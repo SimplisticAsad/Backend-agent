@@ -446,7 +446,8 @@ def test_request_ids_and_security_headers(world):
     r = world.client.get("/health", headers={"X-Request-ID": "trace-abc-12345"})
     assert r.headers["x-request-id"] == "trace-abc-12345"
     assert r.headers["x-content-type-options"] == "nosniff" and r.headers["cache-control"] == "no-store"
-    r = world.client.get("/health", headers={"X-Request-ID": "bad id\r\ninjected: 1"}) if False else world.client.get("/health", headers={"X-Request-ID": "x" * 500})
-    assert r.headers["x-request-id"] != "x" * 500 and len(r.headers["x-request-id"]) <= 64
+    for bad in ("x" * 500, "has spaces and ;semicolons", "short"):  # too long / illegal characters / too short: replaced by a generated id
+        r = world.client.get("/health", headers={"X-Request-ID": bad})
+        assert r.headers["x-request-id"] != bad and 8 <= len(r.headers["x-request-id"]) <= 64
     err = world.client.get(ENGINE_OPS[0]["endpoint"]["path"].replace("{id}", "nope"))
     assert err.json()["request_id"] == err.headers["x-request-id"]

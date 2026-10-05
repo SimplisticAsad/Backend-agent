@@ -9,6 +9,7 @@ from .project_member_repository import ProjectMemberRepository
 from .task_repository import TaskRepository
 from .user_repository import UserRepository
 
+
 REPOSITORIES = {
     "entity.department": DepartmentRepository,
     "entity.employee": EmployeeRepository,

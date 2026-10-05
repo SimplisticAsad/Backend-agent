@@ -105,8 +105,7 @@ def test_frontend_style_requests_succeed_for_the_roles_the_frontend_allows(world
             continue  # the frontend/graph role mismatch is a documented conflict (ROLES_DIFFER); the role-matrix tests cover 403
         op, p, body, unknown = _build(world, fe, caller, include_unknown=False)
         headers = {"Authorization": f"Bearer {world.token(caller)}"} if fe["auth"] and caller else {}
-        params = {f["name"]: "x" for f in fe["fields"] if f["source"] == "query"} if False else None
-        r = world.client.request(fe["method"], p.path if "{id}" not in fe["path"] else p.path, json=body, params=params, headers=headers)
+        r = world.client.request(fe["method"], p.path, json=body, headers=headers)
         assert r.status_code == op["endpoint"]["status_code"], f"{fe['id']} as {caller and caller['role']}: {r.status_code} {r.text}"
         _check_shape(world, fe, op, r)
 
@@ -204,3 +203,20 @@ def test_the_dev_proxy_prefix_is_not_part_of_backend_paths(world):
     assert FE["expectations"]["base_path"] == "/api"
     assert world.client.get("/api/health").status_code == 404
     assert world.client.get("/health").status_code == 200
+
+
+@pytest.mark.parametrize("fe", [e for e in ENDPOINTS if _gep(e) and any(f["source"] == "query" for f in e["fields"])], ids=_id)
+def test_query_parameters_the_graph_does_not_define_are_ignored_as_documented(world, fe):
+    """The client sends e.g. ?project_id=...; the graph defines no such filter, so the backend ignores it (documented conflict) and never fails."""
+    gep = _gep(fe)
+    op = OPS[gep["operation_ref"]]
+    undefined = [f["name"] for f in fe["fields"] if f["source"] == "query" and f["name"] not in {q["name"] for q in op["endpoint"]["query_params"]}]
+    if not undefined:
+        return
+    assert "FRONTEND_QUERY_NOT_IN_GRAPH" in DOCUMENTED, f"{fe['id']} sends {undefined}, which the graph does not define, and the conflict is not documented"
+    caller = next(c for c in _callers(world, fe) if c)
+    p = world.prepare(op["id"], caller)
+    plain = world.client.get(p.path, headers=world.headers(caller))
+    filtered = world.client.get(p.path, params={undefined[0]: str(uuid.uuid4())}, headers=world.headers(caller))
+    assert plain.status_code == filtered.status_code == 200
+    assert len(filtered.json()) == len(plain.json()), "documented behaviour: the undefined filter is ignored, not applied and not an error"

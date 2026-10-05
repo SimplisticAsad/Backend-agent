@@ -37,11 +37,56 @@ class FileRecord:
         return {"path": self.path, "kind": self.kind, "source_refs": sorted(set(self.source_refs)), "sha256": self.sha256, "description": self.description}
 
 
+_FROM_IMPORT = re.compile(r"^from (?P<mod>[\w.]+) import (?P<names>[^()\n]+)$")
+
+
+def prune_unused_imports(source: str) -> str:
+    """Drop names imported by single-line `from x import a, b` statements that the module never uses (generated modules only)."""
+    lines = source.split("\n")
+    body = "\n".join(l for l in lines if not l.startswith(("from ", "import ")))
+    out: list[str] = []
+    for line in lines:
+        m = _FROM_IMPORT.match(line)
+        if not m or m["mod"] == "__future__":
+            out.append(line)
+            continue
+        keep = []
+        for part in (n.strip() for n in m["names"].split(",")):
+            name = part.split(" as ")[-1].strip()
+            if re.search(rf"(?<![\w.]){re.escape(name)}(?!\w)", body):
+                keep.append(part)
+        if keep:
+            out.append(f"from {m['mod']} import {', '.join(keep)}")
+    return "\n".join(out)
+
+
+_BLOCK_START = ("class ", "def ", "@", "router =", "api_router", "ROUTERS", "REPOSITORIES", "_routes", "SPEC_PATH")
+
+
+def tidy_python(src: str) -> str:
+    """PEP 8 spacing for generated modules: one blank line inside the import block, two before the first definition, never three."""
+    out: list[str] = []
+    in_header = True
+    for ln in src.split("\n"):
+        if in_header and ln.startswith(_BLOCK_START):
+            in_header = False
+            while out and out[-1] == "":
+                out.pop()
+            out += ["", ""]
+        if ln == "" and out and out[-1] == "":
+            if in_header or (len(out) >= 2 and out[-2] == ""):
+                continue
+        out.append(ln)
+    return "\n".join(out)
+
+
 class Emitter:
     def __init__(self, root: Path) -> None:
         self.root, self.records = root, []
 
     def write(self, rel: str, content: str, kind: str, refs: list[str] | None = None, description: str = "") -> None:
+        if kind == "generated" and rel.endswith(".py"):
+            content = tidy_python(prune_unused_imports(content))
         path = self.root / rel
         path.parent.mkdir(parents=True, exist_ok=True)
         if not content.endswith("\n"):
@@ -104,6 +149,8 @@ def _field_decl(f: dict[str, Any], *, request: bool, col: dict[str, Any] | None,
         ann, kw = "str", [f"max_length={MAX_PASSWORD}", f"min_length={MIN_NEW_PASSWORD}"]
     elif request and name == "reset_token":
         ann, kw = "str", ["max_length=2048", "min_length=1"]
+    if request and f["required"] and ft.base in ("string", "text", "email") and not any(k.startswith("min_length") for k in kw):
+        kw.append("min_length=1")  # a required text value is present AND non-empty
     if ft.base == "decimal":
         ann = "JsonDecimal" if not request else "Decimal"
     if request:
@@ -201,7 +248,7 @@ def render_service(spec: dict[str, Any], service_id: str, ops: list[dict[str, An
     imports = [HEADER + f'"""Application service {service_id}: one method per graph operation."""', "from __future__ import annotations", "",
                "from datetime import date, datetime, timezone", "from decimal import Decimal", "from typing import Any", "from uuid import UUID", "",
                "from psycopg import sql", "",
-               "from ...engine import ListQuery, Page, Principal", "from ...errors import (ConflictError, EntityNotFound, PermissionDenied, ValidationError)",
+               "from ...engine import ListQuery, Page, Principal", "from ...errors import ConflictError, EntityNotFound, PermissionDenied, ValidationError",
                "from ...service_base import BaseService"]
     for e in ents:
         k = spec["entities"][e]["key"]
@@ -291,7 +338,7 @@ def render_routes(spec: dict[str, Any], service_id: str, ops: list[dict[str, Any
             schema_imports.setdefault(spec["entities"][o["entity"]]["key"], set()).add("LoginSessionResponse")
     for k, n in sorted(schema_imports.items()):
         head.append(f"from ..schemas.{k} import {', '.join(sorted(n))}")
-    lines = head + ["", f"router = APIRouter(tags=[{py_str(key)}])", ""]
+    lines = head + ["", f"router = APIRouter(tags=[{py_str(key)}])"]
     for o in sorted(ops, key=lambda o: (_path_sort_key(o["endpoint"]["path"]), o["endpoint"]["method"])):
         ep, oid = o["endpoint"], o["id"]
         m = names[oid]
@@ -377,10 +424,16 @@ def render_routes(spec: dict[str, Any], service_id: str, ops: list[dict[str, Any
             desc += " Note: " + "; ".join(o["notes"])
         er = (f"error_responses(authenticated={not public}, restricted={o['access'] == 'restricted'}, has_path_id={'id' in ep['path_params']}, "
               f"mutating={ep['method'] != 'GET'}, rate_limited={kind.startswith('auth.') and public})")
-        lines += [
-            f"@router.{ep['method'].lower()}({py_str(ep['path'])}, operation_id={py_str(ep['id'])}, summary={py_str(o['name'])}, description={py_str(desc)},",
-            f"    response_model={resp_model}, status_code={ep['status_code']}, responses={er}" + (", response_class=Response" if ep["status_code"] == 204 else "") + ")",
-            f"def {ident(ep['id'].replace('.', '_'))}({', '.join(params)}):"] + body + [""]
+        needs_request = kind.startswith("auth.") and kind != "auth.logout"
+        if not needs_request:
+            params.remove("request: Request")
+        decorator = [f"@router.{ep['method'].lower()}(", f"    {py_str(ep['path'])},", f"    operation_id={py_str(ep['id'])},", f"    summary={py_str(o['name'])},",
+                     f"    description={py_str(desc)},", f"    response_model={resp_model},", f"    status_code={ep['status_code']},", f"    responses={er},"]
+        if ep["status_code"] == 204:
+            decorator.append("    response_class=Response,")
+        decorator.append(")")
+        sig = [f"def {ident(ep['id'].replace('.', '_'))}("] + [f"    {p}," for p in params] + ["):"]
+        lines += ["", ""] + decorator + sig + body
     return "\n".join(lines) + "\n"
 
 
@@ -449,7 +502,7 @@ def generate_backend(spec: dict[str, Any], out_dir: Path, *, db_contract_dir: Pa
     for sid, ops in groups.items():
         k = service_key(sid)
         op_ids = [o["id"] for o in ops]
-        refs = [sid] + op_ids + sorted({o["endpoint"]["id"] for o in ops}) + [r["id"] for r in spec["rules"] if set(r["operations"]) & set(op_ids)]
+        refs = [sid] + op_ids + sorted({o["endpoint"]["id"] for o in ops}) + sorted({p for o in ops for p in o["permissions"]}) + [r["id"] for r in spec["rules"] if set(r["operations"]) & set(op_ids)]
         em.write(f"{pk}/application/services/{k}_service.py", render_service(spec, sid, ops, names), "generated", refs, f"application service {sid}")
         em.write(f"{pk}/api/routes/{k}.py", render_routes(spec, sid, ops, names), "generated",
                  refs + [p for o in ops for p in (o["endpoint"]["request_schema"], o["endpoint"]["response_schema"]) if p], f"HTTP routes for {sid}")
@@ -464,6 +517,7 @@ def generate_backend(spec: dict[str, Any], out_dir: Path, *, db_contract_dir: Pa
     # project files
     em.write("pyproject.toml", render_pyproject(spec), "config", [spec["project"]["id"]], "project metadata and dependencies")
     em.write(".env.example", render_env_example(spec), "config", [], "environment variable template")
+    em.write("README.md", render_backend_readme(spec), "config", [spec["project"]["id"]], "how to run, configure and test this backend")
     em.write(".gitignore", ".env\n__pycache__/\n.pytest_cache/\n", "config", [], "")
     if db_contract_dir is not None:
         for f in sorted(Path(db_contract_dir).glob("*")):
@@ -490,7 +544,40 @@ testpaths = ["tests"]
 pythonpath = ["."]
 addopts = "-q"
 markers = ["integration: needs a real PostgreSQL"]
+filterwarnings = ["ignore:Using `httpx` with `starlette.testclient`"]
 '''
+
+
+def render_backend_readme(spec: dict[str, Any]) -> str:
+    name, key = spec["project"]["name"], spec["project"]["key"]
+    return f"""# {name} - backend
+
+Generated by the Backend Agent from the project graphs (`{spec["project"]["id"]}`). **Do not edit `backend_app/` by hand**: it is replaced on every generation.
+Put hand-written code outside `backend_app/` and hand-written tests under `tests/custom/` (preserved).
+
+## Run
+```bash
+pip install -e ".[test]"
+cp .env.example .env            # set DATABASE_URL, DATABASE_SCHEMA={key}, JWT_SECRET
+uvicorn backend_app.main:app
+USER_PASSWORD=... python -m backend_app.manage create-user --email you@example.com --full-name "You" --role {next(iter(sorted(spec["auth"]["role_map"])), "<role>") if spec["auth"] else "<role>"}
+```
+The database is the Database Agent's contract (`db_contract/schema.sql`, `crud.sql`); the backend never creates or alters tables.
+
+## API
+`/docs` (non-production) and `openapi.json`. Every operation id is a graph endpoint id. `GET /health` (liveness), `GET /ready` (database reachable).
+Errors: `{{"error": {{"code","message","details"}}, "message", "errors", "request_id"}}`.
+
+## Test
+```bash
+pytest                                  # needs PostgreSQL: set TEST_DATABASE_URL (database name must contain 'test') or let the suite start a throw-away cluster
+pytest tests/unit tests/contract        # no database needed
+```
+Suites: unit, repository, api, contract, frontend_compat (if a Frontend contract existed), bdd, security, db_failure. They are spec-driven; do not weaken them.
+
+## Known gaps
+{chr(10).join(f"- `{oid}`: {h.get('reason', '')}" for oid, h in sorted(spec["handlers"].items()) if h.get("status") != "implemented") or "- none"}
+"""
 
 
 def render_env_example(spec: dict[str, Any]) -> str:

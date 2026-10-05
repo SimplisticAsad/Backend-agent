@@ -411,6 +411,7 @@
           "email": {
             "format": "email",
             "maxLength": 254,
+            "minLength": 1,
             "title": "Email",
             "type": "string"
           },
@@ -435,6 +436,7 @@
           "email": {
             "format": "email",
             "maxLength": 254,
+            "minLength": 1,
             "title": "Email",
             "type": "string"
           }

@@ -744,6 +744,9 @@
         "owner_fields": [],
         "server_fields": {}
       },
+      "permissions": [
+        "permission.department.create"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -787,6 +790,9 @@
         "filters": [],
         "search": false
       },
+      "permissions": [
+        "permission.department.list"
+      ],
       "roles": [
         "role.employee",
         "role.manager"
@@ -839,6 +845,9 @@
       "not_found_code": "DEPARTMENT_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.department.update"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -885,6 +894,9 @@
         "owner_fields": [],
         "server_fields": {}
       },
+      "permissions": [
+        "permission.employee.create"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -927,6 +939,9 @@
         "filters": [],
         "search": false
       },
+      "permissions": [
+        "permission.employee.list"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -976,6 +991,9 @@
       "not_found_code": "EMPLOYEE_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.employee.read"
+      ],
       "roles": [
         "role.employee",
         "role.manager"
@@ -1029,6 +1047,9 @@
       "not_found_code": "EMPLOYEE_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.employee.update"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -1079,6 +1100,9 @@
           "status": "first_enum"
         }
       },
+      "permissions": [
+        "permission.project.create"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -1127,6 +1151,9 @@
       "not_found_code": "PROJECT_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.project.delete"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -1170,6 +1197,9 @@
         "filters": [],
         "search": false
       },
+      "permissions": [
+        "permission.project.list"
+      ],
       "roles": [
         "role.employee",
         "role.manager"
@@ -1212,6 +1242,9 @@
         "aggregate: the response schema is the plain entity list"
       ],
       "params": {},
+      "permissions": [
+        "permission.project.progress"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -1261,6 +1294,9 @@
       "not_found_code": "PROJECT_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.project.read"
+      ],
       "roles": [
         "role.employee",
         "role.manager"
@@ -1315,6 +1351,9 @@
       "not_found_code": "PROJECT_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.project.update"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -1360,6 +1399,9 @@
         "owner_fields": [],
         "server_fields": {}
       },
+      "permissions": [
+        "permission.project_member.create"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -1408,6 +1450,9 @@
       "not_found_code": "PROJECT_MEMBER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.project_member.delete"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -1450,6 +1495,9 @@
         "filters": [],
         "search": false
       },
+      "permissions": [
+        "permission.project_member.list"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -1497,6 +1545,9 @@
           "status": "initial_state"
         }
       },
+      "permissions": [
+        "permission.task.create"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -1545,6 +1596,9 @@
       "not_found_code": "TASK_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.task.delete"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -1588,6 +1642,9 @@
         "filters": [],
         "search": false
       },
+      "permissions": [
+        "permission.task.list"
+      ],
       "roles": [
         "role.employee",
         "role.manager"
@@ -1631,6 +1688,9 @@
         "filters": [],
         "search": false
       },
+      "permissions": [
+        "permission.task.list_assigned"
+      ],
       "roles": [
         "role.employee"
       ],
@@ -1680,6 +1740,9 @@
       "not_found_code": "TASK_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.task.read"
+      ],
       "roles": [
         "role.employee",
         "role.manager"
@@ -1733,6 +1796,9 @@
       "not_found_code": "TASK_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.task.update"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -1786,6 +1852,9 @@
         "field": "status",
         "state_machine": "state_machine.task"
       },
+      "permissions": [
+        "permission.task.update_status"
+      ],
       "roles": [
         "role.employee",
         "role.manager"
@@ -1833,6 +1902,7 @@
       "not_found_code": "USER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [],
       "roles": [],
       "service": "service.user",
       "type": "command"
@@ -1868,6 +1938,9 @@
       "not_found_code": "USER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.user.logout"
+      ],
       "roles": [],
       "service": "service.user",
       "type": "command"
@@ -1905,6 +1978,7 @@
       "not_found_code": "USER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [],
       "roles": [],
       "service": "service.user",
       "type": "command"
@@ -1948,6 +2022,7 @@
       "not_found_code": "USER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [],
       "roles": [],
       "service": "service.user",
       "type": "command"

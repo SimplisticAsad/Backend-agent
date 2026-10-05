@@ -37,6 +37,7 @@ from app.pipeline.llm_stages import SCHEMAS, LLMStages, _dump
 from app.pipeline.patch import Edit, apply_edits
 from app.pipeline.static_validation import build_api_contract, compare_openapi_to_graph, static_validate
 from app.pipeline.testrun import SUITES, SuiteResult, run_suite
+from app.config.settings import redact_url as pg_cluster_redact
 from app.testing import pg_cluster
 from app.validation.report import build_report
 
@@ -236,7 +237,9 @@ class BackendPipeline:
                 issues = compare_openapi_to_graph(sv.openapi, [{"id": e["id"], "method": e["method"], "path": e["path"]} for e in pkg.endpoints.values()])
                 api_ok = not issues
                 sv.problems += issues
-                self.art.save("backend_api_contract.json", build_api_contract(sv.openapi, spec))
+                contract = build_api_contract(sv.openapi, spec)
+                self.art.save("backend_api_contract.json", contract)
+                self.art.save("api_contract.json", contract)  # the specification names the artifact both ways
                 self.art.save("openapi.json", sv.openapi)
                 st.artifacts += ["backend_api_contract.json", "openapi.json"]
             st.errors = [str(p) for p in sv.problems]
@@ -250,12 +253,16 @@ class BackendPipeline:
         if o.run_tests and not static_problems:
             try:
                 url = pg_cluster.get_database_url()
+                if not pg_cluster.wait_ready(url, 3.0):
+                    raise pg_cluster.DatabaseUnavailable(f"the test database at {pg_cluster_redact(url)} does not accept connections")
                 env = {"TEST_DATABASE_URL": url}
             except (pg_cluster.DatabaseUnavailable, pg_cluster.UnsafeDatabase) as e:
                 env, db_skip = {}, f"database suites skipped: {e}"
                 if o.require_database:
-                    self._finish(spec, classes, static, api_ok, {}, db_skip, 0, "database unavailable", handlers)
-                    return PipelineResult("failed", EXIT_NO_DB, json.loads((self.art.dir / "backend_validation_report.json").read_text()), self.art.written, self.backend_dir)
+                    res = self._finish(spec, classes, static, api_ok, {}, db_skip, 0, "database unavailable", handlers,
+                                       issues=[Issue(ErrorKind.DATABASE_ERROR, "database_unavailable", db_skip)], force_status="failed")
+                    res.exit_code = EXIT_NO_DB
+                    return res
             max_c = self.o.max_corrections if self.o.max_corrections is not None else self.settings.max_corrections
             with self.log.stage("test_execution") as st:
                 if env:
@@ -395,7 +402,7 @@ class BackendPipeline:
         return att
 
     # ---- final ---------------------------------------------------------------------------------------------------------------------------
-    def _finish(self, spec, classes, static, api_ok, results, db_skip, attempts, stop, handlers, static_problems=None) -> PipelineResult:
+    def _finish(self, spec, classes, static, api_ok, results, db_skip, attempts, stop, handlers, static_problems=None, issues=None, force_status=None) -> PipelineResult:
         unimpl = [{"operation": oid, "reason": h.get("reason", "")} for oid, h in sorted(spec["handlers"].items()) if h["status"] != "implemented"]
         unimpl += [{"operation": oid, "reason": "no handler decision"} for oid, o_ in sorted(spec["operations"].items()) if o_["handler"] == "custom" and oid not in spec["handlers"]]
         report = build_report(project=self.pkg.project_id, graph_ok=True, graph_warnings=self.pkg.warnings, integration=self.integration, db_available=self.db is not None,
@@ -403,6 +410,10 @@ class BackendPipeline:
                               correction_stop=stop, unimplemented=unimpl, advisory=self.advisory, llm_provider=self.provider_name, stage_log=self.log.summary(), db_skip_reason=db_skip)
         if static_problems:
             report["static_problems"] = [i.to_dict() for i in static_problems]
+        if issues:
+            report["issues"] = [i.to_dict() for i in issues]
+        if force_status:
+            report["status"] = force_status
         fr_ctx = {"validation_report": {"status": report["status"], "warnings": report["warnings"][:30], "correction_attempts": attempts},
                   "conflict_codes": sorted({c.code for c in self.integration.conflicts})}
         try:

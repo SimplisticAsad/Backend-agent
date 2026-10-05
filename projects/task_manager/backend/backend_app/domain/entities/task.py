@@ -2,13 +2,12 @@
 """Domain entity Task (graph: entity.task; table: tasks)."""
 from __future__ import annotations
 
-from datetime import date, datetime
-from decimal import Decimal
+from datetime import date
 from enum import Enum
-from typing import Any, ClassVar
+from typing import ClassVar
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 
 
 class TaskStatus(str, Enum):

@@ -134,7 +134,7 @@ def build_spec(pkg: GraphPackage, db: DatabaseContract, classes: dict[str, OpCla
             "id": oid, "name": op["name"], "description": op["description"], "kind": cls.kind, "handler": cls.handler, "entity": op.get("entity_ref"),
             "service": op["service_ref"], "action": op["action"], "type": op["type"], "access": op["access"], "roles": sorted(op["required_roles"]),
             "cardinality": op["output"]["cardinality"], "input": op["input"], "params": cls.params, "notes": cls.notes,
-            "errors": op["errors"], "not_found_code": nf,
+            "errors": op["errors"], "not_found_code": nf, "permissions": sorted(pid for pid, perm in pkg.permissions.items() if oid in perm.get("operation_refs", [])),
             "endpoint": {"id": ep["id"], "method": ep["method"], "path": ep["path"], "status_code": status_code_for(op, cls),
                          "request_schema": ep.get("request_schema_ref"), "response_schema": ep.get("response_schema_ref"),
                          "authenticated": bool(ep["authorization"]["authenticated"]), "roles": sorted(ep["authorization"]["roles"]),

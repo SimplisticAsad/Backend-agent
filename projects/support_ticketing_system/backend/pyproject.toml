@@ -15,3 +15,4 @@ testpaths = ["tests"]
 pythonpath = ["."]
 addopts = "-q"
 markers = ["integration: needs a real PostgreSQL"]
+filterwarnings = ["ignore:Using `httpx` with `starlette.testclient`"]

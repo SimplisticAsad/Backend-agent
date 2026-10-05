@@ -2,12 +2,9 @@
 """HTTP routes for service.ticket_comment. Route handlers only delegate to the application service."""
 from __future__ import annotations
 
-from datetime import date, datetime
-from decimal import Decimal
-from typing import Any, Literal
-from uuid import UUID
+from typing import Literal
 
-from fastapi import APIRouter, Depends, Query, Request, Response
+from fastapi import APIRouter, Depends, Query, Response
 
 from ...api_common import error_responses
 from ...auth import authorize
@@ -16,17 +13,45 @@ from ..deps import get_services
 from ...application.services import Services
 from ..schemas.ticket_comment import TicketCommentCreateRequest, TicketCommentResponse
 
+
 router = APIRouter(tags=["ticket_comment"])
 
-@router.get("/ticket-comments", operation_id="api.ticket_comment.list", summary="List Comments", description="List Comments.\n\nOperation `operation.ticket_comment.list`. Access: restricted (agent, customer, manager).",
-    response_model=list[TicketCommentResponse], status_code=200, responses=error_responses(authenticated=True, restricted=True, has_path_id=False, mutating=False, rate_limited=False))
-def api_ticket_comment_list(request: Request, response: Response, limit: int = Query(100, ge=1, le=1000), offset: int = Query(0, ge=0), sort: str | None = Query(None, max_length=64, description="Attribute to sort by"), order: Literal['asc', 'desc'] = Query('asc'), principal: Principal | None = Depends(authorize("operation.ticket_comment.list")), services: Services = Depends(get_services)):
+
+@router.get(
+    "/ticket-comments",
+    operation_id="api.ticket_comment.list",
+    summary="List Comments",
+    description="List Comments.\n\nOperation `operation.ticket_comment.list`. Access: restricted (agent, customer, manager).",
+    response_model=list[TicketCommentResponse],
+    status_code=200,
+    responses=error_responses(authenticated=True, restricted=True, has_path_id=False, mutating=False, rate_limited=False),
+)
+def api_ticket_comment_list(
+    response: Response,
+    limit: int = Query(100, ge=1, le=1000),
+    offset: int = Query(0, ge=0),
+    sort: str | None = Query(None, max_length=64, description="Attribute to sort by"),
+    order: Literal['asc', 'desc'] = Query('asc'),
+    principal: Principal | None = Depends(authorize("operation.ticket_comment.list")),
+    services: Services = Depends(get_services),
+):
     page = services.ticket_comment.list(principal, ListQuery(filters={}, search=None, sort=sort, order=order, limit=limit, offset=offset))
     response.headers['X-Total-Count'] = str(page.total)
     return page.items
 
-@router.post("/ticket-comments", operation_id="api.ticket_comment.create", summary="Create Comment", description="Create Comment.\n\nOperation `operation.ticket_comment.create`. Access: restricted (agent, customer).",
-    response_model=TicketCommentResponse, status_code=201, responses=error_responses(authenticated=True, restricted=True, has_path_id=False, mutating=True, rate_limited=False))
-def api_ticket_comment_create(request: Request, body: TicketCommentCreateRequest, principal: Principal | None = Depends(authorize("operation.ticket_comment.create")), services: Services = Depends(get_services)):
-    return services.ticket_comment.create(principal, body)
 
+@router.post(
+    "/ticket-comments",
+    operation_id="api.ticket_comment.create",
+    summary="Create Comment",
+    description="Create Comment.\n\nOperation `operation.ticket_comment.create`. Access: restricted (agent, customer).",
+    response_model=TicketCommentResponse,
+    status_code=201,
+    responses=error_responses(authenticated=True, restricted=True, has_path_id=False, mutating=True, rate_limited=False),
+)
+def api_ticket_comment_create(
+    body: TicketCommentCreateRequest,
+    principal: Principal | None = Depends(authorize("operation.ticket_comment.create")),
+    services: Services = Depends(get_services),
+):
+    return services.ticket_comment.create(principal, body)

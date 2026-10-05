@@ -33,7 +33,8 @@ def test_create_read_update_delete_roundtrip(world, eid):
         if attr:
             updated = repo.update(conn, seeded["id"], {attr["attr"]: "changed value"})
             assert updated[attr["attr"]] == "changed value"
-        assert repo.update(conn, uuid.uuid4(), {"id": uuid.uuid4()} if False else {}) is None
+        if attr:
+            assert repo.update(conn, uuid.uuid4(), {attr["attr"]: "x"}) is None, "updating a row that does not exist changes nothing"
     with db.transaction(deleting=True) as conn:
         assert repo.delete(conn, seeded["id"]) is True
         assert repo.delete(conn, seeded["id"]) is False  # idempotent: second delete finds nothing

@@ -2,10 +2,9 @@
 """Domain entity User (graph: entity.user; table: users)."""
 from __future__ import annotations
 
-from datetime import date, datetime
-from decimal import Decimal
+from datetime import datetime
 from enum import Enum
-from typing import Any, ClassVar
+from typing import ClassVar
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field

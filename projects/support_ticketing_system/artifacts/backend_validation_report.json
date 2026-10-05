@@ -157,7 +157,7 @@
         ],
         "project_id": "project.support_ticketing_system"
       },
-      "duration_ms": 2.1,
+      "duration_ms": 2.5,
       "errors": [],
       "stage": "graph_loading",
       "status": "passed",
@@ -184,7 +184,7 @@
           "users"
         ]
       },
-      "duration_ms": 0.4,
+      "duration_ms": 0.6,
       "errors": [],
       "stage": "database_contract_loading",
       "status": "passed",
@@ -214,7 +214,7 @@
         "major": 1,
         "minor": 2
       },
-      "duration_ms": 1.0,
+      "duration_ms": 1.7,
       "errors": [],
       "stage": "integration_analysis",
       "status": "passed",
@@ -227,7 +227,7 @@
       ],
       "correction_attempts": 0,
       "details": {},
-      "duration_ms": 4.9,
+      "duration_ms": 6.1,
       "errors": [],
       "stage": "backend_analysis",
       "status": "passed",
@@ -266,7 +266,7 @@
           "operation.ticket.stats"
         ]
       },
-      "duration_ms": 0.7,
+      "duration_ms": 1.4,
       "errors": [],
       "stage": "llm_api_implementation",
       "status": "passed",
@@ -279,7 +279,7 @@
       ],
       "correction_attempts": 0,
       "details": {},
-      "duration_ms": 7.2,
+      "duration_ms": 9.1,
       "errors": [],
       "stage": "architecture_generation",
       "status": "passed",
@@ -289,7 +289,7 @@
       "artifacts": [],
       "correction_attempts": 0,
       "details": {},
-      "duration_ms": 1.4,
+      "duration_ms": 2.0,
       "errors": [],
       "stage": "llm_domain_authorization_database_review",
       "status": "passed",
@@ -299,9 +299,9 @@
       "artifacts": [],
       "correction_attempts": 0,
       "details": {
-        "files": 58
+        "files": 59
       },
-      "duration_ms": 6.7,
+      "duration_ms": 28.4,
       "errors": [],
       "stage": "code_generation",
       "status": "passed",
@@ -312,9 +312,9 @@
       "correction_attempts": 0,
       "details": {
         "custom_test_modules": [],
-        "files": 37
+        "files": 38
       },
-      "duration_ms": 8.1,
+      "duration_ms": 12.3,
       "errors": [],
       "stage": "test_generation",
       "status": "passed",
@@ -327,7 +327,7 @@
       ],
       "correction_attempts": 0,
       "details": {},
-      "duration_ms": 790.6,
+      "duration_ms": 844.8,
       "errors": [],
       "stage": "static_validation",
       "status": "passed",
@@ -339,7 +339,7 @@
       "details": {
         "stopped_because": "all checks passed"
       },
-      "duration_ms": 32233.1,
+      "duration_ms": 32837.6,
       "errors": [],
       "stage": "test_execution",
       "status": "passed",
@@ -356,7 +356,7 @@
   "status": "passed_with_conflicts",
   "suites": {
     "api": {
-      "duration_s": 9.11,
+      "duration_s": 9.22,
       "errors": 0,
       "failed": 0,
       "failures": [],
@@ -394,7 +394,7 @@
       "status": "passed"
     },
     "db_failure": {
-      "duration_s": 9.02,
+      "duration_s": 9.08,
       "errors": 0,
       "failed": 0,
       "failures": [],
@@ -418,7 +418,7 @@
       "status": "skipped"
     },
     "repository": {
-      "duration_s": 1.6,
+      "duration_s": 1.69,
       "errors": 0,
       "failed": 0,
       "failures": [],
@@ -430,7 +430,7 @@
       "status": "passed"
     },
     "security": {
-      "duration_s": 7.36,
+      "duration_s": 7.66,
       "errors": 0,
       "failed": 0,
       "failures": [],
@@ -442,7 +442,7 @@
       "status": "passed"
     },
     "unit": {
-      "duration_s": 1.05,
+      "duration_s": 1.09,
       "errors": 0,
       "failed": 0,
       "failures": [],

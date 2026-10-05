@@ -2,15 +2,10 @@
 """API request/response models for entity.ticket_comment (from api.json schemas)."""
 from __future__ import annotations
 
-from datetime import date, datetime
-from decimal import Decimal
-from typing import Any, Literal
+from datetime import datetime
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field
-
-from ...api_common import JsonDecimal
-
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class TicketCommentResponse(BaseModel):

@@ -1,0 +1,689 @@
+{
+  "additive_query_parameters": [
+    "limit",
+    "offset",
+    "sort",
+    "order"
+  ],
+  "api_versioning": {
+    "base_path": "",
+    "note": "paths are served exactly as in api.json; the Frontend dev proxy strips its /api prefix",
+    "versioning": "none"
+  },
+  "compatibility_shims": [
+    {
+      "description": "Login returns the Frontend Session {token, user} AND the graph user fields at top level.",
+      "id": "login_session_envelope"
+    },
+    {
+      "description": "Errors carry {error:{code,message,details}} plus top-level message/errors for the Frontend client.",
+      "id": "error_envelope"
+    },
+    {
+      "description": "Lists are bare arrays (Frontend contract); pagination via limit/offset query parameters, total in X-Total-Count.",
+      "id": "list_headers"
+    }
+  ],
+  "endpoints": [
+    {
+      "documented_errors": [
+        "400",
+        "409",
+        "422",
+        "429",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.user.request_password_reset",
+      "method": "POST",
+      "operation": "operation.user.request_password_reset",
+      "path": "/auth/forgot-password",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "email"
+        ],
+        "required": [
+          "email"
+        ]
+      },
+      "response": null,
+      "roles": [],
+      "security": [],
+      "success_status": 204
+    },
+    {
+      "documented_errors": [
+        "400",
+        "409",
+        "422",
+        "429",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.user.login",
+      "method": "POST",
+      "operation": "operation.user.login",
+      "path": "/auth/login",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "email",
+          "password"
+        ],
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "response": {
+        "fields": [
+          "created_at",
+          "email",
+          "expires_in",
+          "full_name",
+          "id",
+          "role",
+          "token",
+          "token_type",
+          "user"
+        ],
+        "required": [
+          "created_at",
+          "email",
+          "expires_in",
+          "full_name",
+          "id",
+          "role",
+          "token",
+          "user"
+        ]
+      },
+      "roles": [],
+      "security": [],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.user.logout",
+      "method": "POST",
+      "operation": "operation.user.logout",
+      "path": "/auth/logout",
+      "query_parameters": [],
+      "request": null,
+      "response": null,
+      "roles": [],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 204
+    },
+    {
+      "documented_errors": [
+        "400",
+        "409",
+        "422",
+        "429",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.user.reset_password",
+      "method": "POST",
+      "operation": "operation.user.reset_password",
+      "path": "/auth/reset-password",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "new_password",
+          "reset_token"
+        ],
+        "required": [
+          "new_password",
+          "reset_token"
+        ]
+      },
+      "response": null,
+      "roles": [],
+      "security": [],
+      "success_status": 204
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.ticket_comment.list",
+      "method": "GET",
+      "operation": "operation.ticket_comment.list",
+      "path": "/ticket-comments",
+      "query_parameters": [
+        "limit",
+        "offset",
+        "order",
+        "sort"
+      ],
+      "request": null,
+      "response": {
+        "fields": [
+          "author_id",
+          "body",
+          "created_at",
+          "id",
+          "ticket_id"
+        ],
+        "required": [
+          "author_id",
+          "body",
+          "id",
+          "ticket_id"
+        ]
+      },
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.ticket_comment.create",
+      "method": "POST",
+      "operation": "operation.ticket_comment.create",
+      "path": "/ticket-comments",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "author_id",
+          "body",
+          "ticket_id"
+        ],
+        "required": [
+          "body",
+          "ticket_id"
+        ]
+      },
+      "response": {
+        "fields": [
+          "author_id",
+          "body",
+          "created_at",
+          "id",
+          "ticket_id"
+        ],
+        "required": [
+          "author_id",
+          "body",
+          "id",
+          "ticket_id"
+        ]
+      },
+      "roles": [
+        "role.agent",
+        "role.customer"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 201
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.ticket.list",
+      "method": "GET",
+      "operation": "operation.ticket.list",
+      "path": "/tickets",
+      "query_parameters": [
+        "limit",
+        "offset",
+        "order",
+        "sort"
+      ],
+      "request": null,
+      "response": {
+        "fields": [
+          "assignee_id",
+          "created_at",
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.ticket.create",
+      "method": "POST",
+      "operation": "operation.ticket.create",
+      "path": "/tickets",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "description",
+          "priority",
+          "requester_id",
+          "title"
+        ],
+        "required": [
+          "description",
+          "priority",
+          "title"
+        ]
+      },
+      "response": {
+        "fields": [
+          "assignee_id",
+          "created_at",
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.customer"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 201
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.ticket.stats",
+      "method": "GET",
+      "operation": "operation.ticket.stats",
+      "path": "/tickets/stats",
+      "query_parameters": [
+        "limit",
+        "offset",
+        "order",
+        "sort"
+      ],
+      "request": null,
+      "response": {
+        "fields": [
+          "assignee_id",
+          "created_at",
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.ticket.read",
+      "method": "GET",
+      "operation": "operation.ticket.read",
+      "path": "/tickets/{id}",
+      "query_parameters": [],
+      "request": null,
+      "response": {
+        "fields": [
+          "assignee_id",
+          "created_at",
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.agent",
+        "role.customer",
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.ticket.update",
+      "method": "PATCH",
+      "operation": "operation.ticket.update",
+      "path": "/tickets/{id}",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "description",
+          "priority",
+          "title"
+        ],
+        "required": []
+      },
+      "response": {
+        "fields": [
+          "assignee_id",
+          "created_at",
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.agent",
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.ticket.assign",
+      "method": "PATCH",
+      "operation": "operation.ticket.assign",
+      "path": "/tickets/{id}/assignee",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "assignee_id"
+        ],
+        "required": [
+          "assignee_id"
+        ]
+      },
+      "response": {
+        "fields": [
+          "assignee_id",
+          "created_at",
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "404",
+        "409",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.ticket.change_status",
+      "method": "PATCH",
+      "operation": "operation.ticket.change_status",
+      "path": "/tickets/{id}/status",
+      "query_parameters": [],
+      "request": {
+        "fields": [
+          "status"
+        ],
+        "required": [
+          "status"
+        ]
+      },
+      "response": {
+        "fields": [
+          "assignee_id",
+          "created_at",
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ],
+        "required": [
+          "description",
+          "id",
+          "priority",
+          "requester_id",
+          "status",
+          "title"
+        ]
+      },
+      "roles": [
+        "role.agent",
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    },
+    {
+      "documented_errors": [
+        "400",
+        "401",
+        "403",
+        "422",
+        "500",
+        "503"
+      ],
+      "endpoint": "api.user.list_agents",
+      "method": "GET",
+      "operation": "operation.user.list_agents",
+      "path": "/users/agents",
+      "query_parameters": [
+        "limit",
+        "offset",
+        "order",
+        "sort"
+      ],
+      "request": null,
+      "response": {
+        "fields": [
+          "created_at",
+          "email",
+          "full_name",
+          "id",
+          "role"
+        ],
+        "required": [
+          "created_at",
+          "email",
+          "full_name",
+          "id",
+          "role"
+        ]
+      },
+      "roles": [
+        "role.manager"
+      ],
+      "security": [
+        {
+          "BearerAuth": []
+        }
+      ],
+      "success_status": 200
+    }
+  ],
+  "infrastructure_endpoints": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "purpose": "liveness"
+    },
+    {
+      "method": "GET",
+      "path": "/ready",
+      "purpose": "readiness (database reachable)"
+    }
+  ]
+}

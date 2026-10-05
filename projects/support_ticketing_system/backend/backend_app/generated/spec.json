@@ -472,6 +472,9 @@
       "not_found_code": "TICKET_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.ticket.assign"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -525,6 +528,9 @@
         "field": "status",
         "state_machine": "state_machine.ticket"
       },
+      "permissions": [
+        "permission.ticket.change_status"
+      ],
       "roles": [
         "role.agent",
         "role.manager"
@@ -578,6 +584,9 @@
           "status": "initial_state"
         }
       },
+      "permissions": [
+        "permission.ticket.create"
+      ],
       "roles": [
         "role.customer"
       ],
@@ -622,6 +631,9 @@
         "filters": [],
         "search": false
       },
+      "permissions": [
+        "permission.ticket.list"
+      ],
       "roles": [
         "role.agent",
         "role.customer",
@@ -674,6 +686,9 @@
       "not_found_code": "TICKET_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.ticket.read"
+      ],
       "roles": [
         "role.agent",
         "role.customer",
@@ -717,6 +732,9 @@
         "aggregate: the response schema is the plain entity list"
       ],
       "params": {},
+      "permissions": [
+        "permission.ticket.stats"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -770,6 +788,9 @@
       "not_found_code": "TICKET_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.ticket.update"
+      ],
       "roles": [
         "role.agent",
         "role.manager"
@@ -822,6 +843,9 @@
           "created_at": "db_default_or_now"
         }
       },
+      "permissions": [
+        "permission.ticket_comment.create"
+      ],
       "roles": [
         "role.agent",
         "role.customer"
@@ -867,6 +891,9 @@
         "filters": [],
         "search": false
       },
+      "permissions": [
+        "permission.ticket_comment.list"
+      ],
       "roles": [
         "role.agent",
         "role.customer",
@@ -915,6 +942,9 @@
         },
         "search": false
       },
+      "permissions": [
+        "permission.user.list_agents"
+      ],
       "roles": [
         "role.manager"
       ],
@@ -961,6 +991,7 @@
       "not_found_code": "USER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [],
       "roles": [],
       "service": "service.user",
       "type": "command"
@@ -996,6 +1027,9 @@
       "not_found_code": "USER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [
+        "permission.user.logout"
+      ],
       "roles": [],
       "service": "service.user",
       "type": "command"
@@ -1033,6 +1067,7 @@
       "not_found_code": "USER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [],
       "roles": [],
       "service": "service.user",
       "type": "command"
@@ -1076,6 +1111,7 @@
       "not_found_code": "USER_NOT_FOUND",
       "notes": [],
       "params": {},
+      "permissions": [],
       "roles": [],
       "service": "service.user",
       "type": "command"

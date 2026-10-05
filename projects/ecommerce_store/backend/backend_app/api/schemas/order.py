@@ -2,15 +2,13 @@
 """API request/response models for entity.order (from api.json schemas)."""
 from __future__ import annotations
 
-from datetime import date, datetime
-from decimal import Decimal
-from typing import Any, Literal
+from datetime import datetime
+from typing import Literal
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from ...api_common import JsonDecimal
-
 
 
 class OrderResponse(BaseModel):
@@ -29,5 +27,5 @@ class OrderPlaceRequest(BaseModel):
     """schema.order.place: Place order request"""
 
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
-    shipping_address: str = Field(..., max_length=20000)
+    shipping_address: str = Field(..., max_length=20000, min_length=1)
     payment_method: str = Field(..., max_length=255, min_length=1)

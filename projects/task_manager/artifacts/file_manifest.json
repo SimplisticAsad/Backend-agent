@@ -15,6 +15,15 @@
       "source_refs": []
     },
     {
+      "description": "how to run, configure and test this backend",
+      "kind": "config",
+      "path": "README.md",
+      "sha256": "a54d1db309b08aca7de4c26096438cad20b420692f6a3d269603ab86ff886ddd",
+      "source_refs": [
+        "project.task_manager"
+      ]
+    },
+    {
       "description": "static runtime (agent infrastructure)",
       "kind": "runtime",
       "path": "backend_app/__init__.py",
@@ -74,7 +83,7 @@
       "description": "HTTP routes for service.department",
       "kind": "generated",
       "path": "backend_app/api/routes/department.py",
-      "sha256": "d59b4a9003d6927378bebeb58269a9f0c80135281126dcbca3ce2fe5fd963320",
+      "sha256": "28938278102a94d6d793abee401c731c6debdccb8737e6dfd5e0115dcf31fb00",
       "source_refs": [
         "api.department.create",
         "api.department.list",
@@ -82,6 +91,9 @@
         "operation.department.create",
         "operation.department.list",
         "operation.department.update",
+        "permission.department.create",
+        "permission.department.list",
+        "permission.department.update",
         "schema.department",
         "schema.department.create",
         "schema.department.update",
@@ -92,7 +104,7 @@
       "description": "HTTP routes for service.employee",
       "kind": "generated",
       "path": "backend_app/api/routes/employee.py",
-      "sha256": "d3b750ebefa20426eeb9b46ce39b560223b85783b1993fd5b4e0499d0226d5fe",
+      "sha256": "664c4bb8c705f489c33571e55b7dbc5b6b3f016cc1a296b1361d792ed28dc4e5",
       "source_refs": [
         "api.employee.create",
         "api.employee.list",
@@ -102,6 +114,10 @@
         "operation.employee.list",
         "operation.employee.read",
         "operation.employee.update",
+        "permission.employee.create",
+        "permission.employee.list",
+        "permission.employee.read",
+        "permission.employee.update",
         "schema.employee",
         "schema.employee.create",
         "schema.employee.update",
@@ -112,7 +128,7 @@
       "description": "HTTP routes for service.project",
       "kind": "generated",
       "path": "backend_app/api/routes/project.py",
-      "sha256": "3c6a92041ba006b4d6cc5f27d3284d62ccdb0e74af491d13cef1dbc45acfd458",
+      "sha256": "ea27e7e51b3258a6934e6570abe1d960f53a95fbdc24817b3be75b383895411a",
       "source_refs": [
         "api.project.create",
         "api.project.delete",
@@ -126,6 +142,12 @@
         "operation.project.progress",
         "operation.project.read",
         "operation.project.update",
+        "permission.project.create",
+        "permission.project.delete",
+        "permission.project.list",
+        "permission.project.progress",
+        "permission.project.read",
+        "permission.project.update",
         "schema.project",
         "schema.project.create",
         "schema.project.update",
@@ -136,7 +158,7 @@
       "description": "HTTP routes for service.project_member",
       "kind": "generated",
       "path": "backend_app/api/routes/project_member.py",
-      "sha256": "30a21bcd46c2b341f3ed278a0f2b8cc697c47f6a60bee82dc0d99c4188605bd9",
+      "sha256": "d948cff796c09f2dd5d79ff04261ed5d17d7a8aed218d5307ca2d4b19d29fcff",
       "source_refs": [
         "api.project_member.create",
         "api.project_member.delete",
@@ -144,6 +166,9 @@
         "operation.project_member.create",
         "operation.project_member.delete",
         "operation.project_member.list",
+        "permission.project_member.create",
+        "permission.project_member.delete",
+        "permission.project_member.list",
         "schema.project_member",
         "schema.project_member.create",
         "service.project_member"
@@ -153,7 +178,7 @@
       "description": "HTTP routes for service.task",
       "kind": "generated",
       "path": "backend_app/api/routes/task.py",
-      "sha256": "94c2229d3b4f4c062ef518f84af56a48db09b126529a614c066a9fd5816888e6",
+      "sha256": "1345df7069e00b212d1ed4ae255c00842aa9e94f84d0d464d7938413a619c7a3",
       "source_refs": [
         "api.task.create",
         "api.task.delete",
@@ -169,6 +194,13 @@
         "operation.task.read",
         "operation.task.update",
         "operation.task.update_status",
+        "permission.task.create",
+        "permission.task.delete",
+        "permission.task.list",
+        "permission.task.list_assigned",
+        "permission.task.read",
+        "permission.task.update",
+        "permission.task.update_status",
         "rule.guard.task.completed_needs_assignee",
         "rule.ownership.task.employee_updates_own",
         "rule.scope.task.list_assigned",
@@ -183,7 +215,7 @@
       "description": "HTTP routes for service.user",
       "kind": "generated",
       "path": "backend_app/api/routes/user.py",
-      "sha256": "b5076b82e97c40fde97a82f1505d7e244a3f0a9e65ad0d3b37187777a98c9f31",
+      "sha256": "83a785e279772e0e5e9125f033b5234e9669144c3694383bc17fff608a726510",
       "source_refs": [
         "api.user.login",
         "api.user.logout",
@@ -193,6 +225,7 @@
         "operation.user.logout",
         "operation.user.request_password_reset",
         "operation.user.reset_password",
+        "permission.user.logout",
         "schema.user",
         "schema.user.login",
         "schema.user.request_password_reset",
@@ -211,7 +244,7 @@
       "description": "request/response models for entity.department",
       "kind": "generated",
       "path": "backend_app/api/schemas/department.py",
-      "sha256": "5ccc8f7f3b9c385fca64c8c9fef0b1af228282e46212686229c59d5be892020b",
+      "sha256": "2d26d70a4b5a66a18b13d79e0ffa6f81e5adde7a8c5abeda1630249c14d09f4a",
       "source_refs": [
         "entity.department",
         "schema.department",
@@ -223,7 +256,7 @@
       "description": "request/response models for entity.employee",
       "kind": "generated",
       "path": "backend_app/api/schemas/employee.py",
-      "sha256": "eaa8a54b0b986b02e90500c01245e0c21541498c7226f21eeec4f53f99746fe3",
+      "sha256": "98b79d805e4d53f73239ce7e388af72536dd43fb581ba6984dcd6b962eb89055",
       "source_refs": [
         "entity.employee",
         "schema.employee",
@@ -235,7 +268,7 @@
       "description": "request/response models for entity.project",
       "kind": "generated",
       "path": "backend_app/api/schemas/project.py",
-      "sha256": "5ea251193b5f3ab002764b7fe2bbcf638a48b3aa5f5793bc42f12b975982f9b0",
+      "sha256": "f09b65f260e459242a0c22d0a50a352e6a0ac355e7ddbf5d20abeafd891d4bc0",
       "source_refs": [
         "entity.project",
         "schema.project",
@@ -247,7 +280,7 @@
       "description": "request/response models for entity.project_member",
       "kind": "generated",
       "path": "backend_app/api/schemas/project_member.py",
-      "sha256": "f0a2f585591cbab8a2127419770e22aa420d10c1bca2889d3bdf1924426dad3c",
+      "sha256": "56b1ad2ba23c77d15c48f9a882beb260d74b5ea27e45a2146eaff426ae1dfb94",
       "source_refs": [
         "entity.project_member",
         "schema.project_member",
@@ -258,7 +291,7 @@
       "description": "request/response models for entity.task",
       "kind": "generated",
       "path": "backend_app/api/schemas/task.py",
-      "sha256": "cb82ae0e3938081d2db1e9a2755b396462405b4a41accfe70488f3007864d1e5",
+      "sha256": "3fb73631c748a060bc0619e5c013b4a5db0f6d5399c6b1105a8ac5e83307fd9e",
       "source_refs": [
         "entity.task",
         "schema.task",
@@ -271,7 +304,7 @@
       "description": "request/response models for entity.user",
       "kind": "generated",
       "path": "backend_app/api/schemas/user.py",
-      "sha256": "d9a939cd00a2b124d0024e8b0a5136fb5c063fc29b4965f138922f78612fb40a",
+      "sha256": "e866958c946751e33bedd8aaba32be7dd2dc69339a6d7ff88a86115d48b73465",
       "source_refs": [
         "entity.user",
         "schema.user",
@@ -319,7 +352,7 @@
       "description": "application service service.department",
       "kind": "generated",
       "path": "backend_app/application/services/department_service.py",
-      "sha256": "ab1af8431291237e3f30ba83d1356783c5d4a6f5b3c8376b5dde207d9a080e88",
+      "sha256": "c1ac86ab09a63178b2907a7f902726eb309597b5e1fd187b9e9082aa5328ca88",
       "source_refs": [
         "api.department.create",
         "api.department.list",
@@ -327,6 +360,9 @@
         "operation.department.create",
         "operation.department.list",
         "operation.department.update",
+        "permission.department.create",
+        "permission.department.list",
+        "permission.department.update",
         "service.department"
       ]
     },
@@ -334,7 +370,7 @@
       "description": "application service service.employee",
       "kind": "generated",
       "path": "backend_app/application/services/employee_service.py",
-      "sha256": "9dbf6a70cac48a05b3c66464750e938ea0303b841a99d1c7234fb278818b5fe1",
+      "sha256": "8f608b363fdc2f7403d20d4d6cae0ee2da1e8a34de6f18f4f9fc85e3c582c4a6",
       "source_refs": [
         "api.employee.create",
         "api.employee.list",
@@ -344,6 +380,10 @@
         "operation.employee.list",
         "operation.employee.read",
         "operation.employee.update",
+        "permission.employee.create",
+        "permission.employee.list",
+        "permission.employee.read",
+        "permission.employee.update",
         "service.employee"
       ]
     },
@@ -351,7 +391,7 @@
       "description": "application service service.project_member",
       "kind": "generated",
       "path": "backend_app/application/services/project_member_service.py",
-      "sha256": "355f1d0acd7473461d4c794b4da8cf6b501d5c7ae8a03b0517b15dd9addcccf7",
+      "sha256": "257d2e7f861b97dba16ece763989cb0e8a95eb5eb1237d1fee9cff53bff6d732",
       "source_refs": [
         "api.project_member.create",
         "api.project_member.delete",
@@ -359,6 +399,9 @@
         "operation.project_member.create",
         "operation.project_member.delete",
         "operation.project_member.list",
+        "permission.project_member.create",
+        "permission.project_member.delete",
+        "permission.project_member.list",
         "service.project_member"
       ]
     },
@@ -366,7 +409,7 @@
       "description": "application service service.project",
       "kind": "generated",
       "path": "backend_app/application/services/project_service.py",
-      "sha256": "b9f99c785b559a34d0c208def0ab69c15c0bcfe0c122ed404fd773c6c6721003",
+      "sha256": "7a38c7be4514b62d929a1dae0d5bd255c9f2e0970cd97715de925a0c2cbfd8ff",
       "source_refs": [
         "api.project.create",
         "api.project.delete",
@@ -380,6 +423,12 @@
         "operation.project.progress",
         "operation.project.read",
         "operation.project.update",
+        "permission.project.create",
+        "permission.project.delete",
+        "permission.project.list",
+        "permission.project.progress",
+        "permission.project.read",
+        "permission.project.update",
         "service.project"
       ]
     },
@@ -387,7 +436,7 @@
       "description": "application service service.task",
       "kind": "generated",
       "path": "backend_app/application/services/task_service.py",
-      "sha256": "856092dde2297908bd1ba8ba571516e43d5f4683b161951e2b9effb59d90698f",
+      "sha256": "7115a4a5eda00d82bbd362e67cef4ff9105ed25420967455eb0b95a3ee117248",
       "source_refs": [
         "api.task.create",
         "api.task.delete",
@@ -403,6 +452,13 @@
         "operation.task.read",
         "operation.task.update",
         "operation.task.update_status",
+        "permission.task.create",
+        "permission.task.delete",
+        "permission.task.list",
+        "permission.task.list_assigned",
+        "permission.task.read",
+        "permission.task.update",
+        "permission.task.update_status",
         "rule.guard.task.completed_needs_assignee",
         "rule.ownership.task.employee_updates_own",
         "rule.scope.task.list_assigned",
@@ -413,7 +469,7 @@
       "description": "application service service.user",
       "kind": "generated",
       "path": "backend_app/application/services/user_service.py",
-      "sha256": "a2b8fc6493c97402beb35033752d040f3380623423c3a94f041aa1db0c697f87",
+      "sha256": "fe75762b7861d7f76bd202f0af1cade7f54e3ee7bb20be1f1ae6f67fff678e2f",
       "source_refs": [
         "api.user.login",
         "api.user.logout",
@@ -423,6 +479,7 @@
         "operation.user.logout",
         "operation.user.request_password_reset",
         "operation.user.reset_password",
+        "permission.user.logout",
         "service.user"
       ]
     },
@@ -479,7 +536,7 @@
       "description": "domain entity Department",
       "kind": "generated",
       "path": "backend_app/domain/entities/department.py",
-      "sha256": "b8d96feb5c3702048476aae90f9b3ff6df995b00de76ed1e1c317443bd589662",
+      "sha256": "8aa45d9a8cb3ddd4cff5669d50219e18f41f7b234401da48e98c67e42eec4739",
       "source_refs": [
         "entity.department",
         "table:departments"
@@ -489,7 +546,7 @@
       "description": "domain entity Employee",
       "kind": "generated",
       "path": "backend_app/domain/entities/employee.py",
-      "sha256": "c899ca8e2a92021f6cf06515e2127fb52196dc0c3f9a5df71c04fa57933d17fe",
+      "sha256": "0341c8522da9fd6647e4ca725f450646d34f77ba98bf984b8663ed2e115e223f",
       "source_refs": [
         "entity.employee",
         "table:employees"
@@ -499,7 +556,7 @@
       "description": "domain entity Project",
       "kind": "generated",
       "path": "backend_app/domain/entities/project.py",
-      "sha256": "f267c1e0c01f25fdcabfcece23fd7abf917c78a235d20f8b00063812c7d49244",
+      "sha256": "b26960f3ee25d854d4b8cda65ea245de866bdd7b1ea03eb1f6ac35006ad7efd5",
       "source_refs": [
         "entity.project",
         "table:projects"
@@ -509,7 +566,7 @@
       "description": "domain entity ProjectMember",
       "kind": "generated",
       "path": "backend_app/domain/entities/project_member.py",
-      "sha256": "3705557838a3beea1bf501e0d69be3959406ffa25e49daf3ae45a4422ae3a2eb",
+      "sha256": "a3e3b03c77da9598aa8b98eba5a0756e80cfc39b206feef5082bac90d0422c5b",
       "source_refs": [
         "entity.project_member",
         "table:project_members"
@@ -519,7 +576,7 @@
       "description": "domain entity Task",
       "kind": "generated",
       "path": "backend_app/domain/entities/task.py",
-      "sha256": "f10b5d9e3bd8a3ba5675e66995968496b665a7c0d1a72419b6bb71a288004b8b",
+      "sha256": "ce1a44d890f26e750544cf1b7785bab8216dca2743a7a107d11fb1d86ff92c26",
       "source_refs": [
         "entity.task",
         "table:tasks"
@@ -529,7 +586,7 @@
       "description": "domain entity User",
       "kind": "generated",
       "path": "backend_app/domain/entities/user.py",
-      "sha256": "0ebfcf8e9716d2e4cc5137d7ecec6db563c57fd09cab7c14d0ee3c16a134239a",
+      "sha256": "16ce3021c47be02ee2af2295b36539f99093c888219229592bb9e87956679413",
       "source_refs": [
         "entity.user",
         "table:users"
@@ -574,7 +631,7 @@
       "description": "the resolved BackendSpec interpreted by the runtime",
       "kind": "generated",
       "path": "backend_app/generated/spec.json",
-      "sha256": "a20aefcf412807e89b4fe5ab8e90f058fc82e92341a5c50370ee64c7551caa9d",
+      "sha256": "bc8c3bf60b0f96cf21ea9ad46129ddd39b43fdfdf682dee1116f71b80e5f0e89",
       "source_refs": [
         "entity.department",
         "entity.employee",
@@ -623,7 +680,7 @@
       "description": "repository registry",
       "kind": "generated",
       "path": "backend_app/infrastructure/repositories/__init__.py",
-      "sha256": "ef33c960db0b9f23445fe2cdc8985e842154d1935f9ce3a66782008f9a4a1610",
+      "sha256": "a203f617f753105c381f69a9d75bf64286821d222c3dd3f298e369977432f91c",
       "source_refs": [
         "entity.department",
         "entity.employee",
@@ -821,7 +878,7 @@
       "description": "project metadata and dependencies",
       "kind": "config",
       "path": "pyproject.toml",
-      "sha256": "29fe70748b5a6cf216a69ca535e72bdf435a0464785eaa0b788f6d60b5bf769f",
+      "sha256": "7d9485d4b08ae433e0477b0ff4fd86981ea596c49275f0d04b573d3f4fecd389",
       "source_refs": [
         "project.task_manager"
       ]
@@ -858,7 +915,7 @@
       "description": "tests for an LLM-implemented operation",
       "kind": "test",
       "path": "tests/api/test_custom_progress.py",
-      "sha256": "77d63d6e99512a95d7a1bd767c2da6967f37e147176be47037e08159446568ae",
+      "sha256": "5f5ab2581ee8cc5366e5b43db0b216a8792e6bea7be33569e743eee5332bdff4",
       "source_refs": [
         "progress"
       ]
@@ -1205,7 +1262,7 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/bdd/test_acceptance.py",
-      "sha256": "e45266a0929c4979acda1afa4e338d4dcb801d1d9124ab2d29045714f5c23703",
+      "sha256": "ac39b266d82a186b9eb4629c81f6c1f8cbe60926d01aecea493fd486be79c220",
       "source_refs": []
     },
     {
@@ -1226,8 +1283,17 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/contract/test_graph_contract.py",
-      "sha256": "45f8d1e98ba1bcf1067f01105dc060b221e67e2076b11210460d5bfa21bcebd0",
+      "sha256": "7e29cfab5f4753d7feebe36136ab62d8b1298d008f4c5442059c152c557e5bff",
       "source_refs": []
+    },
+    {
+      "description": "acceptance criteria covered by dedicated custom tests",
+      "kind": "test",
+      "path": "tests/data/custom_ac_coverage.json",
+      "sha256": "3ec2c684a87adbb73b2f1ab32034eba1963e1c279407e37496a6644eb671d7e5",
+      "source_refs": [
+        "ac.dashboard.manager_progress"
+      ]
     },
     {
       "description": "Frontend contract snapshot",
@@ -1279,7 +1345,7 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/frontend_compat/test_frontend_contract.py",
-      "sha256": "7070c025dbb23a52ded920358e9e8cdf5cba2b65fec4236380f4a27fcd77f378",
+      "sha256": "5455551c8334a1541a977fa1c9a919f75cbc09f178099b8f2b051effff613a01",
       "source_refs": []
     },
     {
@@ -1293,7 +1359,7 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/repository/test_repositories.py",
-      "sha256": "9c254216cdd0807939f2b9a1b8ea3fdeccf1e6e75e6e506d34e25ed90680a816",
+      "sha256": "dc3574422da6cb477298c893bd05cae855e25b80a80ecbbc6552adb5fe13f720",
       "source_refs": []
     },
     {
@@ -1307,7 +1373,7 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/security/test_security.py",
-      "sha256": "72220db38da3bdef92e7e29367745128336d91de38831cdce0d82c4040e02ac5",
+      "sha256": "56e095f27503b2c194b9562b551316c6be5ccc027776f448dc8c17ef3c0a163a",
       "source_refs": []
     },
     {

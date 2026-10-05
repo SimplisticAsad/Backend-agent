@@ -59,9 +59,12 @@ def generate_tests(spec: dict[str, Any], pkg: GraphPackage, out_dir: Path, *, fr
     out = Path(out_dir)
     import shutil
 
-    tests_dir = out / "tests"
-    if tests_dir.exists():
-        shutil.rmtree(tests_dir)
+    # The agent owns exactly the directories it writes; anything else under tests/ (e.g. tests/custom/) is user code and is preserved.
+    owned = {p.name for p in (TEMPLATES / "tests").iterdir() if p.is_dir() and p.name != "__pycache__"} | {"data"}
+    for name in owned:
+        shutil.rmtree(out / "tests" / name, ignore_errors=True)
+    for f in ("conftest.py", "README.md", "__init__.py"):
+        (out / "tests" / f).unlink(missing_ok=True)
     em = Emitter(out)
     for src in sorted((TEMPLATES / "tests").rglob("*")):
         if src.is_file() and "__pycache__" not in src.parts:

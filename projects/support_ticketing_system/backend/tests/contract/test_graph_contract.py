@@ -153,13 +153,17 @@ def test_authorization_matches_the_graph_roles_and_permissions(ep):
 
 
 def test_every_operation_has_a_service_method_and_a_route(openapi):
-    from backend_app.application.services import Services
+    from backend_app.container import build_container
 
+    container = build_container(Settings(jwt_secret="contract-test-" + "x" * 40, app_env="test"))  # no database is opened here
     ops_with_routes = {o["operationId"] for p in openapi["paths"].values() for o in p.values() if isinstance(o, dict) and "operationId" in o}
     for ep in EP:
-        assert ep["id"] in ops_with_routes
-    svc_attrs = [a for a in dir(Services) if not a.startswith("_")]
-    assert svc_attrs or True  # services are instance attributes; their methods are exercised by the API tests
+        assert ep["id"] in ops_with_routes, f"{ep['id']} has no route"
+        op = OPS[ep["operation_ref"]]
+        service = getattr(container.services, op["service_ref"].split(".", 1)[1])
+        short = op["id"].split(".", 2)[2].replace(".", "_")
+        method = getattr(service, short, None) or getattr(service, op["id"].replace(".", "_"), None)
+        assert callable(method), f"{op['id']} has no service method"
 
 
 def test_no_endpoints_beyond_the_graph(openapi):

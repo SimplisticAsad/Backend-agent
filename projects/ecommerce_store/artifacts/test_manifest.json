@@ -49,7 +49,7 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/contract/test_graph_contract.py",
-      "sha256": "45f8d1e98ba1bcf1067f01105dc060b221e67e2076b11210460d5bfa21bcebd0",
+      "sha256": "7e29cfab5f4753d7feebe36136ab62d8b1298d008f4c5442059c152c557e5bff",
       "source_refs": []
     },
     {
@@ -63,14 +63,14 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/repository/test_repositories.py",
-      "sha256": "9c254216cdd0807939f2b9a1b8ea3fdeccf1e6e75e6e506d34e25ed90680a816",
+      "sha256": "dc3574422da6cb477298c893bd05cae855e25b80a80ecbbc6552adb5fe13f720",
       "source_refs": []
     },
     {
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/security/test_security.py",
-      "sha256": "72220db38da3bdef92e7e29367745128336d91de38831cdce0d82c4040e02ac5",
+      "sha256": "56e095f27503b2c194b9562b551316c6be5ccc027776f448dc8c17ef3c0a163a",
       "source_refs": []
     },
     {

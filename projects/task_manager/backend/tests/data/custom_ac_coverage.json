@@ -1,0 +1,3 @@
+{
+ "ac.dashboard.manager_progress": "tests/api/test_custom_progress.py::test_ac_ac_dashboard_manager_progress"
+}

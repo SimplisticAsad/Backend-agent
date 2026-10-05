@@ -2,12 +2,10 @@
 """HTTP routes for service.project_member. Route handlers only delegate to the application service."""
 from __future__ import annotations
 
-from datetime import date, datetime
-from decimal import Decimal
-from typing import Any, Literal
+from typing import Literal
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, Query, Request, Response
+from fastapi import APIRouter, Depends, Query, Response
 
 from ...api_common import error_responses
 from ...auth import authorize
@@ -16,23 +14,64 @@ from ..deps import get_services
 from ...application.services import Services
 from ..schemas.project_member import ProjectMemberCreateRequest, ProjectMemberResponse
 
+
 router = APIRouter(tags=["project_member"])
 
-@router.get("/project-members", operation_id="api.project_member.list", summary="List Project Members", description="List Project Members.\n\nOperation `operation.project_member.list`. Access: restricted (manager).",
-    response_model=list[ProjectMemberResponse], status_code=200, responses=error_responses(authenticated=True, restricted=True, has_path_id=False, mutating=False, rate_limited=False))
-def api_project_member_list(request: Request, response: Response, limit: int = Query(100, ge=1, le=1000), offset: int = Query(0, ge=0), sort: str | None = Query(None, max_length=64, description="Attribute to sort by"), order: Literal['asc', 'desc'] = Query('asc'), principal: Principal | None = Depends(authorize("operation.project_member.list")), services: Services = Depends(get_services)):
+
+@router.get(
+    "/project-members",
+    operation_id="api.project_member.list",
+    summary="List Project Members",
+    description="List Project Members.\n\nOperation `operation.project_member.list`. Access: restricted (manager).",
+    response_model=list[ProjectMemberResponse],
+    status_code=200,
+    responses=error_responses(authenticated=True, restricted=True, has_path_id=False, mutating=False, rate_limited=False),
+)
+def api_project_member_list(
+    response: Response,
+    limit: int = Query(100, ge=1, le=1000),
+    offset: int = Query(0, ge=0),
+    sort: str | None = Query(None, max_length=64, description="Attribute to sort by"),
+    order: Literal['asc', 'desc'] = Query('asc'),
+    principal: Principal | None = Depends(authorize("operation.project_member.list")),
+    services: Services = Depends(get_services),
+):
     page = services.project_member.list(principal, ListQuery(filters={}, search=None, sort=sort, order=order, limit=limit, offset=offset))
     response.headers['X-Total-Count'] = str(page.total)
     return page.items
 
-@router.post("/project-members", operation_id="api.project_member.create", summary="Create Project Member", description="Create Project Member.\n\nOperation `operation.project_member.create`. Access: restricted (manager).",
-    response_model=ProjectMemberResponse, status_code=201, responses=error_responses(authenticated=True, restricted=True, has_path_id=False, mutating=True, rate_limited=False))
-def api_project_member_create(request: Request, body: ProjectMemberCreateRequest, principal: Principal | None = Depends(authorize("operation.project_member.create")), services: Services = Depends(get_services)):
+
+@router.post(
+    "/project-members",
+    operation_id="api.project_member.create",
+    summary="Create Project Member",
+    description="Create Project Member.\n\nOperation `operation.project_member.create`. Access: restricted (manager).",
+    response_model=ProjectMemberResponse,
+    status_code=201,
+    responses=error_responses(authenticated=True, restricted=True, has_path_id=False, mutating=True, rate_limited=False),
+)
+def api_project_member_create(
+    body: ProjectMemberCreateRequest,
+    principal: Principal | None = Depends(authorize("operation.project_member.create")),
+    services: Services = Depends(get_services),
+):
     return services.project_member.create(principal, body)
 
-@router.delete("/project-members/{id}", operation_id="api.project_member.delete", summary="Delete Project Member", description="Delete Project Member.\n\nOperation `operation.project_member.delete`. Access: restricted (manager).",
-    response_model=None, status_code=204, responses=error_responses(authenticated=True, restricted=True, has_path_id=True, mutating=True, rate_limited=False), response_class=Response)
-def api_project_member_delete(request: Request, id: UUID, principal: Principal | None = Depends(authorize("operation.project_member.delete")), services: Services = Depends(get_services)):
+
+@router.delete(
+    "/project-members/{id}",
+    operation_id="api.project_member.delete",
+    summary="Delete Project Member",
+    description="Delete Project Member.\n\nOperation `operation.project_member.delete`. Access: restricted (manager).",
+    response_model=None,
+    status_code=204,
+    responses=error_responses(authenticated=True, restricted=True, has_path_id=True, mutating=True, rate_limited=False),
+    response_class=Response,
+)
+def api_project_member_delete(
+    id: UUID,
+    principal: Principal | None = Depends(authorize("operation.project_member.delete")),
+    services: Services = Depends(get_services),
+):
     services.project_member.delete(principal, id)
     return Response(status_code=204)
-

@@ -2,13 +2,13 @@
 """Domain entity Order (graph: entity.order; table: orders)."""
 from __future__ import annotations
 
-from datetime import date, datetime
+from datetime import datetime
 from decimal import Decimal
 from enum import Enum
-from typing import Any, ClassVar
+from typing import ClassVar
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 
 
 class OrderStatus(str, Enum):

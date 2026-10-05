@@ -9,6 +9,7 @@ from .order_item_repository import OrderItemRepository
 from .product_repository import ProductRepository
 from .user_repository import UserRepository
 
+
 REPOSITORIES = {
     "entity.cart_item": CartItemRepository,
     "entity.category": CategoryRepository,

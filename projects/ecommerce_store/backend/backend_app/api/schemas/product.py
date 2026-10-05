@@ -2,15 +2,11 @@
 """API request/response models for entity.product (from api.json schemas)."""
 from __future__ import annotations
 
-from datetime import date, datetime
-from decimal import Decimal
-from typing import Any, Literal
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field
+from pydantic import BaseModel, ConfigDict
 
 from ...api_common import JsonDecimal
-
 
 
 class ProductResponse(BaseModel):

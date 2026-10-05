@@ -6,7 +6,7 @@ pytestmark = pytest.mark.integration
 PATH = '/projects/progress'
 
 
-def test_progress_reports_completed_over_total_per_parent(world):
+def _progress_happy(world):
     boss = world.user('manager')
     p1, p2 = world.insert('entity.project'), world.insert('entity.project')
     world.insert('entity.task', **{'project_id': p1["id"], 'status': 'completed'})
@@ -18,3 +18,12 @@ def test_progress_reports_completed_over_total_per_parent(world):
     assert (a['task_count'], a['completed_task_count'], a["progress_percent"]) == (2, 1, 50)
     assert (b['task_count'], b['completed_task_count'], b["progress_percent"]) == (0, 0, 0)
     assert "password_hash" not in r.text
+
+
+def test_progress_reports_completed_over_total_per_parent(world):
+    _progress_happy(world)
+
+
+def test_ac_ac_dashboard_manager_progress(world):
+    """ac.dashboard.manager_progress: Given the user is signed in as Manager When Get project progress Then The manager sees progress per project"""
+    _progress_happy(world)

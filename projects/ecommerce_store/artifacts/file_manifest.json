@@ -15,6 +15,15 @@
       "source_refs": []
     },
     {
+      "description": "how to run, configure and test this backend",
+      "kind": "config",
+      "path": "README.md",
+      "sha256": "786e3e6db9a45e78819714c2a473cdcd6eeaa155ce0d5ee85c7fc621865bc1fc",
+      "source_refs": [
+        "project.ecommerce_store"
+      ]
+    },
+    {
       "description": "static runtime (agent infrastructure)",
       "kind": "runtime",
       "path": "backend_app/__init__.py",
@@ -62,7 +71,7 @@
       "description": "HTTP routes for service.cart_item",
       "kind": "generated",
       "path": "backend_app/api/routes/cart_item.py",
-      "sha256": "9f0191e76e06fabe877ee8bf264c629aec02b4434c3aca9147df08fd1a19a8c8",
+      "sha256": "45aefb0d42da7e8c436e39b5859739621fa9df649c1c925cc222aa13607f9687",
       "source_refs": [
         "api.cart_item.create",
         "api.cart_item.delete",
@@ -72,6 +81,10 @@
         "operation.cart_item.delete",
         "operation.cart_item.list",
         "operation.cart_item.update",
+        "permission.cart_item.create",
+        "permission.cart_item.delete",
+        "permission.cart_item.list",
+        "permission.cart_item.update",
         "rule.scope.implicit.cart_item.user_id",
         "schema.cart_item",
         "schema.cart_item.create",
@@ -83,7 +96,7 @@
       "description": "HTTP routes for service.order",
       "kind": "generated",
       "path": "backend_app/api/routes/order.py",
-      "sha256": "45c0bdc75a39ccda33970b27a845ff6a8331800b587c1fce67da8a018ef788d4",
+      "sha256": "45e6ce0b5549f9ab89043d1b4d15e7b0551bd6c9f3b4ddc53e4acb0417e67165",
       "source_refs": [
         "api.order.list",
         "api.order.place",
@@ -91,6 +104,9 @@
         "operation.order.list",
         "operation.order.place",
         "operation.order.read",
+        "permission.order.list",
+        "permission.order.place",
+        "permission.order.read",
         "rule.scope.implicit.order.user_id",
         "schema.order",
         "schema.order.place",
@@ -101,7 +117,7 @@
       "description": "HTTP routes for service.product",
       "kind": "generated",
       "path": "backend_app/api/routes/product.py",
-      "sha256": "71836a78f78d75e77d6dfd641b7d30d5350cfe7d9f7ae0b29245fe4418a9bbc6",
+      "sha256": "6fc37b13f72f963637120f8873e9fe888df4f0b529e6f4e9d5e60931fada1441",
       "source_refs": [
         "api.product.filter",
         "api.product.list",
@@ -119,7 +135,7 @@
       "description": "HTTP routes for service.user",
       "kind": "generated",
       "path": "backend_app/api/routes/user.py",
-      "sha256": "b5076b82e97c40fde97a82f1505d7e244a3f0a9e65ad0d3b37187777a98c9f31",
+      "sha256": "83a785e279772e0e5e9125f033b5234e9669144c3694383bc17fff608a726510",
       "source_refs": [
         "api.user.login",
         "api.user.logout",
@@ -129,6 +145,7 @@
         "operation.user.logout",
         "operation.user.request_password_reset",
         "operation.user.reset_password",
+        "permission.user.logout",
         "schema.user",
         "schema.user.login",
         "schema.user.request_password_reset",
@@ -147,7 +164,7 @@
       "description": "request/response models for entity.cart_item",
       "kind": "generated",
       "path": "backend_app/api/schemas/cart_item.py",
-      "sha256": "8805587e005a52611d9dc948890ed828ec1195a66e4da0ee41a7a94a4266e520",
+      "sha256": "7f0d5c834467598d23088d6b6cfce1627d67ff715972955515101af61849979e",
       "source_refs": [
         "entity.cart_item",
         "schema.cart_item",
@@ -159,7 +176,7 @@
       "description": "request/response models for entity.category",
       "kind": "generated",
       "path": "backend_app/api/schemas/category.py",
-      "sha256": "309a87ea4434b8cc6216b30d13d8ebaa23b93317aa95d5ab8e5545a1d7fe5560",
+      "sha256": "29e9e825804bffb52972c5d9bda78e1bebf9f93a62ba7723709b3fac564e6590",
       "source_refs": [
         "entity.category"
       ]
@@ -168,7 +185,7 @@
       "description": "request/response models for entity.order",
       "kind": "generated",
       "path": "backend_app/api/schemas/order.py",
-      "sha256": "e3800e2df991c747ab95675f5323a460c80ab4532fcf29eb399b07219144011f",
+      "sha256": "40c87331bff9aaa2b122f31bfe805697280bfc99c31c8326bf74726185db70f8",
       "source_refs": [
         "entity.order",
         "schema.order",
@@ -179,7 +196,7 @@
       "description": "request/response models for entity.order_item",
       "kind": "generated",
       "path": "backend_app/api/schemas/order_item.py",
-      "sha256": "e54475aea9ad064b01073fc2d4c390ded8363ae65a5fd45cc36dd8baba672043",
+      "sha256": "7ed38a653ccf6c5bdd3cb3bcbe0232352b252e666bd85a45a08c06c55cbcd51a",
       "source_refs": [
         "entity.order_item"
       ]
@@ -188,7 +205,7 @@
       "description": "request/response models for entity.product",
       "kind": "generated",
       "path": "backend_app/api/schemas/product.py",
-      "sha256": "9895b1471cd218a6cd79f590c21d6f6459ad026af6f4f5953265bcb0ea2c7671",
+      "sha256": "c45df9d3f6e083962b6de7a3a02550c40edc84ee8d35663881d6264a2304a6e9",
       "source_refs": [
         "entity.product",
         "schema.product"
@@ -198,7 +215,7 @@
       "description": "request/response models for entity.user",
       "kind": "generated",
       "path": "backend_app/api/schemas/user.py",
-      "sha256": "cb65fbdb5e324fd833c86cf57e7a08da5aa374a0e4cb6addaee80035486dd664",
+      "sha256": "99ab312b3f3a205a623cf59d4072ba6e0eccdd6a27921ae0a36b5c37e5fedb8d",
       "source_refs": [
         "entity.user",
         "schema.user",
@@ -244,7 +261,7 @@
       "description": "application service service.cart_item",
       "kind": "generated",
       "path": "backend_app/application/services/cart_item_service.py",
-      "sha256": "9aa7f11240c4a548655fa5b5239434852f59f41ff199cb76a1a43873894a3dd7",
+      "sha256": "719f21a8d9786bf17b8892f2419dbd7bad80e1d4572f0486f9756bbb3be5baf3",
       "source_refs": [
         "api.cart_item.create",
         "api.cart_item.delete",
@@ -254,6 +271,10 @@
         "operation.cart_item.delete",
         "operation.cart_item.list",
         "operation.cart_item.update",
+        "permission.cart_item.create",
+        "permission.cart_item.delete",
+        "permission.cart_item.list",
+        "permission.cart_item.update",
         "rule.scope.implicit.cart_item.user_id",
         "service.cart_item"
       ]
@@ -262,7 +283,7 @@
       "description": "application service service.order",
       "kind": "generated",
       "path": "backend_app/application/services/order_service.py",
-      "sha256": "50cae4a7329106fa7aae5a1f2f3a4448c4482fbb2c893026cd16e0e509613286",
+      "sha256": "70d16aaed7099e99b52cfad00bc600c9205a0a3b32afad89fd944a44c89fa249",
       "source_refs": [
         "api.order.list",
         "api.order.place",
@@ -270,6 +291,9 @@
         "operation.order.list",
         "operation.order.place",
         "operation.order.read",
+        "permission.order.list",
+        "permission.order.place",
+        "permission.order.read",
         "rule.scope.implicit.order.user_id",
         "service.order"
       ]
@@ -278,7 +302,7 @@
       "description": "application service service.product",
       "kind": "generated",
       "path": "backend_app/application/services/product_service.py",
-      "sha256": "c2201529712fef213f4a0309f1eb9628b4a081d9c9436fe445788f672c19a16e",
+      "sha256": "581be11c7275948b59b693678005f3e4ec7363ecb362d44a5829583f291af1cf",
       "source_refs": [
         "api.product.filter",
         "api.product.list",
@@ -295,7 +319,7 @@
       "description": "application service service.user",
       "kind": "generated",
       "path": "backend_app/application/services/user_service.py",
-      "sha256": "a2b8fc6493c97402beb35033752d040f3380623423c3a94f041aa1db0c697f87",
+      "sha256": "fe75762b7861d7f76bd202f0af1cade7f54e3ee7bb20be1f1ae6f67fff678e2f",
       "source_refs": [
         "api.user.login",
         "api.user.logout",
@@ -305,6 +329,7 @@
         "operation.user.logout",
         "operation.user.request_password_reset",
         "operation.user.reset_password",
+        "permission.user.logout",
         "service.user"
       ]
     },
@@ -361,7 +386,7 @@
       "description": "domain entity CartItem",
       "kind": "generated",
       "path": "backend_app/domain/entities/cart_item.py",
-      "sha256": "3b772d2b0d73ee23fe45f93b2918cd100faa879efbe565e8ac53a95dbb35e796",
+      "sha256": "f3a91693306a6b9ba1b2cee8f90a02987ca8984d0a554cf9ebad01a4f4446233",
       "source_refs": [
         "entity.cart_item",
         "table:cart_items"
@@ -371,7 +396,7 @@
       "description": "domain entity Category",
       "kind": "generated",
       "path": "backend_app/domain/entities/category.py",
-      "sha256": "a27730c842e6852c845c1a231a1abf7735757389c8753bbc878e44a7d012f9d5",
+      "sha256": "b28389d9dcb5d2205d9c69d6df32a4a602c679ef3ed3f3c1fa82e674b7b44c70",
       "source_refs": [
         "entity.category",
         "table:categories"
@@ -381,7 +406,7 @@
       "description": "domain entity Order",
       "kind": "generated",
       "path": "backend_app/domain/entities/order.py",
-      "sha256": "d4b421de79dc6da576286c237e4aca7d88619a3f178640dc5de0c503de048570",
+      "sha256": "88566b2d8be8fa4efd53640ce5c0c3d8283177f149d36eae5379e30fbc8f4bfd",
       "source_refs": [
         "entity.order",
         "table:orders"
@@ -391,7 +416,7 @@
       "description": "domain entity OrderItem",
       "kind": "generated",
       "path": "backend_app/domain/entities/order_item.py",
-      "sha256": "742c8a0493a6cf593f4cc86711da6f8e7bfba914f2c9e4317a1231e98d8cce1b",
+      "sha256": "037b01643dc04e693bd6b2a77d153658930ea1e3506d1625875eec4b10754d45",
       "source_refs": [
         "entity.order_item",
         "table:order_items"
@@ -401,7 +426,7 @@
       "description": "domain entity Product",
       "kind": "generated",
       "path": "backend_app/domain/entities/product.py",
-      "sha256": "deacc1c80dfdf99466b28d59eb78fa2b99a0bf4398c8d2383bcd0fbbed105488",
+      "sha256": "630c195b831c58141dad5d27cd34a0a012555740c8d560432377dc81eb018394",
       "source_refs": [
         "entity.product",
         "table:products"
@@ -411,7 +436,7 @@
       "description": "domain entity User",
       "kind": "generated",
       "path": "backend_app/domain/entities/user.py",
-      "sha256": "4d278776ef7147b0911aedc138e6dc4c1ad5b49ca5bb2d29efdf2cb0e3f73d3d",
+      "sha256": "3097e447f5775964fa7f3488ba0f77d67e1934142e739d492d979235fa0e78c6",
       "source_refs": [
         "entity.user",
         "table:users"
@@ -456,7 +481,7 @@
       "description": "the resolved BackendSpec interpreted by the runtime",
       "kind": "generated",
       "path": "backend_app/generated/spec.json",
-      "sha256": "bbfbed763281ae575344824e0a2e02e5a66394ef63acf480bac45bcfb7230c71",
+      "sha256": "1874e22eeb2306a05fe20a1eea720645e5de5b36e2a84c41081f424a19a4c3dd",
       "source_refs": [
         "entity.cart_item",
         "entity.category",
@@ -493,7 +518,7 @@
       "description": "repository registry",
       "kind": "generated",
       "path": "backend_app/infrastructure/repositories/__init__.py",
-      "sha256": "16093cd6147c0fdcfe4235a0fa63169efa3e218fc3f04df8d4aa331bc3d42d8b",
+      "sha256": "0633147101d9e1959bf8c40df3d94c3a855342d44e25c91c62c34dfd8ff15595",
       "source_refs": [
         "entity.cart_item",
         "entity.category",
@@ -691,7 +716,7 @@
       "description": "project metadata and dependencies",
       "kind": "config",
       "path": "pyproject.toml",
-      "sha256": "694f842dc54b1294f26f3d581afd8809ae04a53e599737eea7ec96a536bb98ca",
+      "sha256": "cf2e91ee086b2fe307d197cd42b43639a98390afb983497562cf0cd9a60b3023",
       "source_refs": [
         "project.ecommerce_store"
       ]
@@ -952,7 +977,7 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/contract/test_graph_contract.py",
-      "sha256": "45f8d1e98ba1bcf1067f01105dc060b221e67e2076b11210460d5bfa21bcebd0",
+      "sha256": "7e29cfab5f4753d7feebe36136ab62d8b1298d008f4c5442059c152c557e5bff",
       "source_refs": []
     },
     {
@@ -1007,7 +1032,7 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/repository/test_repositories.py",
-      "sha256": "9c254216cdd0807939f2b9a1b8ea3fdeccf1e6e75e6e506d34e25ed90680a816",
+      "sha256": "dc3574422da6cb477298c893bd05cae855e25b80a80ecbbc6552adb5fe13f720",
       "source_refs": []
     },
     {
@@ -1021,7 +1046,7 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/security/test_security.py",
-      "sha256": "72220db38da3bdef92e7e29367745128336d91de38831cdce0d82c4040e02ac5",
+      "sha256": "56e095f27503b2c194b9562b551316c6be5ccc027776f448dc8c17ef3c0a163a",
       "source_refs": []
     },
     {

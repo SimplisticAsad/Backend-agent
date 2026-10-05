@@ -14,11 +14,20 @@ from pathlib import Path
 
 import pytest
 
-from tests.support.data import GRAPH, OPS, ROOT, SPEC
+from tests.support.data import GRAPH, OPS, ROOT, SPEC, load_data
 from tests.support.world import PASSWORD, assert_matches_schema
 
 pytestmark = pytest.mark.integration
 CRITERIA = GRAPH["acceptance_criteria"] or []
+COVERED = load_data("custom_ac_coverage.json") or {}
+
+
+def _known_error_codes():
+    codes = {r["error_code"] for r in SPEC["rules"] if r.get("error_code")}
+    codes |= {e["code"] for o in SPEC["operations"].values() for e in o["errors"]}
+    codes |= {c for h in SPEC["handlers"].values() for c in re.findall(r"code=['\"]([A-Z][A-Z0-9_]+)['\"]", h.get("code", ""))}
+    codes |= {c for v in GRAPH["validations"] for c in [v["failure"].get("error_code")] if c and v["kind"] in ("authorization", "format", "required")}
+    return codes
 ROLE_KEYS = sorted(SPEC["auth"]["role_map"]) if SPEC["auth"] else []
 
 
@@ -45,11 +54,18 @@ def test_acceptance_criterion(world, ac):
         return
     given = _given_roles(ac)
     outcome = " / ".join(ac.get("then", []))
+    for code in re.findall(r"error\s+([A-Z][A-Z0-9_]+)", outcome):
+        assert code in _known_error_codes(), f"[{ac['id']}] the criterion names error {code}, which the backend never produces"
     for op_id in ac["operation_refs"]:
         op = OPS[op_id]
         ep = op["endpoint"]
         what = f"[{ac['id']}] When {op['name']} -> Then {outcome}"
         kind = op["kind"]
+        handler = SPEC["handlers"].get(op_id)
+        if kind in ("custom", "aggregate") and handler and handler.get("status") == "implemented":
+            # workflows need arranged preconditions (a filled cart, low stock, ...): they have dedicated scenarios in tests/api/test_custom_*.py
+            assert ac["id"] in COVERED, f"{what}: the operation is a custom workflow and no dedicated test covers criterion {ac['id']}"
+            continue
         if kind.startswith("auth."):
             _run_auth(world, op, kind, what)
             continue

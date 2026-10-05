@@ -2,10 +2,7 @@
 """HTTP routes for service.user. Route handlers only delegate to the application service."""
 from __future__ import annotations
 
-from datetime import date, datetime
-from decimal import Decimal
-from typing import Any, Literal
-from uuid import UUID
+from typing import Literal
 
 from fastapi import APIRouter, Depends, Query, Request, Response
 
@@ -16,35 +13,104 @@ from ..deps import get_services
 from ...application.services import Services
 from ..schemas.user import LoginSessionResponse, UserLoginRequest, UserRequestPasswordResetRequest, UserResetPasswordRequest, UserResponse
 
+
 router = APIRouter(tags=["user"])
 
-@router.post("/auth/forgot-password", operation_id="api.user.request_password_reset", summary="Request password reset", description="Request password reset.\n\nOperation `operation.user.request_password_reset`. Access: public.",
-    response_model=None, status_code=204, responses=error_responses(authenticated=False, restricted=False, has_path_id=False, mutating=True, rate_limited=True), response_class=Response)
-def api_user_request_password_reset(request: Request, body: UserRequestPasswordResetRequest, principal: None = Depends(authorize("operation.user.request_password_reset")), services: Services = Depends(get_services)):
+
+@router.post(
+    "/auth/forgot-password",
+    operation_id="api.user.request_password_reset",
+    summary="Request password reset",
+    description="Request password reset.\n\nOperation `operation.user.request_password_reset`. Access: public.",
+    response_model=None,
+    status_code=204,
+    responses=error_responses(authenticated=False, restricted=False, has_path_id=False, mutating=True, rate_limited=True),
+    response_class=Response,
+)
+def api_user_request_password_reset(
+    request: Request,
+    body: UserRequestPasswordResetRequest,
+    principal: None = Depends(authorize("operation.user.request_password_reset")),
+    services: Services = Depends(get_services),
+):
     services.user.request_password_reset(body, request.client.host if request.client else 'unknown')
     return Response(status_code=204)
 
-@router.post("/auth/login", operation_id="api.user.login", summary="Log in", description="Log in.\n\nOperation `operation.user.login`. Access: public.",
-    response_model=LoginSessionResponse, status_code=200, responses=error_responses(authenticated=False, restricted=False, has_path_id=False, mutating=True, rate_limited=True))
-def api_user_login(request: Request, body: UserLoginRequest, principal: None = Depends(authorize("operation.user.login")), services: Services = Depends(get_services)):
+
+@router.post(
+    "/auth/login",
+    operation_id="api.user.login",
+    summary="Log in",
+    description="Log in.\n\nOperation `operation.user.login`. Access: public.",
+    response_model=LoginSessionResponse,
+    status_code=200,
+    responses=error_responses(authenticated=False, restricted=False, has_path_id=False, mutating=True, rate_limited=True),
+)
+def api_user_login(
+    request: Request,
+    body: UserLoginRequest,
+    principal: None = Depends(authorize("operation.user.login")),
+    services: Services = Depends(get_services),
+):
     return services.user.login(body, request.client.host if request.client else 'unknown')
 
-@router.post("/auth/logout", operation_id="api.user.logout", summary="Log out", description="Log out.\n\nOperation `operation.user.logout`. Access: authenticated.",
-    response_model=None, status_code=204, responses=error_responses(authenticated=True, restricted=False, has_path_id=False, mutating=True, rate_limited=False), response_class=Response)
-def api_user_logout(request: Request, principal: Principal | None = Depends(authorize("operation.user.logout")), services: Services = Depends(get_services)):
+
+@router.post(
+    "/auth/logout",
+    operation_id="api.user.logout",
+    summary="Log out",
+    description="Log out.\n\nOperation `operation.user.logout`. Access: authenticated.",
+    response_model=None,
+    status_code=204,
+    responses=error_responses(authenticated=True, restricted=False, has_path_id=False, mutating=True, rate_limited=False),
+    response_class=Response,
+)
+def api_user_logout(
+    principal: Principal | None = Depends(authorize("operation.user.logout")),
+    services: Services = Depends(get_services),
+):
     services.user.logout(principal)
     return Response(status_code=204)
 
-@router.post("/auth/reset-password", operation_id="api.user.reset_password", summary="Reset password", description="Reset password.\n\nOperation `operation.user.reset_password`. Access: public.",
-    response_model=None, status_code=204, responses=error_responses(authenticated=False, restricted=False, has_path_id=False, mutating=True, rate_limited=True), response_class=Response)
-def api_user_reset_password(request: Request, body: UserResetPasswordRequest, principal: None = Depends(authorize("operation.user.reset_password")), services: Services = Depends(get_services)):
+
+@router.post(
+    "/auth/reset-password",
+    operation_id="api.user.reset_password",
+    summary="Reset password",
+    description="Reset password.\n\nOperation `operation.user.reset_password`. Access: public.",
+    response_model=None,
+    status_code=204,
+    responses=error_responses(authenticated=False, restricted=False, has_path_id=False, mutating=True, rate_limited=True),
+    response_class=Response,
+)
+def api_user_reset_password(
+    request: Request,
+    body: UserResetPasswordRequest,
+    principal: None = Depends(authorize("operation.user.reset_password")),
+    services: Services = Depends(get_services),
+):
     services.user.reset_password(body, request.client.host if request.client else 'unknown')
     return Response(status_code=204)
 
-@router.get("/users/agents", operation_id="api.user.list_agents", summary="List agents", description="List agents.\n\nOperation `operation.user.list_agents`. Access: restricted (manager).",
-    response_model=list[UserResponse], status_code=200, responses=error_responses(authenticated=True, restricted=True, has_path_id=False, mutating=False, rate_limited=False))
-def api_user_list_agents(request: Request, response: Response, limit: int = Query(100, ge=1, le=1000), offset: int = Query(0, ge=0), sort: str | None = Query(None, max_length=64, description="Attribute to sort by"), order: Literal['asc', 'desc'] = Query('asc'), principal: Principal | None = Depends(authorize("operation.user.list_agents")), services: Services = Depends(get_services)):
+
+@router.get(
+    "/users/agents",
+    operation_id="api.user.list_agents",
+    summary="List agents",
+    description="List agents.\n\nOperation `operation.user.list_agents`. Access: restricted (manager).",
+    response_model=list[UserResponse],
+    status_code=200,
+    responses=error_responses(authenticated=True, restricted=True, has_path_id=False, mutating=False, rate_limited=False),
+)
+def api_user_list_agents(
+    response: Response,
+    limit: int = Query(100, ge=1, le=1000),
+    offset: int = Query(0, ge=0),
+    sort: str | None = Query(None, max_length=64, description="Attribute to sort by"),
+    order: Literal['asc', 'desc'] = Query('asc'),
+    principal: Principal | None = Depends(authorize("operation.user.list_agents")),
+    services: Services = Depends(get_services),
+):
     page = services.user.list_agents(principal, ListQuery(filters={}, search=None, sort=sort, order=order, limit=limit, offset=offset))
     response.headers['X-Total-Count'] = str(page.total)
     return page.items
-

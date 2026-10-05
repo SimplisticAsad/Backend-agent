@@ -15,6 +15,15 @@
       "source_refs": []
     },
     {
+      "description": "how to run, configure and test this backend",
+      "kind": "config",
+      "path": "README.md",
+      "sha256": "314d01ec0ab1e06abddeb2b7e6f0afd13b7deb76aede445f2c336520b0d0d1a0",
+      "source_refs": [
+        "project.support_ticketing_system"
+      ]
+    },
+    {
       "description": "static runtime (agent infrastructure)",
       "kind": "runtime",
       "path": "backend_app/__init__.py",
@@ -61,7 +70,7 @@
       "description": "HTTP routes for service.ticket",
       "kind": "generated",
       "path": "backend_app/api/routes/ticket.py",
-      "sha256": "c3b3e8b184b504641b67277ac92ca68a7a76820956ad3dfa5ca44d485ac6aedf",
+      "sha256": "cc77f0a1dd55e92dbe103e2034393dc7d163da3e7fa4def45af5f3b09e24264e",
       "source_refs": [
         "api.ticket.assign",
         "api.ticket.change_status",
@@ -77,6 +86,13 @@
         "operation.ticket.read",
         "operation.ticket.stats",
         "operation.ticket.update",
+        "permission.ticket.assign",
+        "permission.ticket.change_status",
+        "permission.ticket.create",
+        "permission.ticket.list",
+        "permission.ticket.read",
+        "permission.ticket.stats",
+        "permission.ticket.update",
         "rule.frozen.ticket.closed_read_only",
         "rule.scope.implicit.ticket.requester_id",
         "schema.ticket",
@@ -91,12 +107,14 @@
       "description": "HTTP routes for service.ticket_comment",
       "kind": "generated",
       "path": "backend_app/api/routes/ticket_comment.py",
-      "sha256": "93eddb58c23981b77988a46e6972c134b8b2d8e953daf9115db264cffe45cc61",
+      "sha256": "8ad7afa77fc0112849f3520d6ac21a4a555d5e788d70b6007ffcd7d81f992ed6",
       "source_refs": [
         "api.ticket_comment.create",
         "api.ticket_comment.list",
         "operation.ticket_comment.create",
         "operation.ticket_comment.list",
+        "permission.ticket_comment.create",
+        "permission.ticket_comment.list",
         "rule.scope.implicit.ticket_comment.via_ticket_id",
         "schema.ticket_comment",
         "schema.ticket_comment.create",
@@ -107,7 +125,7 @@
       "description": "HTTP routes for service.user",
       "kind": "generated",
       "path": "backend_app/api/routes/user.py",
-      "sha256": "cad6c901e456cc75f701c0fc2f308c44ac7ce674a9e995185dfd05ab9f242dbf",
+      "sha256": "38367cdb875a976d1ae22e8a137f41f536aa79d69b0ae177fd57e94fab9ccf8f",
       "source_refs": [
         "api.user.list_agents",
         "api.user.login",
@@ -119,6 +137,8 @@
         "operation.user.logout",
         "operation.user.request_password_reset",
         "operation.user.reset_password",
+        "permission.user.list_agents",
+        "permission.user.logout",
         "schema.user",
         "schema.user.login",
         "schema.user.request_password_reset",
@@ -137,7 +157,7 @@
       "description": "request/response models for entity.ticket",
       "kind": "generated",
       "path": "backend_app/api/schemas/ticket.py",
-      "sha256": "e6c4033a03f1e376e212fa0b92910ba5adcb599083ebea2682ef4eefbc6a2234",
+      "sha256": "3cae8458f7198fce28991e4e006dd533ee4e9efaeb55a8d758775cec81fae123",
       "source_refs": [
         "entity.ticket",
         "schema.ticket",
@@ -151,7 +171,7 @@
       "description": "request/response models for entity.ticket_comment",
       "kind": "generated",
       "path": "backend_app/api/schemas/ticket_comment.py",
-      "sha256": "3c933502c26e1f9d3faf7e1b5f767ac809ad264e70a701109ea45de33c88c2c0",
+      "sha256": "e9daf629d3f4d09b0488c63aa279d6e6fdf11c7f17e309eaf011e70b24221b8e",
       "source_refs": [
         "entity.ticket_comment",
         "schema.ticket_comment",
@@ -162,7 +182,7 @@
       "description": "request/response models for entity.user",
       "kind": "generated",
       "path": "backend_app/api/schemas/user.py",
-      "sha256": "947720ca55838510bb4b5d97256c9bf578e13efa89fdfe27c2e231df7f0522f9",
+      "sha256": "3a1b133971cc7447cef546aed9786926e845b5ee51830b83c0faca938b2526a8",
       "source_refs": [
         "entity.user",
         "schema.user",
@@ -207,12 +227,14 @@
       "description": "application service service.ticket_comment",
       "kind": "generated",
       "path": "backend_app/application/services/ticket_comment_service.py",
-      "sha256": "a5abe0baca9a605bbdbc627ebe114d95e7a823c0882dd94a06f826da64a0be37",
+      "sha256": "208117342e1e51ff6ea3a24b20852fe73c468e6e27e37d61ab4d092dff16e194",
       "source_refs": [
         "api.ticket_comment.create",
         "api.ticket_comment.list",
         "operation.ticket_comment.create",
         "operation.ticket_comment.list",
+        "permission.ticket_comment.create",
+        "permission.ticket_comment.list",
         "rule.scope.implicit.ticket_comment.via_ticket_id",
         "service.ticket_comment"
       ]
@@ -221,7 +243,7 @@
       "description": "application service service.ticket",
       "kind": "generated",
       "path": "backend_app/application/services/ticket_service.py",
-      "sha256": "5a00b17af54f3ec8b10562f8420fd99321a20d920d131b15500f5c138366560a",
+      "sha256": "9f099785d3dd2aa963d56e66bc25708506b9141760d74d5f84f9e736aa823a82",
       "source_refs": [
         "api.ticket.assign",
         "api.ticket.change_status",
@@ -237,6 +259,13 @@
         "operation.ticket.read",
         "operation.ticket.stats",
         "operation.ticket.update",
+        "permission.ticket.assign",
+        "permission.ticket.change_status",
+        "permission.ticket.create",
+        "permission.ticket.list",
+        "permission.ticket.read",
+        "permission.ticket.stats",
+        "permission.ticket.update",
         "rule.frozen.ticket.closed_read_only",
         "rule.scope.implicit.ticket.requester_id",
         "service.ticket"
@@ -246,7 +275,7 @@
       "description": "application service service.user",
       "kind": "generated",
       "path": "backend_app/application/services/user_service.py",
-      "sha256": "15c411c72e784d4a746ff0359d04f170a4125a204a7e21921ad4f83b9536907c",
+      "sha256": "fa1212256b30a84bc1bd18e549bf7c831a0dc1bc67dae950fe1d08e01eaf6a89",
       "source_refs": [
         "api.user.list_agents",
         "api.user.login",
@@ -258,6 +287,8 @@
         "operation.user.logout",
         "operation.user.request_password_reset",
         "operation.user.reset_password",
+        "permission.user.list_agents",
+        "permission.user.logout",
         "service.user"
       ]
     },
@@ -314,7 +345,7 @@
       "description": "domain entity Ticket",
       "kind": "generated",
       "path": "backend_app/domain/entities/ticket.py",
-      "sha256": "047f831c4b30586ea7035395a06c0c0821f49c84a4670641823ee2cb3f9dcbde",
+      "sha256": "1e9bb887692c7fdbe73e4dc84756f5cb00b6e1b6c721bde06db2ae2687c0bcd4",
       "source_refs": [
         "entity.ticket",
         "table:tickets"
@@ -324,7 +355,7 @@
       "description": "domain entity TicketComment",
       "kind": "generated",
       "path": "backend_app/domain/entities/ticket_comment.py",
-      "sha256": "80e9e6466f80ec6eb1559335f403ced2b669bb857825f6da244100b52b7dfd6e",
+      "sha256": "6d2618f1145c2d02b33f9375cef08bc2e127505f0a83914bdb6205336c4d82cb",
       "source_refs": [
         "entity.ticket_comment",
         "table:ticket_comments"
@@ -334,7 +365,7 @@
       "description": "domain entity User",
       "kind": "generated",
       "path": "backend_app/domain/entities/user.py",
-      "sha256": "9447430851daab5cae37256409189c5fc80a99dca3eda9787f8f89bd685f93c6",
+      "sha256": "45d8919384553a1ddf4ee0e913a441cc0884b94ce283fda2fea34381d2da10a8",
       "source_refs": [
         "entity.user",
         "table:users"
@@ -379,7 +410,7 @@
       "description": "the resolved BackendSpec interpreted by the runtime",
       "kind": "generated",
       "path": "backend_app/generated/spec.json",
-      "sha256": "7a6edacf311a2266e81506245925458d57e8bd75d038a0fa31c56cfee19663ad",
+      "sha256": "d75e01c0e2a321b6217952ed8021eb288187eb3ba4bb1a5172ab136fd9589dfe",
       "source_refs": [
         "entity.ticket",
         "entity.ticket_comment",
@@ -412,7 +443,7 @@
       "description": "repository registry",
       "kind": "generated",
       "path": "backend_app/infrastructure/repositories/__init__.py",
-      "sha256": "cd575e58fd9df30e17b4d0c8e25e4a5991b0f83c93ca1ec016612afc12ce7323",
+      "sha256": "d1fb7023450a0c040484db89cde1d9bb369f3bd064de14a8e40407c0923b1a24",
       "source_refs": [
         "entity.ticket",
         "entity.ticket_comment",
@@ -577,7 +608,7 @@
       "description": "project metadata and dependencies",
       "kind": "config",
       "path": "pyproject.toml",
-      "sha256": "c99e18fd72717ad63533d625e789e77b8bb1cb9adbef490ae036a8e484e5f633",
+      "sha256": "935a3195cbd851dd21105f5e5aca789107c654a8e9b44e72e7a10062390eb3e2",
       "source_refs": [
         "project.support_ticketing_system"
       ]
@@ -785,7 +816,7 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/bdd/test_acceptance.py",
-      "sha256": "e45266a0929c4979acda1afa4e338d4dcb801d1d9124ab2d29045714f5c23703",
+      "sha256": "ac39b266d82a186b9eb4629c81f6c1f8cbe60926d01aecea493fd486be79c220",
       "source_refs": []
     },
     {
@@ -806,7 +837,14 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/contract/test_graph_contract.py",
-      "sha256": "45f8d1e98ba1bcf1067f01105dc060b221e67e2076b11210460d5bfa21bcebd0",
+      "sha256": "7e29cfab5f4753d7feebe36136ab62d8b1298d008f4c5442059c152c557e5bff",
+      "source_refs": []
+    },
+    {
+      "description": "acceptance criteria covered by dedicated custom tests",
+      "kind": "test",
+      "path": "tests/data/custom_ac_coverage.json",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
       "source_refs": []
     },
     {
@@ -850,7 +888,7 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/repository/test_repositories.py",
-      "sha256": "9c254216cdd0807939f2b9a1b8ea3fdeccf1e6e75e6e506d34e25ed90680a816",
+      "sha256": "dc3574422da6cb477298c893bd05cae855e25b80a80ecbbc6552adb5fe13f720",
       "source_refs": []
     },
     {
@@ -864,7 +902,7 @@
       "description": "spec-driven test module (agent template)",
       "kind": "test",
       "path": "tests/security/test_security.py",
-      "sha256": "72220db38da3bdef92e7e29367745128336d91de38831cdce0d82c4040e02ac5",
+      "sha256": "56e095f27503b2c194b9562b551316c6be5ccc027776f448dc8c17ef3c0a163a",
       "source_refs": []
     },
     {

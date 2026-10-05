@@ -221,6 +221,7 @@
           },
           "shipping_address": {
             "maxLength": 20000,
+            "minLength": 1,
             "title": "Shipping Address",
             "type": "string"
           }
@@ -364,6 +365,7 @@
           "email": {
             "format": "email",
             "maxLength": 254,
+            "minLength": 1,
             "title": "Email",
             "type": "string"
           },
@@ -388,6 +390,7 @@
           "email": {
             "format": "email",
             "maxLength": 254,
+            "minLength": 1,
             "title": "Email",
             "type": "string"
           }

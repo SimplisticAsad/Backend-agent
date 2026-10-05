@@ -118,6 +118,12 @@ def detect_graph_conflicts(pkg: GraphPackage) -> list[Conflict]:
                 add(A, "critical", "PERMISSION_ROLES_DIFFER_FROM_OPERATION",
                     f"{p['id']} grants {sorted(p['roles'])} but {op['id']} requires {sorted(op_roles)}", [p["id"], op["id"]],
                     "roles that may run the operation are contradictory", "make permissions.json and backend.json agree", ErrorKind.AUTHORIZATION_ERROR)
+    # every protected operation must be backed by a permission (or an explicit authorization assumption)
+    covered = {o for p in pkg.permissions.values() for o in p.get("operation_refs", [])}
+    for op in pkg.operations.values():
+        if op["access"] == "restricted" and op["id"] not in covered and not op.get("assumption_refs"):
+            add(A, "critical", "PERMISSION_MISSING", f"{op['id']} is restricted to {sorted(op['required_roles'])} but no permission grants it and no authorization assumption explains it",
+                [op["id"]], "authorization cannot be traced to the specification", "add a permission for the operation in permissions.json", ErrorKind.AUTHORIZATION_ERROR)
     # workflow actors must be able to run the operations their steps call
     for w in pkg.workflows.values():
         actor_roles = {r for a in w.get("actor_refs", []) for r in (pkg.actors[a].get("role_refs") or [pkg.actors[a].get("role_ref")]) if r}

@@ -6,6 +6,7 @@ from .ticket_repository import TicketRepository
 from .ticket_comment_repository import TicketCommentRepository
 from .user_repository import UserRepository
 
+
 REPOSITORIES = {
     "entity.ticket": TicketRepository,
     "entity.ticket_comment": TicketCommentRepository,
